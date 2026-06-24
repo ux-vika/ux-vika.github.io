@@ -312,12 +312,14 @@
     --accent: #2233E6;
     --accent-deep: #161FB0;
     --card: #F1EEE5;
+    --font-sans: 'Hanken Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --font-display: var(--font-sans);
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
   ::selection { background: rgba(34,51,230,0.16); }
   body {
-    font-family: 'Hanken Grotesk', -apple-system, sans-serif;
+    font-family: var(--font-sans);
     color: var(--ink);
     background: var(--paper);
     overflow-x: hidden;
@@ -337,11 +339,11 @@
   a { color: inherit; }
   .shell { position: relative; z-index: 1; max-width: 1320px; margin: 0 auto; }
 
-  .mono { font-family: 'Space Grotesk', sans-serif; }
+  .mono { font-family: var(--font-display); }
   .label {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
-    color: var(--muted); font-weight: 500;
+    font-family: var(--font-display);
+    font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--muted); font-weight: 600;
   }
   .label .tick { color: var(--accent); }
 
@@ -359,10 +361,10 @@
     width: 34px; height: 34px; border-radius: 8px;
     background: var(--ink); color: var(--paper);
     display: flex; align-items: center; justify-content: center;
-    font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 14px;
+    font-family: var(--font-display); font-weight: 700; font-size: 14px;
     letter-spacing: 0.02em;
   }
-  .brand .nm { font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 600; letter-spacing: -0.01em; }
+  .brand .nm { font-family: var(--font-display); font-size: 15px; font-weight: 700; letter-spacing: -0.01em; }
   .topbar nav { display: flex; gap: 30px; align-items: center; }
   .topbar nav a {
     font-size: 13px; letter-spacing: 0.01em; color: var(--ink-2); text-decoration: none;
@@ -372,7 +374,7 @@
   .topbar .avail-pill {
     display: inline-flex; align-items: center; gap: 8px;
     padding: 7px 14px; border-radius: 999px; border: 1px solid var(--line);
-    font-family: 'Space Grotesk', sans-serif; font-size: 11px; letter-spacing: 0.06em;
+    font-family: var(--font-display); font-size: 11px; letter-spacing: 0.06em;
     text-transform: uppercase; color: var(--ink-2);
   }
   .topbar .avail-pill .short { display: none; }
@@ -380,34 +382,34 @@
   @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(34,51,230,0.4); } 70% { box-shadow: 0 0 0 8px rgba(34,51,230,0); } 100% { box-shadow: 0 0 0 0 rgba(34,51,230,0); } }
 
   /* ===== hero ===== */
-  .hero { padding: 92px 48px 60px; }
+  .hero { padding: 86px 48px 58px; }
   .hero-grid {
     display: grid;
-    grid-template-columns: 1.4fr 0.78fr;
+    grid-template-columns: minmax(0,1.28fr) minmax(300px,0.72fr);
     grid-template-areas:
       "eyebrow ."
       "heading photo"
-      "below   .";
-    column-gap: 64px;
+      "below   photo";
+    column-gap: 72px;
     align-items: start;
   }
-  .hero .eyebrow { grid-area: eyebrow; display: flex; align-items: center; gap: 16px; margin-bottom: 40px; }
+  .hero .eyebrow { grid-area: eyebrow; display: flex; align-items: center; gap: 14px; margin-bottom: 34px; }
   .hero h1 { grid-area: heading; }
   .hero-below { grid-area: below; }
   .hero .portrait { grid-area: photo; align-self: stretch; }
   .hero .eyebrow .rule { width: 52px; height: 1px; background: var(--accent); }
   .hero h1 {
-    font-family: 'Space Grotesk', sans-serif;
-    font-weight: 500; font-size: clamp(46px, 7.4vw, 128px);
-    line-height: 0.9; letter-spacing: -0.045em; margin: 0; color: var(--ink);
+    font-family: var(--font-display);
+    font-weight: 650; font-size: clamp(48px, 5.8vw, 94px);
+    line-height: 0.96; letter-spacing: -0.05em; margin: 0; color: var(--ink);
     text-wrap: balance;
   }
   .hero h1 em { font-style: normal; color: var(--accent); }
   .hero .lead {
-    font-size: clamp(18px, 1.6vw, 23px); line-height: 1.45; letter-spacing: -0.01em;
-    color: var(--ink-2); margin: 36px 0 0; max-width: 640px; font-weight: 400;
+    font-size: clamp(18px, 1.45vw, 21px); line-height: 1.48; letter-spacing: -0.012em;
+    color: var(--ink-2); margin: 30px 0 0; max-width: 660px; font-weight: 430;
   }
-  .hero-actions { display: flex; align-items: center; gap: 22px; margin-top: 40px; flex-wrap: wrap; }
+  .hero-actions { display: flex; align-items: center; gap: 18px; margin-top: 34px; flex-wrap: wrap; }
   .chip {
     display: inline-flex; align-items: center; gap: 9px; padding: 10px 17px;
     background: transparent; color: var(--ink); border: 1px solid var(--accent);
@@ -418,7 +420,7 @@
     display: inline-flex; align-items: center; justify-content: center; gap: 9px;
     min-height: 44px; padding: 12px 22px;
     border-radius: 999px; background: var(--accent); color: #fff;
-    font-family: 'Space Grotesk', sans-serif; font-size: 14px; font-weight: 500;
+    font-family: var(--font-display); font-size: 14px; font-weight: 650;
     letter-spacing: 0.01em; text-decoration: none;
     box-shadow: 0 16px 30px -22px rgba(34,51,230,0.72);
     transition: background .2s, transform .2s;
@@ -431,7 +433,7 @@
     border-bottom: 1.5px solid var(--accent); padding-bottom: 3px; transition: color .2s;
   }
   .hero-actions .tg:hover { color: var(--accent); }
-  .hero-actions .loc { font-family: 'Space Grotesk', sans-serif; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+  .hero-actions .loc { font-family: var(--font-display); font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
 
   .portrait { position: relative; min-height: 0; }
   .portrait .frame {
@@ -445,27 +447,88 @@
     display: inline-flex; align-items: center; gap: 8px;
     padding: 8px 13px; border-radius: 999px;
     background: rgba(21,20,15,0.7); backdrop-filter: blur(8px);
-    color: #fff; font-family: 'Space Grotesk', sans-serif; font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: #fff; font-family: var(--font-display); font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase;
   }
   .portrait .tagline .d { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
 
-  /* ===== capabilities ===== */
-  .caps { padding: 52px 48px 72px; }
-  .caps-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 0; border-top: 1px solid var(--ink); }
-  .cap { padding: 36px 36px 36px 0; border-right: 1px solid var(--line); padding-left: 36px; }
-  .cap:first-child { padding-left: 0; }
-  .cap:last-child { border-right: none; padding-right: 0; }
-  .cap .n { font-family: 'Space Grotesk', sans-serif; font-size: 13px; color: var(--accent); font-weight: 600; margin-bottom: 18px; letter-spacing: 0.04em; }
-  .cap h3 { font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 22px; letter-spacing: -0.02em; margin: 0 0 12px; }
-  .cap p { font-size: 14.5px; line-height: 1.6; color: var(--ink-3); margin: 0; }
+  /* ===== numbers ===== */
+  .caps { padding: 48px 48px 72px; }
+  .numbers-head {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+    align-items: flex-start;
+    margin-bottom: 26px;
+  }
+  .numbers-head h2 {
+    max-width: 690px;
+    font-family: var(--font-display);
+    font-weight: 620;
+    font-size: clamp(26px,3vw,42px);
+    line-height: 1.04;
+    letter-spacing: -0.038em;
+    margin: 0;
+  }
+  .numbers-copy {
+    max-width: 360px;
+    font-size: 16px;
+    line-height: 1.55;
+    color: var(--ink-3);
+    margin: 28px 0 0;
+  }
+  .caps-grid {
+    display: grid;
+    grid-template-columns: repeat(3,minmax(0,1fr));
+  }
+  .cap {
+    min-height: 136px;
+    padding: 26px 24px 28px;
+    border-right: 1px solid var(--line);
+    border-bottom: 1px solid var(--line-soft);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .cap:nth-child(3n) { border-right: none; }
+  .cap:nth-last-child(-n+3) { border-bottom: none; }
+  .cap .n {
+    font-family: var(--font-display);
+    font-size: clamp(40px,4vw,56px);
+    color: var(--ink);
+    font-weight: 500;
+    line-height: 0.9;
+    letter-spacing: -0.055em;
+  }
+  .cap p {
+    max-width: 18ch;
+    font-family: var(--font-display);
+    font-size: 11.5px;
+    line-height: 1.3;
+    color: var(--muted);
+    margin: 24px 0 0;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .numbers-note {
+    max-width: 850px;
+    margin-top: 24px;
+    padding-top: 0;
+    font-size: clamp(18px,1.55vw,23px);
+    line-height: 1.45;
+    letter-spacing: -0.025em;
+    color: var(--ink-3);
+  }
+  .numbers-note p { margin: 0 0 12px; }
+  .numbers-note p:last-child { margin-bottom: 0; }
+  .numbers-note strong { color: var(--ink); font-weight: 650; }
 
   /* ===== section header ===== */
   .work-head { padding: 56px 48px 8px; display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; flex-wrap: wrap; }
   .work-head > div:first-child { flex: 1 1 auto; }
   .work-head .count { flex-shrink: 0; }
   .work-head .sec { margin-bottom: 16px; }
-  .work-head h2 { font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: clamp(38px,5vw,68px); line-height: 0.98; letter-spacing: -0.035em; margin: 0; }
-  .work-head .count { font-family: 'Space Grotesk', sans-serif; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+  .work-head h2 { font-family: var(--font-display); font-weight: 650; font-size: clamp(36px,4.6vw,62px); line-height: 1; letter-spacing: -0.04em; margin: 0; }
+  .work-head .count { font-family: var(--font-display); font-size: 11.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
 
   /* ===== case cards (uniform) ===== */
   /* ===== case cards (uniform system) ===== */
@@ -479,15 +542,15 @@
   }
   .case-row:hover { transform: translateY(-4px); box-shadow: 0 36px 64px -34px rgba(21,20,15,0.42); border-color: rgba(34,51,230,0.55); }
   .case-body { padding: 48px 50px; display: flex; flex-direction: column; justify-content: center; }
-  .case-meta { font-family: 'Space Grotesk', sans-serif; display: flex; gap: 12px; align-items: baseline; margin-bottom: 18px; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
-  .case-meta .n { color: var(--accent); font-weight: 600; }
-  .case-body h3 { font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: clamp(23px,2.2vw,31px); line-height: 1.08; letter-spacing: -0.03em; margin: 0 0 14px; }
+  .case-meta { font-family: var(--font-display); display: flex; gap: 12px; align-items: baseline; margin-bottom: 18px; font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); font-weight: 650; }
+  .case-meta .n { color: var(--ink-3); font-weight: 650; }
+  .case-body h3 { font-family: var(--font-display); font-weight: 650; font-size: clamp(24px,2.15vw,32px); line-height: 1.08; letter-spacing: -0.035em; margin: 0 0 14px; }
   .case-body p { font-size: 15px; line-height: 1.62; color: var(--ink-3); margin: 0 0 28px; max-width: 44ch; }
   .case-foot { display: flex; align-items: center; gap: 18px; margin-top: auto; }
-  .case-foot .stat { font-family: 'Space Grotesk', sans-serif; font-size: 30px; font-weight: 500; color: var(--ink); line-height: 1; letter-spacing: -0.02em; }
-  .case-foot .stat small { font-size: 13px; color: var(--muted); font-family: 'Hanken Grotesk', sans-serif; margin-left: 9px; font-weight: 400; }
+  .case-foot .stat { font-family: var(--font-display); font-size: 28px; font-weight: 650; color: var(--ink); line-height: 1; letter-spacing: -0.035em; }
+  .case-foot .stat small { font-size: 13px; color: var(--muted); font-family: var(--font-sans); margin-left: 9px; font-weight: 430; }
   .case-foot .go {
-    margin-left: auto; font-family: 'Space Grotesk', sans-serif; font-size: 13px; font-weight: 500; letter-spacing: 0.02em; color: var(--accent);
+    margin-left: auto; font-family: var(--font-display); font-size: 13px; font-weight: 650; letter-spacing: 0.01em; color: var(--ink);
     display: inline-flex; align-items: center; gap: 8px; transition: gap .2s;
   }
   .case-row:hover .case-foot .go { gap: 13px; }
@@ -514,13 +577,13 @@
     display: inline-flex; align-items: center; gap: 9px; align-self: flex-start;
     padding: 7px 14px; border-radius: 999px; background: rgba(34,51,230,0.07);
     border: 1px solid rgba(34,51,230,0.2); margin-bottom: 20px;
-    font-family: 'Space Grotesk', sans-serif; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent-deep);
+    font-family: var(--font-display); font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent-deep); font-weight: 650;
   }
   .case-badge .live { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 0 rgba(34,51,230,0.4); animation: pulse 2.2s infinite; }
   .case-cta {
     display: inline-flex; align-items: center; gap: 9px; align-self: flex-start; margin-top: 4px;
     padding: 13px 24px; border-radius: 999px; background: var(--accent); color: #fff;
-    font-family: 'Space Grotesk', sans-serif; font-size: 13.5px; font-weight: 500; letter-spacing: 0.01em; text-decoration: none; transition: background .2s, transform .2s;
+    font-family: var(--font-display); font-size: 13.5px; font-weight: 650; letter-spacing: 0.01em; text-decoration: none; transition: background .2s, transform .2s;
   }
   .case-cta:hover { background: var(--accent-deep); transform: translateX(3px); }
   .device-mini {
@@ -528,62 +591,78 @@
     border-radius: 26px; overflow: hidden; background: #000;
     box-shadow: 0 24px 48px -22px rgba(21,20,15,0.45);
     border: 3px solid #0c0a09;
+    isolation: isolate;
+    contain: paint;
   }
-  .device-mini iframe { position: absolute; top: 0; left: 0; width: 393px; height: 803px; border: 0; transform: scale(0.4275); transform-origin: top left; pointer-events: none; }
+  .device-screen {
+    position: absolute;
+    inset: 0;
+    border-radius: 22px;
+    overflow: hidden;
+    background: #000;
+    clip-path: inset(0 round 22px);
+  }
+  .device-mini iframe { position: absolute; top: 0; left: 0; width: 393px; height: 803px; border: 0; transform: scale(0.426); transform-origin: top left; pointer-events: none; }
 
   /* ===== about ===== */
-  .about { padding: 100px 48px 72px; }
+  .about { padding: 100px 48px 32px; }
   .about-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 80px; align-items: start; }
-  .about h2 { font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: clamp(30px,3.4vw,48px); line-height: 1.06; letter-spacing: -0.035em; margin: 18px 0 32px; }
+  .about h2 { font-family: var(--font-display); font-weight: 650; font-size: clamp(30px,3.25vw,46px); line-height: 1.08; letter-spacing: -0.04em; margin: 18px 0 32px; }
   .about h2 em { font-style: normal; color: var(--accent); }
   .about p { font-size: 16.5px; line-height: 1.68; color: var(--ink-2); margin: 0 0 18px; }
   .about p strong { font-weight: 600; color: var(--ink); }
   .about-stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; border-top: 1px solid var(--ink); padding-top: 26px; margin-top: 28px; }
-  .about-stats .v { font-family: 'Space Grotesk', sans-serif; font-size: 46px; font-weight: 500; color: var(--ink); line-height: 1; letter-spacing: -0.03em; }
   .about-stats .l { font-size: 12.5px; color: var(--muted); letter-spacing: 0.02em; margin-top: 8px; }
-  .exp-panel { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 30px 32px; }
+  .exp-panel { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 30px 32px; margin-top: 32px; }
   .exp-label { margin-bottom: 22px; }
   .exp-row { display: grid; grid-template-columns: 1fr auto; gap: 16px; padding: 18px 0; border-bottom: 1px solid var(--line-soft); }
   .exp-row:last-child { border-bottom: none; padding-bottom: 0; }
   .exp-row:first-of-type { padding-top: 0; }
-  .exp-row .co { font-family: 'Space Grotesk', sans-serif; font-size: 19px; font-weight: 600; line-height: 1.2; letter-spacing: -0.01em; }
+  .exp-row .co { font-family: var(--font-display); font-size: 19px; font-weight: 650; line-height: 1.2; letter-spacing: -0.018em; }
   .exp-row .ro { font-size: 13.5px; color: var(--ink-3); margin-top: 5px; }
-  .exp-row .yr { font-family: 'Space Grotesk', sans-serif; font-size: 13px; color: var(--muted); white-space: nowrap; letter-spacing: 0.02em; }
+  .exp-row .yr { font-family: var(--font-display); font-size: 13px; color: var(--muted); white-space: nowrap; letter-spacing: 0.02em; }
 
   /* ===== contact ===== */
-  .contact { padding: 120px 48px 80px; text-align: center; }
+  .contact { padding: 40px 48px 80px; text-align: center; }
   .contact .sec { margin-bottom: 32px; display: inline-block; }
-  .contact h2 { font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: clamp(48px,8.5vw,132px); line-height: 0.94; letter-spacing: -0.045em; margin: 0 0 56px; }
+  .contact h2 { font-family: var(--font-display); font-weight: 650; font-size: clamp(48px,5.8vw,94px); line-height: 0.96; letter-spacing: -0.05em; margin: 0 0 56px; }
   .contact h2 em { font-style: normal; color: var(--accent); }
   .contact-links { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
   .contact-links a {
-    font-family: 'Space Grotesk', sans-serif; font-size: 16px; font-weight: 500; color: var(--ink); text-decoration: none;
+    font-family: var(--font-display); font-size: 16px; font-weight: 650; color: var(--ink); text-decoration: none;
     padding: 14px 26px; border: 1px solid var(--line); border-radius: 999px;
     transition: color .2s, border-color .2s, background .2s;
   }
   .contact-links a:hover { color: #fff; background: var(--ink); border-color: var(--ink); }
-  .contact .avail { margin-top: 48px; font-family: 'Space Grotesk', sans-serif; font-size: 11px; color: var(--muted); letter-spacing: 0.14em; text-transform: uppercase; }
+  .contact .avail { margin-top: 48px; font-family: var(--font-display); font-size: 11px; color: var(--muted); letter-spacing: 0.14em; text-transform: uppercase; }
 
-  footer { padding: 32px 48px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; font-family: 'Space Grotesk', sans-serif; font-size: 12px; color: var(--muted); letter-spacing: 0.04em; position: relative; z-index: 1; }
+  footer { padding: 32px 48px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; font-family: var(--font-display); font-size: 12px; color: var(--muted); letter-spacing: 0.04em; position: relative; z-index: 1; }
 
   .case-row.link { cursor: pointer; }
 
   @media (max-width: 980px) {
     .hero-grid {
       grid-template-columns: 1fr;
-      grid-template-areas: "eyebrow" "heading" "photo" "below";
-      gap: 28px;
+      grid-template-areas: "eyebrow" "heading" "below" "photo";
+      gap: 24px;
     }
-    .portrait { max-width: 360px; aspect-ratio: 671 / 741; }
-    .caps-grid { grid-template-columns: 1fr; }
-    .cap { border-right: none; border-bottom: 1px solid var(--line); padding: 28px 0; }
-    .cap:first-child { padding-top: 28px; }
-    .cap:last-child { border-bottom: none; }
+    .hero { padding-top: 70px; }
+    .hero .eyebrow { margin-bottom: 18px; }
+    .hero .lead { margin-top: 26px; }
+    .hero-actions { margin-top: 30px; }
+    .portrait { max-width: 300px; aspect-ratio: 671 / 741; margin-top: 10px; }
+    .caps-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+    .numbers-copy { margin-top: 0; }
+    .cap, .cap:nth-child(3n), .cap:nth-child(4n) { border-right: 1px solid var(--line); border-bottom: 1px solid var(--line-soft); }
+    .cap:nth-child(2n) { border-right: none; }
+    .cap:nth-last-child(-n+2) { border-bottom: none; }
     .case-row { grid-template-columns: 1fr; }
     .case-body { order: 1; }
     .case-prev { order: 2; min-height: 280px; border-left: none; border-top: 1px solid var(--line); }
     .about-grid { grid-template-columns: 1fr; gap: 48px; }
+    .exp-panel { margin-top: 0; }
     .work-head { flex-direction: column; align-items: flex-start; gap: 14px; }
+    .numbers-head { flex-direction: column; align-items: flex-start; }
   }
   @media (max-width: 620px) {
     .topbar { padding: 16px 22px; }
@@ -593,7 +672,15 @@
     .topbar .avail-pill .full { display: none; }
     .topbar .avail-pill .short { display: inline; }
     .hero, .caps, .work-head, .featured, .cases, .about, .contact, footer { padding-left: 22px; padding-right: 22px; }
-    .hero { padding-top: 56px; }
+    .hero { padding-top: 52px; }
+    .hero h1 { font-size: clamp(40px,10.6vw,54px); line-height: 0.99; letter-spacing: -0.048em; }
+    .hero .lead { font-size: 17px; line-height: 1.48; }
+    .portrait { max-width: 240px; }
+    .portrait .tagline { display: none; }
+    .numbers-head h2 { font-size: 28px; line-height: 1.08; }
+    .cap { min-height: 126px; padding: 24px 18px 24px; }
+    .cap .n { font-size: clamp(42px,12vw,58px); }
+    .cap p { font-size: 11px; letter-spacing: 0.04em; }
     .case-body { padding: 34px 26px; }
     .about-stats { grid-template-columns: 1fr; gap: 18px; }
     .case-foot { flex-wrap: wrap; gap: 14px; }
@@ -601,6 +688,9 @@
   }
   @media (max-width: 420px) {
     .brand .nm { display: none; }
+    .caps-grid { grid-template-columns: 1fr; }
+    .cap, .cap:nth-child(2n), .cap:nth-child(4n) { border-right: none; border-bottom: 1px solid var(--line); padding-left: 0; padding-right: 0; }
+    .cap:last-child { border-bottom: none; }
   }
 </style>
 </head>
@@ -614,10 +704,9 @@
       <div class="nm">Виктория Шаханина</div>
     </div>
     <nav>
-      <a href="#work" class="navlink">Работы</a>
       <a href="#about" class="navlink">О себе</a>
-      <a href="https://t.me/ux_vika" class="navlink" target="_blank" rel="noopener">Telegram</a>
-      <a href="mailto:9697161878@mail.ru" class="navlink">Почта</a>
+      <a href="#work" class="navlink">Кейсы</a>
+      <a href="#contact" class="navlink">Контакты</a>
       <span class="avail-pill"><span class="d"></span><span class="full">Открыта к сотрудничеству</span><span class="short">Сотрудничество</span></span>
     </nav>
   </header>
@@ -628,7 +717,7 @@
       <div class="eyebrow label"><span class="rule"></span>Senior / Lead Product Designer</div>
       <h1>Делаю сложные продукты <em>понятными</em></h1>
       <div class="hero-below">
-        <p class="lead">7+ лет проектирую B2B и Enterprise-продукты для Desktop, Web и мобильных платформ. Провожу исследования, собираю сценарии, работаю с дизайн-системами и довожу решения до релиза вместе с командой.</p>
+        <p class="lead">Через исследования, проверку гипотез и проектирование пользовательского опыта. 7+ лет в продукте, исследования, запуск новых сценариев и работа со сложными B2B-системами.</p>
         <div class="hero-actions">
           <a href="#work" class="primary-action">Смотреть кейсы →</a>
           <a href="https://t.me/ux_vika" class="tg" target="_blank" rel="noopener">Telegram →</a>
@@ -644,31 +733,51 @@
     </div>
   </section>
 
-  <!-- capabilities -->
+  <!-- numbers -->
   <section class="caps">
+    <div class="numbers-head">
+      <div>
+        <div class="sec label"><span class="tick">→ </span>Опыт в цифрах</div>
+        <h2>Опыт, который помогает принимать продуктовые решения.</h2>
+      </div>
+      <p class="numbers-copy">Исследования, релизы и продукты, которыми пользуются каждый день.</p>
+    </div>
     <div class="caps-grid">
       <div class="cap">
-        <div class="n">01</div>
-        <h3>Исследования</h3>
-        <p>Самостоятельно провожу исследования, интервью и тестирования. Проверяю гипотезы до разработки и помогаю команде принимать решения на основе данных.</p>
+        <div class="n">7+</div>
+        <p>лет опыта</p>
       </div>
       <div class="cap">
-        <div class="n">02</div>
-        <h3>Ведение до релиза</h3>
-        <p>Веду задачи от постановки проблемы до релиза: исследования, сценарии, прототипы, дизайн-система, защита решений и сопровождение разработки.</p>
+        <div class="n">50+</div>
+        <p>исследований</p>
       </div>
       <div class="cap">
-        <div class="n">03</div>
-        <h3>B2B и Enterprise</h3>
-        <p>4 года проектирую продукты для корпоративного сегмента. Учитываю требования безопасности, масштабирования и сложные пользовательские сценарии.</p>
+        <div class="n">2</div>
+        <p>продукта от идеи до релиза</p>
       </div>
+      <div class="cap">
+        <div class="n">4</div>
+        <p>платформы</p>
+      </div>
+      <div class="cap">
+        <div class="n">3</div>
+        <p>студента в менторинге</p>
+      </div>
+      <div class="cap">
+        <div class="n">2</div>
+        <p>публичных доклада</p>
+      </div>
+    </div>
+    <div class="numbers-note">
+      <p>Запускала продукты, выстраивала Discovery и помогала командам принимать решения на основе исследований.</p>
+      <p>Внедрила PBR, USM и процесс сбора пользовательской обратной связи, чтобы проверять идеи до начала разработки.</p>
     </div>
   </section>
 
   <!-- work head -->
   <div class="work-head" id="work">
     <div>
-      <div class="sec label"><span class="tick">→ </span>Раздел 01 — Работы</div>
+      <div class="sec label"><span class="tick">→ </span>Раздел 01 — Кейсы</div>
       <h2>Продуктовые кейсы</h2>
     </div>
     <div class="count">6 кейсов</div>
@@ -676,22 +785,6 @@
 
   <!-- case index -->
   <section class="cases">
-
-    <!-- Night Badminton (interactive prototype) -->
-    <a class="case-row link proto" href="badminton/index.html">
-      <div class="case-body">
-        <div class="case-badge"><span class="live"></span>Кликабельный прототип</div>
-        <div class="case-meta"><span class="n">00</span><span>Night Badminton · iOS</span></div>
-        <h3>Мобильное приложение для записи на тренировки</h3>
-        <p>Живой интерактивный прототип на iOS: расписание, карточка тренировки, запись и оплата. Можно потыкать прямо здесь — или открыть кейс целиком.</p>
-        <span class="case-cta">Открыть кейс с прототипом →</span>
-      </div>
-      <div class="case-prev proto-prev">
-        <div class="device-mini">
-          <iframe id="protoFrame" title="Прототип Night Badminton" scrolling="no"></iframe>
-        </div>
-      </div>
-    </a>
 
     <!-- Календарь -->
     <a class="case-row link" href="calendar/index.html">
@@ -729,7 +822,7 @@
     <a class="case-row link" href="antivirus/index.html">
       <div class="case-body">
         <div class="case-meta"><span class="n">03</span><span>Сквадус · Desktop</span></div>
-        <h3>Антивирус, не ломающий сценарий</h3>
+        <h3>Антивирус в мессенджере</h3>
         <p>Интеграция проверки файлов Kaspersky прямо в чат. Шесть состояний сканирования сняли угрозу вредоносного ПО и убрали барьер для enterprise-сделок.</p>
         <div class="case-foot">
           <div class="stat">6<small>состояний проверки</small></div>
@@ -741,10 +834,28 @@
       </div>
     </a>
 
+    <!-- Night Badminton (UI Showcase) -->
+    <a class="case-row link proto" href="badminton/index.html">
+      <div class="case-body">
+        <div class="case-badge"><span class="live"></span>Кликабельный прототип</div>
+        <div class="case-meta"><span class="n">04</span><span>Night Badminton · UI Showcase</span></div>
+        <h3>Night Badminton (UI Showcase)</h3>
+        <p>Живой интерактивный прототип на iOS: расписание, карточка тренировки, запись и оплата. Можно потыкать прямо здесь — или открыть кейс целиком.</p>
+        <span class="case-cta">Открыть кейс с прототипом →</span>
+      </div>
+      <div class="case-prev proto-prev">
+        <div class="device-mini">
+          <div class="device-screen">
+            <iframe id="protoFrame" title="Прототип Night Badminton" scrolling="no"></iframe>
+          </div>
+        </div>
+      </div>
+    </a>
+
     <!-- Почта -->
     <a class="case-row link" href="mail/index.html">
       <div class="case-body">
-        <div class="case-meta"><span class="n">04</span><span>Почта · iOS · Android</span></div>
+        <div class="case-meta"><span class="n">05</span><span>Почта · iOS · Android</span></div>
         <h3>Исследование мобильной почты</h3>
         <p>Модерируемое юзабилити-тестирование с 10 внешними респондентами. Нашла 15 UX-проблем, 3 критичных — результат лёг в основу нового приложения Мэйлион.</p>
         <div class="case-foot">
@@ -760,7 +871,7 @@
     <!-- Вывод средств -->
     <a class="case-row link" href="wallet/index.html">
       <div class="case-body">
-        <div class="case-meta"><span class="n">05</span><span>Wowworks · iOS</span></div>
+        <div class="case-meta"><span class="n">06</span><span>Wowworks · iOS</span></div>
         <h3>Вывод средств для исполнителей</h3>
         <p>CJM, три гипотезы и тест на 10 пользователях. 8 из 10 не читали сроки зачисления — переписала сценарий так, чтобы ожидание перестало пугать.</p>
         <div class="case-foot">
@@ -784,11 +895,6 @@
         <p>Последние 4 года развиваю продукты <strong>МойОфис</strong> для Desktop, Web, iOS и Android. До этого работала над сервисами Wowworks и продуктовыми проектами в агентской среде.</p>
         <p>Специализируюсь на полном цикле продуктовой разработки: исследования, discovery, проверка гипотез, проектирование сценариев, дизайн-системы и сопровождение разработки до релиза.</p>
         <p>Внедряла исследовательские практики в командах, защищала решения перед стейкхолдерами и помогала продуктовым командам принимать решения на основе пользовательских данных. Менторила начинающих дизайнеров в <strong>DesignSpot School (EPAM)</strong> и выступала на профессиональных конференциях.</p>
-        <div class="about-stats">
-          <div><div class="v">7+</div><div class="l">лет в продукте</div></div>
-          <div><div class="v">4</div><div class="l">платформы</div></div>
-          <div><div class="v">50+</div><div class="l">интервью и тестов</div></div>
-        </div>
       </div>
       <div>
         <div class="exp-panel">
