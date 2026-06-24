@@ -3,6 +3,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Виктория Шаханина — Senior Product Designer</title>
+<meta name="description" content="Портфолио Виктории Шаханиной, Senior / Lead Product Designer. B2B, Enterprise, исследования, дизайн-системы, прототипы и сопровождение разработки до релиза.">
+<meta property="og:title" content="Виктория Шаханина — Senior Product Designer">
+<meta property="og:description" content="7+ лет в продукте: B2B, Enterprise, исследования, дизайн-системы и полный цикл от discovery до релиза.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ru_RU">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <style>/* cyrillic-ext */
@@ -370,6 +375,7 @@
     font-family: 'Space Grotesk', sans-serif; font-size: 11px; letter-spacing: 0.06em;
     text-transform: uppercase; color: var(--ink-2);
   }
+  .topbar .avail-pill .short { display: none; }
   .topbar .avail-pill .d { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 0 rgba(34,51,230,0.4); animation: pulse 2.4s infinite; }
   @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(34,51,230,0.4); } 70% { box-shadow: 0 0 0 8px rgba(34,51,230,0); } 100% { box-shadow: 0 0 0 0 rgba(34,51,230,0); } }
 
@@ -408,8 +414,19 @@
     border-radius: 999px; font-size: 13px; letter-spacing: 0.01em; font-weight: 500;
   }
   .chip .dot { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; box-shadow: 0 0 0 0 rgba(34,51,230,0.4); animation: pulse 2.4s infinite; }
+  .hero-actions .primary-action {
+    display: inline-flex; align-items: center; justify-content: center; gap: 9px;
+    min-height: 44px; padding: 12px 22px;
+    border-radius: 999px; background: var(--accent); color: #fff;
+    font-family: 'Space Grotesk', sans-serif; font-size: 14px; font-weight: 500;
+    letter-spacing: 0.01em; text-decoration: none;
+    box-shadow: 0 16px 30px -22px rgba(34,51,230,0.72);
+    transition: background .2s, transform .2s;
+  }
+  .hero-actions .primary-action:hover { background: var(--accent-deep); transform: translateY(-1px); }
   .hero-actions .tg {
     display: inline-flex; align-items: center; gap: 7px;
+    min-height: 44px;
     font-size: 14px; font-weight: 500; color: var(--ink); text-decoration: none;
     border-bottom: 1.5px solid var(--accent); padding-bottom: 3px; transition: color .2s;
   }
@@ -484,7 +501,7 @@
   }
   .case-prev img {
     width: 100%; max-width: 430px; aspect-ratio: 4 / 3;
-    object-fit: cover; border-radius: 12px;
+    object-fit: contain; border-radius: 12px;
     box-shadow: 0 18px 40px -20px rgba(21,20,15,0.38), 0 1px 0 rgba(255,255,255,0.4);
     transition: transform .35s ease;
   }
@@ -549,11 +566,6 @@
 
   footer { padding: 32px 48px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; font-family: 'Space Grotesk', sans-serif; font-size: 12px; color: var(--muted); letter-spacing: 0.04em; position: relative; z-index: 1; }
 
-  /* case overlay (in-file router) */
-  .case-overlay { position: fixed; inset: 0; z-index: 200; background: var(--paper); display: none; }
-  .case-overlay.open { display: block; }
-  .case-overlay iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; opacity: 0; pointer-events: none; }
-  .case-overlay iframe.active { opacity: 1; pointer-events: auto; }
   .case-row.link { cursor: pointer; }
 
   @media (max-width: 980px) {
@@ -577,12 +589,18 @@
     .topbar { padding: 16px 22px; }
     .topbar nav { gap: 16px; }
     .topbar nav a.navlink { display: none; }
+    .topbar .avail-pill { padding: 7px 11px; font-size: 10px; letter-spacing: 0.04em; }
+    .topbar .avail-pill .full { display: none; }
+    .topbar .avail-pill .short { display: inline; }
     .hero, .caps, .work-head, .featured, .cases, .about, .contact, footer { padding-left: 22px; padding-right: 22px; }
     .hero { padding-top: 56px; }
     .case-body { padding: 34px 26px; }
     .about-stats { grid-template-columns: 1fr; gap: 18px; }
     .case-foot { flex-wrap: wrap; gap: 14px; }
     footer { flex-direction: column; gap: 8px; text-align: center; }
+  }
+  @media (max-width: 420px) {
+    .brand .nm { display: none; }
   }
 </style>
 </head>
@@ -598,27 +616,29 @@
     <nav>
       <a href="#work" class="navlink">Работы</a>
       <a href="#about" class="navlink">О себе</a>
-      <a href="#contact" class="navlink">Контакты</a>
-      <span class="avail-pill"><span class="d"></span>Открыта к ролям</span>
+      <a href="https://t.me/ux_vika" class="navlink" target="_blank" rel="noopener">Telegram</a>
+      <a href="mailto:9697161878@mail.ru" class="navlink">Почта</a>
+      <span class="avail-pill"><span class="d"></span><span class="full">Открыта к сотрудничеству</span><span class="short">Сотрудничество</span></span>
     </nav>
   </header>
 
   <!-- hero -->
   <section class="hero">
     <div class="hero-grid">
-      <div class="eyebrow label"><span class="rule"></span>Виктория Шаханина — Senior Product Designer</div>
+      <div class="eyebrow label"><span class="rule"></span>Senior / Lead Product Designer</div>
       <h1>Делаю сложные продукты <em>понятными</em></h1>
       <div class="hero-below">
-        <p class="lead">7+ лет проектирую B2B и Enterprise-продукты для Desktop, Web и мобильных платформ. От пользовательской проблемы до продукта в продакшене. Исследую, проектирую и довожу решения до результата.</p>
+        <p class="lead">7+ лет проектирую B2B и Enterprise-продукты для Desktop, Web и мобильных платформ. Провожу исследования, собираю сценарии, работаю с дизайн-системами и довожу решения до релиза вместе с командой.</p>
         <div class="hero-actions">
-          <a href="https://t.me/ux_vika" class="tg">Telegram →</a>
-          <span class="loc">СПб · удалёнка</span>
+          <a href="#work" class="primary-action">Смотреть кейсы →</a>
+          <a href="https://t.me/ux_vika" class="tg" target="_blank" rel="noopener">Telegram →</a>
+          <span class="loc">СПб · удалёнка / гибрид</span>
         </div>
       </div>
       <div class="portrait">
         <div class="frame">
           <img src="images/img-01-3e309300.jpeg" alt="Виктория Шаханина">
-          <span class="tagline"><span class="d"></span>СПб · удалёнка</span>
+          <span class="tagline"><span class="d"></span>СПб · удалёнка / гибрид</span>
         </div>
       </div>
     </div>
@@ -629,17 +649,17 @@
     <div class="caps-grid">
       <div class="cap">
         <div class="n">01</div>
-        <h3>Research-driven</h3>
+        <h3>Исследования</h3>
         <p>Самостоятельно провожу исследования, интервью и тестирования. Проверяю гипотезы до разработки и помогаю команде принимать решения на основе данных.</p>
       </div>
       <div class="cap">
         <div class="n">02</div>
-        <h3>End-to-end ownership</h3>
+        <h3>Ведение до релиза</h3>
         <p>Веду задачи от постановки проблемы до релиза: исследования, сценарии, прототипы, дизайн-система, защита решений и сопровождение разработки.</p>
       </div>
       <div class="cap">
         <div class="n">03</div>
-        <h3>Enterprise expertise</h3>
+        <h3>B2B и Enterprise</h3>
         <p>4 года проектирую продукты для корпоративного сегмента. Учитываю требования безопасности, масштабирования и сложные пользовательские сценарии.</p>
       </div>
     </div>
@@ -648,20 +668,20 @@
   <!-- work head -->
   <div class="work-head" id="work">
     <div>
-      <div class="sec label"><span class="tick">→ </span>Section 01 — Работы</div>
-      <h2>Избранные кейсы</h2>
+      <div class="sec label"><span class="tick">→ </span>Раздел 01 — Работы</div>
+      <h2>Продуктовые кейсы</h2>
     </div>
-    <div class="count">6 кейсов · 2021—2026</div>
+    <div class="count">6 кейсов</div>
   </div>
 
   <!-- case index -->
   <section class="cases">
 
     <!-- Night Badminton (interactive prototype) -->
-    <a class="case-row link proto" href="badminton/index.html" onclick="return showCase('badminton')">
+    <a class="case-row link proto" href="badminton/index.html">
       <div class="case-body">
         <div class="case-badge"><span class="live"></span>Кликабельный прототип</div>
-        <div class="case-meta"><span class="n">00</span><span>Night Badminton · iOS</span><span>· 2025</span></div>
+        <div class="case-meta"><span class="n">00</span><span>Night Badminton · iOS</span></div>
         <h3>Мобильное приложение для записи на тренировки</h3>
         <p>Живой интерактивный прототип на iOS: расписание, карточка тренировки, запись и оплата. Можно потыкать прямо здесь — или открыть кейс целиком.</p>
         <span class="case-cta">Открыть кейс с прототипом →</span>
@@ -674,9 +694,9 @@
     </a>
 
     <!-- Календарь -->
-    <a class="case-row link" href="calendar/index.html" onclick="return showCase('calendar')">
+    <a class="case-row link" href="calendar/index.html">
       <div class="case-body">
-        <div class="case-meta"><span class="n">01</span><span>Сквадус · Desktop</span><span>· 2024</span></div>
+        <div class="case-meta"><span class="n">01</span><span>Сквадус · Desktop</span></div>
         <h3>Календарь для корпоративного мессенджера</h3>
         <p>Провела исследование среди 194 пользователей и определила оптимальную точку входа в календарь. Решение вошло в релиз и помогло закрыть требования крупного enterprise-заказчика.</p>
         <div class="case-foot">
@@ -685,14 +705,14 @@
         </div>
       </div>
       <div class="case-prev">
-        <img src="images/img-06-ad00a351.jpeg" alt="Календарь в мессенджере">
+        <img src="images/preview-calendar.png" alt="Календарь в мессенджере">
       </div>
     </a>
 
     <!-- Повторяющиеся -->
-    <a class="case-row link" href="recurring/index.html" onclick="return showCase('recurring')">
+    <a class="case-row link" href="recurring/index.html">
       <div class="case-body">
-        <div class="case-meta"><span class="n">02</span><span>Фокус · iOS · Android</span><span>· 2023</span></div>
+        <div class="case-meta"><span class="n">02</span><span>Фокус · iOS · Android</span></div>
         <h3>Повторяющиеся события в мобильном календаре</h3>
         <p>Перепроектировала сценарий повторяющихся событий после анализа обращений пользователей и конкурентного анализа. После релиза жалобы на сценарий перестали поступать.</p>
         <div class="case-foot">
@@ -701,14 +721,14 @@
         </div>
       </div>
       <div class="case-prev">
-        <img src="images/img-03-e805c7b5.jpeg" alt="Повторяющиеся события">
+        <img src="images/preview-recurring.png?v=3" alt="Повторяющиеся события">
       </div>
     </a>
 
     <!-- Антивирус -->
-    <a class="case-row link" href="antivirus/index.html" onclick="return showCase('antivirus')">
+    <a class="case-row link" href="antivirus/index.html">
       <div class="case-body">
-        <div class="case-meta"><span class="n">03</span><span>Сквадус · Desktop</span><span>· 2024</span></div>
+        <div class="case-meta"><span class="n">03</span><span>Сквадус · Desktop</span></div>
         <h3>Антивирус, не ломающий сценарий</h3>
         <p>Интеграция проверки файлов Kaspersky прямо в чат. Шесть состояний сканирования сняли угрозу вредоносного ПО и убрали барьер для enterprise-сделок.</p>
         <div class="case-foot">
@@ -717,14 +737,14 @@
         </div>
       </div>
       <div class="case-prev">
-        <img src="images/img-02-2d8ba013.jpeg" alt="Антивирус в мессенджере">
+        <img src="images/preview-antivirus.png" alt="Антивирус в мессенджере">
       </div>
     </a>
 
     <!-- Почта -->
-    <a class="case-row link" href="mail/index.html" onclick="return showCase('mail')">
+    <a class="case-row link" href="mail/index.html">
       <div class="case-body">
-        <div class="case-meta"><span class="n">04</span><span>Почта · iOS · Android</span><span>· 2022</span></div>
+        <div class="case-meta"><span class="n">04</span><span>Почта · iOS · Android</span></div>
         <h3>Исследование мобильной почты</h3>
         <p>Модерируемое юзабилити-тестирование с 10 внешними респондентами. Нашла 15 UX-проблем, 3 критичных — результат лёг в основу нового приложения Мэйлион.</p>
         <div class="case-foot">
@@ -733,14 +753,14 @@
         </div>
       </div>
       <div class="case-prev">
-        <img src="images/img-04-5cad8a3f.jpeg" alt="Исследование мобильной почты">
+        <img src="images/preview-mail.png?v=3" alt="Исследование мобильной почты">
       </div>
     </a>
 
     <!-- Вывод средств -->
-    <a class="case-row link" href="wallet/index.html" onclick="return showCase('wallet')">
+    <a class="case-row link" href="wallet/index.html">
       <div class="case-body">
-        <div class="case-meta"><span class="n">05</span><span>Wowworks · iOS</span><span>· 2021</span></div>
+        <div class="case-meta"><span class="n">05</span><span>Wowworks · iOS</span></div>
         <h3>Вывод средств для исполнителей</h3>
         <p>CJM, три гипотезы и тест на 10 пользователях. 8 из 10 не читали сроки зачисления — переписала сценарий так, чтобы ожидание перестало пугать.</p>
         <div class="case-foot">
@@ -749,7 +769,7 @@
         </div>
       </div>
       <div class="case-prev">
-        <img src="images/img-05-50efc2a4.jpeg" alt="Вывод средств">
+        <img src="images/preview-wallet.png?v=2" alt="Вывод средств">
       </div>
     </a>
 
@@ -759,7 +779,7 @@
   <section class="about" id="about">
     <div class="about-grid">
       <div>
-        <div class="sec label"><span class="tick">→ </span>Section 02 — О себе</div>
+        <div class="sec label"><span class="tick">→ </span>Раздел 02 — О себе</div>
         <h2>Research-driven Senior Product Designer с опытом <em>сложных B2B и Enterprise-продуктов.</em></h2>
         <p>Последние 4 года развиваю продукты <strong>МойОфис</strong> для Desktop, Web, iOS и Android. До этого работала над сервисами Wowworks и продуктовыми проектами в агентской среде.</p>
         <p>Специализируюсь на полном цикле продуктовой разработки: исследования, discovery, проверка гипотез, проектирование сценариев, дизайн-системы и сопровождение разработки до релиза.</p>
@@ -767,7 +787,7 @@
         <div class="about-stats">
           <div><div class="v">7+</div><div class="l">лет в продукте</div></div>
           <div><div class="v">4</div><div class="l">платформы</div></div>
-          <div><div class="v">∞</div><div class="l">интервью с людьми</div></div>
+          <div><div class="v">50+</div><div class="l">интервью и тестов</div></div>
         </div>
       </div>
       <div>
@@ -783,88 +803,27 @@
 
   <!-- contact -->
   <section class="contact" id="contact">
-    <div class="sec label"><span class="tick">→ </span>Section 03 — Связаться</div>
-    <h2>Давайте поговорим<br>о <em>вашем продукте.</em></h2>
+    <div class="sec label"><span class="tick">→ </span>Раздел 03 — Связаться</div>
+    <h2>Давайте обсудим<br><em>ваш продукт</em></h2>
     <div class="contact-links">
-      <a href="https://t.me/ux_vika">Telegram</a>
+      <a href="https://t.me/ux_vika" target="_blank" rel="noopener">Telegram</a>
       <a href="mailto:9697161878@mail.ru">Почта</a>
       <a href="tel:+79516635482">+7 951 663-54-82</a>
     </div>
-    <div class="avail">СПб · удалёнка · готова к командировкам</div>
+    <div class="avail">СПб · удалёнка / гибрид · готова к командировкам</div>
   </section>
 
   <footer>
     <div>© 2026 Виктория Шаханина</div>
-    <div>Saint Petersburg</div>
+    <div>Санкт-Петербург</div>
   </footer>
 
 </div>
 
-<!-- case router overlay -->
-<div class="case-overlay" id="caseOverlay">
-  <iframe data-case="badminton" title="Night Badminton"></iframe>
-  <iframe data-case="calendar" title="Календарь"></iframe>
-  <iframe data-case="recurring" title="Повторяющиеся события"></iframe>
-  <iframe data-case="antivirus" title="Антивирус"></iframe>
-  <iframe data-case="mail" title="Мобильная почта"></iframe>
-  <iframe data-case="wallet" title="Вывод средств"></iframe>
-</div>
-
 <script>
   (function () {
-    var overlay = document.getElementById('caseOverlay');
-    var frames = overlay.querySelectorAll('iframe');
-    function b64ToHtml(b64) {
-      var bin = atob(b64.trim());
-      var bytes = new Uint8Array(bin.length);
-      for (var i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
-      return new TextDecoder('utf-8').decode(bytes);
-    }
-    function getSrcB64(id, cb) {
-      var s = document.getElementById('src-' + id);
-      if (!s) { cb(null); return; }
-      var txt = (s.textContent || '').trim();
-      if (txt) { cb(txt); return; }
-      var u = s.getAttribute('src');
-      if (u) { fetch(u).then(function (r) { return r.text(); }).then(function (t) { cb(t.trim()); }).catch(function () { cb(null); }); return; }
-      cb(null);
-    }
-    function loadFrame(f) {
-      if (f.getAttribute('data-loaded')) return;
-      f.setAttribute('data-loaded', '1');
-      var id = f.getAttribute('data-case');
-      getSrcB64(id, function (b64) {
-        if (b64) f.srcdoc = b64ToHtml(b64);
-        else f.src = id + '/index.html';
-      });
-    }
-    window.showCase = function (id) {
-      var found = false;
-      frames.forEach(function (f) {
-        var on = f.getAttribute('data-case') === id;
-        if (on) { loadFrame(f); found = true; }
-        f.classList.toggle('active', on);
-      });
-      if (!found) return false;
-      overlay.classList.add('open');
-      document.body.style.overflow = 'hidden';
-      window.scrollTo(0, 0);
-      return false;
-    };
-    window.closeCase = function () {
-      overlay.classList.remove('open');
-      document.body.style.overflow = '';
-      frames.forEach(function (f) { f.classList.remove('active'); });
-    };
-    window.addEventListener('message', function (e) {
-      var d = e.data || {};
-      if (d.nav === undefined) return;
-      if (d.nav === 'home') window.closeCase();
-      else window.showCase(d.nav);
-    });
-    // featured prototype on the home page
     var pf = document.getElementById('protoFrame');
-    if (pf) { getSrcB64('proto', function (b64) { if (b64) pf.srcdoc = b64ToHtml(b64); else pf.src = 'badminton/proto.html'; }); }
+    if (pf) pf.src = 'badminton/proto.html';
   })();
 </script>
 
