@@ -586,6 +586,9 @@
   }
   .case-row:hover .case-prev img { transform: translateY(-3px) scale(1.012); }
 
+  /* mail card — natural aspect, larger radius */
+  .case-prev.mail-prev img { aspect-ratio: auto; border-radius: 8px; }
+
   /* interactive prototype card */
   .case-row.proto { cursor: pointer; }
   .case-prev.proto-prev { background: var(--paper-2); padding: 36px; }
@@ -880,7 +883,7 @@
           <span class="go">Смотреть кейс →</span>
         </div>
       </div>
-      <div class="case-prev">
+      <div class="case-prev mail-prev">
         <img src="images/preview-mail.png?v=3" alt="Исследование мобильной почты">
       </div>
     </a>
