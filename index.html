@@ -438,30 +438,18 @@
 
   .cv-viewer {
     position: fixed; inset: 0; z-index: 1000; display: none;
-    padding: 72px 28px 28px;
+    padding: 28px;
     background: rgba(12,11,8,.82); backdrop-filter: blur(10px);
     cursor: zoom-out;
   }
   .cv-viewer.open { display: block; }
-  .cv-bar {
-    position: fixed; top: 18px; left: 28px; right: 28px;
-    display: flex; justify-content: flex-end; gap: 10px; z-index: 1001;
-    pointer-events: none;
-  }
-  .cv-save {
-    pointer-events: auto; min-height: 40px; padding: 0 18px;
-    display: inline-flex; align-items: center; justify-content: center;
-    border-radius: 999px; background: var(--paper); border: 1px solid rgba(241,238,229,.42);
-    color: var(--ink); font-family: var(--font-display); font-size: 13px; font-weight: 650;
-    text-decoration: none;
-  }
   .cv-frame {
-    width: min(920px, 100%); height: 100%; margin: 0 auto;
+    width: min(1280px, 100%); height: 100%; margin: 0 auto;
     border-radius: 8px; overflow: hidden; background: #fff;
     box-shadow: 0 24px 80px rgba(0,0,0,.38);
-    pointer-events: none;
+    cursor: default;
   }
-  .cv-frame iframe { width: 100%; height: 100%; border: 0; display: block; pointer-events: none; }
+  .cv-frame iframe { width: 100%; height: 100%; border: 0; display: block; }
 
   .portrait { position: relative; min-height: 0; }
   .portrait .frame {
@@ -956,9 +944,6 @@
 </div>
 
 <div class="cv-viewer" id="cvViewer" aria-hidden="true">
-  <div class="cv-bar">
-    <a class="cv-save" href="cv.pdf" download>Сохранить</a>
-  </div>
   <div class="cv-frame">
     <iframe src="cv.pdf" title="CV Виктории Шаханиной"></iframe>
   </div>
@@ -991,7 +976,7 @@
 
     openBtn.addEventListener('click', openCv);
     viewer.addEventListener('click', function (event) {
-      if (!event.target.closest('.cv-save')) closeCv();
+      if (event.target === viewer) closeCv();
     });
     document.addEventListener('keydown', function (event) {
       if (event.key === 'Escape' && viewer.classList.contains('open')) closeCv();
