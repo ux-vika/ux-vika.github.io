@@ -414,11 +414,11 @@
   .hero { padding: 26px 0 44px; }
   .hero-card {
     position: relative; overflow: hidden;
-    background: rgba(255,255,255,0.44);
-    border: 1px solid rgba(255,255,255,0.6);
+    background: #060606; color: #fff;
+    border: 1px solid rgba(255,255,255,0.08);
     border-radius: 30px;
     padding: 48px 46px;
-    box-shadow: 0 40px 80px -60px rgba(19,19,19,0.6);
+    box-shadow: 0 40px 80px -54px rgba(19,19,19,0.7);
   }
   .hero-name { font-family: var(--font-head); font-weight: 800; line-height: 0.94; letter-spacing: -0.02em; margin-bottom: 36px; }
   .hero-name .ln { display: block; font-size: clamp(38px, 9vw, 130px); color: transparent; -webkit-text-stroke: 1.5px var(--ink); white-space: nowrap; }
@@ -432,6 +432,24 @@
   .hero-link:hover { opacity: 0.55; }
   .hero-portrait { width: 100%; max-width: 320px; aspect-ratio: 671 / 741; margin-left: auto; align-self: end; border-radius: 18px; overflow: hidden; filter: grayscale(1) contrast(1.03); border: 1px solid var(--line-soft); }
   .hero-portrait img { width: 100%; height: 100%; object-fit: cover; }
+  /* animated mesh-gradient hero background (vanilla recreation of MeshGradient) */
+  .hero-name, .hero-inner { position: relative; z-index: 1; }
+  .hero-mesh { position: absolute; inset: 0; z-index: 0; overflow: hidden; background: #060606; }
+  .hero-mesh span { position: absolute; border-radius: 50%; filter: blur(72px); mix-blend-mode: screen; will-change: transform; }
+  .hero-mesh .b1 { width: 62%; height: 92%; left: -12%; top: -26%; background: radial-gradient(circle, #3a3a3a 0%, transparent 68%); opacity: .85; animation: mesh1 19s ease-in-out infinite alternate; }
+  .hero-mesh .b2 { width: 58%; height: 82%; right: -8%; top: -18%; background: radial-gradient(circle, #7c7c7c 0%, transparent 68%); opacity: .68; animation: mesh2 23s ease-in-out infinite alternate; }
+  .hero-mesh .b3 { width: 52%; height: 82%; left: 24%; bottom: -34%; background: radial-gradient(circle, #ffffff 0%, transparent 68%); opacity: .16; animation: mesh3 27s ease-in-out infinite alternate; }
+  .hero-mesh .b4 { width: 46%; height: 72%; right: 14%; bottom: -26%; background: radial-gradient(circle, #242424 0%, transparent 70%); opacity: .9; animation: mesh4 21s ease-in-out infinite alternate; }
+  @keyframes mesh1 { from { transform: translate(0,0) scale(1); } to { transform: translate(14%,10%) scale(1.15); } }
+  @keyframes mesh2 { from { transform: translate(0,0) scale(1); } to { transform: translate(-12%,14%) scale(1.1); } }
+  @keyframes mesh3 { from { transform: translate(0,0) scale(1); } to { transform: translate(10%,-12%) scale(1.2); } }
+  @keyframes mesh4 { from { transform: translate(0,0) scale(1); } to { transform: translate(-10%,-8%) scale(1.12); } }
+  .hero-name .ln { -webkit-text-stroke-color: rgba(255,255,255,0.92); }
+  .hero-role .label { color: rgba(255,255,255,0.5); }
+  .hero-role h2 { color: #fff; }
+  .hero-role p { color: rgba(255,255,255,0.64); }
+  .hero-link { color: #fff; border-bottom-color: rgba(255,255,255,0.85); }
+  .hero-portrait { border-color: rgba(255,255,255,0.14); filter: grayscale(1) contrast(1.05) brightness(1.02); }
 
   /* ===== section frame ===== */
   section.block { padding: 66px 0 10px; position: relative; }
@@ -567,7 +585,7 @@
   /* ===== reveal animation ===== */
   .reveal { opacity: 0; transform: translateY(22px); transition: opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1); }
   .reveal.in { opacity: 1; transform: none; }
-  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } .dot-live { animation: none; } }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } .dot-live { animation: none; } .hero-mesh span { animation: none; } }
 
   /* ===== cv viewer ===== */
   .cv-viewer { position: fixed; inset: 0; z-index: 1000; display: none; padding: 28px; background: rgba(12,11,8,.82); backdrop-filter: blur(10px); cursor: zoom-out; }
@@ -628,6 +646,7 @@
     <!-- hero -->
     <section class="hero">
       <div class="hero-card reveal">
+        <div class="hero-mesh" aria-hidden="true"><span class="b1"></span><span class="b2"></span><span class="b3"></span><span class="b4"></span></div>
         <h1 class="hero-name">
           <span class="ln">ВИКТОРИЯ</span>
           <span class="ln">ШАХАНИНА</span>
