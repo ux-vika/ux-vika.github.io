@@ -2,9 +2,9 @@
 <html lang="ru"><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Виктория Шаханина — Senior Product Designer</title>
+<title>Виктория Шаханина — Product Designer</title>
 <meta name="description" content="Портфолио Виктории Шаханиной, Senior / Lead Product Designer. B2B, Enterprise, исследования, дизайн-системы, прототипы и сопровождение разработки до релиза.">
-<meta property="og:title" content="Виктория Шаханина — Senior Product Designer">
+<meta property="og:title" content="Виктория Шаханина — Product Designer">
 <meta property="og:description" content="7+ лет в продукте: B2B, Enterprise, исследования, дизайн-системы и полный цикл от discovery до релиза.">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="ru_RU">
@@ -301,695 +301,660 @@
 </style>
 <style>
   :root {
-    --paper: #EAE7DE;
-    --paper-2: #DFDBD0;
-    --ink: #15140F;
-    --ink-2: #3C3A33;
-    --ink-3: #6A665D;
-    --muted: #948F85;
-    --line: rgba(21,20,15,0.14);
-    --line-soft: rgba(21,20,15,0.07);
-    --accent: #2233E6;
-    --accent-deep: #161FB0;
-    --card: #F1EEE5;
+    --bg: #E9E9E6;
+    --ink: #131313;
+    --ink-2: #45443F;
+    --ink-3: #6E6C65;
+    --muted: #97948C;
+    --line: rgba(19,19,19,0.13);
+    --line-soft: rgba(19,19,19,0.07);
+    --green: #22B463;
+    --card: #FFFFFF;
+    --card-2: #F4F3F0;
+    --dark: #171716;
     --font-sans: 'Hanken Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    --font-display: var(--font-sans);
+    --font-display: 'Space Grotesk', var(--font-sans);
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
-  ::selection { background: rgba(34,51,230,0.16); }
+  ::selection { background: rgba(19,19,19,0.14); }
   body {
     font-family: var(--font-sans);
     color: var(--ink);
-    background: var(--paper);
+    background: var(--bg);
     overflow-x: hidden;
     position: relative;
     -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
   }
-  /* fine grain only */
+  /* ===== cloud background ===== */
   body::before {
+    content: '';
+    position: fixed;
+    inset: -10%;
+    z-index: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(60% 40% at 12% -6%, #ffffff 0%, rgba(255,255,255,0) 62%),
+      radial-gradient(52% 42% at 88% 4%, #fbfbfa 0%, rgba(251,251,250,0) 58%),
+      radial-gradient(70% 55% at 50% 108%, #ffffff 0%, rgba(255,255,255,0) 60%),
+      radial-gradient(45% 38% at 78% 72%, #f6f6f4 0%, rgba(246,246,244,0) 55%),
+      radial-gradient(48% 40% at 22% 60%, #fdfdfc 0%, rgba(253,253,252,0) 55%),
+      linear-gradient(180deg, #ececea 0%, #e6e6e3 100%);
+  }
+  /* soft misty texture over the clouds */
+  body::after {
     content: '';
     position: fixed;
     inset: 0;
     z-index: 0;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.1 0 0 0 0 0.09 0 0 0 0 0.06 0 0 0 0.5 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-    opacity: 0.16;
     pointer-events: none;
+    opacity: 0.5;
+    mix-blend-mode: soft-light;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='600'%3E%3Cfilter id='c'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.009' numOctaves='4' seed='11' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.9 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23c)'/%3E%3C/svg%3E");
+    background-size: 720px 720px;
   }
   a { color: inherit; }
-  .shell { position: relative; z-index: 1; max-width: 1320px; margin: 0 auto; }
+  .shell { position: relative; z-index: 1; max-width: 1320px; margin: 0 auto; padding: 0 26px; }
 
-  .mono { font-family: var(--font-display); }
   .label {
     font-family: var(--font-display);
-    font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase;
+    font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
     color: var(--muted); font-weight: 600;
   }
-  .label .tick { color: var(--accent); }
+
+  /* generic pill */
+  .pill {
+    display: inline-flex; align-items: center; gap: 9px;
+    padding: 11px 18px; border-radius: 999px;
+    background: rgba(255,255,255,0.72); border: 1px solid var(--line);
+    font-family: var(--font-display); font-size: 14px; font-weight: 500;
+    color: var(--ink); text-decoration: none; white-space: nowrap;
+    backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+    transition: background .22s, transform .22s, box-shadow .22s, border-color .22s;
+  }
+  .pill:hover { background: #fff; transform: translateY(-2px); box-shadow: 0 14px 26px -18px rgba(19,19,19,0.5); }
+  .pill.dark { background: var(--dark); color: #fff; border-color: var(--dark); }
+  .pill.dark:hover { background: #000; }
+  .pill .ico { display: inline-flex; }
+  .pill svg { display: block; }
+  .dot-live { width: 9px; height: 9px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 0 rgba(34,180,99,0.5); animation: pulse 2.4s infinite; }
+  @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(34,180,99,0.45); } 70% { box-shadow: 0 0 0 8px rgba(34,180,99,0); } 100% { box-shadow: 0 0 0 0 rgba(34,180,99,0); } }
+
+  .arrow { transition: transform .25s; }
 
   /* ===== topbar ===== */
   .topbar {
-    position: sticky; top: 0; z-index: 50;
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 20px 48px;
-    background: rgba(241,239,232,0.82);
-    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
-    border-bottom: 1px solid var(--line-soft);
+    position: sticky; top: 14px; z-index: 60;
+    display: flex; justify-content: space-between; align-items: center; gap: 16px;
+    margin: 14px auto 0; max-width: 1320px;
+    padding: 9px 9px 9px 20px;
+    background: rgba(255,255,255,0.62);
+    border: 1px solid var(--line-soft);
+    border-radius: 999px;
+    backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+    box-shadow: 0 12px 30px -24px rgba(19,19,19,0.5);
   }
-  .brand { display: flex; align-items: center; gap: 13px; }
-  .brand .mark {
-    width: 34px; height: 34px; border-radius: 8px;
-    background: var(--ink); color: var(--paper);
-    display: flex; align-items: center; justify-content: center;
-    font-family: var(--font-display); font-weight: 700; font-size: 14px;
-    letter-spacing: 0.02em;
+  .topbar .avail {
+    display: inline-flex; align-items: center; gap: 9px;
+    font-family: var(--font-display); font-size: 13px; font-weight: 500; color: var(--ink-2);
   }
-  .brand .nm { font-family: var(--font-display); font-size: 15px; font-weight: 700; letter-spacing: -0.01em; }
-  .topbar nav { display: flex; gap: 30px; align-items: center; }
-  .topbar nav a {
-    font-size: 13px; letter-spacing: 0.01em; color: var(--ink-2); text-decoration: none;
-    transition: color .2s; position: relative;
-  }
-  .topbar nav a:hover { color: var(--accent); }
-  .topbar .avail-pill {
-    display: inline-flex; align-items: center; gap: 8px;
-    padding: 7px 14px; border-radius: 999px; border: 1px solid var(--line);
-    font-family: var(--font-display); font-size: 11px; letter-spacing: 0.06em;
-    text-transform: uppercase; color: var(--ink-2);
-  }
-  .topbar .avail-pill .short { display: none; }
-  .topbar .avail-pill .d { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 0 rgba(34,51,230,0.4); animation: pulse 2.4s infinite; }
-  @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(34,51,230,0.4); } 70% { box-shadow: 0 0 0 8px rgba(34,51,230,0); } 100% { box-shadow: 0 0 0 0 rgba(34,51,230,0); } }
+  .topbar .avail .short { display: none; }
+  .topnav { display: flex; gap: 26px; align-items: center; }
+  .topnav a { font-family: var(--font-display); font-size: 14px; color: var(--ink-2); text-decoration: none; transition: color .2s; }
+  .topnav a .cnt { color: var(--muted); font-size: 11px; }
+  .topnav a:hover { color: var(--ink); }
+  .topbar .cta { font-size: 13.5px; padding: 10px 18px; }
 
   /* ===== hero ===== */
-  .hero { padding: 86px 48px 58px; }
-  .hero-grid {
-    display: grid;
-    grid-template-columns: minmax(0,1.28fr) minmax(300px,0.72fr);
-    grid-template-areas:
-      "eyebrow ."
-      "heading photo"
-      "below   photo";
-    column-gap: 72px;
-    align-items: start;
+  .hero { padding: 30px 0 40px; }
+  .hero-card {
+    position: relative; overflow: hidden;
+    background: rgba(255,255,255,0.44);
+    border: 1px solid rgba(255,255,255,0.6);
+    border-radius: 30px;
+    padding: 40px 46px 40px;
+    box-shadow: 0 40px 80px -60px rgba(19,19,19,0.6);
   }
-  .hero .eyebrow { grid-area: eyebrow; display: flex; align-items: center; gap: 14px; margin-bottom: 34px; }
-  .hero h1 { grid-area: heading; }
-  .hero-below { grid-area: below; }
-  .hero .portrait { grid-area: photo; align-self: stretch; }
-  .hero .eyebrow .rule { width: 52px; height: 1px; background: var(--accent); }
-  .hero h1 {
-    font-family: var(--font-display);
-    font-weight: 650; font-size: clamp(48px, 5.8vw, 94px);
-    line-height: 0.96; letter-spacing: -0.05em; margin: 0; color: var(--ink);
-    text-wrap: balance;
+  .hero-stage { position: relative; text-align: center; padding-top: 6px; }
+  .hero-name { font-family: var(--font-display); font-weight: 700; line-height: 0.82; letter-spacing: -0.03em; position: relative; z-index: 1; }
+  .hero-name .ln { display: block; font-size: clamp(52px, 12.5vw, 176px); }
+  .hero-name .out { color: transparent; -webkit-text-stroke: 1.6px var(--ink); }
+  .hero-portrait {
+    position: relative; z-index: 2;
+    width: clamp(200px, 26vw, 330px); aspect-ratio: 671 / 741;
+    margin: clamp(-70px, -6vw, -34px) auto clamp(-52px, -4.5vw, -26px);
+    filter: grayscale(1) contrast(1.03);
   }
-  .hero h1 em { font-style: normal; color: var(--accent); }
-  .hero .lead {
-    font-size: clamp(18px, 1.45vw, 21px); line-height: 1.48; letter-spacing: -0.012em;
-    color: var(--ink-2); margin: 30px 0 0; max-width: 660px; font-weight: 430;
+  .hero-portrait img { width: 100%; height: 100%; object-fit: contain; object-position: bottom center; }
+  .hero-bottom {
+    position: relative; z-index: 3;
+    display: flex; justify-content: space-between; align-items: flex-end; gap: 28px;
+    margin-top: 8px;
   }
-  .hero-actions { display: flex; align-items: center; gap: 18px; margin-top: 34px; flex-wrap: wrap; }
-  .chip {
-    display: inline-flex; align-items: center; gap: 9px; padding: 10px 17px;
-    background: transparent; color: var(--ink); border: 1px solid var(--accent);
-    border-radius: 999px; font-size: 13px; letter-spacing: 0.01em; font-weight: 500;
-  }
-  .chip .dot { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; box-shadow: 0 0 0 0 rgba(34,51,230,0.4); animation: pulse 2.4s infinite; }
-  .hero-actions .primary-action {
-    display: inline-flex; align-items: center; justify-content: center; gap: 9px;
-    min-height: 44px; padding: 12px 22px;
-    border-radius: 999px; background: var(--accent); color: #fff;
-    font-family: var(--font-display); font-size: 14px; font-weight: 650;
-    letter-spacing: 0.01em; text-decoration: none;
-    box-shadow: 0 16px 30px -22px rgba(34,51,230,0.72);
-    transition: background .2s, transform .2s;
-  }
-  .hero-actions .primary-action:hover { background: var(--accent-deep); transform: translateY(-1px); }
-  .hero-actions .tg {
-    display: inline-flex; align-items: center; gap: 7px;
-    min-height: 44px;
-    font-size: 14px; font-weight: 500; color: var(--ink); text-decoration: none;
-    border-bottom: 1.5px solid var(--accent); padding-bottom: 3px; transition: color .2s;
-  }
-  .hero-actions .cv { border: 0; background: transparent; cursor: pointer; font: inherit; }
-  .hero-actions .tg:hover { color: var(--accent); }
-  .hero-actions .loc { font-family: var(--font-display); font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+  .hero-role { text-align: left; max-width: 340px; }
+  .hero-role h2 { font-family: var(--font-display); font-weight: 600; font-size: clamp(20px, 2vw, 26px); letter-spacing: -0.02em; }
+  .hero-role p { font-size: 14.5px; line-height: 1.5; color: var(--ink-3); margin: 10px 0 18px; }
+  .hero-socials { display: flex; flex-direction: column; gap: 10px; align-items: flex-end; }
+  .hero-socials .pill { min-width: 148px; justify-content: flex-start; }
 
-  .cv-viewer {
-    position: fixed; inset: 0; z-index: 1000; display: none;
-    padding: 28px;
-    background: rgba(12,11,8,.82); backdrop-filter: blur(10px);
-    cursor: zoom-out;
+  /* ===== section frame ===== */
+  section.block { padding: 66px 0 10px; position: relative; }
+  .sec-head { position: relative; margin-bottom: 40px; }
+  .sec-title { font-family: var(--font-display); font-weight: 700; letter-spacing: -0.03em; line-height: 1; font-size: clamp(30px, 4.4vw, 60px); }
+  .sec-title .slash { color: var(--muted); }
+  .ghost {
+    position: absolute; left: 50%; top: -22%; transform: translateX(-50%);
+    font-family: var(--font-display); font-weight: 700; letter-spacing: 0.02em;
+    font-size: clamp(70px, 15vw, 210px); color: rgba(19,19,19,0.035);
+    pointer-events: none; white-space: nowrap; z-index: 0;
   }
-  .cv-viewer.open { display: block; }
-  .cv-frame {
-    width: min(1280px, 100%); height: 100%; margin: 0 auto;
-    border-radius: 8px; overflow: hidden; background: #fff;
-    box-shadow: 0 24px 80px rgba(0,0,0,.38);
-    cursor: default;
-  }
-  .cv-frame iframe { width: 100%; height: 100%; border: 0; display: block; }
 
-  .portrait { position: relative; min-height: 0; }
-  .portrait .frame {
-    position: absolute; inset: 0; border-radius: 8px; overflow: hidden;
-    border: 1px solid var(--line); background: var(--paper-2);
-    box-shadow: 0 30px 60px -40px rgba(21,20,15,0.5);
-  }
-  .portrait img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(0.12) contrast(1.02); }
-  .portrait .tagline {
-    position: absolute; left: 14px; bottom: 14px;
-    display: inline-flex; align-items: center; gap: 8px;
-    padding: 8px 13px; border-radius: 999px;
-    background: rgba(21,20,15,0.7); backdrop-filter: blur(8px);
-    color: #fff; font-family: var(--font-display); font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase;
-  }
-  .portrait .tagline .d { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+  /* ===== numbers strip ===== */
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .stat-cell { padding: 26px 22px; border-right: 1px solid var(--line-soft); }
+  .stat-cell:last-child { border-right: none; }
+  .stat-cell .n { font-family: var(--font-display); font-weight: 600; font-size: clamp(34px, 3.6vw, 50px); letter-spacing: -0.04em; line-height: 0.9; }
+  .stat-cell .t { font-family: var(--font-display); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-top: 14px; }
 
-  /* ===== numbers ===== */
-  .caps { padding: 48px 48px 72px; }
-  .numbers-head {
-    display: flex;
-    justify-content: space-between;
-    gap: 40px;
-    align-items: flex-start;
-    margin-bottom: 26px;
+  /* ===== work ===== */
+  .work-top { display: flex; justify-content: space-between; align-items: flex-end; gap: 20px; flex-wrap: wrap; margin-bottom: 30px; }
+  .filters { display: flex; gap: 8px; flex-wrap: wrap; }
+  .filters button {
+    font-family: var(--font-display); font-size: 13.5px; font-weight: 500; cursor: pointer;
+    padding: 9px 16px; border-radius: 999px; border: 1px solid transparent; background: transparent; color: var(--ink-3);
+    transition: background .2s, color .2s, border-color .2s;
   }
-  .numbers-head h2 {
-    max-width: 690px;
-    font-family: var(--font-display);
-    font-weight: 620;
-    font-size: clamp(26px,3vw,42px);
-    line-height: 1.04;
-    letter-spacing: -0.038em;
-    margin: 0;
-  }
-  .numbers-copy {
-    max-width: 360px;
-    font-size: 16px;
-    line-height: 1.55;
-    color: var(--ink-3);
-    margin: 28px 0 0;
-  }
-  .caps-grid {
-    display: grid;
-    grid-template-columns: repeat(3,minmax(0,1fr));
-  }
-  .cap {
-    min-height: 136px;
-    padding: 26px 24px 28px;
-    border-right: 1px solid var(--line);
-    border-bottom: 1px solid var(--line-soft);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-  .cap:nth-child(3n) { border-right: none; }
-  .cap:nth-last-child(-n+3) { border-bottom: none; }
-  .cap .n {
-    font-family: var(--font-display);
-    font-size: clamp(40px,4vw,56px);
-    color: var(--ink);
-    font-weight: 500;
-    line-height: 0.9;
-    letter-spacing: -0.055em;
-  }
-  .cap p {
-    max-width: 18ch;
-    font-family: var(--font-display);
-    font-size: 11.5px;
-    line-height: 1.3;
-    color: var(--muted);
-    margin: 24px 0 0;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-  }
-  .numbers-note {
-    max-width: 850px;
-    margin-top: 24px;
-    padding-top: 0;
-    font-size: clamp(18px,1.55vw,23px);
-    line-height: 1.45;
-    letter-spacing: -0.025em;
-    color: var(--ink-3);
-  }
-  .numbers-note p { margin: 0 0 12px; }
-  .numbers-note p:last-child { margin-bottom: 0; }
-  .numbers-note strong { color: var(--ink); font-weight: 650; }
+  .filters button:hover { color: var(--ink); }
+  .filters button.active { background: var(--dark); color: #fff; border-color: var(--dark); }
 
-  /* ===== section header ===== */
-  .work-head { padding: 56px 48px 8px; display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; flex-wrap: wrap; }
-  .work-head > div:first-child { flex: 1 1 auto; }
-  .work-head .count { flex-shrink: 0; }
-  .work-head .sec { margin-bottom: 16px; }
-  .work-head h2 { font-family: var(--font-display); font-weight: 650; font-size: clamp(36px,4.6vw,62px); line-height: 1; letter-spacing: -0.04em; margin: 0; }
-  .work-head .count { font-family: var(--font-display); font-size: 11.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
-
-  /* ===== case cards (uniform) ===== */
-  /* ===== case cards (uniform system) ===== */
-  .cases { padding: 48px 48px 40px; display: flex; flex-direction: column; gap: 24px; }
-  .case-row {
-    display: grid; grid-template-columns: 1fr 1fr; align-items: stretch;
-    background: var(--card); border: 1px solid var(--line); border-radius: 20px; overflow: hidden;
-    text-decoration: none; color: inherit;
-    box-shadow: 0 1px 0 rgba(255,255,255,0.5) inset, 0 24px 44px -38px rgba(21,20,15,0.45);
+  .work-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; }
+  .work-card {
+    display: flex; flex-direction: column;
+    background: rgba(255,255,255,0.55); border: 1px solid var(--line-soft); border-radius: 22px;
+    padding: 14px 14px 22px; text-decoration: none; color: inherit;
+    box-shadow: 0 24px 50px -44px rgba(19,19,19,0.5);
     transition: transform .3s, box-shadow .3s, border-color .3s;
   }
-  .case-row:hover { transform: translateY(-4px); box-shadow: 0 36px 64px -34px rgba(21,20,15,0.42); border-color: rgba(34,51,230,0.55); }
-  .case-body { padding: 48px 50px; display: flex; flex-direction: column; justify-content: center; }
-  .case-meta { font-family: var(--font-display); display: flex; gap: 12px; align-items: baseline; margin-bottom: 18px; font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); font-weight: 650; }
-  .case-meta .n { color: var(--ink-3); font-weight: 650; }
-  .case-body h3 { font-family: var(--font-display); font-weight: 650; font-size: clamp(24px,2.15vw,32px); line-height: 1.08; letter-spacing: -0.035em; margin: 0 0 14px; }
-  .case-body p { font-size: 15px; line-height: 1.62; color: var(--ink-3); margin: 0 0 28px; max-width: 44ch; }
-  .case-foot { display: flex; align-items: center; gap: 18px; margin-top: auto; }
-  .case-foot .stat { font-family: var(--font-display); font-size: 28px; font-weight: 650; color: var(--ink); line-height: 1; letter-spacing: -0.035em; }
-  .case-foot .stat small { font-size: 13px; color: var(--muted); font-family: var(--font-sans); margin-left: 9px; font-weight: 430; }
-  .case-foot .go {
-    margin-left: auto; font-family: var(--font-display); font-size: 13px; font-weight: 650; letter-spacing: 0.01em; color: var(--ink);
-    display: inline-flex; align-items: center; gap: 8px; transition: gap .2s;
+  .work-card:hover { transform: translateY(-5px); box-shadow: 0 44px 70px -44px rgba(19,19,19,0.45); border-color: var(--line); }
+  .work-thumb {
+    position: relative; border-radius: 15px; overflow: hidden; background: var(--card-2);
+    aspect-ratio: 16 / 11; display: flex; align-items: center; justify-content: center;
+    border: 1px solid var(--line-soft);
   }
-  .case-row:hover .case-foot .go { gap: 13px; }
+  .work-thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
+  .work-card:hover .work-thumb img { transform: scale(1.03); }
+  .work-thumb.contain img { object-fit: contain; padding: 22px; }
+  .work-thumb .go {
+    position: absolute; right: 14px; bottom: 14px; width: 44px; height: 44px; border-radius: 50%;
+    background: #fff; color: var(--ink); display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 10px 24px -12px rgba(19,19,19,0.5); opacity: 0; transform: translateY(8px) rotate(-8deg);
+    transition: opacity .3s, transform .3s;
+  }
+  .work-card:hover .work-thumb .go { opacity: 1; transform: translateY(0) rotate(0); }
+  .work-badge {
+    position: absolute; left: 14px; top: 14px;
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 7px 13px; border-radius: 999px; background: rgba(23,23,22,0.82); color: #fff;
+    font-family: var(--font-display); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600;
+    backdrop-filter: blur(6px);
+  }
+  .work-meta { display: flex; align-items: baseline; gap: 10px; margin: 20px 4px 8px; font-family: var(--font-display); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+  .work-card h3 { font-family: var(--font-display); font-weight: 600; font-size: clamp(19px, 1.65vw, 24px); line-height: 1.14; letter-spacing: -0.025em; margin: 0 4px 14px; }
+  .work-tags { display: flex; gap: 8px; flex-wrap: wrap; margin: 0 4px; }
+  .work-tags span { font-family: var(--font-display); font-size: 12px; color: var(--ink-2); padding: 6px 13px; border-radius: 999px; border: 1px solid var(--line); }
 
-  /* preview panel — uniform: screenshot contained & matted on a tinted panel */
-  .case-prev {
-    position: relative; display: flex; align-items: center; justify-content: center;
-    padding: 44px; min-height: 360px;
-    background: var(--paper-2);
-    border-left: 1px solid var(--line);
-  }
-  .case-prev img {
-    width: 100%; max-width: 430px; aspect-ratio: 4 / 3;
-    object-fit: contain; border-radius: 12px;
-    box-shadow: 0 18px 40px -20px rgba(21,20,15,0.38), 0 1px 0 rgba(255,255,255,0.4);
-    transition: transform .35s ease;
-  }
-  .case-row:hover .case-prev img { transform: translateY(-3px) scale(1.012); }
-
-  /* mail card — natural aspect, larger radius */
-  .case-prev.mail-prev img { aspect-ratio: auto; border-radius: 8px; }
-  .case-prev.transparent-prev img { padding: 16px; }
-
-  /* interactive prototype card */
-  .case-row.proto { cursor: pointer; }
-  .case-prev.proto-prev { background: var(--paper-2); padding: 36px; }
-  .case-badge {
-    display: inline-flex; align-items: center; gap: 9px; align-self: flex-start;
-    padding: 7px 14px; border-radius: 999px; background: rgba(34,51,230,0.07);
-    border: 1px solid rgba(34,51,230,0.2); margin-bottom: 20px;
-    font-family: var(--font-display); font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent-deep); font-weight: 650;
-  }
-  .case-badge .live { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 0 rgba(34,51,230,0.4); animation: pulse 2.2s infinite; }
-  .case-cta {
-    display: inline-flex; align-items: center; gap: 9px; align-self: flex-start; margin-top: 4px;
-    padding: 13px 24px; border-radius: 999px; background: var(--accent); color: #fff;
-    font-family: var(--font-display); font-size: 13.5px; font-weight: 650; letter-spacing: 0.01em; text-decoration: none; transition: background .2s, transform .2s;
-  }
-  .case-cta:hover { background: var(--accent-deep); transform: translateX(3px); }
+  /* device mini for interactive prototype card */
+  .device-wrap { position: relative; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: linear-gradient(160deg, #f6f6f4, #e9e9e6); }
   .device-mini {
-    position: relative; width: 168px; height: 343px;
-    border-radius: 26px; overflow: hidden; background: #000;
-    box-shadow: 0 24px 48px -22px rgba(21,20,15,0.45);
-    border: 3px solid #0c0a09;
-    isolation: isolate;
-    contain: paint;
+    position: relative; width: 150px; height: 306px;
+    border-radius: 24px; overflow: hidden; background: #000;
+    box-shadow: 0 24px 48px -22px rgba(19,19,19,0.5);
+    border: 3px solid #0c0a09; isolation: isolate; contain: paint;
   }
-  .device-screen {
-    position: absolute;
-    inset: 0;
-    border-radius: 22px;
-    overflow: hidden;
-    background: #000;
-    clip-path: inset(0 round 22px);
+  .device-screen { position: absolute; inset: 0; border-radius: 20px; overflow: hidden; background: #000; clip-path: inset(0 round 20px); }
+  .device-mini iframe { position: absolute; top: 0; left: 0; width: 393px; height: 803px; border: 0; transform: scale(0.3817); transform-origin: top left; pointer-events: none; }
+
+  /* ===== service accordion ===== */
+  .svc-list { border-top: 1px solid var(--line); }
+  .svc-item { border-bottom: 1px solid var(--line); }
+  .svc-head {
+    width: 100%; background: transparent; border: 0; cursor: pointer;
+    display: flex; align-items: center; justify-content: space-between; gap: 20px;
+    padding: 30px 6px; text-align: left;
   }
-  .device-mini iframe { position: absolute; top: 0; left: 0; width: 393px; height: 803px; border: 0; transform: scale(0.426); transform-origin: top left; pointer-events: none; }
+  .svc-head h3 { font-family: var(--font-display); font-weight: 600; font-size: clamp(24px, 3.4vw, 44px); letter-spacing: -0.02em; line-height: 1; color: var(--ink); transition: color .2s; }
+  .svc-item.open .svc-head h3 { color: var(--ink); }
+  .svc-head .ic { flex-shrink: 0; color: var(--ink); transition: transform .3s; }
+  .svc-item.open .svc-head .ic { transform: rotate(45deg); }
+  .svc-body { max-height: 0; overflow: hidden; transition: max-height .45s ease; }
+  .svc-panel {
+    display: flex; align-items: center; gap: 26px; justify-content: space-between;
+    background: var(--dark); color: #fff; border-radius: 20px;
+    padding: 30px 32px; margin: 4px 0 30px;
+  }
+  .svc-panel .txt h4 { font-family: var(--font-display); font-weight: 600; font-size: clamp(22px, 2.4vw, 30px); letter-spacing: -0.01em; margin-bottom: 12px; }
+  .svc-panel .txt p { font-size: 15px; line-height: 1.55; color: rgba(255,255,255,0.66); max-width: 46ch; }
+  .svc-panel .shot {
+    flex-shrink: 0; width: 210px; aspect-ratio: 4 / 3; border-radius: 12px; overflow: hidden;
+    transform: rotate(3deg); box-shadow: 0 24px 44px -24px rgba(0,0,0,0.6); border: 4px solid #fff;
+  }
+  .svc-panel .shot img { width: 100%; height: 100%; object-fit: cover; }
 
   /* ===== about ===== */
-  .about { padding: 100px 48px 32px; }
-  .about-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 80px; align-items: start; }
-  .about h2 { font-family: var(--font-display); font-weight: 650; font-size: clamp(30px,3.25vw,46px); line-height: 1.08; letter-spacing: -0.04em; margin: 18px 0 32px; }
-  .about h2 em { font-style: normal; color: var(--accent); }
-  .about p { font-size: 16.5px; line-height: 1.68; color: var(--ink-2); margin: 0 0 18px; }
-  .about p strong { font-weight: 600; color: var(--ink); }
-  .about-stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; border-top: 1px solid var(--ink); padding-top: 26px; margin-top: 28px; }
-  .about-stats .l { font-size: 12.5px; color: var(--muted); letter-spacing: 0.02em; margin-top: 8px; }
-  .exp-panel { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 30px 32px; margin-top: 32px; }
-  .exp-label { margin-bottom: 22px; }
-  .exp-row { display: grid; grid-template-columns: 1fr auto; gap: 16px; padding: 18px 0; border-bottom: 1px solid var(--line-soft); }
+  .about-grid { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 70px; align-items: start; }
+  .about-copy h3 { font-family: var(--font-display); font-weight: 600; font-size: clamp(26px, 3vw, 40px); line-height: 1.1; letter-spacing: -0.03em; margin: 6px 0 28px; }
+  .about-copy p { font-size: 16px; line-height: 1.65; color: var(--ink-2); margin: 0 0 16px; }
+  .about-copy p strong { font-weight: 600; color: var(--ink); }
+  .exp-panel { background: rgba(255,255,255,0.55); border: 1px solid var(--line-soft); border-radius: 18px; padding: 28px 30px; }
+  .exp-row { display: grid; grid-template-columns: 1fr auto; gap: 16px; padding: 20px 0; border-bottom: 1px solid var(--line-soft); }
   .exp-row:last-child { border-bottom: none; padding-bottom: 0; }
-  .exp-row:first-of-type { padding-top: 0; }
-  .exp-row .co { font-family: var(--font-display); font-size: 19px; font-weight: 650; line-height: 1.2; letter-spacing: -0.018em; }
+  .exp-row:first-of-type { padding-top: 6px; }
+  .exp-row .co { font-family: var(--font-display); font-size: 19px; font-weight: 600; letter-spacing: -0.015em; }
   .exp-row .ro { font-size: 13.5px; color: var(--ink-3); margin-top: 5px; }
-  .exp-row .yr { font-family: var(--font-display); font-size: 13px; color: var(--muted); white-space: nowrap; letter-spacing: 0.02em; }
+  .exp-row .yr { font-family: var(--font-display); font-size: 13px; color: var(--muted); white-space: nowrap; }
 
   /* ===== contact ===== */
-  .contact { padding: 40px 48px 80px; text-align: center; }
-  .contact .sec { margin-bottom: 32px; display: inline-block; }
-  .contact h2 { font-family: var(--font-display); font-weight: 650; font-size: clamp(48px,5.8vw,94px); line-height: 0.96; letter-spacing: -0.05em; margin: 0 0 56px; }
-  .contact h2 em { font-style: normal; color: var(--accent); }
-  .contact-links { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
-  .contact-links a {
-    font-family: var(--font-display); font-size: 16px; font-weight: 650; color: var(--ink); text-decoration: none;
-    padding: 14px 26px; border: 1px solid var(--line); border-radius: 999px;
-    transition: color .2s, border-color .2s, background .2s;
+  .contact-card {
+    position: relative; overflow: hidden; text-align: center;
+    background: rgba(255,255,255,0.4); border: 1px solid rgba(255,255,255,0.6); border-radius: 30px;
+    padding: 66px 30px 54px; margin-top: 10px;
+    box-shadow: 0 40px 80px -60px rgba(19,19,19,0.6);
   }
-  .contact-links a:hover { color: #fff; background: var(--ink); border-color: var(--ink); }
-  .contact .avail { margin-top: 48px; font-family: var(--font-display); font-size: 11px; color: var(--muted); letter-spacing: 0.14em; text-transform: uppercase; }
+  .contact-card h2 { font-family: var(--font-display); font-weight: 700; font-size: clamp(38px, 6.4vw, 96px); line-height: 0.94; letter-spacing: -0.04em; margin: 26px 0 22px; }
+  .contact-card .sub { font-size: clamp(15px, 1.4vw, 18px); line-height: 1.55; color: var(--ink-3); max-width: 560px; margin: 0 auto 30px; }
+  .contact-links { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-top: 44px; }
+  .contact-links .me { background: var(--dark); color: #fff; border-color: var(--dark); }
+  .contact-links .me img { width: 22px; height: 22px; border-radius: 50%; object-fit: cover; filter: grayscale(1); }
 
-  footer { padding: 32px 48px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; font-family: var(--font-display); font-size: 12px; color: var(--muted); letter-spacing: 0.04em; position: relative; z-index: 1; }
+  footer { padding: 34px 0; display: flex; justify-content: space-between; font-family: var(--font-display); font-size: 12.5px; color: var(--muted); letter-spacing: 0.03em; position: relative; z-index: 1; }
 
-  .case-row.link { cursor: pointer; }
+  /* ===== reveal animation ===== */
+  .reveal { opacity: 0; transform: translateY(22px); transition: opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1); }
+  .reveal.in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } .dot-live { animation: none; } }
 
-  @media (max-width: 980px) {
-    .hero-grid {
-      grid-template-columns: 1fr;
-      grid-template-areas: "eyebrow" "heading" "below" "photo";
-      gap: 24px;
-    }
-    .hero { padding-top: 70px; }
-    .hero .eyebrow { margin-bottom: 18px; }
-    .hero .lead { margin-top: 26px; }
-    .hero-actions { margin-top: 30px; }
-    .portrait { max-width: 300px; aspect-ratio: 671 / 741; margin-top: 10px; }
-    .caps-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
-    .numbers-copy { margin-top: 0; }
-    .cap, .cap:nth-child(3n), .cap:nth-child(4n) { border-right: 1px solid var(--line); border-bottom: 1px solid var(--line-soft); }
-    .cap:nth-child(2n) { border-right: none; }
-    .cap:nth-last-child(-n+2) { border-bottom: none; }
-    .case-row { grid-template-columns: 1fr; }
-    .case-body { order: 1; }
-    .case-prev { order: 2; min-height: 280px; border-left: none; border-top: 1px solid var(--line); }
-    .about-grid { grid-template-columns: 1fr; gap: 48px; }
-    .exp-panel { margin-top: 0; }
-    .work-head { flex-direction: column; align-items: flex-start; gap: 14px; }
-    .numbers-head { flex-direction: column; align-items: flex-start; }
+  /* ===== cv viewer ===== */
+  .cv-viewer { position: fixed; inset: 0; z-index: 1000; display: none; padding: 28px; background: rgba(12,11,8,.82); backdrop-filter: blur(10px); cursor: zoom-out; }
+  .cv-viewer.open { display: block; }
+  .cv-frame { width: min(1280px, 100%); height: 100%; margin: 0 auto; border-radius: 8px; overflow: hidden; background: #fff; box-shadow: 0 24px 80px rgba(0,0,0,.38); cursor: default; }
+  .cv-frame iframe { width: 100%; height: 100%; border: 0; display: block; }
+
+  /* ===== responsive ===== */
+  @media (max-width: 940px) {
+    .topnav { display: none; }
+    .work-grid { grid-template-columns: 1fr; }
+    .about-grid { grid-template-columns: 1fr; gap: 40px; }
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .stat-cell:nth-child(2n) { border-right: none; }
+    .stat-cell:nth-child(-n+2) { border-bottom: 1px solid var(--line-soft); }
+    .svc-panel { flex-direction: column; align-items: flex-start; }
+    .svc-panel .shot { align-self: flex-end; }
   }
-  @media (max-width: 620px) {
-    .topbar { padding: 16px 22px; }
-    .topbar nav { gap: 16px; }
-    .topbar nav a.navlink { display: none; }
-    .topbar .avail-pill { padding: 7px 11px; font-size: 10px; letter-spacing: 0.04em; }
-    .topbar .avail-pill .full { display: none; }
-    .topbar .avail-pill .short { display: inline; }
-    .hero, .caps, .work-head, .featured, .cases, .about, .contact, footer { padding-left: 22px; padding-right: 22px; }
-    .hero { padding-top: 52px; }
-    .hero h1 { font-size: clamp(40px,10.6vw,54px); line-height: 0.99; letter-spacing: -0.048em; }
-    .hero .lead { font-size: 17px; line-height: 1.48; }
-    .portrait { max-width: 240px; }
-    .portrait .tagline { display: none; }
-    .numbers-head h2 { font-size: 28px; line-height: 1.08; }
-    .cap { min-height: 126px; padding: 24px 18px 24px; }
-    .cap .n { font-size: clamp(42px,12vw,58px); }
-    .cap p { font-size: 11px; letter-spacing: 0.04em; }
-    .case-body { padding: 34px 26px; }
-    .about-stats { grid-template-columns: 1fr; gap: 18px; }
-    .case-foot { flex-wrap: wrap; gap: 14px; }
+  @media (max-width: 640px) {
+    .shell { padding: 0 16px; }
+    .topbar { padding: 8px 8px 8px 16px; }
+    .topbar .avail .full { display: none; }
+    .topbar .avail .short { display: inline; }
+    .hero-card { padding: 26px 20px 30px; border-radius: 24px; }
+    .hero-bottom { flex-direction: column; align-items: stretch; gap: 22px; }
+    .hero-role { max-width: none; }
+    .hero-socials { flex-direction: row; flex-wrap: wrap; align-items: stretch; }
+    .hero-socials .pill { min-width: 0; flex: 1 1 44%; }
+    .contact-card { padding: 46px 18px 40px; }
     footer { flex-direction: column; gap: 8px; text-align: center; }
-  }
-  @media (max-width: 420px) {
-    .brand .nm { display: none; }
-    .caps-grid { grid-template-columns: 1fr; }
-    .cap, .cap:nth-child(2n), .cap:nth-child(4n) { border-right: none; border-bottom: 1px solid var(--line); padding-left: 0; padding-right: 0; }
-    .cap:last-child { border-bottom: none; }
   }
 </style>
 </head>
 <body>
-<div class="shell">
 
   <!-- topbar -->
   <header class="topbar">
-    <div class="brand">
-      <div class="mark">ВШ</div>
-      <div class="nm">Виктория Шаханина</div>
-    </div>
-    <nav>
-      <a href="#about" class="navlink">О себе</a>
-      <a href="#work" class="navlink">Кейсы</a>
-      <a href="#contact" class="navlink">Контакты</a>
-      <span class="avail-pill"><span class="d"></span><span class="full">Открыта к сотрудничеству</span><span class="short">Сотрудничество</span></span>
+    <span class="avail"><span class="dot-live"></span><span class="full">Доступна для проектов</span><span class="short">Доступна</span></span>
+    <nav class="topnav">
+      <a href="#work">Кейсы <span class="cnt">[6]</span></a>
+      <a href="#service">Услуги <span class="cnt">[4]</span></a>
+      <a href="#about">Опыт <span class="cnt">[7y+]</span></a>
+      <a href="#contact">Контакты</a>
     </nav>
+    <a href="#contact" class="pill dark cta">Связаться <span class="arrow">↗</span></a>
   </header>
 
-  <!-- hero -->
-  <section class="hero">
-    <div class="hero-grid">
-      <div class="eyebrow label"><span class="rule"></span>Senior / Lead Product Designer</div>
-      <h1>Делаю сложные продукты <em>понятными</em></h1>
-      <div class="hero-below">
-        <p class="lead">Через исследования, проверку гипотез и проектирование пользовательского опыта. 7+ лет в продукте, исследования, запуск новых сценариев и работа со сложными B2B-системами.</p>
-        <div class="hero-actions">
-          <a href="#work" class="primary-action">Смотреть кейсы →</a>
-          <a href="https://t.me/ux_vika" class="tg" target="_blank" rel="noopener">Telegram →</a>
-          <button class="tg cv" type="button" data-cv-open>CV →</button>
-          <span class="loc">СПб · удалёнка / гибрид</span>
+  <div class="shell">
+
+    <!-- hero -->
+    <section class="hero">
+      <div class="hero-card reveal">
+        <div class="hero-stage">
+          <h1 class="hero-name">
+            <span class="ln out">ВИКТОРИЯ</span>
+          </h1>
+          <div class="hero-portrait">
+            <img src="images/img-01-3e309300.jpeg" alt="Виктория Шаханина">
+          </div>
+          <h1 class="hero-name">
+            <span class="ln fill">ШАХАНИНА</span>
+          </h1>
         </div>
-      </div>
-      <div class="portrait">
-        <div class="frame">
-          <img src="images/img-01-3e309300.jpeg" alt="Виктория Шаханина">
-          <span class="tagline"><span class="d"></span>СПб · удалёнка / гибрид</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- numbers -->
-  <section class="caps">
-    <div class="numbers-head">
-      <div>
-        <div class="sec label"><span class="tick">→ </span>Опыт в цифрах</div>
-        <h2>Опыт, который помогает принимать продуктовые решения.</h2>
-      </div>
-      <p class="numbers-copy">Исследования, релизы и продукты, которыми пользуются каждый день.</p>
-    </div>
-    <div class="caps-grid">
-      <div class="cap">
-        <div class="n">7+</div>
-        <p>лет опыта</p>
-      </div>
-      <div class="cap">
-        <div class="n">50+</div>
-        <p>исследований</p>
-      </div>
-      <div class="cap">
-        <div class="n">2</div>
-        <p>продукта от идеи до релиза</p>
-      </div>
-      <div class="cap">
-        <div class="n">4</div>
-        <p>платформы</p>
-      </div>
-      <div class="cap">
-        <div class="n">3</div>
-        <p>студента в менторинге</p>
-      </div>
-      <div class="cap">
-        <div class="n">2</div>
-        <p>публичных доклада</p>
-      </div>
-    </div>
-    <div class="numbers-note">
-      <p>Запускала продукты, выстраивала Discovery и помогала командам принимать решения на основе исследований.</p>
-      <p>Внедрила PBR, USM и процесс сбора пользовательской обратной связи, чтобы проверять идеи до начала разработки.</p>
-    </div>
-  </section>
-
-  <!-- work head -->
-  <div class="work-head" id="work">
-    <div>
-      <div class="sec label"><span class="tick">→ </span>Раздел 01 — Кейсы</div>
-      <h2>Продуктовые кейсы</h2>
-    </div>
-    <div class="count">6 кейсов</div>
-  </div>
-
-  <!-- case index -->
-  <section class="cases">
-
-    <!-- Календарь -->
-    <a class="case-row link" href="calendar/index.html">
-      <div class="case-body">
-        <div class="case-meta"><span class="n">01</span><span>Сквадус · Desktop</span></div>
-        <h3>Календарь для корпоративного мессенджера</h3>
-        <p>Провела исследование среди 194 пользователей и определила оптимальную точку входа в календарь. Решение вошло в релиз и помогло закрыть требования крупного enterprise-заказчика.</p>
-        <div class="case-foot">
-          <div class="stat">194<small>респондента</small></div>
-          <span class="go">Смотреть кейс →</span>
-        </div>
-      </div>
-      <div class="case-prev">
-        <img src="images/preview-calendar.png" alt="Календарь в мессенджере">
-      </div>
-    </a>
-
-    <!-- Повторяющиеся -->
-    <a class="case-row link" href="recurring/index.html">
-      <div class="case-body">
-        <div class="case-meta"><span class="n">02</span><span>Фокус · iOS · Android</span></div>
-        <h3>Повторяющиеся события в мобильном календаре</h3>
-        <p>Перепроектировала сценарий повторяющихся событий после анализа обращений пользователей и конкурентного анализа. После релиза жалобы на сценарий перестали поступать.</p>
-        <div class="case-foot">
-          <div class="stat">14 → 0<small>жалоб</small></div>
-          <span class="go">Смотреть кейс →</span>
-        </div>
-      </div>
-      <div class="case-prev transparent-prev">
-        <img src="images/preview-recurring.png?v=3" alt="Повторяющиеся события">
-      </div>
-    </a>
-
-    <!-- Антивирус -->
-    <a class="case-row link" href="antivirus/index.html">
-      <div class="case-body">
-        <div class="case-meta"><span class="n">03</span><span>Сквадус · Desktop</span></div>
-        <h3>Антивирус в мессенджере</h3>
-        <p>Интеграция проверки файлов Kaspersky прямо в чат. Шесть состояний сканирования сняли угрозу вредоносного ПО и убрали барьер для enterprise-сделок.</p>
-        <div class="case-foot">
-          <div class="stat">6<small>состояний проверки</small></div>
-          <span class="go">Смотреть кейс →</span>
-        </div>
-      </div>
-      <div class="case-prev mail-prev">
-        <img src="images/preview-antivirus.png" alt="Антивирус в мессенджере">
-      </div>
-    </a>
-
-    <!-- Night Badminton (UI Showcase) -->
-    <a class="case-row link proto" href="badminton/index.html">
-      <div class="case-body">
-        <div class="case-badge"><span class="live"></span>Кликабельный прототип</div>
-        <div class="case-meta"><span class="n">04</span><span>Night Badminton · UI Showcase</span></div>
-        <h3>Night Badminton (UI Showcase)</h3>
-        <p>Живой интерактивный прототип на iOS: расписание, карточка тренировки, запись и оплата. Можно потыкать прямо здесь — или открыть кейс целиком.</p>
-        <span class="case-cta">Открыть кейс с прототипом →</span>
-      </div>
-      <div class="case-prev proto-prev">
-        <div class="device-mini">
-          <div class="device-screen">
-            <iframe id="protoFrame" title="Прототип Night Badminton" scrolling="no"></iframe>
+        <div class="hero-bottom">
+          <div class="hero-role">
+            <h2>Product Designer</h2>
+            <p>Делаю сложные B2B и Enterprise-продукты понятными — через исследования, проверку гипотез и проектирование сценариев.</p>
+            <a href="#work" class="pill dark">Давайте сотрудничать <span class="arrow">↗</span></a>
+          </div>
+          <div class="hero-socials">
+            <a href="https://t.me/ux_vika" class="pill" target="_blank" rel="noopener">Telegram</a>
+            <a href="mailto:9697161878@mail.ru" class="pill">Почта</a>
+            <a href="tel:+79516635482" class="pill">+7 951 663-54-82</a>
+            <button class="pill" type="button" data-cv-open>Смотреть CV</button>
           </div>
         </div>
       </div>
-    </a>
+    </section>
 
-    <!-- Почта -->
-    <a class="case-row link" href="mail/index.html">
-      <div class="case-body">
-        <div class="case-meta"><span class="n">05</span><span>Почта · iOS · Android</span></div>
-        <h3>Исследование мобильной почты</h3>
-        <p>Модерируемое юзабилити-тестирование с 10 внешними респондентами. Нашла 15 UX-проблем, 3 критичных — результат лёг в основу нового приложения Мэйлион.</p>
-        <div class="case-foot">
-          <div class="stat">15<small>UX-проблем найдено</small></div>
-          <span class="go">Смотреть кейс →</span>
+    <!-- numbers -->
+    <section class="block">
+      <div class="sec-head reveal">
+        <div class="label">Опыт в цифрах</div>
+        <div class="sec-title"><span class="slash">/</span>ОПЫТ, КОТОРЫЙ РЕШАЕТ</div>
+      </div>
+      <div class="stats reveal">
+        <div class="stat-cell"><div class="n">7+</div><div class="t">лет в продукте</div></div>
+        <div class="stat-cell"><div class="n">50+</div><div class="t">исследований</div></div>
+        <div class="stat-cell"><div class="n">2</div><div class="t">продукта от идеи до релиза</div></div>
+        <div class="stat-cell"><div class="n">4</div><div class="t">платформы</div></div>
+      </div>
+    </section>
+
+    <!-- work -->
+    <section class="block" id="work">
+      <div class="sec-head reveal">
+        <div class="ghost" aria-hidden="true">PORTFOLIO</div>
+        <div class="sec-title" style="text-align:center"><span class="slash">/</span>SELECTED WORK</div>
+      </div>
+      <div class="work-top reveal">
+        <div class="filters" role="tablist">
+          <button class="active" data-filter="all">Все</button>
+          <button data-filter="desktop">Desktop</button>
+          <button data-filter="mobile">Mobile</button>
+          <button data-filter="research">Исследования</button>
+        </div>
+        <a href="#contact" class="pill">Все работы <span class="arrow">↗</span></a>
+      </div>
+
+      <div class="work-grid">
+
+        <!-- 01 Календарь -->
+        <a class="work-card reveal" href="calendar/index.html" data-cat="desktop">
+          <div class="work-thumb">
+            <img src="images/preview-calendar.png" alt="Календарь в мессенджере">
+            <span class="go">↗</span>
+          </div>
+          <div class="work-meta"><span>01</span><span>Сквадус · Desktop</span></div>
+          <h3>Календарь для корпоративного мессенджера</h3>
+          <div class="work-tags"><span>Исследование</span><span>194 респондента</span><span>Релиз</span></div>
+        </a>
+
+        <!-- 02 Повторяющиеся -->
+        <a class="work-card reveal" href="recurring/index.html" data-cat="mobile">
+          <div class="work-thumb contain">
+            <img src="images/preview-recurring.png?v=3" alt="Повторяющиеся события">
+            <span class="go">↗</span>
+          </div>
+          <div class="work-meta"><span>02</span><span>Фокус · iOS · Android</span></div>
+          <h3>Повторяющиеся события в мобильном календаре</h3>
+          <div class="work-tags"><span>Mobile</span><span>14 → 0 жалоб</span><span>Redesign</span></div>
+        </a>
+
+        <!-- 03 Антивирус -->
+        <a class="work-card reveal" href="antivirus/index.html" data-cat="desktop">
+          <div class="work-thumb">
+            <img src="images/preview-antivirus.png" alt="Антивирус в мессенджере">
+            <span class="go">↗</span>
+          </div>
+          <div class="work-meta"><span>03</span><span>Сквадус · Desktop</span></div>
+          <h3>Антивирус в мессенджере</h3>
+          <div class="work-tags"><span>Enterprise</span><span>6 состояний</span><span>Kaspersky</span></div>
+        </a>
+
+        <!-- 04 Night Badminton (interactive) -->
+        <a class="work-card reveal" href="badminton/index.html" data-cat="mobile">
+          <div class="work-thumb">
+            <span class="work-badge"><span class="dot-live"></span>Кликабельный прототип</span>
+            <div class="device-wrap">
+              <div class="device-mini">
+                <div class="device-screen">
+                  <iframe id="protoFrame" title="Прототип Night Badminton" scrolling="no"></iframe>
+                </div>
+              </div>
+            </div>
+            <span class="go">↗</span>
+          </div>
+          <div class="work-meta"><span>04</span><span>Night Badminton · UI Showcase</span></div>
+          <h3>Night Badminton (UI Showcase)</h3>
+          <div class="work-tags"><span>iOS</span><span>Прототип</span><span>UI</span></div>
+        </a>
+
+        <!-- 05 Почта -->
+        <a class="work-card reveal" href="mail/index.html" data-cat="research">
+          <div class="work-thumb contain">
+            <img src="images/preview-mail.png?v=3" alt="Исследование мобильной почты">
+            <span class="go">↗</span>
+          </div>
+          <div class="work-meta"><span>05</span><span>Почта · iOS · Android</span></div>
+          <h3>Исследование мобильной почты</h3>
+          <div class="work-tags"><span>Usability</span><span>15 UX-проблем</span><span>10 респондентов</span></div>
+        </a>
+
+        <!-- 06 Вывод средств -->
+        <a class="work-card reveal" href="wallet/index.html" data-cat="mobile">
+          <div class="work-thumb">
+            <img src="images/preview-wallet.png?v=2" alt="Вывод средств">
+            <span class="go">↗</span>
+          </div>
+          <div class="work-meta"><span>06</span><span>Wowworks · iOS</span></div>
+          <h3>Вывод средств для исполнителей</h3>
+          <div class="work-tags"><span>Mobile</span><span>CJM</span><span>8/10 инсайт</span></div>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- service -->
+    <section class="block" id="service">
+      <div class="sec-head reveal">
+        <div class="label">Чем помогаю</div>
+        <div class="sec-title"><span class="slash">/</span>SERVICE</div>
+      </div>
+      <div class="svc-list reveal">
+
+        <div class="svc-item open">
+          <button class="svc-head" type="button">
+            <h3>Продуктовый дизайн</h3>
+            <span class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+          </button>
+          <div class="svc-body">
+            <div class="svc-panel">
+              <div class="txt">
+                <h4>Продуктовый дизайн</h4>
+                <p>Проектирую понятные и масштабируемые сценарии для desktop, web и мобильных продуктов — от каркасов до финального UI и сопровождения разработки до релиза.</p>
+              </div>
+              <div class="shot"><img src="images/preview-calendar.png" alt="Пример работы"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="svc-item">
+          <button class="svc-head" type="button">
+            <h3>UX-исследования</h3>
+            <span class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+          </button>
+          <div class="svc-body">
+            <div class="svc-panel">
+              <div class="txt">
+                <h4>UX-исследования</h4>
+                <p>Юзабилити-тесты, интервью и проверка гипотез до старта разработки. Помогаю командам принимать решения на основе пользовательских данных, а не догадок.</p>
+              </div>
+              <div class="shot"><img src="images/preview-mail.png?v=3" alt="Исследования"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="svc-item">
+          <button class="svc-head" type="button">
+            <h3>Дизайн-системы</h3>
+            <span class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+          </button>
+          <div class="svc-body">
+            <div class="svc-panel">
+              <div class="txt">
+                <h4>Дизайн-системы</h4>
+                <p>Компоненты, паттерны и гайдлайны, которые держат продукт консистентным на всех платформах и ускоряют работу команды.</p>
+              </div>
+              <div class="shot"><img src="images/preview-antivirus.png" alt="Дизайн-система"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="svc-item">
+          <button class="svc-head" type="button">
+            <h3>Менторинг и доклады</h3>
+            <span class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+          </button>
+          <div class="svc-body">
+            <div class="svc-panel">
+              <div class="txt">
+                <h4>Менторинг и доклады</h4>
+                <p>Менторю начинающих дизайнеров (DesignSpot School / EPAM) и выступаю на профессиональных конференциях о продуктовых исследованиях и процессах.</p>
+              </div>
+              <div class="shot"><img src="images/preview-wallet.png?v=2" alt="Менторинг"></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- about -->
+    <section class="block" id="about">
+      <div class="sec-head reveal">
+        <div class="label">О себе</div>
+        <div class="sec-title"><span class="slash">/</span>ABOUT</div>
+      </div>
+      <div class="about-grid">
+        <div class="about-copy reveal">
+          <h3>Research-driven Product Designer с опытом сложных B2B и Enterprise-продуктов.</h3>
+          <p>Последние 4 года развиваю продукты <strong>МойОфис</strong> для Desktop, Web, iOS и Android. До этого работала над сервисами Wowworks и продуктовыми проектами в агентской среде.</p>
+          <p>Специализируюсь на полном цикле продуктовой разработки: исследования, discovery, проверка гипотез, проектирование сценариев, дизайн-системы и сопровождение разработки до релиза.</p>
+          <p>Внедряла исследовательские практики в командах, защищала решения перед стейкхолдерами и помогала продуктовым командам принимать решения на основе пользовательских данных. Менторила начинающих дизайнеров в <strong>DesignSpot School (EPAM)</strong> и выступала на профессиональных конференциях.</p>
+        </div>
+        <div class="reveal">
+          <div class="exp-panel">
+            <div class="label" style="margin-bottom:18px">Опыт</div>
+            <div class="exp-row"><div><div class="co">МойОфис</div><div class="ro">Senior / Lead Product Designer</div></div><div class="yr">2022 — 2026</div></div>
+            <div class="exp-row"><div><div class="co">Wowworks</div><div class="ro">Product Designer</div></div><div class="yr">2020 — 2022</div></div>
+            <div class="exp-row"><div><div class="co">Маслов Групп · АртФактор</div><div class="ro">Graphic / UX Designer</div></div><div class="yr">2018 — 2020</div></div>
+          </div>
         </div>
       </div>
-      <div class="case-prev mail-prev">
-        <img src="images/preview-mail.png?v=3" alt="Исследование мобильной почты">
-      </div>
-    </a>
+    </section>
 
-    <!-- Вывод средств -->
-    <a class="case-row link" href="wallet/index.html">
-      <div class="case-body">
-        <div class="case-meta"><span class="n">06</span><span>Wowworks · iOS</span></div>
-        <h3>Вывод средств для исполнителей</h3>
-        <p>CJM, три гипотезы и тест на 10 пользователях. 8 из 10 не читали сроки зачисления — переписала сценарий так, чтобы ожидание перестало пугать.</p>
-        <div class="case-foot">
-          <div class="stat">8 / 10<small>не читали сроки</small></div>
-          <span class="go">Смотреть кейс →</span>
+    <!-- contact -->
+    <section class="block" id="contact">
+      <div class="contact-card reveal">
+        <span class="pill" style="pointer-events:none"><span class="dot-live"></span>Доступна для нового проекта</span>
+        <h2>ОБСУДИМ ВАШ ПРОЕКТ?</h2>
+        <p class="sub">Вместе можем сделать продукт понятнее и сильнее. Напишите — обсудим задачу и то, как я могу помочь.</p>
+        <a href="https://t.me/ux_vika" class="pill dark" target="_blank" rel="noopener" style="font-size:15px;padding:14px 26px">Связаться <span class="arrow">↗</span></a>
+        <div class="contact-links">
+          <span class="pill me"><img src="images/img-01-3e309300.jpeg" alt="">Виктория Шаханина</span>
+          <a href="https://t.me/ux_vika" class="pill" target="_blank" rel="noopener">Telegram</a>
+          <a href="mailto:9697161878@mail.ru" class="pill">Почта</a>
+          <a href="tel:+79516635482" class="pill">Телефон</a>
+          <button class="pill" type="button" data-cv-open>CV</button>
         </div>
       </div>
-      <div class="case-prev">
-        <img src="images/preview-wallet.png?v=2" alt="Вывод средств">
-      </div>
-    </a>
+    </section>
 
-  </section>
+    <footer>
+      <div>© 2026 Виктория Шаханина</div>
+      <div>Санкт-Петербург · удалёнка / гибрид</div>
+    </footer>
 
-  <!-- about -->
-  <section class="about" id="about">
-    <div class="about-grid">
-      <div>
-        <div class="sec label"><span class="tick">→ </span>Раздел 02 — О себе</div>
-        <h2>Research-driven Senior Product Designer с опытом <em>сложных B2B и Enterprise-продуктов.</em></h2>
-        <p>Последние 4 года развиваю продукты <strong>МойОфис</strong> для Desktop, Web, iOS и Android. До этого работала над сервисами Wowworks и продуктовыми проектами в агентской среде.</p>
-        <p>Специализируюсь на полном цикле продуктовой разработки: исследования, discovery, проверка гипотез, проектирование сценариев, дизайн-системы и сопровождение разработки до релиза.</p>
-        <p>Внедряла исследовательские практики в командах, защищала решения перед стейкхолдерами и помогала продуктовым командам принимать решения на основе пользовательских данных. Менторила начинающих дизайнеров в <strong>DesignSpot School (EPAM)</strong> и выступала на профессиональных конференциях.</p>
-      </div>
-      <div>
-        <div class="exp-panel">
-          <div class="exp-label label">Опыт</div>
-          <div class="exp-row"><div><div class="co">МойОфис</div><div class="ro">Senior / Lead Product Designer</div></div><div class="yr">2022 — 2026</div></div>
-          <div class="exp-row"><div><div class="co">Wowworks</div><div class="ro">Product Designer</div></div><div class="yr">2020 — 2022</div></div>
-          <div class="exp-row"><div><div class="co">Маслов Групп · АртФактор</div><div class="ro">Graphic / UX Designer</div></div><div class="yr">2018 — 2020</div></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- contact -->
-  <section class="contact" id="contact">
-    <div class="sec label"><span class="tick">→ </span>Раздел 03 — Связаться</div>
-    <h2>Давайте обсудим<br><em>ваш продукт</em></h2>
-    <div class="contact-links">
-      <a href="https://t.me/ux_vika" target="_blank" rel="noopener">Telegram</a>
-      <a href="mailto:9697161878@mail.ru">Почта</a>
-      <a href="tel:+79516635482">+7 951 663-54-82</a>
-    </div>
-    <div class="avail">СПб · удалёнка / гибрид · готова к командировкам</div>
-  </section>
-
-  <footer>
-    <div>© 2026 Виктория Шаханина</div>
-    <div>Санкт-Петербург</div>
-  </footer>
-
-</div>
-
-<div class="cv-viewer" id="cvViewer" aria-hidden="true">
-  <div class="cv-frame">
-    <iframe src="cv.pdf" title="CV Виктории Шаханиной"></iframe>
   </div>
-</div>
+
+  <div class="cv-viewer" id="cvViewer" aria-hidden="true">
+    <div class="cv-frame">
+      <iframe src="cv.pdf" title="CV Виктории Шаханиной"></iframe>
+    </div>
+  </div>
 
 <script>
+  // interactive prototype
   (function () {
     var pf = document.getElementById('protoFrame');
     if (pf) pf.src = 'badminton/proto.html';
   })();
-</script>
 
-<script>
+  // reveal on scroll
   (function () {
-    var viewer = document.getElementById('cvViewer');
-    var openBtn = document.querySelector('[data-cv-open]');
-    if (!viewer || !openBtn) return;
+    var els = document.querySelectorAll('.reveal');
+    if (!('IntersectionObserver' in window)) { els.forEach(function (e) { e.classList.add('in'); }); return; }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    els.forEach(function (e) { io.observe(e); });
+  })();
 
-    function openCv() {
-      viewer.classList.add('open');
-      viewer.setAttribute('aria-hidden', 'false');
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closeCv() {
-      viewer.classList.remove('open');
-      viewer.setAttribute('aria-hidden', 'true');
-      document.body.style.overflow = '';
-    }
-
-    openBtn.addEventListener('click', openCv);
-    viewer.addEventListener('click', function (event) {
-      if (event.target === viewer) closeCv();
-    });
-    document.addEventListener('keydown', function (event) {
-      if (event.key === 'Escape' && viewer.classList.contains('open')) closeCv();
+  // work filters
+  (function () {
+    var btns = document.querySelectorAll('.filters button');
+    var cards = document.querySelectorAll('.work-card');
+    btns.forEach(function (b) {
+      b.addEventListener('click', function () {
+        btns.forEach(function (x) { x.classList.remove('active'); });
+        b.classList.add('active');
+        var f = b.getAttribute('data-filter');
+        cards.forEach(function (c) {
+          var show = f === 'all' || c.getAttribute('data-cat') === f;
+          c.style.display = show ? '' : 'none';
+        });
+      });
     });
   })();
+
+  // service accordion (one open at a time)
+  (function () {
+    var items = document.querySelectorAll('.svc-item');
+    function setH(item) {
+      var body = item.querySelector('.svc-body');
+      body.style.maxHeight = item.classList.contains('open') ? (body.scrollHeight + 'px') : '0px';
+    }
+    items.forEach(function (item) {
+      item.querySelector('.svc-head').addEventListener('click', function () {
+        var isOpen = item.classList.contains('open');
+        items.forEach(function (i) { i.classList.remove('open'); setH(i); });
+        if (!isOpen) { item.classList.add('open'); setH(item); }
+      });
+    });
+    // init open item
+    items.forEach(setH);
+    window.addEventListener('resize', function () { items.forEach(setH); });
+  })();
+
+  // cv viewer
+  (function () {
+    var viewer = document.getElementById('cvViewer');
+    var openBtns = document.querySelectorAll('[data-cv-open]');
+    if (!viewer || !openBtns.length) return;
+    function openCv() { viewer.classList.add('open'); viewer.setAttribute('aria-hidden', 'false'); document.body.style.overflow = 'hidden'; }
+    function closeCv() { viewer.classList.remove('open'); viewer.setAttribute('aria-hidden', 'true'); document.body.style.overflow = ''; }
+    openBtns.forEach(function (b) { b.addEventListener('click', openCv); });
+    viewer.addEventListener('click', function (e) { if (e.target === viewer) closeCv(); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && viewer.classList.contains('open')) closeCv(); });
+  })();
 </script>
-
-
-
-
 
 </body></html>
