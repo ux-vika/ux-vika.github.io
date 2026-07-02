@@ -1,0 +1,14 @@
+# macOS
+.DS_Store
+
+# Скриншоты Playwright (временные, не храним в истории)
+output/
+
+# Зависимости (если появятся)
+node_modules/
+
+# Личные настройки Claude Code (у каждого свои)
+.claude/settings.local.json
+
+# Резервная копия главной страницы
+index.backup.html
