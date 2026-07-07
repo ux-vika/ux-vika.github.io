@@ -18,6 +18,20 @@
   a:hover{color:#1B1A66;}
   html{scroll-behavior:smooth;}
   @keyframes ticker{to{transform:translateX(-50%);}}
+  @keyframes sp{to{transform:rotate(360deg);}}
+  .spin{display:inline-block;animation:sp 16s linear infinite;}
+  .hov{transition:opacity .6s cubic-bezier(.2,.7,.2,1),transform .35s cubic-bezier(.2,.7,.2,1),box-shadow .25s;}
+  .rev{opacity:0;transform:translateY(26px);}
+  .rev.in{opacity:1;transform:none;}
+  .hov:hover{transform:translate(-5px,-5px);box-shadow:9px 9px 0 #1B1A66;}
+  .navl{position:relative;}
+  .navl::after{content:'';position:absolute;left:0;right:100%;bottom:-5px;height:2px;background:#5A63F1;transition:right .28s cubic-bezier(.2,.7,.2,1);}
+  .navl:hover::after{right:0;}
+  #prog{position:fixed;top:0;left:0;height:4px;width:100%;transform-origin:0 50%;transform:scaleX(0);background:#5A63F1;z-index:100;}
+  #cur{position:fixed;top:0;left:0;width:26px;height:26px;border:2px solid #5A63F1;border-radius:50%;transform:translate(-50%,-50%);pointer-events:none;z-index:99;opacity:0;transition:width .2s,height .2s,opacity .3s,background .2s;}
+  .magn{transition:transform .2s cubic-bezier(.2,.7,.2,1);}
+  @media (hover:none){#cur{display:none;}}
+  @media (prefers-reduced-motion:reduce){.rev{opacity:1 !important;transform:none !important;}.spin{animation:none;}.hov{transition:none;}#cur{display:none;}[style*="animation:ticker"]{animation:none !important;}}
 </style>
 </head>
 <body>
@@ -49,8 +63,9 @@
     <div style="position:absolute;top:30px;right:-24px;font-size:70px;color:#1B1A66;line-height:1;">✦</div>
   </div>
   <div style="min-width:0;flex:1 1 420px;">
+    <div style="font-family:'Oswald',sans-serif;font-weight:600;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:#5A63F1;margin-bottom:18px;">Виктория Шаханина · Senior / Lead Product Designer</div>
     <h1 style="margin:0;font-family:'Oswald',sans-serif;font-weight:600;letter-spacing:-.015em;font-size:clamp(44px,6.5vw,100px);line-height:1.04;color:#15142A;text-transform:uppercase;">Делаю сложные<br>продукты<br><span style="color:#5A63F1;">понятными</span></h1>
-    <p style="margin:26px 0 0;max-width:56ch;font-size:18px;line-height:1.6;color:#454452;">Виктория Шаханина — Senior / Lead Product Designer. Исследования, проверка гипотез и проектирование пользовательского опыта. 7+ лет в продукте, B2B и Enterprise.</p>
+    <p style="margin:26px 0 0;max-width:56ch;font-size:18px;line-height:1.6;color:#454452;">Через исследования, проверку гипотез и проектирование пользовательского опыта. 7+ лет в продукте, исследования, запуск новых сценариев и работа со сложными B2B-системами.</p>
     <div style="display:flex;gap:14px;margin-top:32px;">
       <a href="https://t.me/ux_vika" target="_blank" rel="noopener" style="font-family:'Oswald',sans-serif;font-weight:600;font-size:15px;letter-spacing:.08em;text-transform:uppercase;background:#1B1A66;color:#F4EBDC;padding:16px 28px;border-radius:999px;">Telegram ↗</a>
       <a href="cv.pdf" target="_blank" rel="noopener" style="font-family:'Oswald',sans-serif;font-weight:600;font-size:15px;letter-spacing:.08em;text-transform:uppercase;border:1.5px solid #1B1A66;color:#1B1A66;padding:16px 28px;border-radius:999px;">Смотреть CV</a>
@@ -76,29 +91,33 @@
       <div style="flex:1;height:2px;background:#1B1A66;"></div>
       <span style="width:12px;height:12px;border:2px solid #1B1A66;border-radius:50%;"></span>
     </div>
-    <p style="margin:24px 0 0;max-width:64ch;text-align:center;font-size:17px;line-height:1.6;color:#1B1A66;">Запускала продукты, выстраивала Discovery и помогала командам принимать решения на основе исследований — внедрила PBR, USM и процесс сбора обратной связи.</p>
+    <p style="margin:24px 0 0;max-width:64ch;text-align:center;font-size:17px;line-height:1.6;color:#1B1A66;">Запускала продукты, выстраивала Discovery и помогала командам принимать решения на основе исследований. Внедрила PBR, USM и процесс сбора пользовательской обратной связи, чтобы проверять идеи до начала разработки.</p>
   </div>
 </section>
 <div style="width:100%;box-sizing:border-box;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));border-bottom:2px solid #1B1A66;">
       <div style="padding:30px 28px 6px;border-right:2px dashed rgba(27,26,102,.4);text-align:center;">
         <div style="font-family:'Oswald',sans-serif;font-weight:600;font-size:clamp(44px,4vw,60px);line-height:1;color:#15142A;">7+</div>
-        <div style="margin-top:10px;font-size:14px;color:#454452;">лет в продуктовом дизайне</div>
-      </div>
-      <div style="padding:30px 28px 6px;border-right:2px dashed rgba(27,26,102,.4);text-align:center;">
-        <div style="font-family:'Oswald',sans-serif;font-weight:600;font-size:clamp(44px,4vw,60px);line-height:1;color:#15142A;">7</div>
-        <div style="margin-top:10px;font-size:14px;color:#454452;">продуктов в работе и релизах</div>
+        <div style="margin-top:10px;font-size:14px;color:#454452;">лет в продуктовом дизайне — от агентства до Enterprise</div>
       </div>
       <div style="padding:30px 28px 6px;border-right:2px dashed rgba(27,26,102,.4);text-align:center;">
         <div style="font-family:'Oswald',sans-serif;font-weight:600;font-size:clamp(44px,4vw,60px);line-height:1;color:#15142A;">50+</div>
-        <div style="margin-top:10px;font-size:14px;color:#454452;">UX-исследований и тестов</div>
+        <div style="margin-top:10px;font-size:14px;color:#454452;">проведённых UX-исследований и юзабилити-тестов</div>
+      </div>
+      <div style="padding:30px 28px 6px;border-right:2px dashed rgba(27,26,102,.4);text-align:center;">
+        <div style="font-family:'Oswald',sans-serif;font-weight:600;font-size:clamp(44px,4vw,60px);line-height:1;color:#15142A;">2</div>
+        <div style="margin-top:10px;font-size:14px;color:#454452;">продукта от идеи до релиза</div>
       </div>
       <div style="padding:30px 28px 6px;border-right:2px dashed rgba(27,26,102,.4);text-align:center;">
         <div style="font-family:'Oswald',sans-serif;font-weight:600;font-size:clamp(44px,4vw,60px);line-height:1;color:#15142A;">4</div>
         <div style="margin-top:10px;font-size:14px;color:#454452;">платформы: Desktop · Web · iOS · Android</div>
       </div>
-      <div style="padding:30px 28px 6px;text-align:center;">
+      <div style="padding:30px 28px 6px;border-right:2px dashed rgba(27,26,102,.4);text-align:center;">
         <div style="font-family:'Oswald',sans-serif;font-weight:600;font-size:clamp(44px,4vw,60px);line-height:1;color:#15142A;">3</div>
         <div style="margin-top:10px;font-size:14px;color:#454452;">студента в менторинге</div>
+      </div>
+      <div style="padding:30px 28px 6px;text-align:center;">
+        <div style="font-family:'Oswald',sans-serif;font-weight:600;font-size:clamp(44px,4vw,60px);line-height:1;color:#15142A;">2</div>
+        <div style="margin-top:10px;font-size:14px;color:#454452;">публичных доклада</div>
       </div>
 </div>
 
@@ -307,5 +326,67 @@
 </footer>
 
 </div>
+
+<script>
+(function(){
+  var RM = matchMedia('(prefers-reduced-motion:reduce)').matches;
+  var fine = matchMedia('(hover:hover) and (pointer:fine)').matches;
+
+  // scroll progress
+  var p = document.createElement('div'); p.id = 'prog'; document.body.appendChild(p);
+  addEventListener('scroll', function(){ var h = document.documentElement; p.style.transform = 'scaleX(' + (h.scrollTop / ((h.scrollHeight - h.clientHeight) || 1)) + ')'; }, {passive:true});
+
+  // spin standalone sparkles
+  document.querySelectorAll('div,span').forEach(function(el){ if(!el.children.length && el.textContent.trim() === '✦') el.classList.add('spin'); });
+
+  // animated underline on nav
+  document.querySelectorAll('header nav a').forEach(function(a){ a.classList.add('navl'); });
+
+  // cards: brutalist hard-shadow hover + scroll reveal
+  var cards = [].slice.call(document.querySelectorAll('#work a, #services > div > div'));
+  cards.forEach(function(c){ c.classList.add('hov'); });
+  if(!RM){
+    cards.forEach(function(c){ c.classList.add('rev'); });
+    var reveal = function(){ cards.forEach(function(c){ if(!c.classList.contains('in') && c.getBoundingClientRect().top < innerHeight * 0.9) c.classList.add('in'); }); };
+    reveal();
+    var ticking = false;
+    addEventListener('scroll', function(){ if(!ticking){ ticking = true; requestAnimationFrame(function(){ reveal(); ticking = false; }); } }, {passive:true});
+    addEventListener('resize', reveal, {passive:true});
+
+    // count-up on stat numbers
+    if('IntersectionObserver' in window){
+      var sg = document.querySelector('section[data-screen-label="Опыт в цифрах"]');
+      sg = sg ? sg.nextElementSibling : null;
+      var nums = sg ? [].slice.call(sg.children).map(function(c){ return c.firstElementChild; }).filter(Boolean) : [];
+      var io2 = new IntersectionObserver(function(es){ es.forEach(function(e){
+        if(!e.isIntersecting) return;
+        var el = e.target, t = el.textContent.trim(), end = parseInt(t, 10), suf = t.replace(/[0-9]/g, ''), t0 = null;
+        if(isNaN(end)){ io2.unobserve(el); return; }
+        function step(ts){ if(!t0) t0 = ts; var pr = Math.min((ts - t0) / 900, 1); el.textContent = Math.round(end * (1 - Math.pow(1 - pr, 3))) + suf; if(pr < 1) requestAnimationFrame(step); }
+        requestAnimationFrame(step); io2.unobserve(el);
+      }); }, {threshold:.6});
+      nums.forEach(function(el){ io2.observe(el); });
+    }
+  }
+
+  // custom cursor follower + magnetic CTAs (pointer:fine only)
+  if(!RM && fine){
+    var cur = document.createElement('div'); cur.id = 'cur'; document.body.appendChild(cur);
+    var x = innerWidth/2, y = innerHeight/2, cx = x, cy = y;
+    addEventListener('mousemove', function(e){ x = e.clientX; y = e.clientY; cur.style.opacity = '1'; });
+    (function loop(){ cx += (x - cx) * .2; cy += (y - cy) * .2; cur.style.transform = 'translate(' + cx + 'px,' + cy + 'px) translate(-50%,-50%)'; requestAnimationFrame(loop); })();
+    document.querySelectorAll('a,button').forEach(function(el){
+      el.addEventListener('mouseenter', function(){ cur.style.width = '48px'; cur.style.height = '48px'; cur.style.background = 'rgba(90,99,241,.15)'; });
+      el.addEventListener('mouseleave', function(){ cur.style.width = '26px'; cur.style.height = '26px'; cur.style.background = 'transparent'; });
+    });
+    document.querySelectorAll('a[href^="https://t.me"], a[href="cv.pdf"]').forEach(function(el){
+      el.classList.add('magn');
+      el.addEventListener('mousemove', function(e){ var r = el.getBoundingClientRect(); el.style.transform = 'translate(' + ((e.clientX - r.left - r.width/2) * .25) + 'px,' + ((e.clientY - r.top - r.height/2) * .4) + 'px)'; });
+      el.addEventListener('mouseleave', function(){ el.style.transform = ''; });
+    });
+  }
+})();
+</script>
+
 </body>
 </html>
