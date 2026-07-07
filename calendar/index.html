@@ -15,14 +15,20 @@
   a{color:#4B55E8;text-decoration:none;} a:hover{color:#1B1A66;}
   img{max-width:100%;display:block;}
   .wrap{max-width:940px;margin:0 auto;padding:0 clamp(20px,5vw,40px);}
-  @keyframes sp{to{transform:rotate(360deg);}}
-  .spin{display:inline-block;animation:sp 16s linear infinite;}
   .rev{opacity:0;transform:translateY(24px);transition:opacity .6s cubic-bezier(.2,.7,.2,1),transform .6s cubic-bezier(.2,.7,.2,1);}
   .rev.in{opacity:1;transform:none;}
-  .magn{transition:transform .2s cubic-bezier(.2,.7,.2,1);}
   #prog{position:fixed;top:0;left:0;height:4px;width:100%;transform-origin:0 50%;transform:scaleX(0);background:#5A63F1;z-index:100;}
-  #cur{position:fixed;top:0;left:0;width:26px;height:26px;border:2px solid #5A63F1;border-radius:50%;transform:translate(-50%,-50%);pointer-events:none;z-index:99;opacity:0;transition:width .2s,height .2s,opacity .3s,background .2s;}
-  @media (hover:none){#cur{display:none;}}
+
+  /* interaction states */
+  a:focus-visible,button:focus-visible,figure.fig:focus-visible,.next a.cta:focus-visible{outline:2px solid #4B55E8;outline-offset:3px;}
+  .toc a{transition:color .15s ease;}
+  .next a.cta{transition:background .18s ease,transform .12s ease;}
+  .next a.cta:active{transform:scale(.98);}
+  @media (hover:hover){
+    .toc a:hover{color:#4B55E8;}
+    .next a.cta:hover{background:#EBE0CB;}
+    .to-top:hover{background:#EBE0CB;}
+  }
 
   /* topbar */
   header.top{border-bottom:2px solid #1B1A66;background:#F4EBDC;}
@@ -50,11 +56,12 @@
 
   /* sections */
   section.block{padding:clamp(46px,6vw,80px) 0 0;}
+  section.block > *:last-child{margin-bottom:0;}
   section.block.milestone{padding-top:clamp(80px,10vw,140px);}
-  h2.sec{position:relative;font-family:'Oswald',sans-serif;font-weight:600;text-transform:uppercase;font-size:clamp(30px,4.4vw,54px);line-height:1.04;letter-spacing:-.015em;margin:0 0 22px;color:#15142A;}
+  h2.sec{position:relative;font-family:'Oswald',sans-serif;font-weight:600;text-transform:uppercase;font-size:clamp(30px,4.4vw,54px);line-height:1.04;letter-spacing:-.015em;margin:0 0 24px;color:#15142A;}
   h2.sec .num{display:block;font-size:14px;font-weight:600;letter-spacing:.14em;color:rgba(27,26,102,.62);margin-bottom:12px;text-transform:none;}
   @media (min-width:1120px){ h2.sec .num{position:absolute;left:-76px;top:13px;margin:0;} }
-  h3.sub{font-family:'Oswald',sans-serif;font-weight:600;text-transform:uppercase;font-size:clamp(22px,2.4vw,27px);letter-spacing:.01em;margin:42px 0 14px;color:#15142A;}
+  h3.sub{font-family:'Oswald',sans-serif;font-weight:600;text-transform:uppercase;font-size:clamp(22px,2.4vw,27px);letter-spacing:.01em;margin:40px 0 16px;color:#15142A;}
   h4.h4{font-family:'Oswald',sans-serif;font-weight:600;text-transform:uppercase;font-size:20px;letter-spacing:.01em;margin:0 0 4px;color:#15142A;}
   p.tx{font-size:17px;line-height:1.72;color:#33323d;max-width:72ch;margin:0 0 16px;}
   p.tx strong{color:#15142A;font-weight:700;}
@@ -62,21 +69,21 @@
   ul.tx li{position:relative;padding:6px 0 6px 26px;font-size:17px;line-height:1.6;color:#33323d;}
   ul.tx li::before{content:'';position:absolute;left:2px;top:15px;width:9px;height:9px;background:#5A63F1;border-radius:2px;transform:rotate(45deg);}
   /* focal anchors */
-  p.statement{font-size:clamp(19px,1.9vw,23px);line-height:1.55;color:#33323d;max-width:72ch;margin:0;}
+  p.statement{font-size:clamp(19px,1.9vw,23px);line-height:1.5;color:#33323d;max-width:72ch;margin:0;}
   .pull{margin:28px 0;padding:24px 28px;background:#FBF6EA;border:1.5px solid rgba(27,26,102,.16);border-radius:18px;display:flex;align-items:flex-start;gap:24px;flex-wrap:wrap;max-width:640px;}
   .pull .num{font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(40px,5.5vw,64px);line-height:.85;letter-spacing:-.02em;color:#1B1A66;}
   .pull .lab{font-size:16px;line-height:1.45;color:#6b675e;max-width:32ch;}
   .pq{margin:26px 0;padding:2px 0 2px 20px;border-left:3px solid rgba(90,99,241,.45);}
-  .pq p{font-weight:500;font-size:clamp(18px,1.8vw,21px);line-height:1.5;color:#3a3943;max-width:64ch;margin:0;}
-  .aside-note{margin:24px 0;padding:2px 0 2px 20px;border-left:3px solid rgba(90,99,241,.38);font-style:italic;font-size:16px;line-height:1.62;color:#514d45;max-width:60ch;}
+  .pq p{font-weight:500;font-size:clamp(18px,1.8vw,21px);line-height:1.5;color:#33323d;max-width:64ch;margin:0;}
+  .aside-note{margin:24px 0;padding:2px 0 2px 20px;border-left:3px solid rgba(90,99,241,.45);font-style:italic;font-size:16px;line-height:1.62;color:#514d45;max-width:60ch;}
 
   /* figures */
-  figure.fig{width:100vw;margin:34px 0 34px calc(50% - 50vw);cursor:zoom-in;}
+  figure.fig{width:100vw;margin:40px 0 40px calc(50% - 50vw);cursor:zoom-in;}
   figure.fig img,figure.fig video{display:block;box-sizing:border-box;width:calc(100% - 40px);max-width:1200px;height:auto;margin:0 auto;border-radius:14px;border:1.5px solid rgba(27,26,102,.16);}
   figure.fig.mock img{border:none;}
   figure.fig.pad img{background:#FBF6EA;padding:30px;}
   figure.fig video{background:#0d0c1a;}
-  figcaption{max-width:1200px;margin:0 auto;padding:14px 20px 2px;font-size:13.5px;line-height:1.5;color:#6b675e;text-align:left;}
+  figcaption{width:calc(100% - 40px);max-width:1200px;margin:0 auto;padding:14px 0 2px;font-size:13.5px;line-height:1.5;color:#6b675e;text-align:left;}
   figcaption .rn{font-family:'Oswald',sans-serif;font-weight:600;letter-spacing:.06em;color:#4B55E8;}
 
   /* hypothesis */
@@ -85,7 +92,7 @@
   .hyp figure.fig{width:auto;margin:16px 0;}
   .hyp figure.fig img{width:100%;max-width:none;margin:0;}
   ul.pc{list-style:none;margin:6px 0 0;padding:0;}
-  ul.pc li{display:flex;gap:12px;align-items:flex-start;padding:8px 0;font-size:15px;line-height:1.55;color:#454452;}
+  ul.pc li{display:flex;gap:12px;align-items:flex-start;padding:8px 0;font-size:15px;line-height:1.55;color:#514d45;}
   ul.pc li .m{flex-shrink:0;width:22px;display:grid;place-items:center;font-family:'Oswald',sans-serif;font-weight:700;font-size:19px;line-height:1;}
   li.pro .m{color:#1B1A66;}
   li.con .m{color:rgba(27,26,102,.48);}
@@ -107,8 +114,6 @@
 
   footer{margin-top:clamp(48px,6vw,80px);border-top:2px solid #1B1A66;}
   .foot-in{max-width:940px;margin:0 auto;padding:28px clamp(20px,5vw,40px);display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;font-family:'Oswald',sans-serif;font-weight:500;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:#514d45;}
-  .foot-up{font-family:'Oswald',sans-serif;font-weight:600;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:#1B1A66;border:1.5px solid rgba(27,26,102,.24);padding:10px 18px;border-radius:999px;transition:background .2s;}
-  .foot-up:hover{background:rgba(27,26,102,.06);color:#1B1A66;}
 
   /* to-top */
   .to-top{position:fixed;right:22px;bottom:22px;width:52px;height:52px;border-radius:50%;border:2px solid #1B1A66;background:#F4EBDC;color:#1B1A66;font-size:20px;cursor:pointer;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .3s,transform .3s,visibility .3s;z-index:90;transform:translateY(10px);}
@@ -127,8 +132,6 @@
   @media (prefers-reduced-motion:reduce){
     html{scroll-behavior:auto;}
     .rev{opacity:1 !important;transform:none !important;}
-    .spin{animation:none;}
-    #cur{display:none;}
   }
 </style>
 </head>
@@ -140,7 +143,7 @@
     <a class="brand" href="../index-editorial.html">
       <span class="mono">ВШ</span><span class="nm">Виктория Шаханина</span>
     </a>
-    <a class="back magn" href="../index-editorial.html">← К портфолио</a>
+    <a class="back" href="../index-editorial.html">← К портфолио</a>
   </div>
 </header>
 
@@ -362,7 +365,7 @@
   <section class="next rev">
     <div class="nl">Следующий кейс</div>
     <h2>Повторяющиеся события в мобильном календаре</h2>
-    <a class="cta magn" href="../recurring/index.html">Смотреть кейс →</a>
+    <a class="cta" href="../recurring/index.html">Смотреть кейс →</a>
   </section>
 
 </div>
@@ -380,7 +383,6 @@
 <script>
 (function(){
   var RM = matchMedia('(prefers-reduced-motion:reduce)').matches;
-  var fine = matchMedia('(hover:hover) and (pointer:fine)').matches;
 
   // progress
   var pr = document.getElementById('prog');
