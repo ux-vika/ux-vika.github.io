@@ -30,6 +30,9 @@
   #prog{position:fixed;top:0;left:0;height:4px;width:100%;transform-origin:0 50%;transform:scaleX(0);background:#5A63F1;z-index:100;}
   #cur{position:fixed;top:0;left:0;width:26px;height:26px;border:2px solid #5A63F1;border-radius:50%;transform:translate(-50%,-50%);pointer-events:none;z-index:99;opacity:0;transition:width .2s,height .2s,opacity .3s,background .2s;}
   .magn{transition:transform .2s cubic-bezier(.2,.7,.2,1);}
+  .filt{font-family:'Oswald',sans-serif;font-weight:600;font-size:13px;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;padding:12px 20px;border-radius:999px;border:2px solid #1B1A66;background:transparent;color:#1B1A66;transition:background .2s,color .2s;}
+  .filt:hover{background:rgba(27,26,102,.08);}
+  .filt[aria-pressed="true"]{background:#1B1A66;color:#F4EBDC;}
   @media (hover:none){#cur{display:none;}}
   @media (prefers-reduced-motion:reduce){.rev{opacity:1 !important;transform:none !important;}.spin{animation:none;}.hov{transition:none;}#cur{display:none;}[style*="animation:ticker"]{animation:none !important;}}
 </style>
@@ -39,7 +42,8 @@
 <div style="position:fixed;inset:0;opacity:.5;mix-blend-mode:multiply;pointer-events:none;z-index:50;background-image:url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E&quot;);"></div>
 
 <!-- topbar -->
-<header data-screen-label="Топбар" style="display:flex;justify-content:space-between;align-items:center;padding:24px clamp(20px,5vw,72px);border-bottom:2px solid #1B1A66;flex-wrap:wrap;gap:14px;">
+<header data-screen-label="Топбар" style="border-bottom:2px solid #1B1A66;">
+  <div style="max-width:1440px;margin:0 auto;padding:24px clamp(24px,6.5vw,96px);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;box-sizing:border-box;">
   <a href="#top" style="display:inline-flex;align-items:center;gap:12px;color:#1B1A66;">
     <span style="display:inline-flex;width:44px;height:44px;border:2px solid #1B1A66;border-radius:50%;align-items:center;justify-content:center;font-family:'Oswald',sans-serif;font-weight:600;font-size:17px;">ВШ</span>
     <span style="font-family:'Oswald',sans-serif;font-weight:600;font-size:15px;letter-spacing:.1em;text-transform:uppercase;">Виктория Шаханина</span>
@@ -53,6 +57,7 @@
   <span style="display:inline-flex;align-items:center;gap:9px;font-family:'Oswald',sans-serif;font-weight:600;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:#5A63F1;border:1.5px solid #5A63F1;border-radius:999px;padding:8px 16px;">
     <span style="width:8px;height:8px;border-radius:50%;background:#5A63F1;"></span>Открыта к проектам
   </span>
+  </div>
 </header>
 
 <!-- hero -->
@@ -68,7 +73,7 @@
     <p style="margin:26px 0 0;max-width:56ch;font-size:18px;line-height:1.6;color:#454452;">Через исследования, проверку гипотез и проектирование пользовательского опыта. 7+ лет в продукте, исследования, запуск новых сценариев и работа со сложными B2B-системами.</p>
     <div style="display:flex;gap:14px;margin-top:32px;">
       <a href="https://t.me/ux_vika" target="_blank" rel="noopener" style="font-family:'Oswald',sans-serif;font-weight:600;font-size:15px;letter-spacing:.08em;text-transform:uppercase;background:#1B1A66;color:#F4EBDC;padding:16px 28px;border-radius:999px;">Telegram ↗</a>
-      <a href="cv.pdf" target="_blank" rel="noopener" style="font-family:'Oswald',sans-serif;font-weight:600;font-size:15px;letter-spacing:.08em;text-transform:uppercase;border:1.5px solid #1B1A66;color:#1B1A66;padding:16px 28px;border-radius:999px;">Смотреть CV</a>
+      <a href="cv.pdf" target="_blank" rel="noopener" style="font-family:'Oswald',sans-serif;font-weight:600;font-size:15px;letter-spacing:.08em;text-transform:uppercase;border:1.5px solid #1B1A66;color:#1B1A66;padding:16px 28px;border-radius:999px;">Смотреть CV ↗</a>
     </div>
   </div>
 </section>
@@ -95,29 +100,25 @@
   </div>
 </section>
 <div style="width:100%;box-sizing:border-box;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));border-bottom:2px solid #1B1A66;">
-      <div style="padding:30px 28px 6px;border-right:2px dashed rgba(27,26,102,.4);text-align:center;">
+      <div style="padding:30px 28px 24px;border-right:2px dashed rgba(27,26,102,.4);text-align:center;">
         <div style="font-family:'Oswald',sans-serif;font-weight:600;font-size:clamp(44px,4vw,60px);line-height:1;color:#15142A;">7+</div>
         <div style="margin-top:10px;font-size:14px;color:#454452;">лет в продуктовом дизайне — от агентства до Enterprise</div>
       </div>
-      <div style="padding:30px 28px 6px;border-right:2px dashed rgba(27,26,102,.4);text-align:center;">
+      <div style="padding:30px 28px 24px;border-right:2px dashed rgba(27,26,102,.4);text-align:center;">
         <div style="font-family:'Oswald',sans-serif;font-weight:600;font-size:clamp(44px,4vw,60px);line-height:1;color:#15142A;">50+</div>
         <div style="margin-top:10px;font-size:14px;color:#454452;">проведённых UX-исследований и юзабилити-тестов</div>
       </div>
-      <div style="padding:30px 28px 6px;border-right:2px dashed rgba(27,26,102,.4);text-align:center;">
+      <div style="padding:30px 28px 24px;border-right:2px dashed rgba(27,26,102,.4);text-align:center;">
         <div style="font-family:'Oswald',sans-serif;font-weight:600;font-size:clamp(44px,4vw,60px);line-height:1;color:#15142A;">2</div>
         <div style="margin-top:10px;font-size:14px;color:#454452;">продукта от идеи до релиза</div>
       </div>
-      <div style="padding:30px 28px 6px;border-right:2px dashed rgba(27,26,102,.4);text-align:center;">
+      <div style="padding:30px 28px 24px;border-right:2px dashed rgba(27,26,102,.4);text-align:center;">
         <div style="font-family:'Oswald',sans-serif;font-weight:600;font-size:clamp(44px,4vw,60px);line-height:1;color:#15142A;">4</div>
         <div style="margin-top:10px;font-size:14px;color:#454452;">платформы: Desktop · Web · iOS · Android</div>
       </div>
-      <div style="padding:30px 28px 6px;border-right:2px dashed rgba(27,26,102,.4);text-align:center;">
-        <div style="font-family:'Oswald',sans-serif;font-weight:600;font-size:clamp(44px,4vw,60px);line-height:1;color:#15142A;">3</div>
-        <div style="margin-top:10px;font-size:14px;color:#454452;">студента в менторинге</div>
-      </div>
-      <div style="padding:30px 28px 6px;text-align:center;">
-        <div style="font-family:'Oswald',sans-serif;font-weight:600;font-size:clamp(44px,4vw,60px);line-height:1;color:#15142A;">2</div>
-        <div style="margin-top:10px;font-size:14px;color:#454452;">публичных доклада</div>
+      <div style="padding:30px 28px 24px;text-align:center;">
+        <div style="font-family:'Oswald',sans-serif;font-weight:600;font-size:clamp(44px,4vw,60px);line-height:1;color:#15142A;">7</div>
+        <div style="margin-top:10px;font-size:14px;color:#454452;">продуктов в работе и релизах</div>
       </div>
 </div>
 
@@ -128,13 +129,20 @@
     <p style="margin:0 0 10px;max-width:38ch;font-size:16px;line-height:1.6;color:#454452;">Исследования, B2B-интерфейсы, мобильные сценарии и живой прототип.</p>
   </div>
 
-  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:22px;margin-top:44px;">
+  <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:30px;" role="group" aria-label="Фильтр кейсов по типу">
+    <button class="filt" data-filter="all" aria-pressed="true">Все</button>
+    <button class="filt" data-filter="desktop" aria-pressed="false">Десктоп</button>
+    <button class="filt" data-filter="mobile" aria-pressed="false">Мобильные</button>
+    <button class="filt" data-filter="research" aria-pressed="false">Исследования</button>
+  </div>
 
-    <a href="calendar/index.html" style="display:flex;flex-direction:column;background:#FBF6EA;border:2px solid #1B1A66;border-radius:22px;overflow:hidden;color:inherit;">
-      <div style="height:340px;overflow:hidden;border-bottom:2px solid #1B1A66;"><img src="images/preview-calendar.png" alt="Календарь в корпоративном мессенджере" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:22px;margin-top:28px;">
+
+    <a href="calendar/index.html" data-cat="desktop" style="display:flex;flex-direction:column;background:#FBF6EA;border:2px solid #1B1A66;border-radius:22px;overflow:hidden;color:inherit;">
+      <div style="height:340px;overflow:hidden;border-bottom:2px solid #1B1A66;background:#E6E2F8;display:flex;align-items:center;justify-content:center;"><img src="images/preview-calendar.png" alt="Календарь в корпоративном мессенджере" style="max-width:82%;max-height:88%;object-fit:contain;display:block;"></div>
       <div style="padding:22px 26px 26px;">
         <div style="font-family:'Oswald',sans-serif;font-weight:600;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#5A63F1;">Сквадус · Desktop</div>
-        <h3 style="margin:10px 0 0;font-family:'Oswald',sans-serif;font-weight:600;font-size:28px;line-height:1.1;text-transform:uppercase;letter-spacing:.01em;color:#15142A;">Календарь для корпоративного мессенджера</h3>
+        <h3 style="margin:10px 0 0;font-family:'Oswald',sans-serif;font-weight:600;font-size:26px;line-height:1.1;text-transform:uppercase;letter-spacing:.01em;color:#15142A;">Календарь для корпоративного мессенджера</h3>
         <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:14px;">
           <span style="font-family:'Oswald',sans-serif;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:#1B1A66;padding:6px 12px;border-radius:999px;border:1.5px solid rgba(27,26,102,.4);">Исследование</span>
           <span style="font-family:'Oswald',sans-serif;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:#1B1A66;padding:6px 12px;border-radius:999px;border:1.5px solid rgba(27,26,102,.4);">194 респондента</span>
@@ -143,7 +151,7 @@
       </div>
     </a>
 
-    <a href="badminton/index.html" style="position:relative;display:flex;flex-direction:column;background:#FBF6EA;border:2px solid #1B1A66;border-radius:22px;overflow:hidden;color:inherit;">
+    <a href="badminton/index.html" data-cat="mobile" style="position:relative;display:flex;flex-direction:column;background:#FBF6EA;border:2px solid #1B1A66;border-radius:22px;overflow:hidden;color:inherit;">
       <span style="position:absolute;left:18px;top:18px;z-index:2;display:inline-flex;align-items:center;gap:8px;background:#1B1A66;color:#F4EBDC;font-family:'Oswald',sans-serif;font-weight:600;font-size:12px;letter-spacing:.12em;text-transform:uppercase;padding:8px 14px;border-radius:999px;"><span style="width:8px;height:8px;border-radius:50%;background:#7A82F5;"></span>Живой прототип</span>
       <div style="height:340px;overflow:hidden;border-bottom:2px solid #1B1A66;background:#E6E2F8;display:flex;align-items:center;justify-content:center;">
         <div style="position:relative;width:150px;height:305px;border-radius:24px;overflow:hidden;background:#000;border:3px solid #0a0a0a;box-shadow:0 30px 60px -30px rgba(21,20,26,.5);">
@@ -152,7 +160,7 @@
       </div>
       <div style="padding:22px 26px 26px;">
         <div style="font-family:'Oswald',sans-serif;font-weight:600;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#5A63F1;">Night Badminton</div>
-        <h3 style="margin:10px 0 0;font-family:'Oswald',sans-serif;font-weight:600;font-size:28px;line-height:1.1;text-transform:uppercase;letter-spacing:.01em;color:#15142A;">UI Showcase · кликабельный прототип</h3>
+        <h3 style="margin:10px 0 0;font-family:'Oswald',sans-serif;font-weight:600;font-size:26px;line-height:1.1;text-transform:uppercase;letter-spacing:.01em;color:#15142A;">UI Showcase · кликабельный прототип</h3>
         <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:14px;">
           <span style="font-family:'Oswald',sans-serif;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:#1B1A66;padding:6px 12px;border-radius:999px;border:1.5px solid rgba(27,26,102,.4);">iOS</span>
           <span style="font-family:'Oswald',sans-serif;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:#1B1A66;padding:6px 12px;border-radius:999px;border:1.5px solid rgba(27,26,102,.4);">Прототип</span>
@@ -161,8 +169,8 @@
       </div>
     </a>
 
-    <a href="wallet/index.html" style="display:flex;flex-direction:column;background:#FBF6EA;border:2px solid #1B1A66;border-radius:22px;overflow:hidden;color:inherit;">
-      <div style="height:300px;overflow:hidden;border-bottom:2px solid #1B1A66;background:#E6E2F8;display:flex;align-items:center;justify-content:center;"><img src="images/preview-wallet.png" alt="Вывод средств для исполнителей" style="max-width:82%;max-height:88%;object-fit:contain;display:block;"></div>
+    <a href="wallet/index.html" data-cat="mobile" style="display:flex;flex-direction:column;background:#FBF6EA;border:2px solid #1B1A66;border-radius:22px;overflow:hidden;color:inherit;">
+      <div style="height:340px;overflow:hidden;border-bottom:2px solid #1B1A66;background:#E6E2F8;display:flex;align-items:center;justify-content:center;"><img src="images/preview-wallet.png" alt="Вывод средств для исполнителей" style="max-width:82%;max-height:88%;object-fit:contain;display:block;"></div>
       <div style="padding:22px 26px 26px;">
         <div style="font-family:'Oswald',sans-serif;font-weight:600;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#5A63F1;">Wowworks · iOS</div>
         <h3 style="margin:10px 0 0;font-family:'Oswald',sans-serif;font-weight:600;font-size:26px;line-height:1.1;text-transform:uppercase;letter-spacing:.01em;color:#15142A;">Вывод средств для исполнителей</h3>
@@ -174,8 +182,8 @@
       </div>
     </a>
 
-    <a href="recurring/index.html" style="display:flex;flex-direction:column;background:#FBF6EA;border:2px solid #1B1A66;border-radius:22px;overflow:hidden;color:inherit;">
-      <div style="height:300px;overflow:hidden;border-bottom:2px solid #1B1A66;background:#E6E2F8;display:flex;align-items:center;justify-content:center;"><img src="images/preview-recurring.png" alt="Повторяющиеся события в календаре" style="max-width:82%;max-height:88%;object-fit:contain;display:block;"></div>
+    <a href="recurring/index.html" data-cat="mobile" style="display:flex;flex-direction:column;background:#FBF6EA;border:2px solid #1B1A66;border-radius:22px;overflow:hidden;color:inherit;">
+      <div style="height:340px;overflow:hidden;border-bottom:2px solid #1B1A66;background:#E6E2F8;display:flex;align-items:center;justify-content:center;"><img src="images/preview-recurring.png" alt="Повторяющиеся события в календаре" style="max-width:82%;max-height:88%;object-fit:contain;display:block;"></div>
       <div style="padding:22px 26px 26px;">
         <div style="font-family:'Oswald',sans-serif;font-weight:600;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#5A63F1;">Фокус · iOS · Android</div>
         <h3 style="margin:10px 0 0;font-family:'Oswald',sans-serif;font-weight:600;font-size:26px;line-height:1.1;text-transform:uppercase;letter-spacing:.01em;color:#15142A;">Повторяющиеся события в календаре</h3>
@@ -187,8 +195,8 @@
       </div>
     </a>
 
-    <a href="mail/index.html" style="display:flex;flex-direction:column;background:#FBF6EA;border:2px solid #1B1A66;border-radius:22px;overflow:hidden;color:inherit;">
-      <div style="height:300px;overflow:hidden;border-bottom:2px solid #1B1A66;background:#E6E2F8;display:flex;align-items:center;justify-content:center;"><img src="images/preview-mail.png" alt="Исследование мобильной почты" style="max-width:82%;max-height:88%;object-fit:contain;display:block;"></div>
+    <a href="mail/index.html" data-cat="research" style="display:flex;flex-direction:column;background:#FBF6EA;border:2px solid #1B1A66;border-radius:22px;overflow:hidden;color:inherit;">
+      <div style="height:340px;overflow:hidden;border-bottom:2px solid #1B1A66;background:#E6E2F8;display:flex;align-items:center;justify-content:center;"><img src="images/preview-mail.png" alt="Исследование мобильной почты" style="max-width:82%;max-height:88%;object-fit:contain;display:block;"></div>
       <div style="padding:22px 26px 26px;">
         <div style="font-family:'Oswald',sans-serif;font-weight:600;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#5A63F1;">Почта · Research</div>
         <h3 style="margin:10px 0 0;font-family:'Oswald',sans-serif;font-weight:600;font-size:26px;line-height:1.1;text-transform:uppercase;letter-spacing:.01em;color:#15142A;">Исследование мобильной почты</h3>
@@ -199,8 +207,8 @@
       </div>
     </a>
 
-    <a href="antivirus/index.html" style="display:flex;flex-direction:column;background:#FBF6EA;border:2px solid #1B1A66;border-radius:22px;overflow:hidden;color:inherit;">
-      <div style="height:300px;overflow:hidden;border-bottom:2px solid #1B1A66;background:#E6E2F8;display:flex;align-items:center;justify-content:center;"><img src="images/preview-antivirus.png" alt="Антивирус в мессенджере" style="max-width:82%;max-height:88%;object-fit:contain;display:block;"></div>
+    <a href="antivirus/index.html" data-cat="desktop" style="display:flex;flex-direction:column;background:#FBF6EA;border:2px solid #1B1A66;border-radius:22px;overflow:hidden;color:inherit;">
+      <div style="height:340px;overflow:hidden;border-bottom:2px solid #1B1A66;background:#E6E2F8;display:flex;align-items:center;justify-content:center;"><img src="images/preview-antivirus.png" alt="Антивирус в мессенджере" style="max-width:82%;max-height:88%;object-fit:contain;display:block;"></div>
       <div style="padding:22px 26px 26px;">
         <div style="font-family:'Oswald',sans-serif;font-weight:600;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#5A63F1;">Сквадус · Desktop</div>
         <h3 style="margin:10px 0 0;font-family:'Oswald',sans-serif;font-weight:600;font-size:26px;line-height:1.1;text-transform:uppercase;letter-spacing:.01em;color:#15142A;">Антивирус в мессенджере</h3>
@@ -270,6 +278,16 @@
       <h3 style="margin:16px 0 0;font-family:'Oswald',sans-serif;font-weight:600;font-size:26px;text-transform:uppercase;letter-spacing:.01em;color:#15142A;">Менторинг и доклады</h3>
       <p style="margin:12px 0 0;font-size:15px;line-height:1.6;color:#454452;">Менторю начинающих дизайнеров (DesignSpot School / EPAM) и выступаю на конференциях о продуктовых исследованиях и процессах.</p>
     </div>
+    <div style="background:#FBF6EA;border:2px solid #1B1A66;border-radius:22px;padding:30px 32px;">
+      <div style="font-size:34px;color:#5A63F1;line-height:1;">✦</div>
+      <h3 style="margin:16px 0 0;font-family:'Oswald',sans-serif;font-weight:600;font-size:26px;text-transform:uppercase;letter-spacing:.01em;color:#15142A;">Прототипирование</h3>
+      <p style="margin:12px 0 0;font-size:15px;line-height:1.6;color:#454452;">Интерактивные и кликабельные прототипы, чтобы проверять сценарии на реальных пользователях ещё до старта разработки.</p>
+    </div>
+    <div style="background:#FBF6EA;border:2px solid #1B1A66;border-radius:22px;padding:30px 32px;">
+      <div style="font-size:34px;color:#5A63F1;line-height:1;">✦</div>
+      <h3 style="margin:16px 0 0;font-family:'Oswald',sans-serif;font-weight:600;font-size:26px;text-transform:uppercase;letter-spacing:.01em;color:#15142A;">Сопровождение разработки</h3>
+      <p style="margin:12px 0 0;font-size:15px;line-height:1.6;color:#454452;">Веду дизайн до релиза: спецификации, ответы на вопросы команды, дизайн-ревью и контроль качества реализации.</p>
+    </div>
   </div>
 </section>
 
@@ -320,9 +338,11 @@
 </section>
 
 <!-- footer -->
-<footer style="display:flex;justify-content:space-between;align-items:center;gap:16px;padding:30px clamp(20px,5vw,72px);border-top:2px solid #1B1A66;flex-wrap:wrap;font-family:'Oswald',sans-serif;font-weight:500;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:#454452;">
-  <div>© 2026 Виктория Шаханина</div>
-  <div><a href="https://t.me/ux_vika" target="_blank" rel="noopener" style="color:#5A63F1;">Telegram</a> · Санкт-Петербург</div>
+<footer style="border-top:2px solid #1B1A66;font-family:'Oswald',sans-serif;font-weight:500;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:#454452;">
+  <div style="max-width:1440px;margin:0 auto;padding:30px clamp(24px,6.5vw,96px);display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;box-sizing:border-box;">
+    <div>© 2026 Виктория Шаханина</div>
+    <div><a href="https://t.me/ux_vika" target="_blank" rel="noopener" style="color:#5A63F1;">Telegram</a> · Санкт-Петербург</div>
+  </div>
 </footer>
 
 </div>
@@ -341,6 +361,18 @@
 
   // animated underline on nav
   document.querySelectorAll('header nav a').forEach(function(a){ a.classList.add('navl'); });
+
+  // work filters (Все / Десктоп / Мобильные / Исследования)
+  (function(){
+    var btns = [].slice.call(document.querySelectorAll('.filt'));
+    var fcards = [].slice.call(document.querySelectorAll('#work a[data-cat]'));
+    btns.forEach(function(b){ b.addEventListener('click', function(){
+      btns.forEach(function(x){ x.setAttribute('aria-pressed','false'); });
+      b.setAttribute('aria-pressed','true');
+      var f = b.getAttribute('data-filter');
+      fcards.forEach(function(c){ var show = (f === 'all' || c.getAttribute('data-cat') === f); c.style.display = show ? '' : 'none'; if(show) c.classList.add('in'); });
+    }); });
+  })();
 
   // cards: brutalist hard-shadow hover + scroll reveal
   var cards = [].slice.call(document.querySelectorAll('#work a, #services > div > div'));
