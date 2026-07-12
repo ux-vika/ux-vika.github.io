@@ -99,8 +99,8 @@
   .ghost svg { width:14px; height:14px; }
 
   .frame.proto { margin-top:22px; border:0; background:transparent; box-shadow:none; border-radius:0; overflow:hidden; }
-  .shot { position:relative; width:100%; aspect-ratio:1508/988; overflow:hidden; }
-  .shot iframe { position:absolute; top:0; left:0; width:1508px; height:988px; border:0; transform-origin:top left; background:transparent; }
+  .shot { position:relative; width:100%; aspect-ratio:1460/940; overflow:hidden; }
+  .shot iframe { position:absolute; top:0; left:0; width:1460px; height:940px; border:0; transform-origin:top left; background:transparent; }
 
   .changes { margin-top:38px; display:flex; flex-direction:column; }
   .chg { display:grid; grid-template-columns:auto 1fr; gap:20px; padding:26px 0; border-top:1px solid var(--line); }
@@ -1949,13 +1949,13 @@
     var el = document.querySelector('script[data-screen="' + screen + '"][data-variant="' + variant + '"]');
     return el ? el.textContent : '';
   }
-  // убираем крупную тень у самой карточки-экрана редизайна
-  function injectFlat(html) {
-    var css = '<style>[data-screen-label],[data-screen-label]>div:first-child{box-shadow:none!important}</style>';
+  // показываем только сам экран редизайна: убираем серый холст-подложку и тень карточки
+  function injectClean(html) {
+    var css = '<style>html,body{margin:0!important;padding:0!important;background:transparent!important;min-height:0!important;height:auto!important;display:block!important;}[data-screen-label],[data-screen-label]>div:first-child{box-shadow:none!important;}</style>';
     return html.indexOf('</head>') > -1 ? html.replace('</head>', css + '</head>') : css + html;
   }
-  function scaleFrame() { frame.style.transform = 'scale(' + (shot.clientWidth / 1508) + ')'; }
-  function render() { frame.srcdoc = injectFlat(mockSrc(state.screen, state.variant)); scaleFrame(); }
+  function scaleFrame() { frame.style.transform = 'scale(' + (shot.clientWidth / 1460) + ')'; }
+  function render() { frame.srcdoc = injectClean(mockSrc(state.screen, state.variant)); scaleFrame(); }
 
   document.querySelectorAll('.stab').forEach(function (tab) {
     tab.addEventListener('click', function () {
