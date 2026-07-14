@@ -34,7 +34,7 @@
   /* topbar */
   header.top{border-bottom:2px solid #1B1A66;background:#F4EBDC;}
   .top-in{max-width:940px;margin:0 auto;padding:14px clamp(20px,5vw,40px);display:flex;justify-content:space-between;align-items:center;gap:14px;}
-  .brand{display:inline-flex;align-items:center;gap:12px;color:#1B1A66;}
+  .brand{display:inline-flex;align-items:center;gap:12px;min-height:44px;color:#1B1A66;}
   .brand .mono{display:inline-flex;width:40px;height:40px;border:2px solid #1B1A66;border-radius:50%;align-items:center;justify-content:center;font-family:'Oswald',sans-serif;font-weight:600;font-size:16px;}
   .brand .nm{font-family:'Oswald',sans-serif;font-weight:600;font-size:14px;letter-spacing:.1em;text-transform:uppercase;}
   .back{display:inline-flex;align-items:center;font-family:'Oswald',sans-serif;font-weight:600;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:#1B1A66;padding:15px 2px;min-height:44px;}
@@ -61,34 +61,33 @@
   h2.sec{position:relative;font-family:'Oswald',sans-serif;font-weight:600;text-transform:uppercase;font-size:clamp(30px,4.4vw,54px);line-height:1.04;letter-spacing:-.015em;margin:0 0 24px;color:#15142A;}
   h2.sec .num{display:block;font-size:14px;font-weight:600;letter-spacing:.14em;color:rgba(27,26,102,.82);margin-bottom:12px;text-transform:none;}
   @media (min-width:1120px){ h2.sec .num{position:absolute;left:-76px;top:13px;margin:0;} }
+  h3.lead{font-family:'Oswald',sans-serif;font-weight:600;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:#4B55E8;margin:0 0 6px;}
   p.tx{font-size:17px;line-height:1.72;color:#33323d;max-width:72ch;margin:0 0 16px;}
   p.tx strong{color:#15142A;font-weight:700;}
-  .lead{font-family:'Oswald',sans-serif;font-weight:600;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:#4B55E8;margin:0 0 6px;}
 
   /* big centre quote — slogan */
-  .big-quote{margin:52px 0;padding:36px 0;border-top:2px solid #1B1A66;border-bottom:2px solid #1B1A66;}
-  .big-quote p{font-size:clamp(24px,3.6vw,40px);line-height:1.15;font-weight:700;letter-spacing:-.015em;color:#15142A;max-width:20ch;margin:0;}
-  .big-quote .cap{display:block;margin-top:14px;font-size:15px;font-weight:500;color:#4B55E8;letter-spacing:0;}
+  .big-quote{margin:52px auto;padding:38px 0;border-top:2px solid #1B1A66;border-bottom:2px solid #1B1A66;text-align:center;}
+  .big-quote p{font-size:clamp(26px,4vw,44px);line-height:1.14;font-weight:700;letter-spacing:-.015em;color:#15142A;max-width:24ch;margin:0 auto;}
 
-  /* decision cards — продуктовые решения */
+  /* decision cards */
   .decisions{display:grid;gap:14px;margin:24px 0;}
   .decision{border:1.5px solid rgba(27,26,102,.16);border-left:4px solid #5A63F1;border-radius:18px;background:#FBF6EA;padding:20px 24px;}
   .decision h3{margin:0 0 6px;font-family:'Oswald',sans-serif;font-weight:600;font-size:19px;letter-spacing:.01em;text-transform:uppercase;color:#15142A;}
-  .decision p{margin:0;font-size:15.5px;line-height:1.55;color:#514d45;}
+  .decision p{margin:0;font-size:15px;line-height:1.55;color:#514d45;}
 
   /* how it works — flow cards */
   .flows{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin:24px 0;}
   @media (max-width:640px){ .flows{grid-template-columns:1fr;} }
-  .flow-card{border:1.5px solid rgba(27,26,102,.16);border-radius:20px;background:#FBF6EA;padding:24px 22px;}
+  .flow-card{border:1.5px solid rgba(27,26,102,.16);border-radius:18px;background:#FBF6EA;padding:24px 22px;}
   .flow-card .ttl{font-family:'Oswald',sans-serif;font-weight:600;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:#4B55E8;text-align:center;margin-bottom:16px;}
   .flow-steps{display:flex;flex-direction:column;align-items:center;gap:9px;}
-  .flow-steps .st{font-family:'Manrope',sans-serif;font-weight:600;font-size:14.5px;color:#15142A;text-align:center;background:#F4EBDC;border:1.5px solid rgba(27,26,102,.18);border-radius:12px;padding:9px 14px;min-width:60%;}
-  .flow-steps .st.out{background:#1B1A66;color:#F4EBDC;border-color:#1B1A66;font-size:17px;letter-spacing:.06em;}
+  .flow-steps .st{font-family:'Manrope',sans-serif;font-weight:600;font-size:14.5px;color:#15142A;text-align:center;background:#F4EBDC;border:1.5px solid rgba(27,26,102,.18);border-radius:10px;padding:9px 14px;min-width:64%;}
+  .flow-steps .st.out{background:#1B1A66;color:#F4EBDC;border-color:#1B1A66;font-size:16px;letter-spacing:.04em;}
   .flow-steps .arw{color:#5A63F1;font-size:18px;line-height:1;}
 
   /* tech block — в углу */
   .tech{margin:28px 0 0;border:1.5px dashed rgba(27,26,102,.28);border-radius:18px;background:transparent;padding:22px 26px;}
-  .tech .lead{color:#8a86a0;}
+  .tech .lead{font-family:'Oswald',sans-serif;font-weight:600;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:#5b5870;margin:0 0 6px;}
   .tech p{margin:0;font-size:15px;line-height:1.6;color:#514d45;max-width:72ch;}
   .tech p strong{color:#15142A;}
 
@@ -136,11 +135,11 @@
   <!-- hero -->
   <section class="hero">
     <div class="eyebrow">Кейс · Личный проект · Telegram-бот</div>
-    <h1 class="title">Чатожор&nbsp;— отделяет полезное от воды</h1>
+    <h1 class="title">Чатожор&nbsp;— отделяет полезное от&nbsp;воды</h1>
     <div class="hero-info rev">
       <div class="meta">
-        <div class="mrow"><span class="k">Роль</span><span class="v">Продакт · UX-дизайнер · заказчик — в одном лице</span></div>
-        <div class="mrow"><span class="k">Мой вклад</span><span class="v">Продуктовая архитектура · UX · логика взаимодействия (код — в паре с Claude Code)</span></div>
+        <div class="mrow"><span class="k">Роль</span><span class="v">Продакт · UX-дизайнер · заказчик&nbsp;— в&nbsp;одном лице</span></div>
+        <div class="mrow"><span class="k">Мой вклад</span><span class="v">Продуктовая архитектура · UX · логика взаимодействия (код&nbsp;— в&nbsp;паре с&nbsp;Claude Code)</span></div>
         <div class="mrow"><span class="k">Формат</span><span class="v">Личный проект, которым пользуюсь каждый день</span></div>
       </div>
       <nav class="toc" aria-label="Оглавление кейса">
@@ -158,9 +157,9 @@
   <!-- problem -->
   <section class="block" id="problem">
     <h2 class="sec"><span class="num">01</span>Проблема</h2>
-    <p class="lead">Первая — чужие каналы</p>
-    <p class="tx">Каждый день я открывала Telegram и&nbsp;видела десятки непрочитанных сообщений. Подписок было много, а&nbsp;времени&nbsp;— нет. Большинство каналов публикует один-два полезных поста в&nbsp;неделю, но&nbsp;чтобы их&nbsp;найти, приходится читать всё подряд. Готовые ИИ-сводки не&nbsp;помогали&nbsp;— сокращали текст, но&nbsp;не&nbsp;отвечали на&nbsp;главный вопрос: <strong>стоит ли вообще тратить на&nbsp;это время?</strong></p>
-    <p class="lead">Вторая — свой канал</p>
+    <h3 class="lead">Первая&nbsp;— чужие каналы</h3>
+    <p class="tx">Каждый день я&nbsp;открывала Telegram и&nbsp;видела десятки непрочитанных сообщений. Подписок было много, а&nbsp;времени&nbsp;— нет. Большинство каналов публикует один-два полезных поста в&nbsp;неделю, но&nbsp;чтобы их&nbsp;найти, приходится читать всё подряд. Готовые ИИ-сводки не&nbsp;помогали&nbsp;— сокращали текст, но&nbsp;не&nbsp;отвечали на&nbsp;главный вопрос: <strong>стоит ли вообще тратить на&nbsp;это время?</strong></p>
+    <h3 class="lead">Вторая&nbsp;— свой канал</h3>
     <p class="tx">Хотелось писать регулярно, но&nbsp;без ощущения, что это теперь вторая работа. «Контент-завод» в&nbsp;Instagram я&nbsp;уже пробовала&nbsp;— не&nbsp;просто и&nbsp;не&nbsp;дёшево.</p>
   </section>
 
@@ -170,40 +169,33 @@
     <p class="tx">В&nbsp;итоге получился бот с&nbsp;<strong>двумя независимыми сценариями</strong>&nbsp;— разбор каналов и&nbsp;подготовка постов. Главная идея: не&nbsp;пересказывать контент, а&nbsp;фильтровать его&nbsp;— отделять полезное от&nbsp;воды и&nbsp;прямо говорить, что можно не&nbsp;читать.</p>
   </section>
 
-</main>
-
-<div class="wrap">
   <div class="big-quote rev">
     <p>Бот не&nbsp;сокращает текст&nbsp;— сортирует.</p>
-    <span class="cap">Позиционирование продукта в&nbsp;одной фразе</span>
   </div>
-</div>
-
-<main class="wrap">
 
   <!-- decisions -->
   <section class="block" id="decisions">
     <h2 class="sec"><span class="num">03</span>Ключевые продуктовые решения</h2>
     <div class="decisions rev">
       <div class="decision">
-        <h3>Фильтровать, а не пересказывать</h3>
-        <p>Сквозная идея продукта: бот отделяет полезное от воды и прямо говорит, что можно не читать.</p>
+        <h3>Фильтровать, а&nbsp;не пересказывать</h3>
+        <p>Сквозная идея продукта: бот отделяет полезное от&nbsp;воды и&nbsp;прямо говорит, что можно не&nbsp;читать.</p>
       </div>
       <div class="decision">
-        <h3>Выводы — сканируемые за 10 секунд</h3>
-        <p>Пять секций-эмодзи (📌 🔑 💡 💧 🎯) — это навигация, а не украшение: разбор считывается глазами за секунды.</p>
+        <h3>Выводы&nbsp;— сканируемые за&nbsp;10 секунд</h3>
+        <p>Пять секций-эмодзи (📌 🔑 💡 💧 🎯)&nbsp;— это навигация, а&nbsp;не украшение: разбор считывается глазами за&nbsp;секунды.</p>
       </div>
       <div class="decision">
-        <h3>Последнее слово всегда за человеком</h3>
-        <p>Автоматической публикации нет. Я — главред, бот — стажёр.</p>
+        <h3>Последнее слово всегда за&nbsp;человеком</h3>
+        <p>Автоматической публикации нет. Я&nbsp;— главред, бот&nbsp;— стажёр.</p>
       </div>
       <div class="decision">
         <h3>Продолжить диалог вместо «начать сначала»</h3>
-        <p>Кнопка «🔄 Переписать» принимает замечание текстом и дорабатывает существующий черновик, а не генерирует всё заново.</p>
+        <p>Кнопка «🔄 Переписать» принимает замечание текстом и&nbsp;дорабатывает существующий черновик, а&nbsp;не генерирует всё заново.</p>
       </div>
       <div class="decision">
-        <h3>Ошибки — человеческим языком</h3>
-        <p>Никакого стектрейса: «Канал @имя не найден. Проверь имя…».</p>
+        <h3>Ошибки&nbsp;— человеческим языком</h3>
+        <p>Никакого стектрейса: «Канал @имя не&nbsp;найден. Проверь имя…».</p>
       </div>
     </div>
   </section>
@@ -221,7 +213,7 @@
           <div class="arw" aria-hidden="true">↓</div>
           <div class="st">анализ</div>
           <div class="arw" aria-hidden="true">↓</div>
-          <div class="st out">📌 🔑 💡 💧 🎯</div>
+          <div class="st out" aria-label="Разбор из пяти секций: важное, ключевое, идея, вода, вывод">📌 🔑 💡 💧 🎯</div>
         </div>
       </div>
       <div class="flow-card">
@@ -231,7 +223,7 @@
           <div class="arw" aria-hidden="true">↓</div>
           <div class="st">черновик</div>
           <div class="arw" aria-hidden="true">↓</div>
-          <div class="st">я → ✅ / 🔄</div>
+          <div class="st" aria-label="я одобряю или прошу переписать">я → ✅ / 🔄</div>
           <div class="arw" aria-hidden="true">↓</div>
           <div class="st out">публикация</div>
         </div>
