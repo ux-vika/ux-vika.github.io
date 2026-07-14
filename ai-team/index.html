@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ИИ-дизайн-команда: четыре агента вместо студии — Виктория Шаханина</title>
+<meta name="description" content="Кейс: как UX-дизайнер спроектировала команду из четырёх ИИ-агентов — исследователь, советник, критик, QA — с общей базой правил и принципом «проверяй, а не предполагай».">
+<meta name="theme-color" content="#F4EBDC">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<noscript><style>.rev{opacity:1 !important;transform:none !important;}</style></noscript>
+<style>
+  *{box-sizing:border-box;}
+  body{margin:0;background:#F4EBDC;font-family:'Manrope',sans-serif;color:#15142A;overflow-x:hidden;}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;}
+  a{color:#4B55E8;text-decoration:none;} a:hover{color:#1B1A66;}
+  .wrap{max-width:940px;margin:0 auto;padding:0 clamp(20px,5vw,40px);}
+  .rev{opacity:0;transform:translateY(24px);transition:opacity .6s cubic-bezier(.2,.7,.2,1),transform .6s cubic-bezier(.2,.7,.2,1);}
+  .rev.in{opacity:1;transform:none;}
+  #prog{position:fixed;top:0;left:0;height:4px;width:100%;transform-origin:0 50%;transform:scaleX(0);background:#5A63F1;z-index:100;}
+  .skip{position:absolute;left:-9999px;top:0;background:#1B1A66;color:#F4EBDC;padding:12px 18px;border-radius:0 0 12px 0;font-family:'Oswald',sans-serif;font-weight:600;font-size:13px;letter-spacing:.06em;text-transform:uppercase;z-index:200;}
+  .skip:focus{left:0;}
+
+  a:focus-visible,button:focus-visible,.next a.cta:focus-visible{outline:2px solid #4B55E8;outline-offset:3px;}
+  .toc a{transition:color .15s ease;}
+  .next a.cta{transition:background .18s ease,transform .12s ease;}
+  .next a.cta:active{transform:scale(.98);}
+  @media (hover:hover){
+    .toc a:hover{color:#4B55E8;}
+    .next a.cta:hover{background:#EBE0CB;}
+    .to-top:hover{background:#EBE0CB;}
+  }
+
+  /* topbar */
+  header.top{border-bottom:2px solid #1B1A66;background:#F4EBDC;}
+  .top-in{max-width:940px;margin:0 auto;padding:14px clamp(20px,5vw,40px);display:flex;justify-content:space-between;align-items:center;gap:14px;}
+  .brand{display:inline-flex;align-items:center;gap:12px;color:#1B1A66;}
+  .brand .mono{display:inline-flex;width:40px;height:40px;border:2px solid #1B1A66;border-radius:50%;align-items:center;justify-content:center;font-family:'Oswald',sans-serif;font-weight:600;font-size:16px;}
+  .brand .nm{font-family:'Oswald',sans-serif;font-weight:600;font-size:14px;letter-spacing:.1em;text-transform:uppercase;}
+  .back{display:inline-flex;align-items:center;font-family:'Oswald',sans-serif;font-weight:600;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:#1B1A66;padding:15px 2px;min-height:44px;}
+
+  /* hero */
+  .hero{padding:clamp(40px,6vw,80px) 0 0;}
+  .eyebrow{font-family:'Oswald',sans-serif;font-weight:600;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:#4B55E8;}
+  h1.title{margin:18px 0 0;font-family:'Oswald',sans-serif;font-weight:600;text-transform:uppercase;font-size:clamp(27px,5.4vw,64px);line-height:1.04;letter-spacing:-.01em;color:#15142A;overflow-wrap:break-word;}
+  .hero-info{margin-top:32px;border:1.5px solid rgba(27,26,102,.16);border-radius:22px;background:#FBF6EA;display:grid;grid-template-columns:1.3fr 1fr;overflow:hidden;}
+  .meta{padding:26px 30px;}
+  .mrow{padding:12px 0;border-bottom:1px solid rgba(27,26,102,.14);}
+  .mrow:last-child{border-bottom:0;}
+  .mrow .k{display:block;font-family:'Oswald',sans-serif;font-weight:600;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#4B55E8;margin-bottom:5px;}
+  .mrow .v{font-size:15px;line-height:1.5;color:#15142A;}
+  .toc{padding:22px 30px;border-left:1.5px solid rgba(27,26,102,.16);background:#F4EBDC;}
+  .toc-h{font-family:'Oswald',sans-serif;font-weight:600;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#4B55E8;margin-bottom:8px;}
+  .toc a{display:flex;align-items:center;min-height:44px;font-family:'Oswald',sans-serif;font-weight:600;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:#1B1A66;border-bottom:1px solid rgba(27,26,102,.12);}
+  .toc a:last-of-type{border-bottom:0;}
+  .toc .rt{margin-top:12px;font-size:13px;color:#6b675e;}
+
+  /* sections — единый вертикальный ритм */
+  section.block{padding:clamp(52px,7vw,104px) 0 0;}
+  section.block > *:last-child{margin-bottom:0;}
+  h2.sec{position:relative;font-family:'Oswald',sans-serif;font-weight:600;text-transform:uppercase;font-size:clamp(30px,4.4vw,54px);line-height:1.04;letter-spacing:-.015em;margin:0 0 24px;color:#15142A;}
+  h2.sec .num{display:block;font-size:14px;font-weight:600;letter-spacing:.14em;color:rgba(27,26,102,.82);margin-bottom:12px;text-transform:none;}
+  @media (min-width:1120px){ h2.sec .num{position:absolute;left:-76px;top:13px;margin:0;} }
+  h3.sub{font-family:'Oswald',sans-serif;font-weight:600;text-transform:uppercase;font-size:clamp(22px,2.4vw,27px);letter-spacing:.01em;margin:40px 0 16px;color:#15142A;}
+  p.tx{font-size:17px;line-height:1.72;color:#33323d;max-width:68ch;margin:0 0 16px;}
+  p.tx strong{color:#15142A;font-weight:700;}
+  ul.tx{margin:0 0 16px;padding:0;list-style:none;max-width:68ch;}
+  ul.tx li{position:relative;padding:6px 0 6px 26px;font-size:17px;line-height:1.6;color:#33323d;}
+  ul.tx li::before{content:'';position:absolute;left:2px;top:15px;width:9px;height:9px;background:#5A63F1;border-radius:2px;transform:rotate(45deg);}
+  p.statement{font-size:clamp(19px,1.9vw,23px);line-height:1.5;color:#33323d;max-width:68ch;margin:0;}
+  .pq{margin:24px 0;padding:2px 0 2px 20px;border-left:3px solid rgba(90,99,241,.45);max-width:680px;}
+  .pq p{font-weight:500;font-size:clamp(18px,1.8vw,21px);line-height:1.5;color:#33323d;max-width:64ch;margin:0;}
+
+  /* big centre quote */
+  .big-quote{margin:48px 0;padding:34px 0;border-top:2px solid #1B1A66;border-bottom:2px solid #1B1A66;max-width:680px;}
+  .big-quote p{font-size:clamp(22px,3vw,34px);line-height:1.22;font-weight:700;letter-spacing:-.012em;color:#15142A;max-width:22ch;margin:0;}
+  .big-quote .sub{display:block;margin-top:16px;font-size:clamp(16px,1.6vw,19px);font-weight:500;color:#4B55E8;letter-spacing:0;}
+
+  /* role cards */
+  .roles{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin:24px 0;max-width:680px;}
+  .role{border:1.5px solid rgba(27,26,102,.16);border-radius:18px;background:#FBF6EA;padding:20px 22px 22px;}
+  .role .phase{font-family:'Oswald',sans-serif;font-weight:600;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#4B55E8;}
+  .role .name{font-family:'Oswald',sans-serif;font-weight:600;font-size:18px;letter-spacing:.01em;text-transform:uppercase;margin:7px 0 8px;color:#15142A;display:flex;align-items:center;gap:9px;}
+  .role .name .dot{font-size:19px;}
+  .role p{font-size:15px;line-height:1.55;color:#514d45;margin:0;}
+
+  /* agent report cards — единый нейтральный вид, красный только для severity */
+  .report{border:1.5px solid rgba(27,26,102,.16);border-left:4px solid #5A63F1;border-radius:18px;background:#FBF6EA;padding:22px 26px;margin:24px 0;max-width:680px;}
+  .report .meta{font-family:'Oswald',sans-serif;font-weight:600;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#4B55E8;margin-bottom:13px;display:flex;flex-wrap:wrap;gap:8px 10px;align-items:center;}
+  .report .tag{font-family:'Oswald',sans-serif;font-weight:600;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#F4EBDC;background:#1B1A66;padding:4px 10px;border-radius:999px;}
+  .report .chips{display:inline-flex;gap:6px;flex-wrap:wrap;}
+  .report .chip{font-family:'Oswald',sans-serif;font-weight:600;font-size:11px;letter-spacing:.04em;padding:3px 9px;border-radius:999px;border:1.5px solid rgba(27,26,102,.3);color:#1B1A66;}
+  .report q{display:block;font-size:17px;line-height:1.6;color:#33323d;quotes:"«" "»";}
+  .report .fix{margin-top:15px;padding-top:13px;border-top:1px dashed rgba(27,26,102,.25);font-size:15px;line-height:1.55;color:#514d45;}
+  .report .fix b{color:#1B1A66;font-weight:700;}
+
+  /* pipeline */
+  .flow{list-style:none;counter-reset:s;margin:24px 0;padding:0;max-width:680px;}
+  .flow li{counter-increment:s;position:relative;padding:15px 0 15px 54px;border-top:1px solid rgba(27,26,102,.14);font-size:17px;line-height:1.5;color:#33323d;}
+  .flow li:last-child{border-bottom:1px solid rgba(27,26,102,.14);}
+  .flow li::before{content:counter(s);position:absolute;left:0;top:12px;width:32px;height:32px;display:flex;align-items:center;justify-content:center;font-family:'Oswald',sans-serif;font-weight:600;font-size:15px;color:#F4EBDC;background:#1B1A66;border-radius:10px;}
+
+  /* stats */
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);border:1.5px solid rgba(27,26,102,.16);border-radius:22px;background:#FBF6EA;overflow:hidden;margin:24px 0;max-width:680px;}
+  .stat{padding:26px 20px;text-align:center;border-right:1.5px solid rgba(27,26,102,.14);}
+  .stat:last-child{border-right:0;}
+  .stat .num{font-family:'Oswald',sans-serif;font-weight:600;font-size:clamp(38px,4.4vw,56px);line-height:1;color:#15142A;}
+  .stat .cap{margin-top:9px;font-size:13px;line-height:1.45;color:#514d45;}
+
+  /* next case */
+  .next{margin:clamp(56px,7vw,96px) 0 0;background:#1B1A66;border-radius:24px;padding:clamp(36px,5vw,60px) clamp(28px,5vw,56px);}
+  .next .nl{font-family:'Oswald',sans-serif;font-weight:600;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:#8A92FF;}
+  .next h2{margin:14px 0 26px;font-family:'Oswald',sans-serif;font-weight:600;text-transform:uppercase;font-size:clamp(28px,4vw,48px);line-height:1.04;letter-spacing:-.01em;color:#F4EBDC;}
+  .next a.cta{display:inline-flex;align-items:center;gap:10px;font-family:'Oswald',sans-serif;font-weight:600;font-size:15px;letter-spacing:.06em;text-transform:uppercase;background:#F4EBDC;color:#1B1A66;padding:16px 28px;border-radius:999px;}
+
+  footer{margin-top:clamp(48px,6vw,80px);border-top:2px solid #1B1A66;}
+  .foot-in{max-width:940px;margin:0 auto;padding:28px clamp(20px,5vw,40px);display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;font-family:'Oswald',sans-serif;font-weight:500;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:#514d45;}
+
+  .to-top{position:fixed;right:22px;bottom:22px;width:52px;height:52px;border-radius:50%;border:2px solid #1B1A66;background:#F4EBDC;color:#1B1A66;font-size:20px;cursor:pointer;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .3s,transform .3s,visibility .3s;z-index:90;transform:translateY(10px);}
+  .to-top.visible{opacity:1;visibility:visible;pointer-events:auto;transform:none;}
+
+  @media (max-width:720px){
+    .hero-info{grid-template-columns:1fr;}
+    .toc{border-left:0;border-top:2px solid #1B1A66;}
+    .roles{grid-template-columns:1fr;}
+    .stats{grid-template-columns:1fr;}
+    .stat{border-right:0;border-bottom:1.5px solid rgba(27,26,102,.14);}
+    .stat:last-child{border-bottom:0;}
+  }
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+    .rev{opacity:1 !important;transform:none !important;}
+  }
+</style>
+</head>
+<body>
+<a class="skip" href="#problem">К содержанию</a>
+<div id="prog" aria-hidden="true"></div>
+
+<header class="top" id="top">
+  <div class="top-in">
+    <a class="brand" href="../index.html">
+      <span class="mono">ВШ</span><span class="nm">Виктория Шаханина</span>
+    </a>
+    <a class="back" href="../index.html">←&nbsp;К&nbsp;портфолио</a>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- hero -->
+  <section class="hero">
+    <div class="eyebrow">Кейс · Дизайн процессов · ИИ</div>
+    <h1 class="title">ИИ-дизайн-команда: четыре агента вместо студии</h1>
+    <div class="hero-info rev">
+      <div class="meta">
+        <div class="mrow"><span class="k">Роль</span><span class="v">UX-дизайнер · автор системы</span></div>
+        <div class="mrow"><span class="k">Мой вклад</span><span class="v">Проектирование ролей · база UX-правил · форматы отчётов · конвейер</span></div>
+        <div class="mrow"><span class="k">Формат</span><span class="v">Личный проект — рабочий инструмент, которым пользуюсь каждый день</span></div>
+      </div>
+      <nav class="toc" aria-label="Оглавление кейса">
+        <div class="toc-h">Оглавление</div>
+        <a href="#problem">Проблема</a>
+        <a href="#solution">Решение</a>
+        <a href="#principles">Принципы</a>
+        <a href="#flow">Как это работает</a>
+        <a href="#result">Результат</a>
+        <a href="#learned">Что я поняла</a>
+        <div class="rt">~ 5 минут чтения</div>
+      </nav>
+    </div>
+  </section>
+
+  <!-- problem -->
+  <section class="block" id="problem">
+    <h2 class="sec"><span class="num">01</span>Проблема</h2>
+    <p class="tx">У&nbsp;дизайнера-одиночки нет арт-директора, QA&nbsp;и&nbsp;ресёрчера. Я&nbsp;спроектировала их&nbsp;сама — как систему ролей с&nbsp;общей базой правил и&nbsp;принципом «проверяй, а&nbsp;не&nbsp;предполагай».</p>
+
+    <div class="report rev">
+      <div class="meta">🎭 Критик · из&nbsp;ревью моего портфолио</div>
+      <q>Кнопка «Все работы» ведёт на&nbsp;#contact. Подпись обещает список работ, а&nbsp;клик уводит в&nbsp;контакты. Обманутое ожидание подрывает доверие — а&nbsp;доверие здесь и&nbsp;есть продукт. (Принцип соответствия: ярлык действия должен совпадать с&nbsp;результатом.)</q>
+      <div class="fix"><b>→ Как улучшить:</b> вести на&nbsp;реальную секцию с&nbsp;кейсами — либо переименовать в&nbsp;честное «Обсудить проект».</div>
+    </div>
+
+    <p class="tx">В&nbsp;студии макет защищают перед арт-директором, доступность ловит QA, референсы приносит ресёрчер. Дизайнер-одиночка остаётся с&nbsp;замыленным глазом наедине: «посмотри свежим взглядом» некому сказать.</p>
+    <p class="tx">ИИ-чаты дают фидбек, но&nbsp;вкусовщинный и&nbsp;разный от&nbsp;раза к&nbsp;разу — сегодня «добавьте воздуха», завтра «слишком пусто». Мне нужна была система: стабильные роли, правила вместо мнений, повторяемые форматы отчётов.</p>
+  </section>
+
+  <!-- solution -->
+  <section class="block" id="solution">
+    <h2 class="sec"><span class="num">02</span>Решение: команда с&nbsp;жёсткими границами ролей</h2>
+    <div class="roles rev">
+      <div class="role">
+        <div class="phase">До дизайна</div>
+        <div class="name"><span class="dot" aria-hidden="true">🧭</span>Советник</div>
+        <p>Проектирует раскладку и&nbsp;структуру: где стоит каждый элемент, какой контрол выбрать — со&nbsp;ссылкой на&nbsp;правило и&nbsp;ASCII-вайрфреймом.</p>
+      </div>
+      <div class="role">
+        <div class="phase">Вместо «погуглю»</div>
+        <div class="name"><span class="dot" aria-hidden="true">🔍</span>Исследователь</div>
+        <p>Референсы, тренды, конкуренты. Источники не&nbsp;старше 2024, всегда со&nbsp;ссылками; каждый отчёт сохраняется в&nbsp;базу знаний.</p>
+      </div>
+      <div class="role">
+        <div class="phase">По готовому</div>
+        <div class="name"><span class="dot" aria-hidden="true">🎭</span>Критик</div>
+        <p>Арт-директорское ревью: первое впечатление за&nbsp;5&nbsp;секунд, иерархия, типографика, композиция. Что работает — тоже говорит.</p>
+      </div>
+      <div class="role">
+        <div class="phase">Перед релизом</div>
+        <div class="name"><span class="dot" aria-hidden="true">🐞</span>QA</div>
+        <p>Контраст ≥&nbsp;4.5:1, тап-зоны ≥&nbsp;44px, семантика, адаптив на&nbsp;375/768/1440. Каждой находке — severity: 🔴 🟡 ⚪️.</p>
+      </div>
+    </div>
+
+    <div class="report rev">
+      <div class="meta">🔍 Исследователь · разбор travel-приложений <span class="tag">учебный проект</span>
+        <span class="chips"><span class="chip">12 приложений</span><span class="chip">со&nbsp;ссылками</span></span>
+      </div>
+      <q>Стандартный флоу начинается с&nbsp;жилья. Обратный — сначала что&nbsp;посмотреть, потом «где жить, чтобы всё было рядом» — почти не&nbsp;реализован как&nbsp;основной сценарий.</q>
+      <div class="fix"><b>→ В&nbsp;работу:</b> карта — главный экран, флоу «место → жильё рядом» как&nbsp;ядро продукта. Готовая доказательная база вместо догадок.</div>
+    </div>
+
+    <p class="tx">Ключевое решение — границы, прописанные в&nbsp;самих агентах: у&nbsp;каждого в&nbsp;инструкции есть «не&nbsp;путать» — советник предлагает, критик оценивает готовое, QA&nbsp;ищет дефекты, исследователь собирает доказательства. Без этого любой ИИ&nbsp;съезжает в&nbsp;«сделаю всё сразу», и&nbsp;вместо процесса получается каша.</p>
+
+    <div class="big-quote rev">
+      <p>Спроектировать ИИ-команду — это UX-задача: персоны, сценарии, границы.</p>
+      <span class="sub">Только пользователь — я&nbsp;сама.</span>
+    </div>
+  </section>
+
+  <!-- principles -->
+  <section class="block" id="principles">
+    <h2 class="sec"><span class="num">03</span>Три принципа, на&nbsp;которых всё держится</h2>
+
+    <h3 class="sub">01 · Общая база правил вместо вкусовщины</h3>
+    <p class="tx">Все четверо перед работой читают единый свод UX-правил: законы Фиттса и&nbsp;Хика, гештальт, паттерны размещения, анти-паттерны. Каждое замечание обязано ссылаться на&nbsp;конкретное правило — не&nbsp;«мне не&nbsp;нравится», а&nbsp;«нарушен порядок восприятия». Фидбек стал спорибельным: с&nbsp;правилом можно осознанно не&nbsp;согласиться, и&nbsp;агент помечает, где я&nbsp;отступила намеренно.</p>
+
+    <h3 class="sub">02 · Проверяй, а&nbsp;не&nbsp;предполагай</h3>
+    <p class="tx">Агенты не&nbsp;фантазируют по&nbsp;описанию: макеты Figma смотрят скриншотами и&nbsp;токенами, свёрстанные страницы рендерят в&nbsp;headless-браузере на&nbsp;трёх ширинах и&nbsp;оценивают по&nbsp;картинке. Браузер недоступен — визуальные выводы честно помечаются как&nbsp;гипотезы. Это правило убило целый класс «уверенных» галлюцинаций.</p>
+
+    <h3 class="sub">03 · Форматы отчётов как&nbsp;продукт</h3>
+    <p class="tx">У&nbsp;каждой роли — обязательный формат: у&nbsp;критика «впечатление → что работает → что улучшить по&nbsp;приоритету», у&nbsp;QA — находка + severity + конкретная правка, у&nbsp;исследователя — инсайты + референсы со&nbsp;ссылками. Отчёты сохраняются файлами: через месяц это база знаний, а&nbsp;не&nbsp;переписка.</p>
+  </section>
+
+  <!-- flow -->
+  <section class="block" id="flow">
+    <h2 class="sec"><span class="num">04</span>Как это выглядит в&nbsp;бою</h2>
+    <ol class="flow rev">
+      <li>Исследователь приносит референсы и&nbsp;паттерны под&nbsp;задачу</li>
+      <li>Советник проектирует раскладку — вайрфрейм со&nbsp;ссылками на&nbsp;правила</li>
+      <li>Я&nbsp;делаю дизайн и&nbsp;вёрстку</li>
+      <li>Критик разбирает результат: что усилить, что убрать</li>
+      <li>QA прогоняет финал по&nbsp;чек-листу — и&nbsp;в&nbsp;прод</li>
+    </ol>
+    <p class="tx">Так прошли: редизайн веб-обёртки CLI, две итерации моего портфолио, лендинг ночного бадминтона, приложение маршрутов.</p>
+
+    <div class="report rev">
+      <div class="meta">🐞 QA · из&nbsp;проверки главного экрана «Тропа»
+        <span class="chips"><span class="chip">🔴 0</span><span class="chip">🟡 3</span><span class="chip">⚪️ 6</span></span>
+      </div>
+      <q>ink-soft #565A72 на&nbsp;лавандовом #DBCBF7 — контраст 4.48 при&nbsp;пороге 4.5. Кнопка «все» — 32×23&nbsp;px при&nbsp;рекомендуемом минимуме 44×44.</q>
+      <div class="fix"><b>→ Как исправить:</b> затемнить ink-soft до&nbsp;#4E5268 — даст ≥4.6 на&nbsp;всех пастелях; кнопке добавить padding до&nbsp;полноценной тап-зоны.</div>
+    </div>
+  </section>
+
+  <!-- result -->
+  <section class="block" id="result">
+    <h2 class="sec"><span class="num">05</span>Результат</h2>
+    <div class="stats rev">
+      <div class="stat"><div class="num">4</div><div class="cap">роли дизайн-студии, доступные 24/7</div></div>
+      <div class="stat"><div class="num">10+</div><div class="cap">сохранённых отчётов по&nbsp;живым проектам</div></div>
+      <div class="stat"><div class="num">5</div><div class="cap">проектов прошли полный конвейер</div></div>
+    </div>
+    <div class="pq rev"><p>Ни&nbsp;один мой проект больше не&nbsp;выходит без четырёх независимых проверок — между первой идеей и&nbsp;финальным экраном четыре разные точки контроля, а&nbsp;не&nbsp;один замыленный взгляд.</p></div>
+  </section>
+
+  <!-- learned -->
+  <section class="block" id="learned">
+    <h2 class="sec"><span class="num">06</span>Что я&nbsp;поняла</h2>
+    <p class="tx">Ценность не&nbsp;в&nbsp;«ИИ умный», а&nbsp;в&nbsp;системе: общая база правил, жёсткие роли и&nbsp;обязательная проверка фактов дают стабильное качество. Критика по&nbsp;правилам воспринимается легче человеческой — и&nbsp;её можно получить хоть в&nbsp;три ночи: перфекционизм больше не&nbsp;ждёт «удобного момента спросить».</p>
+    <p class="statement">А&nbsp;главное — дизайнерские навыки применимы не&nbsp;только к&nbsp;экранам. Роли, границы, форматы и&nbsp;сценарии — это тот же UX, просто материалом стали не&nbsp;пиксели, а&nbsp;процессы.</p>
+  </section>
+
+  <!-- next case -->
+  <section class="next rev">
+    <div class="nl">Следующий кейс</div>
+    <h2>Календарь для корпоративного мессенджера</h2>
+    <a class="cta" href="../calendar/index.html">Смотреть кейс →</a>
+  </section>
+
+</main>
+
+<footer>
+  <div class="foot-in">
+    <div>© 2026 Виктория Шаханина</div>
+    <div>Saint-Petersburg</div>
+  </div>
+</footer>
+
+<button class="to-top" type="button" aria-label="Наверх">↑</button>
+
+<script>
+(function(){
+  var RM = matchMedia('(prefers-reduced-motion:reduce)').matches;
+  var pr = document.getElementById('prog');
+  addEventListener('scroll', function(){ var h=document.documentElement; pr.style.transform='scaleX('+(h.scrollTop/((h.scrollHeight-h.clientHeight)||1))+')'; }, {passive:true});
+
+  var rev = [].slice.call(document.querySelectorAll('.rev'));
+  if(RM){ rev.forEach(function(e){ e.classList.add('in'); }); }
+  else {
+    var reveal=function(){ rev.forEach(function(e){ if(!e.classList.contains('in') && e.getBoundingClientRect().top < innerHeight*0.92) e.classList.add('in'); }); };
+    reveal(); var t=false;
+    addEventListener('scroll', function(){ if(!t){ t=true; requestAnimationFrame(function(){ reveal(); t=false; }); } }, {passive:true});
+    addEventListener('resize', reveal, {passive:true});
+  }
+
+  var tt=document.querySelector('.to-top');
+  addEventListener('scroll', function(){ tt.classList.toggle('visible', scrollY>700); }, {passive:true});
+  tt.addEventListener('click', function(){ scrollTo({top:0,behavior:RM?'auto':'smooth'}); });
+})();
+</script>
+</body>
+</html>
