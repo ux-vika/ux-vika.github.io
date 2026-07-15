@@ -65,10 +65,6 @@
   p.tx{font-size:17px;line-height:1.72;color:#33323d;max-width:72ch;margin:0 0 16px;}
   p.tx strong{color:#15142A;font-weight:700;}
 
-  /* big centre quote — slogan */
-  .big-quote{margin:52px auto;padding:38px 0;border-top:2px solid #1B1A66;border-bottom:2px solid #1B1A66;text-align:center;}
-  .big-quote p{font-size:clamp(26px,4vw,44px);line-height:1.14;font-weight:700;letter-spacing:-.015em;color:#15142A;max-width:24ch;margin:0 auto;}
-
   /* decision cards */
   .decisions{display:grid;gap:14px;margin:24px 0;}
   .decision{border:1.5px solid rgba(27,26,102,.16);border-left:4px solid #5A63F1;border-radius:18px;background:#FBF6EA;padding:20px 24px;}
@@ -84,6 +80,13 @@
   .flow-steps .st{font-family:'Manrope',sans-serif;font-weight:600;font-size:14.5px;color:#15142A;text-align:center;background:#F4EBDC;border:1.5px solid rgba(27,26,102,.18);border-radius:10px;padding:9px 14px;min-width:64%;}
   .flow-steps .st.out{background:#1B1A66;color:#F4EBDC;border-color:#1B1A66;font-size:16px;letter-spacing:.04em;}
   .flow-steps .arw{color:#5A63F1;font-size:18px;line-height:1;}
+
+  /* живые экраны бота */
+  .shots{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:24px 0 0;}
+  @media (max-width:640px){ .shots{grid-template-columns:1fr;max-width:420px;margin-left:auto;margin-right:auto;} }
+  .shot{margin:0;border:1.5px solid rgba(27,26,102,.16);border-radius:18px;background:#FBF6EA;padding:12px 12px 14px;}
+  .shot img{display:block;width:100%;height:auto;border-radius:10px;}
+  .shot figcaption{margin-top:10px;font-size:13px;line-height:1.5;color:#514d45;text-align:center;}
 
   /* tech block — в углу */
   .tech{margin:28px 0 0;border:1.5px dashed rgba(27,26,102,.28);border-radius:18px;background:transparent;padding:22px 26px;}
@@ -135,7 +138,7 @@
   <!-- hero -->
   <section class="hero">
     <div class="eyebrow">Кейс · Личный проект · Telegram-бот</div>
-    <h1 class="title">Чатожор&nbsp;— отделяет полезное от&nbsp;воды</h1>
+    <h1 class="title">Бот, который может думать и&nbsp;писать</h1>
     <div class="hero-info rev">
       <div class="meta">
         <div class="mrow"><span class="k">Роль</span><span class="v">Продакт · UX-дизайнер · заказчик&nbsp;— в&nbsp;одном лице</span></div>
@@ -168,10 +171,6 @@
     <h2 class="sec"><span class="num">02</span>Решение</h2>
     <p class="tx">В&nbsp;итоге получился бот с&nbsp;<strong>двумя независимыми сценариями</strong>&nbsp;— разбор каналов и&nbsp;подготовка постов. Главная идея: не&nbsp;пересказывать контент, а&nbsp;фильтровать его&nbsp;— отделять полезное от&nbsp;воды и&nbsp;прямо говорить, что можно не&nbsp;читать.</p>
   </section>
-
-  <div class="big-quote rev">
-    <p>Бот не&nbsp;сокращает текст&nbsp;— сортирует.</p>
-  </div>
 
   <!-- decisions -->
   <section class="block" id="decisions">
@@ -228,6 +227,22 @@
           <div class="st out">публикация</div>
         </div>
       </div>
+    </div>
+
+    <h3 class="lead">Как это выглядит в&nbsp;Telegram</h3>
+    <div class="shots rev">
+      <figure class="shot">
+        <img src="../images/chatozhor-analyze.png" width="800" height="1739" loading="lazy" alt="Скриншот Telegram: на команду /analyze бот присылает разбор канала за 7 дней — секции «Выжимка» и «Ключевые тезисы»">
+        <figcaption>Команда /analyze&nbsp;— и&nbsp;готов разбор: 📌&nbsp;выжимка, 🔑&nbsp;тезисы</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="../images/chatozhor-analyze-2.png" width="800" height="1739" loading="lazy" alt="Продолжение разбора: секции «Выводы и советы» и «Полезное или вода» — бот честно отмечает, какие посты можно не читать">
+        <figcaption>Дальше&nbsp;— 💡&nbsp;выводы и&nbsp;💧&nbsp;честно про воду: что можно не&nbsp;читать</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="../images/chatozhor-draft.png" width="800" height="1739" loading="lazy" alt="Скриншот Telegram: готовый черновик поста и кнопки «Опубликовать», «Переписать», «Отмена»">
+        <figcaption>Черновик поста: ✅&nbsp;опубликовать, 🔄&nbsp;переписать, ❌&nbsp;отмена&nbsp;— решаю я</figcaption>
+      </figure>
     </div>
   </section>
 
