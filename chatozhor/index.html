@@ -61,7 +61,7 @@
   h2.sec{position:relative;font-family:'Oswald',sans-serif;font-weight:600;text-transform:uppercase;font-size:clamp(30px,4.4vw,54px);line-height:1.04;letter-spacing:-.015em;margin:0 0 24px;color:#15142A;}
   h2.sec .num{display:block;font-size:14px;font-weight:600;letter-spacing:.14em;color:rgba(27,26,102,.82);margin-bottom:12px;text-transform:none;}
   @media (min-width:1120px){ h2.sec .num{position:absolute;left:-76px;top:13px;margin:0;} }
-  h3.lead{font-family:'Oswald',sans-serif;font-weight:600;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:#4B55E8;margin:0 0 6px;}
+  .lead{font-family:'Oswald',sans-serif;font-weight:600;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:#4B55E8;margin:0 0 6px;}
   p.tx{font-size:17px;line-height:1.72;color:#33323d;max-width:72ch;margin:0 0 16px;}
   p.tx strong{color:#15142A;font-weight:700;}
 
@@ -90,7 +90,7 @@
 
   /* tech block — в углу */
   .tech{margin:28px 0 0;border:1.5px dashed rgba(27,26,102,.28);border-radius:18px;background:transparent;padding:22px 26px;}
-  .tech .lead{font-family:'Oswald',sans-serif;font-weight:600;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:#5b5870;margin:0 0 6px;}
+  .tech .lead{color:#5b5870;}
   .tech p{margin:0;font-size:15px;line-height:1.6;color:#514d45;max-width:72ch;}
   .tech p strong{color:#15142A;}
 
@@ -163,7 +163,7 @@
     <h3 class="lead">Первая&nbsp;— чужие каналы</h3>
     <p class="tx">Каждый день я&nbsp;открывала Telegram и&nbsp;видела десятки непрочитанных сообщений. Подписок было много, а&nbsp;времени&nbsp;— нет. Большинство каналов публикует один-два полезных поста в&nbsp;неделю, но&nbsp;чтобы их&nbsp;найти, приходится читать всё подряд. Готовые ИИ-сводки не&nbsp;помогали&nbsp;— сокращали текст, но&nbsp;не&nbsp;отвечали на&nbsp;главный вопрос: <strong>стоит ли вообще тратить на&nbsp;это время?</strong></p>
     <h3 class="lead">Вторая&nbsp;— свой канал</h3>
-    <p class="tx">Хотелось писать регулярно, но&nbsp;без ощущения, что это теперь вторая работа. «Контент-завод» в&nbsp;Instagram я&nbsp;уже пробовала&nbsp;— не&nbsp;просто и&nbsp;не&nbsp;дёшево.</p>
+    <p class="tx">Хотелось писать регулярно, но&nbsp;без ощущения, что это теперь вторая работа. «Контент-завод» в&nbsp;Instagram я&nbsp;уже пробовала&nbsp;— непросто и&nbsp;недёшево.</p>
   </section>
 
   <!-- solution -->
@@ -212,7 +212,7 @@
           <div class="arw" aria-hidden="true">↓</div>
           <div class="st">анализ</div>
           <div class="arw" aria-hidden="true">↓</div>
-          <div class="st out" aria-label="Разбор из пяти секций: важное, ключевое, идея, вода, вывод">📌 🔑 💡 💧 🎯</div>
+          <div class="st out" role="img" aria-label="Разбор из пяти секций: выжимка, ключевые тезисы, выводы и советы, полезное или вода, тон и акценты">📌 🔑 💡 💧 🎯</div>
         </div>
       </div>
       <div class="flow-card">
@@ -222,7 +222,7 @@
           <div class="arw" aria-hidden="true">↓</div>
           <div class="st">черновик</div>
           <div class="arw" aria-hidden="true">↓</div>
-          <div class="st" aria-label="я одобряю или прошу переписать">я → ✅ / 🔄</div>
+          <div class="st" role="img" aria-label="я одобряю или прошу переписать">я → ✅ / 🔄</div>
           <div class="arw" aria-hidden="true">↓</div>
           <div class="st out">публикация</div>
         </div>
@@ -254,15 +254,15 @@
 
     <div class="tech">
       <div class="lead">Технологии</div>
-      <p>Разработка велась в&nbsp;паре с&nbsp;Claude Code: ИИ помогал писать и&nbsp;проверять код, а&nbsp;<strong>архитектура продукта, UX и&nbsp;все продуктовые решения оставались за&nbsp;мной</strong>. Стек: Python · Telethon · faster-whisper · Claude API · SQLite · 124&nbsp;автотеста, открытый код.</p>
+      <p>Разработка велась в&nbsp;паре с&nbsp;Claude Code: ИИ помогал писать и&nbsp;проверять код, а&nbsp;<strong>архитектура продукта, UX и&nbsp;все продуктовые решения оставались за&nbsp;мной</strong>. Стек: Python · Telethon · faster-whisper · Claude API · SQLite · 124&nbsp;автотеста.</p>
     </div>
   </section>
 
   <!-- next case -->
   <section class="next rev">
     <div class="nl">Следующий кейс</div>
-    <h2>ИИ-команда: четыре агента вместо студии</h2>
-    <a class="cta" href="../ai-team/index.html">Смотреть кейс →</a>
+    <h2>Календарь для корпоративного мессенджера</h2>
+    <a class="cta" href="../calendar/index.html">Смотреть кейс →</a>
   </section>
 
 </main>
