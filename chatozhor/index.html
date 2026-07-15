@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Чатожор — Telegram-бот, который отделяет полезное от воды — Виктория Шаханина</title>
+<meta name="description" content="Кейс: личный Telegram-бот Чатожор — фильтрует контент каналов на «полезное / вода» и готовит посты с одобрением. Продуктовые и UX-решения дизайнера, код в паре с Claude Code.">
+<meta name="theme-color" content="#F4EBDC">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<noscript><style>.rev{opacity:1 !important;transform:none !important;}</style></noscript>
+<style>
+  *{box-sizing:border-box;}
+  body{margin:0;background:#F4EBDC;font-family:'Manrope',sans-serif;color:#15142A;overflow-x:hidden;}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;}
+  a{color:#4B55E8;text-decoration:none;} a:hover{color:#1B1A66;}
+  .wrap{max-width:940px;margin:0 auto;padding:0 clamp(20px,5vw,40px);}
+  .rev{opacity:0;transform:translateY(24px);transition:opacity .6s cubic-bezier(.2,.7,.2,1),transform .6s cubic-bezier(.2,.7,.2,1);}
+  .rev.in{opacity:1;transform:none;}
+  #prog{position:fixed;top:0;left:0;height:4px;width:100%;transform-origin:0 50%;transform:scaleX(0);background:#5A63F1;z-index:100;}
+  .skip{position:absolute;left:-9999px;top:0;background:#1B1A66;color:#F4EBDC;padding:12px 18px;border-radius:0 0 12px 0;font-family:'Oswald',sans-serif;font-weight:600;font-size:13px;letter-spacing:.06em;text-transform:uppercase;z-index:200;}
+  .skip:focus{left:0;}
+  a:focus-visible,button:focus-visible,.next a.cta:focus-visible{outline:2px solid #4B55E8;outline-offset:3px;}
+  .toc a{transition:color .15s ease;}
+  .next a.cta{transition:background .18s ease,transform .12s ease;}
+  .next a.cta:active{transform:scale(.98);}
+  @media (hover:hover){
+    .toc a:hover{color:#4B55E8;}
+    .next a.cta:hover{background:#EBE0CB;}
+    .to-top:hover{background:#EBE0CB;}
+  }
+
+  /* topbar */
+  header.top{border-bottom:2px solid #1B1A66;background:#F4EBDC;}
+  .top-in{max-width:940px;margin:0 auto;padding:14px clamp(20px,5vw,40px);display:flex;justify-content:space-between;align-items:center;gap:14px;}
+  .brand{display:inline-flex;align-items:center;gap:12px;min-height:44px;color:#1B1A66;}
+  .brand .mono{display:inline-flex;width:40px;height:40px;border:2px solid #1B1A66;border-radius:50%;align-items:center;justify-content:center;font-family:'Oswald',sans-serif;font-weight:600;font-size:16px;}
+  .brand .nm{font-family:'Oswald',sans-serif;font-weight:600;font-size:14px;letter-spacing:.1em;text-transform:uppercase;}
+  .back{display:inline-flex;align-items:center;font-family:'Oswald',sans-serif;font-weight:600;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:#1B1A66;padding:15px 2px;min-height:44px;}
+
+  /* hero */
+  .hero{padding:clamp(40px,6vw,80px) 0 0;}
+  .eyebrow{font-family:'Oswald',sans-serif;font-weight:600;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:#4B55E8;}
+  h1.title{margin:18px 0 0;font-family:'Oswald',sans-serif;font-weight:600;text-transform:uppercase;font-size:clamp(30px,5.4vw,64px);line-height:1.03;letter-spacing:-.01em;color:#15142A;overflow-wrap:break-word;}
+  .hero-info{margin-top:32px;border:1.5px solid rgba(27,26,102,.16);border-radius:22px;background:#FBF6EA;display:grid;grid-template-columns:1.3fr 1fr;overflow:hidden;}
+  .meta{padding:26px 30px;}
+  .mrow{padding:12px 0;border-bottom:1px solid rgba(27,26,102,.14);}
+  .mrow:last-child{border-bottom:0;}
+  .mrow .k{display:block;font-family:'Oswald',sans-serif;font-weight:600;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#4B55E8;margin-bottom:5px;}
+  .mrow .v{font-size:15px;line-height:1.5;color:#15142A;}
+  .toc{padding:22px 30px;border-left:1.5px solid rgba(27,26,102,.16);background:#F4EBDC;}
+  .toc-h{font-family:'Oswald',sans-serif;font-weight:600;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#4B55E8;margin-bottom:8px;}
+  .toc a{display:flex;align-items:center;min-height:44px;font-family:'Oswald',sans-serif;font-weight:600;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:#1B1A66;border-bottom:1px solid rgba(27,26,102,.12);}
+  .toc a:last-of-type{border-bottom:0;}
+  .toc .rt{margin-top:12px;font-size:13px;color:#6b675e;}
+
+  /* sections */
+  section.block{padding:clamp(52px,7vw,104px) 0 0;}
+  section.block > *:last-child{margin-bottom:0;}
+  h2.sec{position:relative;font-family:'Oswald',sans-serif;font-weight:600;text-transform:uppercase;font-size:clamp(30px,4.4vw,54px);line-height:1.04;letter-spacing:-.015em;margin:0 0 24px;color:#15142A;}
+  h2.sec .num{display:block;font-size:14px;font-weight:600;letter-spacing:.14em;color:rgba(27,26,102,.82);margin-bottom:12px;text-transform:none;}
+  @media (min-width:1120px){ h2.sec .num{position:absolute;left:-76px;top:13px;margin:0;} }
+  .lead{font-family:'Oswald',sans-serif;font-weight:600;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:#4B55E8;margin:0 0 6px;}
+  p.tx{font-size:17px;line-height:1.72;color:#33323d;max-width:72ch;margin:0 0 16px;}
+  p.tx strong{color:#15142A;font-weight:700;}
+
+  /* decision cards */
+  .decisions{display:grid;gap:14px;margin:24px 0;}
+  .decision{border:1.5px solid rgba(27,26,102,.16);border-left:4px solid #5A63F1;border-radius:18px;background:#FBF6EA;padding:20px 24px;}
+  .decision h3{margin:0 0 6px;font-family:'Oswald',sans-serif;font-weight:600;font-size:19px;letter-spacing:.01em;text-transform:uppercase;color:#15142A;}
+  .decision p{margin:0;font-size:15px;line-height:1.55;color:#514d45;}
+
+  /* how it works — flow cards */
+  .flows{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin:24px 0;}
+  @media (max-width:640px){ .flows{grid-template-columns:1fr;} }
+  .flow-card{border:1.5px solid rgba(27,26,102,.16);border-radius:18px;background:#FBF6EA;padding:24px 22px;}
+  .flow-card .ttl{font-family:'Oswald',sans-serif;font-weight:600;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:#4B55E8;text-align:center;margin-bottom:16px;}
+  .flow-steps{display:flex;flex-direction:column;align-items:center;gap:9px;}
+  .flow-steps .st{font-family:'Manrope',sans-serif;font-weight:600;font-size:14.5px;color:#15142A;text-align:center;background:#F4EBDC;border:1.5px solid rgba(27,26,102,.18);border-radius:10px;padding:9px 14px;min-width:64%;}
+  .flow-steps .st.out{background:#1B1A66;color:#F4EBDC;border-color:#1B1A66;font-size:16px;letter-spacing:.04em;}
+  .flow-steps .arw{color:#5A63F1;font-size:18px;line-height:1;}
+
+  /* живые экраны бота */
+  .shots{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:24px 0 0;}
+  @media (max-width:640px){ .shots{grid-template-columns:1fr;max-width:420px;margin-left:auto;margin-right:auto;} }
+  .shot{margin:0;border:1.5px solid rgba(27,26,102,.16);border-radius:18px;background:#FBF6EA;padding:12px 12px 14px;}
+  .shot img{display:block;width:100%;height:auto;border-radius:10px;}
+  .shot figcaption{margin-top:10px;font-size:13px;line-height:1.5;color:#514d45;text-align:center;}
+
+  /* tech block — в углу */
+  .tech{margin:28px 0 0;border:1.5px dashed rgba(27,26,102,.28);border-radius:18px;background:transparent;padding:22px 26px;}
+  .tech .lead{color:#5b5870;}
+  .tech p{margin:0;font-size:15px;line-height:1.6;color:#514d45;max-width:72ch;}
+  .tech p strong{color:#15142A;}
+
+  /* pull */
+  .pq{margin:24px 0;padding:2px 0 2px 20px;border-left:3px solid rgba(90,99,241,.45);max-width:680px;}
+  .pq p{font-weight:500;font-size:clamp(18px,1.8vw,21px);line-height:1.5;color:#33323d;max-width:64ch;margin:0;}
+
+  /* next case */
+  .next{margin:clamp(56px,7vw,96px) 0 0;background:#1B1A66;border-radius:24px;padding:clamp(36px,5vw,60px) clamp(28px,5vw,56px);}
+  .next .nl{font-family:'Oswald',sans-serif;font-weight:600;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:#8A92FF;}
+  .next h2{margin:14px 0 26px;font-family:'Oswald',sans-serif;font-weight:600;text-transform:uppercase;font-size:clamp(28px,4vw,48px);line-height:1.04;letter-spacing:-.01em;color:#F4EBDC;}
+  .next a.cta{display:inline-flex;align-items:center;gap:10px;font-family:'Oswald',sans-serif;font-weight:600;font-size:15px;letter-spacing:.06em;text-transform:uppercase;background:#F4EBDC;color:#1B1A66;padding:16px 28px;border-radius:999px;}
+
+  footer{margin-top:clamp(48px,6vw,80px);border-top:2px solid #1B1A66;}
+  .foot-in{max-width:940px;margin:0 auto;padding:28px clamp(20px,5vw,40px);display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;font-family:'Oswald',sans-serif;font-weight:500;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:#514d45;}
+
+  .to-top{position:fixed;right:22px;bottom:22px;width:52px;height:52px;border-radius:50%;border:2px solid #1B1A66;background:#F4EBDC;color:#1B1A66;font-size:20px;cursor:pointer;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .3s,transform .3s,visibility .3s;z-index:90;transform:translateY(10px);}
+  .to-top.visible{opacity:1;visibility:visible;pointer-events:auto;transform:none;}
+
+  @media (max-width:720px){
+    .hero-info{grid-template-columns:1fr;}
+    .toc{border-left:0;border-top:2px solid #1B1A66;}
+  }
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+    .rev{opacity:1 !important;transform:none !important;}
+  }
+</style>
+</head>
+<body>
+<a class="skip" href="#problem">К содержанию</a>
+<div id="prog" aria-hidden="true"></div>
+
+<header class="top" id="top">
+  <div class="top-in">
+    <a class="brand" href="../index.html">
+      <span class="mono">ВШ</span><span class="nm">Виктория Шаханина</span>
+    </a>
+    <a class="back" href="../index.html">←&nbsp;К&nbsp;портфолио</a>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- hero -->
+  <section class="hero">
+    <div class="eyebrow">Кейс · Личный проект · Telegram-бот</div>
+    <h1 class="title">Бот, который может думать и&nbsp;писать</h1>
+    <div class="hero-info rev">
+      <div class="meta">
+        <div class="mrow"><span class="k">Роль</span><span class="v">Продакт · UX-дизайнер · заказчик&nbsp;— в&nbsp;одном лице</span></div>
+        <div class="mrow"><span class="k">Мой вклад</span><span class="v">Продуктовая архитектура · UX · логика взаимодействия (код&nbsp;— в&nbsp;паре с&nbsp;Claude Code)</span></div>
+        <div class="mrow"><span class="k">Формат</span><span class="v">Личный проект, которым пользуюсь каждый день</span></div>
+      </div>
+      <nav class="toc" aria-label="Оглавление кейса">
+        <div class="toc-h">Оглавление</div>
+        <a href="#problem">Проблема</a>
+        <a href="#solution">Решение</a>
+        <a href="#decisions">Продуктовые решения</a>
+        <a href="#how">Как работает</a>
+        <a href="#help">Как помог</a>
+        <div class="rt">~ 4 минуты чтения</div>
+      </nav>
+    </div>
+  </section>
+
+  <!-- problem -->
+  <section class="block" id="problem">
+    <h2 class="sec"><span class="num">01</span>Проблема</h2>
+    <h3 class="lead">Первая&nbsp;— чужие каналы</h3>
+    <p class="tx">Каждый день я&nbsp;открывала Telegram и&nbsp;видела десятки непрочитанных сообщений. Подписок было много, а&nbsp;времени&nbsp;— нет. Большинство каналов публикует один-два полезных поста в&nbsp;неделю, но&nbsp;чтобы их&nbsp;найти, приходится читать всё подряд. Готовые ИИ-сводки не&nbsp;помогали&nbsp;— сокращали текст, но&nbsp;не&nbsp;отвечали на&nbsp;главный вопрос: <strong>стоит ли вообще тратить на&nbsp;это время?</strong></p>
+    <h3 class="lead">Вторая&nbsp;— свой канал</h3>
+    <p class="tx">Хотелось писать регулярно, но&nbsp;без ощущения, что это теперь вторая работа. «Контент-завод» в&nbsp;Instagram я&nbsp;уже пробовала&nbsp;— непросто и&nbsp;недёшево.</p>
+  </section>
+
+  <!-- solution -->
+  <section class="block" id="solution">
+    <h2 class="sec"><span class="num">02</span>Решение</h2>
+    <p class="tx">В&nbsp;итоге получился бот с&nbsp;<strong>двумя независимыми сценариями</strong>&nbsp;— разбор каналов и&nbsp;подготовка постов. Главная идея: не&nbsp;пересказывать контент, а&nbsp;фильтровать его&nbsp;— отделять полезное от&nbsp;воды и&nbsp;прямо говорить, что можно не&nbsp;читать.</p>
+  </section>
+
+  <!-- decisions -->
+  <section class="block" id="decisions">
+    <h2 class="sec"><span class="num">03</span>Ключевые продуктовые решения</h2>
+    <div class="decisions rev">
+      <div class="decision">
+        <h3>Фильтровать, а&nbsp;не пересказывать</h3>
+        <p>Сквозная идея продукта: бот отделяет полезное от&nbsp;воды и&nbsp;прямо говорит, что можно не&nbsp;читать.</p>
+      </div>
+      <div class="decision">
+        <h3>Выводы&nbsp;— сканируемые за&nbsp;10 секунд</h3>
+        <p>Пять секций-эмодзи (📌 🔑 💡 💧 🎯)&nbsp;— это навигация, а&nbsp;не украшение: разбор считывается глазами за&nbsp;секунды.</p>
+      </div>
+      <div class="decision">
+        <h3>Последнее слово всегда за&nbsp;человеком</h3>
+        <p>Автоматической публикации нет. Я&nbsp;— главред, бот&nbsp;— стажёр.</p>
+      </div>
+      <div class="decision">
+        <h3>Продолжить диалог вместо «начать сначала»</h3>
+        <p>Кнопка «🔄 Переписать» принимает замечание текстом и&nbsp;дорабатывает существующий черновик, а&nbsp;не генерирует всё заново.</p>
+      </div>
+      <div class="decision">
+        <h3>Ошибки&nbsp;— человеческим языком</h3>
+        <p>Никакого стектрейса: «Канал @имя не&nbsp;найден. Проверь имя…».</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- how it works -->
+  <section class="block" id="how">
+    <h2 class="sec"><span class="num">04</span>Как он работает</h2>
+    <div class="flows rev">
+      <div class="flow-card">
+        <div class="ttl">Разбор каналов</div>
+        <div class="flow-steps">
+          <div class="st">Telegram</div>
+          <div class="arw" aria-hidden="true">↓</div>
+          <div class="st">пост · видео · голосовое</div>
+          <div class="arw" aria-hidden="true">↓</div>
+          <div class="st">анализ</div>
+          <div class="arw" aria-hidden="true">↓</div>
+          <div class="st out" role="img" aria-label="Разбор из пяти секций: выжимка, ключевые тезисы, выводы и советы, полезное или вода, тон и акценты">📌 🔑 💡 💧 🎯</div>
+        </div>
+      </div>
+      <div class="flow-card">
+        <div class="ttl">Подготовка постов</div>
+        <div class="flow-steps">
+          <div class="st">идея</div>
+          <div class="arw" aria-hidden="true">↓</div>
+          <div class="st">черновик</div>
+          <div class="arw" aria-hidden="true">↓</div>
+          <div class="st" role="img" aria-label="я одобряю или прошу переписать">я → ✅ / 🔄</div>
+          <div class="arw" aria-hidden="true">↓</div>
+          <div class="st out">публикация</div>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="lead">Как это выглядит в&nbsp;Telegram</h3>
+    <div class="shots rev">
+      <figure class="shot">
+        <img src="../images/chatozhor-analyze.png" width="800" height="1739" loading="lazy" alt="Скриншот Telegram: на команду /analyze бот присылает разбор канала за 7 дней — секции «Выжимка» и «Ключевые тезисы»">
+        <figcaption>Команда /analyze&nbsp;— и&nbsp;готов разбор: 📌&nbsp;выжимка, 🔑&nbsp;тезисы</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="../images/chatozhor-analyze-2.png" width="800" height="1739" loading="lazy" alt="Продолжение разбора: секции «Выводы и советы» и «Полезное или вода» — бот честно отмечает, какие посты можно не читать">
+        <figcaption>Дальше&nbsp;— 💡&nbsp;выводы и&nbsp;💧&nbsp;честно про воду: что можно не&nbsp;читать</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="../images/chatozhor-draft.png" width="800" height="1739" loading="lazy" alt="Скриншот Telegram: готовый черновик поста и кнопки «Опубликовать», «Переписать», «Отмена»">
+        <figcaption>Черновик поста: ✅&nbsp;опубликовать, 🔄&nbsp;переписать, ❌&nbsp;отмена&nbsp;— решаю я</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- help -->
+  <section class="block" id="help">
+    <h2 class="sec"><span class="num">05</span>Как мне помог</h2>
+    <p class="tx">Теперь бот отбирает несколько действительно полезных материалов вместо десятков постов. За&nbsp;неделю это экономит около часа на&nbsp;разборе каналов&nbsp;— и&nbsp;помогает регулярно вести собственный канал, оставляя последнее слово за&nbsp;человеком.</p>
+    <div class="pq rev"><p>Этот бот я&nbsp;продолжаю развивать: новые сценарии появляются не&nbsp;из&nbsp;бэклога, а&nbsp;из&nbsp;реальных задач, с&nbsp;которыми сталкиваюсь каждый день.</p></div>
+
+    <div class="tech">
+      <div class="lead">Технологии</div>
+      <p>Разработка велась в&nbsp;паре с&nbsp;Claude Code: ИИ помогал писать и&nbsp;проверять код, а&nbsp;<strong>архитектура продукта, UX и&nbsp;все продуктовые решения оставались за&nbsp;мной</strong>. Стек: Python · Telethon · faster-whisper · Claude API · SQLite · 124&nbsp;автотеста.</p>
+    </div>
+  </section>
+
+  <!-- next case -->
+  <section class="next rev">
+    <div class="nl">Следующий кейс</div>
+    <h2>Календарь для корпоративного мессенджера</h2>
+    <a class="cta" href="../calendar/index.html">Смотреть кейс →</a>
+  </section>
+
+</main>
+
+<footer>
+  <div class="foot-in">
+    <div>© 2026 Виктория Шаханина</div>
+    <div>Saint-Petersburg</div>
+  </div>
+</footer>
+
+<button class="to-top" type="button" aria-label="Наверх">↑</button>
+
+<script>
+(function(){
+  var RM = matchMedia('(prefers-reduced-motion:reduce)').matches;
+  var pr = document.getElementById('prog');
+  addEventListener('scroll', function(){ var h=document.documentElement; pr.style.transform='scaleX('+(h.scrollTop/((h.scrollHeight-h.clientHeight)||1))+')'; }, {passive:true});
+
+  var rev = [].slice.call(document.querySelectorAll('.rev'));
+  if(RM){ rev.forEach(function(e){ e.classList.add('in'); }); }
+  else {
+    var reveal=function(){ rev.forEach(function(e){ if(!e.classList.contains('in') && e.getBoundingClientRect().top < innerHeight*0.92) e.classList.add('in'); }); };
+    reveal(); var t=false;
+    addEventListener('scroll', function(){ if(!t){ t=true; requestAnimationFrame(function(){ reveal(); t=false; }); } }, {passive:true});
+    addEventListener('resize', reveal, {passive:true});
+  }
+
+  var tt=document.querySelector('.to-top');
+  addEventListener('scroll', function(){ tt.classList.toggle('visible', scrollY>700); }, {passive:true});
+  tt.addEventListener('click', function(){ scrollTo({top:0,behavior:RM?'auto':'smooth'}); });
+})();
+</script>
+</body>
+</html>
