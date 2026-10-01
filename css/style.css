@@ -465,8 +465,14 @@ article.case { padding-top: 44px; }
   background: #f5f5f5;
 }
 .case-media--frame img { border-radius: 8px; }
-.case-media--video { aspect-ratio: 1000 / 625; }
-.case-media--video video { height: 100%; object-fit: cover; }
+/* видео на голубой карточке: фон карточки = фон, впечённый в видео */
+.case-media--video {
+  max-width: 1080px;
+  padding: clamp(16px, 3.7vw, 40px);
+  border-radius: var(--radius);
+  background: var(--bg-blue);
+}
+.case-media--video video { display: block; aspect-ratio: 1000 / 625; object-fit: cover; }
 .case-media--wide { max-width: 1268px; }
 
 .pros { display: flex; flex-direction: column; gap: 16px; max-width: 700px; margin: 30px 0 0; padding: 0; list-style: none; }
