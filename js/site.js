@@ -24,9 +24,34 @@
     var closeBtn = box.querySelector('.lightbox__close');
     var hint = box.querySelector('.lightbox__hint');
     var opener = null;
+    var anim = null;      // текущая анимация картинки — её можно прервать
+    var closing = false;
+
+    // кривые и длительности берём из токенов в style.css
+    var css = getComputedStyle(document.documentElement);
+    var EASE_OUT = css.getPropertyValue('--ease-out').trim() || 'ease-out';
+    var EASE_IN = css.getPropertyValue('--ease-in').trim() || 'ease-in';
+    var DUR = parseFloat(css.getPropertyValue('--dur')) || 300;
+    var DUR_SLOW = parseFloat(css.getPropertyValue('--dur-slow')) || 400;
+
+    // transform, при котором картинка, стоящая в rect `to`,
+    // выглядит так, будто стоит в rect `from` (центр к центру, масштаб по ширине)
+    function placeAt(from, to) {
+      var dx = (from.left + from.width / 2) - (to.left + to.width / 2);
+      var dy = (from.top + from.height / 2) - (to.top + to.height / 2);
+      return 'translate(' + dx + 'px,' + dy + 'px) scale(' + (from.width / to.width) + ')';
+    }
+
+    function stopAnim() {
+      if (anim) { anim.onfinish = null; anim.cancel(); anim = null; }
+    }
 
     function open(img) {
+      stopAnim();
+      closing = false;
       opener = img;
+      big.style.width = '';
+      big.style.visibility = 'hidden';   // покажем, когда будет готов первый кадр анимации
       big.src = img.currentSrc || img.src;
       big.alt = img.alt;
       box.classList.remove('is-zoomed');
@@ -34,18 +59,50 @@
       box.hidden = false;
       document.documentElement.classList.add('is-locked');
       closeBtn.focus();
+
+      function show() {
+        if (box.hidden || closing || opener !== img) return;
+        void box.offsetWidth;                // зафиксировать стартовое состояние для CSS-перехода фона
+        box.classList.add('is-open');
+        big.style.visibility = '';
+        if (reduceMotion) return;
+        // картинка вырастает из миниатюры, как фото в iPhone
+        anim = big.animate(
+          [{ transform: placeAt(img.getBoundingClientRect(), big.getBoundingClientRect()) }, { transform: 'none' }],
+          { duration: DUR_SLOW, easing: EASE_OUT }
+        );
+      }
+      (big.decode ? big.decode() : Promise.resolve()).then(show, show);
     }
 
     function close() {
-      box.hidden = true;
-      box.classList.remove('is-zoomed');
-      big.style.width = '';
-      document.documentElement.classList.remove('is-locked');
-      big.removeAttribute('src');
-      if (opener) opener.focus();
+      if (box.hidden || closing) return;
+      closing = true;
+      stopAnim();
+      box.classList.remove('is-open');
+
+      function done() {
+        closing = false;
+        box.hidden = true;
+        stopAnim();
+        box.classList.remove('is-zoomed');
+        big.style.width = '';
+        document.documentElement.classList.remove('is-locked');
+        big.removeAttribute('src');
+        if (opener) opener.focus({ preventScroll: true });
+      }
+      if (reduceMotion || !opener) return done();
+      // уходит обратно в миниатюру — быстрее, чем появлялась
+      anim = big.animate(
+        [{ transform: 'none' }, { transform: placeAt(opener.getBoundingClientRect(), big.getBoundingClientRect()) }],
+        { duration: DUR, easing: EASE_IN, fill: 'forwards' }
+      );
+      anim.onfinish = done;
     }
 
     function toggleZoom(e) {
+      if (closing) return;
+      stopAnim();
       var rect = big.getBoundingClientRect();
       // доля по ширине/высоте, куда кликнули — туда и прокрутим после увеличения
       var fx = (e.clientX - rect.left) / rect.width;
@@ -58,6 +115,12 @@
         scroller.scrollLeft = fx * big.offsetWidth - scroller.clientWidth / 2;
         scroller.scrollTop = fy * big.offsetHeight - scroller.clientHeight / 2;
       }
+      if (reduceMotion) return;
+      // плавно перетекаем из прежнего размера в новый (FLIP)
+      anim = big.animate(
+        [{ transform: placeAt(rect, big.getBoundingClientRect()) }, { transform: 'none' }],
+        { duration: DUR_SLOW, easing: EASE_OUT }
+      );
     }
 
     zoomables.forEach(function (img) {

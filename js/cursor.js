@@ -7,9 +7,10 @@
   var ring = document.createElement('div');
   ring.className = 'cursor';
   ring.setAttribute('aria-hidden', 'true');
+  ring.innerHTML = '<svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="23"/></svg>';
   document.body.appendChild(ring);
 
-  var x = innerWidth / 2, y = innerHeight / 2, cx = x, cy = y;
+  var x = innerWidth / 2, y = innerHeight / 2, cx = x, cy = y, last = 0;
 
   addEventListener('mousemove', function (e) {
     x = e.clientX;
@@ -22,10 +23,15 @@
 
   document.addEventListener('mouseleave', function () { ring.classList.remove('is-visible'); });
 
-  (function loop() {
-    cx += (x - cx) * 0.2;
-    cy += (y - cy) * 0.2;
-    ring.style.transform = 'translate(' + cx + 'px,' + cy + 'px) translate(-50%,-50%)';
+  // догоняет с одной скоростью и на 60 Гц, и на 120 Гц (ProMotion):
+  // доля пути за кадр считается от реального времени кадра
+  requestAnimationFrame(function loop(now) {
+    var dt = last ? Math.min(now - last, 64) : 16.7;
+    last = now;
+    var k = 1 - Math.pow(0.8, dt / 16.7);
+    cx += (x - cx) * k;
+    cy += (y - cy) * k;
+    ring.style.transform = 'translate3d(' + cx + 'px,' + cy + 'px,0) translate(-50%,-50%)';
     requestAnimationFrame(loop);
-  })();
+  });
 })();

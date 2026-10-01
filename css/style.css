@@ -20,6 +20,15 @@
   --page-pad: 64px;
   --content: 1312px;
   --radius: 16px;
+
+  /* Движение: один ритм на весь сайт.
+     Вход — мягкое торможение, уход — быстрее и с разгоном. */
+  --ease-out: cubic-bezier(.22, 1, .36, 1);
+  --ease-in: cubic-bezier(.4, 0, 1, 1);
+  --dur-press: 100ms;
+  --dur-fast: 200ms;
+  --dur: 300ms;
+  --dur-slow: 400ms;
 }
 
 *,
@@ -28,6 +37,17 @@
 
 html { scroll-behavior: smooth; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+/* Переход между страницами: старая растворяется, новая проявляется
+   с лёгким подъёмом. Chrome, Edge, Safari 18.2+; в остальных — как раньше. */
+@view-transition { navigation: auto; }
+::view-transition-old(root) { animation: var(--dur-fast) var(--ease-in) both page-out; }
+::view-transition-new(root) { animation: var(--dur-slow) var(--ease-out) both page-in; }
+@keyframes page-out { to { opacity: 0; } }
+@keyframes page-in { from { opacity: 0; transform: translateY(8px); } }
+@media (prefers-reduced-motion: reduce) {
+  @view-transition { navigation: none; }
+}
 
 body {
   margin: 0;
@@ -60,11 +80,19 @@ a { color: inherit; }
   font-size: 16px;
   line-height: normal;
 }
-.header__name { color: var(--ink-2); text-decoration: none; }
+.header__name { color: var(--ink-2); }
 .header__nav { display: flex; gap: 99px; font-family: var(--font-display); }
-.header__nav a { text-decoration: none; }
+/* подчёркивание есть всегда, но прозрачное — при наведении плавно проявляется */
+.header__nav a,
+.header__name,
+.contacts__label {
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  transition: text-decoration-color var(--dur-fast) var(--ease-out);
+}
 .header__nav a:hover,
-.header__name:hover { text-decoration: underline; }
+.header__name:hover,
+.contacts__label:hover { text-decoration-color: currentColor; }
 
 /* ---------- Кнопка ---------- */
 .btn {
@@ -78,10 +106,11 @@ a { color: inherit; }
   font: 500 18px/24px var(--font-main);
   text-decoration: none;
   white-space: nowrap;
-  transition: filter .15s ease, transform .15s ease;
+  transition: filter var(--dur-fast) var(--ease-out), transform var(--dur) var(--ease-out);
 }
 a.btn:hover { filter: brightness(.96); }
-a.btn:active { transform: translateY(1px); }
+/* нажатие: кнопка быстро чуть сжимается и мягко возвращается */
+a.btn:active { transform: scale(.97); transition-duration: var(--dur-press); }
 .btn--disabled { cursor: default; }
 a.btn:focus-visible,
 a:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
@@ -102,11 +131,10 @@ a:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
 .band--overlay { position: absolute; left: 0; bottom: 0; margin: 0; }
 
 /* ---------- Главная: первый экран ---------- */
-.hero { padding-bottom: 65px; }
+.hero { padding-bottom: 96px; }
 .hero__top {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
   gap: 32px;
   margin-top: 80px;
 }
@@ -116,14 +144,21 @@ a:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
 }
 .hero__lead {
   max-width: 880px;
-  margin-top: 64px;
+  margin-top: 38px;
   font-size: 24px;
   line-height: 33px;
 }
+/* фото по высоте текста: верх — по верху заглавных «Привет!»,
+   низ — по базовой линии последней строки абзаца */
 .hero__photo {
   flex: none;
-  width: 213px;
-  height: 276px;
+  --photo-mt: 18px;
+  --photo-mb: 11px;
+  width: 242px;
+  height: calc(100% - var(--photo-mt) - var(--photo-mb));
+  aspect-ratio: auto;
+  contain: size;
+  margin-block: var(--photo-mt) var(--photo-mb);
   border-radius: var(--radius);
   object-fit: cover;
   object-position: 50% 30%;
@@ -169,13 +204,13 @@ a:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
 }
 
 /* первый кейс сразу после ленты навыков: под лентой 130px */
-.project--calendar { padding-top: 76px; }
+.project--calendar { padding-top: 56px; }
 .project--calendar .project__title,
 .project--calendar .project__desc { color: var(--ink); }
 .stage--calendar .project__media {
   width: 100%;
   max-width: 1221px;
-  aspect-ratio: 1221 / 715;
+  aspect-ratio: 2432 / 1470;
   object-fit: cover;
 }
 
@@ -297,11 +332,10 @@ a:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
   font: 500 24px/52px var(--font-main);
   color: var(--ink-2);
 }
-.contacts__item { display: flex; flex-direction: column; gap: 40px; }
+.contacts__item { display: flex; flex-direction: column; gap: 8px; }
 .contacts__item:nth-child(2) { align-items: center; }
 .contacts__item:nth-child(3) { align-items: flex-end; }
-.contacts__label { text-decoration: none; }
-.contacts__label:hover { text-decoration: underline; }
+.contacts__item > span { font-size: 0.833em; font-weight: 400; color: #555; }
 
 /* ---------- Адаптив ---------- */
 @media (max-width: 1200px) {
@@ -310,16 +344,17 @@ a:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
   .hero__title, .about__title { font-size: 48px; }
   .project__title, .contacts__title { font-size: 40px; line-height: 46px; }
   .hero__lead, .project__desc, .about__body, .about__more, .contacts__list { font-size: 22px; }
+  .hero__photo { --photo-mt: 16px; --photo-mb: 11px; }
   .gallery { gap: 24px; }
 }
 
 @media (max-width: 900px) {
   :root { --page-pad: 24px; }
   .header { padding-top: 32px; }
-  .hero__top { flex-direction: column-reverse; margin-top: 40px; gap: 24px; }
+  .hero__top { display: flex; flex-direction: column-reverse; margin-top: 40px; gap: 24px; }
   .hero__lead { margin-top: 24px; }
   .hero { padding-bottom: 32px; }
-  .hero__photo { width: 160px; height: 207px; }
+  .hero__photo { width: 160px; height: 207px; margin-block: 0; }
 
   .project__intro { gap: 24px; }
   .project__title, .contacts__title { font-size: 32px; line-height: 38px; }
@@ -380,8 +415,10 @@ a:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
   color: var(--ink);
   font: 400 16px/normal var(--font-display);
   text-decoration: none;
+  transition: filter var(--dur-fast) var(--ease-out), transform var(--dur) var(--ease-out);
 }
 .btn-back:hover { filter: brightness(.96); }
+.btn-back:active { transform: scale(.97); transition-duration: var(--dur-press); }
 
 article.case { padding-top: 44px; }
 .case__crumbs { font-size: 16px; color: var(--ink-2); }
@@ -403,7 +440,7 @@ article.case { padding-top: 44px; }
 .case-meta__label { font-weight: 600; color: #000; }
 .case-meta__value { color: var(--ink-2); }
 .case-toc { display: flex; flex-direction: column; gap: 24px; margin: 0; padding: 0; list-style: none; font-weight: 600; color: #667085; }
-.case-toc a { text-decoration: underline; text-underline-position: from-font; }
+.case-toc a { text-decoration: underline; text-underline-position: from-font; transition: color var(--dur-fast) var(--ease-out); }
 .case-toc a:hover { color: var(--ink); }
 
 .case-section { margin-top: 64px; scroll-margin-top: 24px; }
@@ -560,10 +597,34 @@ img[data-zoom]:focus-visible { outline: 2px solid var(--ink); outline-offset: 4p
   position: fixed;
   inset: 0;
   z-index: 100;
-  background: rgba(24, 24, 24, .92);
 }
 .lightbox[hidden] { display: none; }
+/* затемнение отдельным слоем, чтобы оно растворялось, а картинка — нет */
+.lightbox::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(24, 24, 24, .92);
+  opacity: 0;
+  transition: opacity var(--dur-fast) var(--ease-in);
+}
+.lightbox__close,
+.lightbox__hint {
+  opacity: 0;
+  transition: opacity var(--dur-fast) var(--ease-in);
+}
+.lightbox.is-open::before,
+.lightbox.is-open .lightbox__close,
+.lightbox.is-open .lightbox__hint {
+  opacity: 1;
+  transition: opacity var(--dur-slow) var(--ease-out);
+}
+@media (prefers-reduced-motion: reduce) {
+  .lightbox::before, .lightbox__close, .lightbox__hint,
+  .lightbox.is-open::before, .lightbox.is-open .lightbox__close, .lightbox.is-open .lightbox__hint { transition: none; }
+}
 .lightbox__scroller {
+  position: relative;
   width: 100%;
   height: 100%;
   overflow: auto;
@@ -632,12 +693,20 @@ img[data-zoom]:focus-visible { outline: 2px solid var(--ink); outline-offset: 4p
   opacity: 0;
   visibility: hidden;
   transform: translateY(12px);
-  transition: opacity .2s ease, transform .2s ease, visibility .2s;
+  transition: opacity var(--dur-fast) var(--ease-in), transform var(--dur-fast) var(--ease-in),
+              visibility 0s var(--dur-fast), filter var(--dur-fast) var(--ease-out);
 }
-.to-top.is-visible { opacity: 1; visibility: visible; transform: none; }
+.to-top.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  transition: opacity var(--dur) var(--ease-out), transform var(--dur) var(--ease-out),
+              visibility 0s, filter var(--dur-fast) var(--ease-out);
+}
 .to-top:hover { filter: brightness(.96); }
+.to-top.is-visible:active { transform: scale(.94); transition-duration: var(--dur-press); }
 .to-top:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
-@media (prefers-reduced-motion: reduce) { .to-top { transition: none; } }
+@media (prefers-reduced-motion: reduce) { .to-top, .to-top.is-visible { transition: none; } }
 @media (max-width: 900px) {
   .to-top { right: 16px; bottom: 16px; width: 48px; height: 48px; }
 }
@@ -767,27 +836,80 @@ img[data-zoom]:focus-visible { outline: 2px solid var(--ink); outline-offset: 4p
   .case-section--flush { margin-top: 48px; }
 }
 
+/* ---------- Кейс: карточка «Роль / вклад / команда + оглавление» ----------
+   Общая для всех кейсов. Стоит после модификаторов --between/--center/--tight
+   и перекрывает их раскладку, чтобы карточка везде была одинаковой. */
+.case-meta,
+.case-meta--between,
+.case-meta--center {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 360px;
+  align-items: stretch;
+  gap: 0;
+  max-width: 880px;
+  border: 1px solid #eaecf0;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: #fafbfc;
+}
+.case-meta__info,
+.case-meta__info--tight { width: auto; gap: 0; padding: 32px 40px; }
+.case-meta__item,
+.case-meta__item--tight { gap: 12px; padding-block: 20px; border-top: 1px solid #eaecf0; }
+.case-meta__item:first-child { padding-top: 0; border-top: 0; }
+.case-meta__item:last-child { padding-bottom: 0; }
+.case-meta nav { padding: 32px 40px; border-left: 1px solid #eaecf0; }
+.case-toc { gap: 0; }
+.case-toc li { padding-block: 12px; }
+.case-toc li:first-child { padding-top: 0; }
+.case-toc li + li + li { border-top: 1px solid #eaecf0; }
+.case-toc li:last-child { padding-bottom: 0; }
+/* у Лу первый раздел без отступа — под рамкой карточки он прилипал */
+.case-meta + .case-section--flush { margin-top: 64px; }
+
+@media (max-width: 900px) {
+  .case-meta,
+  .case-meta--between,
+  .case-meta--center { grid-template-columns: 1fr; }
+  .case-meta__info,
+  .case-meta__info--tight,
+  .case-meta nav { padding: 24px; }
+  .case-meta nav { border-left: 0; border-top: 1px solid #eaecf0; }
+}
+
 /* ---------- Курсор-кольцо (js/cursor.js) ---------- */
 .cursor {
   position: fixed;
   top: 0;
   left: 0;
   z-index: 200;
-  width: 26px;
-  height: 26px;
-  border: 2px solid var(--ink-2);
-  border-radius: 50%;
-  pointer-events: none;
-  opacity: 0;
-  transition: width .2s ease, height .2s ease, opacity .3s ease, background-color .2s ease, border-color .2s ease;
-}
-.cursor.is-visible { opacity: 1; }
-/* над ссылками и кнопками кольцо растёт и заливается жёлтым, как кнопки */
-.cursor.is-active {
   width: 48px;
   height: 48px;
-  background-color: rgba(246, 255, 127, .55);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--dur) var(--ease-out);
 }
+.cursor.is-visible { opacity: 1; }
+/* Кольцо рисует SVG и растёт через transform — без пересчёта раскладки.
+   Обводка не масштабируется и всегда 2px. Обычный размер 26px, над ссылкой 48px. */
+.cursor svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  transform: scale(.5217);
+  transition: transform var(--dur) var(--ease-out);
+}
+.cursor circle {
+  fill: rgba(246, 255, 127, 0);
+  stroke: var(--ink-2);
+  stroke-width: 2;
+  vector-effect: non-scaling-stroke;
+  transition: fill var(--dur) var(--ease-out);
+}
+/* над ссылками и кнопками кольцо растёт и заливается жёлтым, как кнопки */
+.cursor.is-active svg { transform: none; }
+.cursor.is-active circle { fill: rgba(246, 255, 127, .55); }
 @media (hover: none), (pointer: coarse), (prefers-reduced-motion: reduce) {
   .cursor { display: none; }
 }
