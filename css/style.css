@@ -281,7 +281,6 @@ a:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
 .contacts__item:nth-child(3) { align-items: flex-end; }
 .contacts__label { text-decoration: none; }
 .contacts__label:hover { text-decoration: underline; }
-.contacts__label--underlined { text-decoration: underline; }
 
 /* ---------- Адаптив ---------- */
 @media (max-width: 1200px) {
