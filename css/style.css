@@ -186,6 +186,13 @@ a:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
   margin-top: calc(-1 * max(50 / 1440 * 100vw, 24px));
 }
 .stage--lu .project__media {
+  /* фон видео чуть светлее розового блока: края растворяются, без видимой рамки */
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent),
+                      linear-gradient(to bottom, transparent, #000 12%);
+  -webkit-mask-composite: source-in;
+  mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent),
+              linear-gradient(to bottom, transparent, #000 12%);
+  mask-composite: intersect;
   width: 100%;
   aspect-ratio: 1312 / 738;
   object-fit: cover;
