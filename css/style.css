@@ -378,7 +378,7 @@ article.case { padding-top: 44px; }
   font-size: 16px;
   line-height: normal;
 }
-.case-meta__info { display: flex; flex-direction: column; gap: 40px; width: 335px; }
+.case-meta__info { display: flex; flex-direction: column; gap: 40px; width: 335px; margin: 0; }
 .case-meta__item { display: flex; flex-direction: column; gap: 16px; }
 .case-meta__label { font-weight: 600; color: #000; }
 .case-meta__value { color: var(--ink-2); }
@@ -620,4 +620,129 @@ img[data-zoom]:focus-visible { outline: 2px solid var(--ink); outline-offset: 4p
 @media (prefers-reduced-motion: reduce) { .to-top { transition: none; } }
 @media (max-width: 900px) {
   .to-top { right: 16px; bottom: 16px; width: 48px; height: 48px; }
+}
+
+/* =========================================================
+   Кейс Lu
+   ========================================================= */
+.page-lu article.case { padding-top: 24px; }
+.page-lu .case__title { max-width: 849px; line-height: 60px; }
+.page-lu .case-h2,
+.page-av .case-h2 { font-size: 48px; color: var(--ink-3); }
+.page-lu .case-h2 { line-height: 65px; color: #000; }
+.page-lu .case-h3 { font-weight: 500; line-height: normal; color: #000; }
+
+.case-meta--between { justify-content: space-between; gap: 32px; max-width: 769px; }
+.case-meta__info--tight { gap: 16px; width: 425px; }
+.case-meta__item--tight { gap: 11px; }
+.case-meta--center { align-items: center; }
+
+.case-section--flush { margin-top: 0; }
+.case-text--soft { color: var(--ink-soft); }
+.case-text--gap16:not(.case-list) > * + * { margin-top: 16px; }
+
+.analogs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  max-width: 1071px;
+  margin-top: 24px;
+}
+.analog {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px;
+  border-radius: 8px;
+  background: #f5f5f5;
+  font-size: 16px;
+  line-height: 24px;
+  color: #000;
+}
+.analog__title { font-weight: 500; }
+
+.lu-video { margin-top: 78px; }
+.lu-video video { width: 100%; aspect-ratio: 1312 / 738; object-fit: cover; border-radius: var(--radius); }
+.case-section--illus { margin-top: 78px; }
+
+.illus { display: flex; flex-direction: column; align-items: flex-end; gap: 37px; max-width: 951px; margin-top: 40px; }
+.illus__row { display: flex; align-items: center; gap: 51px; }
+.illus__row + .illus__row { gap: 50px; }
+.illus img { flex: none; height: auto; }
+
+.screens { display: flex; gap: 40px; margin-top: 40px; }
+.screens img { width: 350px; flex: none; }
+.screens--big img { width: 422px; }
+
+.case-band--lu-screens { margin-top: 39px; }
+.case-band--lu-screens + .case .case-section--after-band { margin-top: 67px; }
+.case-band--lu-next { margin-top: 114px; margin-bottom: 82px; }
+
+.next-case--tight { gap: 10px; }
+.next-case--tight .next-case__title { max-width: 866px; line-height: 65px; color: var(--ink-3); }
+.next-case__wrap--lu { padding-bottom: 333px; }
+.next-case__wrap--av { padding-bottom: 180px; }
+
+/* =========================================================
+   Кейс «Антивирус»
+   ========================================================= */
+.page-av .case-h2 { line-height: 52px; }
+.page-av .case__title { max-width: 1099px; }
+.case-sub { display: flex; flex-direction: column; gap: 40px; max-width: 727px; }
+.case-sub__item { display: flex; flex-direction: column; gap: 16px; }
+.case-sub__title { font: 500 24px/24px var(--font-main); color: #000; }
+.case-sub__text { font-size: 16px; line-height: 24px; color: var(--ink-2); }
+.case-list--tight { gap: 8px; }
+
+.section-peach { background: var(--bg-peach); margin-top: -1px; margin-bottom: -1px; }
+.section-peach .case { padding-block: 15px 44px; }
+.section-peach .case-section:first-child { margin-top: 0; }
+.case-media--flow img { border-radius: var(--radius); }
+.case-media--solution { max-width: 1207px; margin-top: 64px; }
+
+.case-band--av-context { margin-top: 2px; }
+.case-band--av-solution + .case .case-section--after-band { margin-top: 50px; }
+.case-band--av-next { margin-top: 121px; margin-bottom: 100px; }
+
+@media (max-width: 1200px) {
+  .screens img { width: calc((100% - 80px) / 3); }
+  .screens--big img { width: calc((100% - 40px) / 2); max-width: 422px; }
+  .illus, .illus__row { flex-wrap: wrap; }
+  .illus__row img { max-width: calc((100% - 102px) / 3); }
+}
+
+@media (max-width: 900px) {
+  .page-lu .case__title { line-height: 40px; }
+  .page-lu .case-h2, .page-av .case-h2 { font-size: 30px; line-height: 38px; }
+  .case-meta--between { flex-direction: column; }
+  .case-meta__info--tight { width: auto; }
+  .analogs { grid-template-columns: 1fr; gap: 12px; }
+  .lu-video, .case-section--illus { margin-top: 48px; }
+  .illus { align-items: center; gap: 16px; }
+  .illus__row, .illus__row + .illus__row { justify-content: center; gap: 16px; }
+  .illus__row img { max-width: calc((100% - 32px) / 3); }
+  /* экраны телефона листаются вбок */
+  .screens {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 16px;
+    margin-right: calc(var(--page-pad) * -1);
+    padding-right: var(--page-pad);
+  }
+  .screens img, .screens--big img { width: 240px; max-width: none; scroll-snap-align: start; }
+  .case-band--lu-screens, .case-band--lu-next, .case-band--av-next { margin-top: 48px; margin-bottom: 32px; }
+  .case-band--lu-screens + .case .case-section--after-band,
+  .case-band--av-solution + .case .case-section--after-band { margin-top: 24px; }
+  .next-case--tight .next-case__title { line-height: 34px; }
+  .next-case__wrap--lu, .next-case__wrap--av { padding-bottom: 80px; }
+  .section-peach .case { padding-block: 16px 32px; }
+  .case-media--solution { margin-top: 40px; }
+}
+.case-list--result { gap: 24px; }
+.case-meta__value--narrow { max-width: 306px; }
+.next-case__title--wide { max-width: 866px; }
+.case-text + .case-media--solution { margin-top: 64px; }
+@media (max-width: 900px) {
+  .case-meta--center { align-items: flex-start; }
+  .case-section--flush { margin-top: 48px; }
 }
