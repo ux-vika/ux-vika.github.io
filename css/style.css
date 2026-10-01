@@ -168,8 +168,8 @@ a:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
   color: var(--ink-soft);
 }
 
-/* первый кейс сразу после ленты навыков: под лентой 100px */
-.project--calendar { padding-top: 46px; }
+/* первый кейс сразу после ленты навыков: под лентой 130px */
+.project--calendar { padding-top: 76px; }
 .project--calendar .project__title,
 .project--calendar .project__desc { color: var(--ink); }
 .stage--calendar .project__media {
