@@ -27,13 +27,11 @@ P_103 = "M 0 51.5 C 210 51.5 210 0 420 0 C 630 0 630 103 840 103 C 1050 103 1050
 P_109 = "M 0 51.16 C 210 51.16 210 0 420 0 C 630 0 627.5 109 837.5 109 C 1047.5 109 1050 0 1260 0 C 1470 0 1470 102.32 1680 102.32 C 1890 102.32 1890 0 2100 0"
 
 
-def fill_blue(h):
-    a = 39.95; m = 79.89
+def fill_blue(h, a=39.95, m=79.89):
     return f"M 0 {a} C 210 {a} 210 0 420 0 C 630 0 630 {m} 840 {m} C 1050 {m} 1050 0 1260 0 C 1470 0 1470 {m} 1680 {m} C 1890 {m} 1890 0 2100 0 L 2100 {h} L 0 {h} Z"
 
 
-def fill_pink(h):
-    a = 43.11; m = 86.23
+def fill_pink(h, a=43.11, m=86.23):
     return f"M 0 {a} C 210 {a} 210 {m} 420 {m} C 630 {m} 630 0 840 0 C 1050 0 1050 {m} 1260 {m} C 1470 {m} 1470 0 1680 0 C 1890 0 1890 {m} 2100 {m} L 2100 {h} L 0 {h} Z"
 
 
@@ -114,6 +112,8 @@ T_AV_CONTEXT = "Kaspersky Security Engine  ✦  информационная б�
 T_AV_SOLUTION = "проверка файлов  ✦  блокировка  ✦  карантин  ✦  уведомления  ✦  проверка файлов  ✦  блокировка  ✦  карантин  ✦  уведомления  ✦  проверка файлов  ✦  блокировка  ✦  карантин  ✦  уведомления  ✦  проверка файлов  ✦  блокировка  ✦  карантин  ✦  уведомления  ✦  "
 T_AV_NEXT = "✦  Календарь  ✦  Сквадус  ✦  МойОфис  ✦  Календарь  ✦  Сквадус  ✦  МойОфис  ✦  Календарь  ✦  Сквадус  ✦  МойОфис  ✦  Календарь  ✦  Сквадус  ✦  МойОфис  ✦  Календарь  ✦  Сквадус  ✦  МойОфис  ✦  Календарь  ✦  Сквадус  ✦  МойОфис  ✦  Календарь  ✦  Сквадус  ✦  МойОфис  ✦  "
 AV_PEACH = fill_peach_full(1936, a=49.64, m=99.28)
+HOME_PEACH = fill_peach_full(1042, a=25, m=50)
+HOME_LAVENDER = fill_peach_full(1081, a=28.75, m=57.5)
 
 BANDS = {
     # Кейс Lu (фрейм 190:27675)
@@ -140,18 +140,22 @@ BANDS = {
                              [(P_60, -101, 12171, T_KAL_NEXT, INK)], min_h=56),
 
     # Главная
-    "home-skills": lambda: band("home-skills", 572, 716, "white",
-                                [("blue", fill_blue(1488), -120, 635)],
+    "home-skills": lambda: band("home-skills", 572, 716, "white", [],
                                 [(P_80, -120, 595, T_SKILLS, INK)], min_h=90),
-    "home-pink": lambda: band("home-pink", 1928, 2020, "blue",
-                              [("pink", fill_pink(1509), -120, 1932)], [], min_h=46),
-    # лежит поверх низа видео Lu (класс band--overlay), поэтому без подложки
-    "home-peach": lambda: band("home-peach", 3126, 3214, "white",
-                               [("peach", fill_peach_full(1696, a=40.69, m=81.39), -120, 3130)], [], min_h=43),
-    "home-lavender": lambda: band("home-lavender", 4644, 4730, "peach",
-                                  [("lavender", fill_peach_full(1475.56), -546, 4648.72)], [], min_h=43),
+    # Цветные волны лежат только под макетами кейсов, заголовки — на белом.
+    # Голубая и розовая снизу обрезаны ровно, персиковая и лавандовая — волной.
+    "home-blue-top": lambda: band("home-blue-top", 1021, 1072, "white",
+                                  [("blue", fill_blue(950, a=25.5, m=51), -120, 1021)], [], min_h=26),
+    "home-pink-top": lambda: band("home-pink-top", 2449, 2496, "white",
+                                  [("pink", fill_pink(813, a=23.25, m=46.5), -120, 2449)], [], min_h=24),
+    "home-peach-top": lambda: band("home-peach-top", 3607, 3657, "white",
+                                   [("peach", HOME_PEACH, -120, 3607)], [], min_h=25),
+    "home-peach-bottom": lambda: band("home-peach-bottom", 4599, 4649, "white",
+                                      [("peach", HOME_PEACH, -120, 3607)], [], min_h=25),
+    "home-lavender-top": lambda: band("home-lavender-top", 5043, 5101, "white",
+                                      [("lavender", HOME_LAVENDER, -546, 5043)], [], min_h=29),
     "home-exp": lambda: band("home-exp", 6040, 6172, "white",
-                             [("lavender", fill_peach_full(1475.56), -546, 4648.72)],
+                             [("lavender", HOME_LAVENDER, -546, 5043)],
                              [(P_80_INV, -543, 6085, T_EXP, INK)], min_h=84),
     "home-contact": lambda: band("home-contact", 7432, 7520, "white", [],
                                  [(P_60, -169, 7454, T_CONTACT, INK_2)], min_h=56),
