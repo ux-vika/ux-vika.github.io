@@ -14,7 +14,7 @@ from html import escape
 COLORS = {
     "white": "#FFFFFF",
     "blue": "#EBF9FF",
-    "pink": "#FFE3E7",
+    "pink": "#FFE6E8",
     "peach": "#FFEFDD",
     "lavender": "#D6D3FF",
 }
@@ -87,7 +87,7 @@ def band(name, y0, y1, bg, fills, texts, min_h=None):
         parts.append(
             f'<text class="band__text" fill="{color}"><textPath href="#{pid}" startOffset="0.1%">'
             f"{escape(chars)}</textPath></text>")
-    label = " ".join(t[3] for t in texts).replace("✦", ",").replace("♥", ",")
+    label = " ".join(t[3] for t in texts).replace("\ufe0f", "").replace("✦", ",").replace("♥", ",")
     label = re.sub(r"\s*,\s*", ", ", re.sub(r"\s+", " ", label)).strip(" ,")
     aria = f' role="img" aria-label="{escape(label)}"' if texts else ' aria-hidden="true"'
     style = f"--band-h:{h}" + (f";--band-min:{min_h}px" if min_h else "")
@@ -111,8 +111,9 @@ BANDS = {
                                 [(P_80, -120, 595, T_SKILLS, INK)], min_h=90),
     "home-pink": lambda: band("home-pink", 1928, 2020, "blue",
                               [("pink", fill_pink(1509), -120, 1932)], [], min_h=46),
-    "home-peach": lambda: band("home-peach", 3184, 3270, "pink",
-                               [("peach", fill_peach_full(1637.2), -120, 3188.72)], [], min_h=43),
+    # лежит поверх низа видео Lu (класс band--overlay), поэтому без подложки
+    "home-peach": lambda: band("home-peach", 3126, 3214, "white",
+                               [("peach", fill_peach_full(1696, a=40.69, m=81.39), -120, 3130)], [], min_h=43),
     "home-lavender": lambda: band("home-lavender", 4644, 4730, "peach",
                                   [("lavender", fill_peach_full(1475.56), -546, 4648.72)], [], min_h=43),
     "home-exp": lambda: band("home-exp", 6040, 6172, "white",
@@ -131,7 +132,11 @@ def main(path):
         return BANDS[name]()
 
     # маркер может быть уже заменён — тогда обновляем блок целиком
-    html = re.sub(r'<div class="band band--([\w-]+)"[^>]*>.*?</svg></div>', lambda m: BANDS[m.group(1)](), html, flags=re.S)
+    def refresh(m):
+        extra, name = m.group(1), m.group(2)
+        return BANDS[name]().replace('class="band ', f'class="band {extra}', 1)
+
+    html = re.sub(r'<div class="band ((?:band--overlay )?)band--([\w-]+)"[^>]*>.*?</svg></div>', refresh, html, flags=re.S)
     html = re.sub(r"<!--band:([\w-]+)-->", repl, html)
     open(path, "w", encoding="utf-8").write(html)
 

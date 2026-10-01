@@ -10,7 +10,7 @@
 
   --bg: #fff;
   --bg-blue: #ebf9ff;
-  --bg-pink: #ffe3e7;
+  --bg-pink: #ffe6e8;
   --bg-peach: #ffefdd;
   --bg-lavender: #d6d3ff;
 
@@ -98,6 +98,8 @@ a:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
 }
 .band svg { display: block; width: 100%; height: 100%; }
 .band__text { font: 400 20px var(--font-main); }
+/* полоса поверх низа предыдущего блока (низ видео Lu уходит под волну) */
+.band--overlay { position: absolute; left: 0; bottom: 0; margin: 0; }
 
 /* ---------- Главная: первый экран ---------- */
 .hero { padding-bottom: 65px; }
@@ -175,11 +177,9 @@ a:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
   width: 100%;
   aspect-ratio: 1312 / 738;
   object-fit: cover;
-  /* в макете низ видео заходит под волну персиковой секции */
-  margin-bottom: calc(-30 / 1440 * 100vw);
 }
 
-.project--antivirus { padding-block: 86px 84px; }
+.project--antivirus { padding-block: 142px 84px; }
 .project--antivirus .project__desc { max-width: 758px; }
 .antivirus-media {
   display: flex;
