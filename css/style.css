@@ -391,7 +391,7 @@ article.case { padding-top: 44px; }
 .case-meta__label { font-weight: 600; color: #000; }
 .case-meta__value { color: var(--ink-2); }
 .case-toc { display: flex; flex-direction: column; gap: 24px; margin: 0; padding: 0; list-style: none; font-weight: 600; color: #667085; }
-.case-toc a, .case-toc__title { text-decoration: underline; text-underline-position: from-font; }
+.case-toc a { text-decoration: underline; text-underline-position: from-font; }
 .case-toc a:hover { color: var(--ink); }
 
 .case-section { margin-top: 64px; scroll-margin-top: 24px; }
@@ -753,4 +753,29 @@ img[data-zoom]:focus-visible { outline: 2px solid var(--ink); outline-offset: 4p
 @media (max-width: 900px) {
   .case-meta--center { align-items: flex-start; }
   .case-section--flush { margin-top: 48px; }
+}
+
+/* ---------- Курсор-кольцо (js/cursor.js) ---------- */
+.cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 200;
+  width: 26px;
+  height: 26px;
+  border: 2px solid var(--ink-2);
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0;
+  transition: width .2s ease, height .2s ease, opacity .3s ease, background-color .2s ease, border-color .2s ease;
+}
+.cursor.is-visible { opacity: 1; }
+/* над ссылками и кнопками кольцо растёт и заливается жёлтым, как кнопки */
+.cursor.is-active {
+  width: 48px;
+  height: 48px;
+  background-color: rgba(246, 255, 127, .55);
+}
+@media (hover: none), (pointer: coarse), (prefers-reduced-motion: reduce) {
+  .cursor { display: none; }
 }
