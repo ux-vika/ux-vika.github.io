@@ -72,7 +72,7 @@ def shift(d, dx, dy):
     return " ".join(res)
 
 
-def band(name, y0, y1, bg, fills, texts, min_h=None):
+def band(name, y0, y1, bg, fills, texts, min_h=None, center=False):
     """fills: [(color, d, dx, dy)], texts: [(d, dx, dy, chars, color)]"""
     h = y1 - y0
     parts = [f'<rect x="0" y="{y0}" width="1440" height="{h}" fill="{COLORS[bg]}"/>'] if bg != "white" else []
@@ -83,8 +83,9 @@ def band(name, y0, y1, bg, fills, texts, min_h=None):
         pid = f"wave-{name}-{i}"
         defs.append(f'<path id="{pid}" d="{shift(d, dx, dy)}"/>')
         parts.append(
-            f'<text class="band__text" fill="{color}"><textPath href="#{pid}" startOffset="0.1%">'
-            f"{escape(chars)}</textPath></text>")
+            f'<text class="band__text" fill="{color}"><textPath href="#{pid}" '
+            + ('startOffset="50%" text-anchor="middle">' if center else 'startOffset="0.1%">')
+            + f"{escape(chars)}</textPath></text>")
     label = " ".join(t[3] for t in texts).replace("\ufe0f", "").replace("✦", ",").replace("♥", ",")
     label = re.sub(r"\s*,\s*", ", ", re.sub(r"\s+", " ", label)).strip(" ,")
     aria = f' role="img" aria-label="{escape(label)}"' if texts else ' aria-hidden="true"'
@@ -167,9 +168,9 @@ BANDS = {
        for side in ("top", "bottom")},
     "home-pink-bottom": lambda: band("home-pink-bottom", 2000 + HOME_H - HOME_M, 2000 + HOME_H, "white",
                                      [("white", below_bottom(HOME_H, HOME_M / 2, HOME_M), -546, 2000)], [], min_h=24),
-    "home-exp": lambda: band("home-exp", 6040, 6172, "white",
-                             [("lavender", HOME_WAVE, -546, 5043)],
-                             [(P_80_INV, -543, 6085, T_EXP, INK)], min_h=84),
+    # лента после лавандового блока: отдельно по белому, текст по центру экрана
+    "home-exp": lambda: band("home-exp", 6100, 6252, "white", [],
+                             [(P_80_INV, -330, 6170, T_EXP, INK)], min_h=90, center=True),
     "home-contact": lambda: band("home-contact", 7432, 7520, "white", [],
                                  [(P_60, -169, 7454, T_CONTACT, INK_2)], min_h=56),
 }
