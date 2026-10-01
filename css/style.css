@@ -131,15 +131,20 @@ a:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
 }
 
 /* ---------- Главная: проекты ---------- */
-/* Заголовок кейса на белом, цветная волна (.stage) — только под макетами.
-   Волна наезжает на низ заголовка и на верх макета: сдвиги в долях
-   ширины, потому что высота волны масштабируется вместе с шириной. */
+/* Заголовок кейса на белом, под ним цветной блок (.stage) с волной сверху
+   и снизу. Отступы у всех кейсов одинаковые. */
+:root {
+  --case-top: 96px;    /* белое поле над заголовком */
+  --case-intro: 40px;  /* от кнопки до волны */
+  --case-pad: 40px;    /* от волны до макета и от макета до волны */
+}
 .project {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-block: var(--case-top) var(--case-intro);
 }
-.stage__fill { position: relative; }
+.stage__fill { position: relative; padding-block: var(--case-pad); }
 .stage__fill--blue { background: var(--bg-blue); }
 .stage__fill--pink { background: var(--bg-pink); }
 .stage__fill--peach { background: var(--bg-peach); }
@@ -163,11 +168,8 @@ a:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
   color: var(--ink-soft);
 }
 
-.project--calendar { padding-top: 87px; }
 .project--calendar .project__title,
 .project--calendar .project__desc { color: var(--ink); }
-.stage--calendar .band { margin-top: calc(-20 / 1440 * 100%); }
-.stage--calendar .stage__fill { padding-block: 33px 151px; }
 .stage--calendar .project__media {
   width: 100%;
   max-width: 1221px;
@@ -175,20 +177,20 @@ a:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
   object-fit: cover;
 }
 
-.project--lu { padding-block: 176px 37px; }
 .project--lu .project__intro { max-width: 1178px; }
 .project--lu .project__desc { max-width: 828px; }
-.stage--lu .stage__fill { padding-bottom: 48px; }
+/* видео с руками уходит под нижнюю волну, без пустого поля под ним */
+.stage--lu .stage__fill { padding-bottom: 0; }
+.stage--lu .band:last-child {
+  z-index: 3;
+  margin-top: calc(-1 * max(50 / 1440 * 100vw, 24px));
+}
 .stage--lu .project__media {
-  margin-top: calc(-20 / 1440 * 100vw);
   width: 100%;
   aspect-ratio: 1312 / 738;
   object-fit: cover;
 }
 
-.project--antivirus { padding-top: 94px; }
-.stage--antivirus .band:first-child { margin-top: calc(-14 / 1440 * 100%); }
-.stage--antivirus .stage__fill { padding-block: 28px 39px; }
 .project--antivirus .project__desc { max-width: 758px; }
 .antivirus-media {
   display: flex;
@@ -212,9 +214,8 @@ a:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
   border-radius: var(--radius);
 }
 
-.project--repeat { padding-block: 167px 16px; }
-.stage--repeat .stage__fill { padding-bottom: 83px; }
-.stage--repeat .repeat-screens { margin-top: calc(-10 / 1440 * 100vw); }
+/* нижняя волна лавандового блока — лента «B2B ✦ Enterprise…» */
+.stage--repeat .stage__fill { padding-bottom: 16px; }
 .repeat-screens {
   display: flex;
   justify-content: space-between;
@@ -314,13 +315,7 @@ a:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
   .project__intro { gap: 24px; }
   .project__title, .contacts__title { font-size: 32px; line-height: 38px; }
   .project__desc br { display: none; }
-  .project--calendar { padding-top: 56px; }
-  .project--lu, .project--antivirus, .project--repeat { padding-block: 72px 24px; }
-  .stage--calendar .band { margin-top: 0; }
-  .stage--antivirus .band:first-child { margin-top: 0; }
-  .stage .stage__fill { padding-block: 24px 48px; }
-  .stage--antivirus .stage__fill { padding-bottom: 24px; }
-  .stage--lu .project__media { margin-top: 0; }
+  :root { --case-top: 64px; --case-intro: 24px; --case-pad: 24px; }
   .stage--repeat .repeat-screens { margin-top: -16px; }
 
   .antivirus-media { flex-direction: column-reverse; align-items: center; }

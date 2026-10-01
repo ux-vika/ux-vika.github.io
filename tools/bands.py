@@ -112,8 +112,20 @@ T_AV_CONTEXT = "Kaspersky Security Engine  ✦  информационная б�
 T_AV_SOLUTION = "проверка файлов  ✦  блокировка  ✦  карантин  ✦  уведомления  ✦  проверка файлов  ✦  блокировка  ✦  карантин  ✦  уведомления  ✦  проверка файлов  ✦  блокировка  ✦  карантин  ✦  уведомления  ✦  проверка файлов  ✦  блокировка  ✦  карантин  ✦  уведомления  ✦  "
 T_AV_NEXT = "✦  Календарь  ✦  Сквадус  ✦  МойОфис  ✦  Календарь  ✦  Сквадус  ✦  МойОфис  ✦  Календарь  ✦  Сквадус  ✦  МойОфис  ✦  Календарь  ✦  Сквадус  ✦  МойОфис  ✦  Календарь  ✦  Сквадус  ✦  МойОфис  ✦  Календарь  ✦  Сквадус  ✦  МойОфис  ✦  Календарь  ✦  Сквадус  ✦  МойОфис  ✦  "
 AV_PEACH = fill_peach_full(1936, a=49.64, m=99.28)
-HOME_PEACH = fill_peach_full(1042, a=25, m=50)
-HOME_LAVENDER = fill_peach_full(1081, a=28.75, m=57.5)
+HOME_H, HOME_M = 1081, 50
+HOME_WAVE = fill_peach_full(HOME_H, a=HOME_M / 2, m=HOME_M)
+
+
+def below_bottom(h, a, m):
+    """Только то, что под нижней волной фигуры fill_peach_full: всё выше остаётся прозрачным."""
+    b = h - m
+    c = h - a
+    return (f"M 2100 {h} C 1890 {h} 1890 {b} 1680 {b} C 1470 {b} 1470 {h} 1260 {h} C 1050 {h} 1050 {b} 840 {b} "
+            f"C 630 {b} 630 {h} 420 {h} C 210 {h} 210 {c} 0 {c} L 0 {h + 10} L 2100 {h + 10} Z")
+
+
+def white_rect(y0, y1):
+    return f"M 0 {y0} L 1440 {y0} L 1440 {y1} L 0 {y1} Z"
 
 BANDS = {
     # Кейс Lu (фрейм 190:27675)
@@ -142,20 +154,21 @@ BANDS = {
     # Главная
     "home-skills": lambda: band("home-skills", 572, 716, "white", [],
                                 [(P_80, -120, 595, T_SKILLS, INK)], min_h=90),
-    # Цветные волны лежат только под макетами кейсов, заголовки — на белом.
-    # Голубая и розовая снизу обрезаны ровно, персиковая и лавандовая — волной.
-    "home-blue-top": lambda: band("home-blue-top", 1021, 1072, "white",
-                                  [("blue", fill_blue(950, a=25.5, m=51), -120, 1021)], [], min_h=26),
-    "home-pink-top": lambda: band("home-pink-top", 2449, 2496, "white",
-                                  [("pink", fill_pink(813, a=23.25, m=46.5), -120, 2449)], [], min_h=24),
-    "home-peach-top": lambda: band("home-peach-top", 3607, 3657, "white",
-                                   [("peach", HOME_PEACH, -120, 3607)], [], min_h=25),
-    "home-peach-bottom": lambda: band("home-peach-bottom", 4599, 4649, "white",
-                                      [("peach", HOME_PEACH, -120, 3607)], [], min_h=25),
-    "home-lavender-top": lambda: band("home-lavender-top", 5043, 5101, "white",
-                                      [("lavender", HOME_LAVENDER, -546, 5043)], [], min_h=29),
+    # Цветные блоки кейсов: волна сверху и снизу, у всех одна форма и высота.
+    # Соседние блоки сдвинуты по фазе, чтобы волны не повторялись.
+    # Нижняя полоса рисует фигуру на белой подложке. У Lu иначе: полоса
+    # лежит поверх низа видео и рисует только белое под волной.
+    **{f"home-{c}-{side}": (lambda c=c, side=side, x=x, y=y:
+           band(f"home-{c}-{side}", y if side == "top" else y + HOME_H - HOME_M,
+                y + HOME_M if side == "top" else y + HOME_H, "white",
+                ([] if side == "top" else [("white", white_rect(y + HOME_H - HOME_M, y + HOME_H), 0, 0)])
+                + [(c, HOME_WAVE, x, y)], [], min_h=24))
+       for c, x, y in [("blue", -120, 1000), ("pink", -546, 2000), ("peach", -120, 3000), ("lavender", -546, 5043)]
+       for side in ("top", "bottom")},
+    "home-pink-bottom": lambda: band("home-pink-bottom", 2000 + HOME_H - HOME_M, 2000 + HOME_H, "white",
+                                     [("white", below_bottom(HOME_H, HOME_M / 2, HOME_M), -546, 2000)], [], min_h=24),
     "home-exp": lambda: band("home-exp", 6040, 6172, "white",
-                             [("lavender", HOME_LAVENDER, -546, 5043)],
+                             [("lavender", HOME_WAVE, -546, 5043)],
                              [(P_80_INV, -543, 6085, T_EXP, INK)], min_h=84),
     "home-contact": lambda: band("home-contact", 7432, 7520, "white", [],
                                  [(P_60, -169, 7454, T_CONTACT, INK_2)], min_h=56),
