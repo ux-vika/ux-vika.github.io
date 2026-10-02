@@ -262,14 +262,15 @@ a:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
 
 .repeat-screens {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  gap: calc(96 / 1318 * 100%);
   align-items: flex-start;
   width: 100%;
   max-width: 1318px;
 }
-.repeat-screens__phone { width: calc(390 / 1318 * 100%); border-radius: 24px; }
-/* PNG экранов 2 и 3 экспортированы вместе с тенью: 16px запаса с каждой стороны */
-.repeat-screens__sheet { width: calc(392 / 1318 * 100%); margin: -16px -16px 0; }
+/* Экраны экспортированы вместе с тенью: ~12,5% ширины картинки по бокам и ~4,4% сверху.
+   Видимый телефон — 390px из 1318, вся картинка с тенью — 520px */
+.repeat-screens__phone { width: calc(520 / 1318 * 100%); margin: calc(-23 / 1318 * 100%) calc(-65 / 1318 * 100%) 0; }
 
 /* ---------- Обо мне ---------- */
 .about { padding-block: 81px 76px; }
@@ -325,7 +326,8 @@ a:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
 }
 .contacts__list {
   display: grid;
-  grid-template-columns: 1fr auto 1fr;
+  grid-template-columns: repeat(5, auto);
+  justify-content: space-between;
   margin: 40px 0 0;
   padding: 0;
   list-style: none;
@@ -333,8 +335,6 @@ a:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
   color: var(--ink-2);
 }
 .contacts__item { display: flex; flex-direction: column; gap: 8px; }
-.contacts__item:nth-child(2) { align-items: center; }
-.contacts__item:nth-child(3) { align-items: flex-end; }
 .contacts__item > span { font-size: 0.833em; font-weight: 400; color: #555; }
 
 /* ---------- Адаптив ---------- */
@@ -370,7 +370,7 @@ a:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
   .repeat-screens {
     overflow-x: auto;
     scroll-snap-type: x mandatory;
-    gap: 24px;
+    gap: 104px; /* 24px между телефонами + 2 × 40px тени */
     padding: 16px var(--page-pad);
     margin: -16px calc(var(--page-pad) * -1) 0;
     width: calc(100% + var(--page-pad) * 2);
@@ -378,8 +378,7 @@ a:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
     justify-content: flex-start;
   }
   .repeat-screens > * { scroll-snap-align: center; flex: none; }
-  .repeat-screens__phone { width: 240px; }
-  .repeat-screens__sheet { width: 241px; margin: -10px -10px 0; }
+  .repeat-screens__phone { width: 320px; margin: -14px -40px 0; }
 
   .about { padding-block: 56px; }
   .about__intro { flex-direction: column-reverse; gap: 24px; }
@@ -390,9 +389,7 @@ a:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
 
   .contacts { padding-block: 56px 64px; }
   .contacts__list { grid-template-columns: 1fr; gap: 24px; }
-  .contacts__item,
-  .contacts__item:nth-child(2),
-  .contacts__item:nth-child(3) { align-items: flex-start; gap: 0; }
+  .contacts__item { align-items: flex-start; gap: 0; }
 }
 
 @media (max-width: 560px) {
