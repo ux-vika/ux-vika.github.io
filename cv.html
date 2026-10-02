@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Резюме — Виктория Шаханина</title>
+  <meta name="description" content="Виктория Шаханина, Senior Product Designer: резюме">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400&family=Onest:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #181818;
+      --ink-soft: #555;
+      --line: #e6e6e6;
+      --accent: #d6d3ff;
+      --font-main: "Onest", system-ui, sans-serif;
+      --font-display: "IBM Plex Sans", system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: #fff;
+      color: var(--ink);
+      font: 400 18px/28px var(--font-main);
+    }
+    a { color: inherit; text-decoration: underline; text-decoration-color: var(--accent); text-decoration-thickness: 2px; text-underline-offset: 3px; }
+    a:hover { text-decoration-color: currentColor; }
+    .cv { max-width: 880px; margin: 0 auto; padding: 64px 24px 80px; }
+
+    .cv__back { font-size: 16px; color: var(--ink-soft); }
+    .cv__head { margin-top: 32px; }
+    .cv__name { margin: 0; font: 400 56px/1.1 var(--font-display); }
+    .cv__role { margin: 12px 0 0; font-size: 24px; line-height: 32px; }
+    .cv__contacts { display: flex; flex-wrap: wrap; gap: 8px 24px; margin: 24px 0 0; padding: 0; list-style: none; color: var(--ink-soft); }
+
+    .cv__section { margin-top: 56px; padding-top: 24px; border-top: 1px solid var(--line); }
+    .cv__h2 { margin: 0 0 24px; font: 500 14px/20px var(--font-main); letter-spacing: .08em; text-transform: uppercase; color: var(--ink-soft); }
+    .cv__section p { margin: 0 0 16px; }
+
+    .job + .job { margin-top: 40px; }
+    .job__top { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; }
+    .job__company { margin: 0; font: 500 24px/32px var(--font-main); }
+    .job__dates { flex: none; font-size: 16px; color: var(--ink-soft); }
+    .job__meta { margin: 4px 0 0; font-size: 16px; color: var(--ink-soft); }
+    .job__title { margin: 16px 0 0; font-weight: 500; }
+    .job ul + .job__title { margin-top: 28px; }
+    .job__period { margin: 4px 0 0; font-size: 16px; color: var(--ink-soft); }
+    .job ul { margin: 12px 0 0; padding-left: 20px; }
+    .job li + li { margin-top: 8px; }
+    .job li::marker { color: #8c86e6; }
+    .job__lead { margin: 12px 0 0 !important; }
+
+    @media (max-width: 600px) {
+      body { font-size: 16px; line-height: 24px; }
+      .cv { padding: 32px 16px 56px; }
+      .cv__name { font-size: 36px; }
+      .cv__role { font-size: 20px; line-height: 28px; }
+      .cv__section { margin-top: 40px; }
+      .job__top { flex-direction: column; gap: 4px; }
+      .job__company { font-size: 20px; line-height: 28px; }
+    }
+
+    @media print {
+      body { font-size: 11pt; line-height: 1.45; }
+      .cv { max-width: none; padding: 0; }
+      .cv__back { display: none; }
+      .cv__head { margin-top: 0; }
+      .cv__name { font-size: 28pt; }
+      .cv__role { font-size: 14pt; }
+      .cv__section { margin-top: 20pt; padding-top: 10pt; }
+      .job + .job { margin-top: 16pt; }
+      .job { break-inside: auto; }
+      .job li { break-inside: avoid; }
+      a { text-decoration: none; }
+      @page { margin: 16mm 18mm; }
+    }
+  </style>
+</head>
+<body>
+<main class="cv">
+  <a class="cv__back" href="./">← На главную</a>
+
+  <header class="cv__head">
+    <h1 class="cv__name">Шаханина Виктория</h1>
+    <p class="cv__role">Senior Product Designer</p>
+    <ul class="cv__contacts">
+      <li><a href="https://telegram.me/ux_vika" target="_blank" rel="noopener">Telegram @ux_vika</a></li>
+      <li><a href="mailto:9697161878@mail.ru">9697161878@mail.ru</a></li>
+      <li><a href="tel:+79516635482">+7&nbsp;951&nbsp;663-54-82</a></li>
+      <li>Санкт-Петербург</li>
+    </ul>
+  </header>
+
+  <section class="cv__section">
+    <h2 class="cv__h2">Обо мне</h2>
+    <p>Senior Product Designer, 6+ лет в&nbsp;продуктовом дизайне B2B и&nbsp;Enterprise. Последние 4,5 года — МойОфис, где выросла от&nbsp;продуктового дизайнера до&nbsp;руководителя группы дизайна. Работала с&nbsp;мобильные, веб- и&nbsp;десктопные продуктами для&nbsp;корпоративных и&nbsp;государственных заказчиков. Почта, документы, календарь и&nbsp;задачи, корпоративный мессенджер и&nbsp;ВКС.</p>
+    <p>Сильная сторона — исследования. Сама провожу интервью и&nbsp;тесты, вместе с&nbsp;PM внедрила Discovery. За&nbsp;полгода совместно с&nbsp;командой разработали приложение «Фокус», благодаря которому компания закрыла сделку с&nbsp;крупным госзаказчиком. Полностью спроектировала приложение Wowworks для&nbsp;iOS, и&nbsp;это сняло блокер для&nbsp;новых исполнителей.</p>
+    <p>С&nbsp;апреля 2026 проектирую и&nbsp;собираю AI-инструменты на&nbsp;Claude Code. Разработала плагин дизайн-агентов для&nbsp;Figma, Telegram-бот для&nbsp;разбора каналов, мобильный тренажёр английского и&nbsp;другое. Посмотреть можно на&nbsp;<a href="https://github.com/ux-vika" target="_blank" rel="noopener">https://github.com/ux-vika</a></p>
+    <p>Портфолио: <a href="https://ux-vika.github.io/">https://ux-vika.github.io/</a></p>
+    <p>Выступала на&nbsp;World Usability Day (ИТМО) и&nbsp;«Дизайн Выходных», менторила студентов DesignSpot School (EPAM), пишу статьи и&nbsp;веду блог.</p>
+  </section>
+
+  <section class="cv__section">
+    <h2 class="cv__h2">Опыт работы</h2>
+
+    <article class="job">
+      <div class="job__top">
+        <h3 class="job__company">Самостоятельные проекты</h3>
+        <span class="job__dates">Апрель 2026 — настоящее время</span>
+      </div>
+      <p class="job__meta"><a href="https://github.com/ux-vika" target="_blank" rel="noopener">github.com/ux-vika</a></p>
+      <p class="job__title">Product Designer, AI-инструменты и&nbsp;прототипы</p>
+      <p class="job__lead">Проектирую и&nbsp;собираю продукты и&nbsp;инструменты на&nbsp;Claude Code, Claude API и&nbsp;OpenAI API.</p>
+      <ul>
+        <li>Сделала плагин для&nbsp;Claude Code с&nbsp;четырьмя дизайн-агентами для&nbsp;Figma. Они помогают с&nbsp;раскладкой экрана, проверяют доступность, ревьюят макеты и&nbsp;ищут референсы. Плагин лежит на&nbsp;GitHub.</li>
+        <li>Спроектировала и&nbsp;запустила Telegram-бота, который разбирает каналы. Бот в&nbsp;открытом доступе.</li>
+        <li>Спроектировала мобильный тренажёр английского A0–A2 для&nbsp;тех, кто говорит по-русски и&nbsp;знает немецкий.</li>
+        <li>Для&nbsp;себя собрала тренажёр к&nbsp;собеседованиям на&nbsp;продуктового дизайнера, в&nbsp;нём теория и&nbsp;474 вопроса разного уровня.</li>
+        <li>Сделала редизайн open-source интерфейса для&nbsp;Claude Code (CloudCLI).</li>
+        <li>Делаю демо-анимации интерфейсов. Генерирую видео в&nbsp;Kling AI.</li>
+      </ul>
+    </article>
+
+    <article class="job">
+      <div class="job__top">
+        <h3 class="job__company">МойОфис</h3>
+        <span class="job__dates">Декабрь 2021 — апрель 2026</span>
+      </div>
+      <p class="job__meta">Санкт-Петербург, <a href="https://myoffice.ru" target="_blank" rel="noopener">myoffice.ru</a></p>
+
+      <p class="job__title">Senior Product &amp; UX Designer</p>
+      <p class="job__period">Senior → Lead · июль 2024 — апрель 2026</p>
+      <ul>
+        <li>Руководила группой дизайна мессенджера «Сквадус» команда из&nbsp;5 человек.</li>
+        <li>Руководила и&nbsp;участвовала в&nbsp;редизайне всего приложения «Сквадус». Концепцию согласовал генеральный директор. Редизайн поделили на&nbsp;фичи и&nbsp;взяли в&nbsp;разработку.</li>
+        <li>Спроектировала раздел календаря, который помог клиентам уйти с&nbsp;Microsoft Teams и&nbsp;вошёл расширенную версию продукта «Сквадус Про».</li>
+        <li>Спроектировала антивирусную проверку файлов с&nbsp;Kaspersky Security Engine. Задача принесла компании крупного заказчика с&nbsp;высокими требованиями к&nbsp;ИБ.</li>
+      </ul>
+
+      <p class="job__title">Product Designer</p>
+      <p class="job__period">Декабрь 2021 — июнь 2024</p>
+      <ul>
+        <li>С&nbsp;нуля за&nbsp;6 месяцев спроектировала мобильное приложение «Фокус» (календарь и&nbsp;задачи), что позволило компании закрыть сделку с&nbsp;крупным госзаказчиком.</li>
+        <li>Провела исследование по&nbsp;всему приложению мобильной почты. Выявила 10+ критичных проблем. Результаты исследования легли в&nbsp;основу нового приложения Mailion.</li>
+        <li>Вместе с&nbsp;PM внедрила процесс Discovery в&nbsp;команде мобильных редакторов.</li>
+        <li>Провела исследование перед запуском монетизации «Документов», чтобы выявить функции, модель подписки и&nbsp;понять, кто наша аудитория. На&nbsp;основе этих данных в&nbsp;2025 году успешно стартовала монетизация приложения.</li>
+      </ul>
+    </article>
+  </section>
+</main>
+</body>
+</html>
