@@ -29,7 +29,8 @@
     .cv { max-width: 880px; margin: 0 auto; padding: 64px 24px 80px; }
 
     .cv__back { font-size: 16px; color: var(--ink-soft); }
-    .cv__head { margin-top: 32px; }
+    .cv__head { display: flex; justify-content: space-between; align-items: flex-start; gap: 32px; margin-top: 32px; }
+    .cv__photo { flex: none; width: 160px; height: auto; border-radius: 16px; }
     .cv__name { margin: 0; font: 400 56px/1.1 var(--font-display); }
     .cv__role { margin: 12px 0 0; font-size: 24px; line-height: 32px; }
     .cv__contacts { display: flex; flex-wrap: wrap; gap: 8px 24px; margin: 24px 0 0; padding: 0; list-style: none; color: var(--ink-soft); }
@@ -55,6 +56,8 @@
       body { font-size: 16px; line-height: 24px; }
       .cv { padding: 32px 16px 56px; }
       .cv__name { font-size: 36px; }
+      .cv__head { flex-direction: column-reverse; gap: 24px; }
+      .cv__photo { width: 120px; }
       .cv__role { font-size: 20px; line-height: 28px; }
       .cv__section { margin-top: 40px; }
       .job__top { flex-direction: column; gap: 4px; }
@@ -67,6 +70,7 @@
       .cv__back { display: none; }
       .cv__head { margin-top: 0; }
       .cv__name { font-size: 28pt; }
+      .cv__photo { width: 30mm; }
       .cv__role { font-size: 14pt; }
       .cv__section { margin-top: 20pt; padding-top: 10pt; }
       .job + .job { margin-top: 16pt; }
@@ -82,6 +86,7 @@
   <a class="cv__back" href="./">← На главную</a>
 
   <header class="cv__head">
+    <div>
     <h1 class="cv__name">Шаханина Виктория</h1>
     <p class="cv__role">Senior Product Designer</p>
     <ul class="cv__contacts">
@@ -90,6 +95,8 @@
       <li><a href="tel:+79516635482">+7&nbsp;951&nbsp;663-54-82</a></li>
       <li>Санкт-Петербург</li>
     </ul>
+    </div>
+    <img class="cv__photo" src="assets/img/home/hero-photo-2.png" width="213" height="276" alt="Виктория Шаханина">
   </header>
 
   <section class="cv__section">
