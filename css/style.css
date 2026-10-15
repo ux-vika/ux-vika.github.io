@@ -879,3 +879,94 @@ img[data-zoom]:focus-visible { outline: 2px solid var(--ink); outline-offset: 4p
   .case-meta nav { padding: 24px; }
   .case-meta nav { border-left: 0; border-top: 1px solid #eaecf0; }
 }
+
+/* ---------- Главная: живой фон ----------
+   Паттерн лежит в слое больше блока и плывёт ровно на один шаг рисунка,
+   поэтому петля незаметна. Двигается только transform — без перерисовки. */
+.hero { position: relative; }
+.hero > * { position: relative; z-index: 1; }
+.hero::before,
+.stage__fill::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+  background-image: var(--pat);
+  background-size: var(--tile) var(--tile);
+  animation: pat-drift var(--drift, 24s) linear infinite;
+}
+@keyframes pat-drift { to { transform: translate3d(var(--tile), var(--tile), 0); } }
+
+/* первый экран: точки на всю ширину, к низу растворяются */
+.hero::before {
+  --tile: 28px;
+  --pat: radial-gradient(circle, rgba(24, 24, 24, .13) 1.2px, transparent 1.6px);
+  left: 50%;
+  top: calc(-1 * var(--tile));
+  width: calc(100vw + var(--tile) * 2);
+  height: calc(100% + var(--tile));
+  margin-left: calc(-50vw - var(--tile));
+  -webkit-mask-image: linear-gradient(to bottom, #000 30%, transparent 92%);
+  mask-image: linear-gradient(to bottom, #000 30%, transparent 92%);
+}
+/* жёлтое свечение (акцент сайта) плавает за заголовком */
+.hero::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+  left: 6%;
+  top: 40px;
+  width: 520px;
+  height: 340px;
+  background: radial-gradient(closest-side, rgba(246, 255, 127, .75), transparent);
+  filter: blur(24px);
+  animation: glow-float 16s ease-in-out infinite alternate;
+}
+@keyframes glow-float {
+  from { transform: translate3d(0, 0, 0) scale(1); }
+  to { transform: translate3d(240px, 50px, 0) scale(1.25); }
+}
+
+/* цветные блоки: у каждого свой рисунок, всё тем же тоном темнее фона */
+.stage__fill { overflow: hidden; }
+.stage__fill::before {
+  --tile: 40px;
+  left: calc(-1 * var(--tile));
+  top: calc(-1 * var(--tile));
+  width: calc(100% + var(--tile) * 2);
+  height: calc(100% + var(--tile) * 2);
+}
+.stage__fill--blue::before {   /* сетка календаря */
+  --pat: linear-gradient(rgba(60, 140, 190, .16) 1px, transparent 1px),
+         linear-gradient(90deg, rgba(60, 140, 190, .16) 1px, transparent 1px);
+  --drift: 30s;
+}
+.stage__fill--pink::before {   /* крупные точки */
+  --tile: 36px;
+  --pat: radial-gradient(circle, rgba(232, 84, 110, .26) 2.4px, transparent 3px);
+  --drift: 22s;
+}
+.stage__fill--peach::before {  /* диагональ */
+  --tile: 44px;
+  --pat: linear-gradient(135deg, rgba(240, 150, 60, .2) 25%, transparent 25% 50%, rgba(240, 150, 60, .2) 50% 75%, transparent 75%);
+  --drift: 26s;
+}
+.stage__fill--lavender::before { /* плюсы */
+  --tile: 48px;
+  --pat: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48'%3E%3Cpath d='M24 17v14M17 24h14' stroke='%236e64e6' stroke-opacity='.32' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+  --drift: 28s;
+}
+/* у видео календаря фон «запечён» в кадр: рисунок оставляем только по бокам,
+   чтобы не было видно границы видео */
+.stage__fill--blue::before {
+  -webkit-mask-image: linear-gradient(90deg, #000, transparent 11%, transparent 89%, #000);
+  mask-image: linear-gradient(90deg, #000, transparent 11%, transparent 89%, #000);
+}
+
+@media (max-width: 900px) {
+  .hero::after { width: 300px; height: 220px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero::before, .hero::after, .stage__fill::before { animation: none; }
+}
