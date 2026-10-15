@@ -902,7 +902,7 @@ img[data-zoom]:focus-visible { outline: 2px solid var(--ink); outline-offset: 4p
 .btn__arrow { display: inline-block; margin-left: .3em; transition: transform var(--dur) var(--ease-out); }
 a.btn:hover .btn__arrow { transform: translateX(6px); }
 
-/* Заголовок: три точки, потом текст «печатается» по буквам, рука машет. */
+/* Заголовок: текст «печатается» по буквам, рука машет. */
 html.intro .hero__title { position: relative; }
 html.intro:not(.intro-ready) .hero__title { opacity: 0; animation: intro-failsafe .01s 2.5s forwards; }
 @keyframes intro-failsafe { to { opacity: 1; } }
@@ -914,28 +914,6 @@ html.intro-ready .hero__title .ch {
   animation: ch-type 0s linear var(--d) forwards;
 }
 @keyframes ch-type { to { opacity: 1; } }
-.intro-dots {
-  position: absolute;
-  left: 2px;
-  top: .1em;
-  height: 1.1em;
-  display: flex;
-  align-items: center;
-  gap: 9px;
-  animation: dots-out .3s var(--ease-in) 1.2s forwards;
-  pointer-events: none;
-}
-.intro-dots i {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: var(--ink);
-  animation: dot-bounce .8s ease-in-out infinite;
-}
-.intro-dots i:nth-child(2) { animation-delay: .13s; }
-.intro-dots i:nth-child(3) { animation-delay: .26s; }
-@keyframes dot-bounce { 0%, 55%, 100% { transform: none; } 28% { transform: translateY(-7px); } }
-@keyframes dots-out { to { opacity: 0; transform: scale(.4); } }
 .hand { display: inline-block; transform-origin: 70% 80%; }
 html.intro-ready .hand { animation: hand-wave 1.6s ease-in-out var(--wave, 2s) 1; }
 @keyframes hand-wave {
@@ -993,5 +971,5 @@ html.intro-ready .hand { animation: hand-wave 1.6s ease-in-out var(--wave, 2s) 1
 @media (prefers-reduced-motion: reduce) {
   .project__intro .btn::after { animation: none; display: none; }
   .wave-shape { animation: none; }
-  .intro-dots, .hand { display: none; animation: none; }
+  .hand { display: none; animation: none; }
 }

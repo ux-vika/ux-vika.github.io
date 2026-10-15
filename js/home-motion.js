@@ -1,5 +1,5 @@
 /* Главная: заставка заголовка.
-   Сначала три точки, потом текст «печатается» по буквам: «Привет!», рука машет,
+   Текст «печатается» по буквам: «Привет!», рука машет,
    затем вторая строка. Класс intro ставится в <head> и только когда движение
    не отключено. */
 (function () {
@@ -14,10 +14,10 @@
     return tmp.textContent.trim();
   });
 
-  var START = 1.3;      // когда после точек начинается печать, с
+  var START = 0.3;      // когда начинается печать, с
   var STEP1 = 0.07;     // шаг между буквами первой строки
-  var STEP2 = 0.045;    // и второй
-  var WAVE = 1.6;       // сколько машет рука
+  var STEP2 = 0.02;     // и второй
+  var WAVE = 1.0;       // сколько машет рука
 
   function build(text, t0, step, handDelay) {
     var t = t0;
@@ -50,11 +50,6 @@
   title.setAttribute('aria-label', plain);
   title.innerHTML = '<span aria-hidden="true">' + out.join('') + '</span>';
 
-  var dots = document.createElement('span');
-  dots.className = 'intro-dots';
-  dots.setAttribute('aria-hidden', 'true');
-  dots.innerHTML = '<i></i><i></i><i></i>';
-  title.appendChild(dots);
   root.classList.add('intro-ready');
 })();
 
