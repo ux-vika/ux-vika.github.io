@@ -1,30 +1,54 @@
 /* Главная: заставка заголовка.
-   Сначала три точки, потом «Привет!» выезжает по буквам, рука машет,
-   затем выезжает вторая строка. Класс intro ставится в <head> и только когда
-   движение не отключено. */
+   Сначала три точки, потом текст «печатается» по буквам: «Привет!», рука машет,
+   затем вторая строка. Класс intro ставится в <head> и только когда движение
+   не отключено. */
 (function () {
   var root = document.documentElement;
   var title = document.querySelector('.hero__title');
   if (!root.classList.contains('intro') || !title) return;
 
   var plain = title.textContent.replace(/\s+/g, ' ').trim();
-  var lines = title.innerHTML.split(/<br\s*\/?>/i);
-
-  // первая строка: буквы по одной, пробел остаётся пробелом, рука — последний «символ»
-  var first = lines[0].split('👋');
-  var n = 0;
-  var letters = Array.from(first[0]).map(function (c) {
-    return c === ' ' ? ' ' : '<span class="ch" style="--i:' + (n++) + '">' + c + '</span>';
-  }).join('');
-  var hand = lines[0].indexOf('👋') >= 0
-    ? '<span class="ch" style="--i:' + (n++) + '"><span class="hand">👋</span></span>' : '';
-
-  var html = ['<span class="line"><span class="line__in">' + letters + hand + '</span></span>'];
-  lines.slice(1).forEach(function (l) {
-    html.push('<span class="line"><span class="line__in">' + l + '</span></span>');
+  var lines = title.innerHTML.split(/<br\s*\/?>/i).map(function (html) {
+    var tmp = document.createElement('div');
+    tmp.innerHTML = html;
+    return tmp.textContent.trim();
   });
+
+  var START = 1.3;      // когда после точек начинается печать, с
+  var STEP1 = 0.07;     // шаг между буквами первой строки
+  var STEP2 = 0.045;    // и второй
+  var WAVE = 1.6;       // сколько машет рука
+
+  function build(text, t0, step, handDelay) {
+    var t = t0;
+    var html = text.split(' ').map(function (word) {
+      var chars = Array.from(word).map(function (c) {
+        var d = t.toFixed(3);
+        t += step;
+        if (c === '👋') {
+          return '<span class="ch" style="--d:' + d + 's"><span class="hand" style="--wave:' + (t0 + handDelay).toFixed(2) + 's">👋</span></span>';
+        }
+        return '<span class="ch" style="--d:' + d + 's">' + c + '</span>';
+      }).join('');
+      t += step;  // пауза на пробел
+      return '<span class="w">' + chars + '</span>';
+    }).join(' ');
+    return { html: '<span class="line">' + html + '</span>', end: t };
+  }
+
+  var first = build(lines[0], START, STEP1, 0);
+  // рука начинает махать, как только появилась
+  first.html = first.html.replace(/--wave:[\d.]+s/, '--wave:' + (first.end - STEP1 * 2).toFixed(2) + 's');
+  var out = [first.html];
+  var t2 = first.end + WAVE;
+  lines.slice(1).forEach(function (l) {
+    var r = build(l, t2, STEP2, 0);
+    out.push(r.html);
+    t2 = r.end;
+  });
+
   title.setAttribute('aria-label', plain);
-  title.innerHTML = '<span aria-hidden="true">' + html.join('') + '</span>';
+  title.innerHTML = '<span aria-hidden="true">' + out.join('') + '</span>';
 
   var dots = document.createElement('span');
   dots.className = 'intro-dots';
@@ -32,6 +56,46 @@
   dots.innerHTML = '<i></i><i></i><i></i>';
   title.appendChild(dots);
   root.classList.add('intro-ready');
+})();
+
+/* Главная: фотографии тянутся за курсором.
+   Смещение и наклон считаются от положения мыши над фото и догоняют курсор
+   с задержкой, поэтому движение мягкое. Только для мыши. */
+(function () {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (!window.matchMedia('(hover: hover)').matches) return;
+
+  document.querySelectorAll('.hero__photo, .about__photo, .gallery img').forEach(function (el) {
+    var tx = 0, ty = 0, tr = 0;   // цель
+    var x = 0, y = 0, r = 0;      // текущее
+    var raf = 0;
+
+    function tick() {
+      x += (tx - x) * 0.08;
+      y += (ty - y) * 0.08;
+      r += (tr - r) * 0.08;
+      el.style.setProperty('--mx', x.toFixed(2) + 'px');
+      el.style.setProperty('--my', y.toFixed(2) + 'px');
+      el.style.setProperty('--mr', r.toFixed(3) + 'deg');
+      if (Math.abs(tx - x) + Math.abs(ty - y) + Math.abs(tr - r) > 0.01) {
+        raf = requestAnimationFrame(tick);
+      } else {
+        raf = 0;
+      }
+    }
+    function go() { if (!raf) raf = requestAnimationFrame(tick); }
+
+    el.addEventListener('pointermove', function (e) {
+      var b = el.getBoundingClientRect();
+      var nx = (e.clientX - (b.left + b.width / 2)) / (b.width / 2);
+      var ny = (e.clientY - (b.top + b.height / 2)) / (b.height / 2);
+      tx = nx * 9;
+      ty = ny * 6;
+      tr = nx * 1;
+      go();
+    });
+    el.addEventListener('pointerleave', function () { tx = ty = tr = 0; go(); });
+  });
 })();
 
 /* Главная: плывущие ленты.

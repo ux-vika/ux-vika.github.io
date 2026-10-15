@@ -883,8 +883,8 @@ img[data-zoom]:focus-visible { outline: 2px solid var(--ink); outline-offset: 4p
 
 /* Кнопки на кейсах: матовые, как в макете. Каждые пару секунд от кнопки расходится
    кольцо, при наведении кнопка приподнимается, а стрелка подъезжает вперёд. */
-.project__intro a.btn { position: relative; }
-.project__intro a.btn::after {
+.project__intro .btn { position: relative; transition: transform var(--dur) var(--ease-out); }
+.project__intro .btn::after {
   content: "";
   position: absolute;
   inset: 0;
@@ -897,28 +897,23 @@ img[data-zoom]:focus-visible { outline: 2px solid var(--ink); outline-offset: 4p
   0%, 45% { box-shadow: 0 0 0 0 rgba(246, 255, 127, .9); }
   100% { box-shadow: 0 0 0 16px rgba(246, 255, 127, 0); }
 }
-.project__intro a.btn:hover { transform: translateY(-2px); }
+.project__intro .btn:hover { transform: translateY(-2px); }
 .project__intro a.btn:active { transform: scale(.97); }
 .btn__arrow { display: inline-block; margin-left: .3em; transition: transform var(--dur) var(--ease-out); }
 a.btn:hover .btn__arrow { transform: translateX(6px); }
 
-/* Заголовок: три точки, потом «Привет!» выезжает по буквам, рука машет,
-   затем выезжает вторая строка. */
+/* Заголовок: три точки, потом текст «печатается» по буквам, рука машет. */
 html.intro .hero__title { position: relative; }
 html.intro:not(.intro-ready) .hero__title { opacity: 0; animation: intro-failsafe .01s 2.5s forwards; }
 @keyframes intro-failsafe { to { opacity: 1; } }
-.hero__title .line { display: block; overflow: hidden; padding-block: .1em; margin-block: -.1em; }
-.hero__title .line__in { display: block; }
+.hero__title .line { display: block; }
+.hero__title .w { display: inline-block; white-space: nowrap; }
 .hero__title .ch { display: inline-block; }
 html.intro-ready .hero__title .ch {
-  transform: translateY(120%);
-  animation: line-in .7s var(--ease-out) calc(1.3s + var(--i) * 70ms) forwards;
+  opacity: 0;
+  animation: ch-type 0s linear var(--d) forwards;
 }
-html.intro-ready .hero__title .line:nth-child(2) .line__in {
-  transform: translateY(120%);
-  animation: line-in .9s var(--ease-out) 3.3s forwards;
-}
-@keyframes line-in { to { transform: none; } }
+@keyframes ch-type { to { opacity: 1; } }
 .intro-dots {
   position: absolute;
   left: 2px;
@@ -942,7 +937,7 @@ html.intro-ready .hero__title .line:nth-child(2) .line__in {
 @keyframes dot-bounce { 0%, 55%, 100% { transform: none; } 28% { transform: translateY(-7px); } }
 @keyframes dots-out { to { opacity: 0; transform: scale(.4); } }
 .hand { display: inline-block; transform-origin: 70% 80%; }
-html.intro-ready .hand { animation: hand-wave 1.6s ease-in-out 2.1s 1; }
+html.intro-ready .hand { animation: hand-wave 1.6s ease-in-out var(--wave, 2s) 1; }
 @keyframes hand-wave {
   0%, 100% { transform: none; }
   15% { transform: rotate(18deg); }
@@ -952,41 +947,33 @@ html.intro-ready .hand { animation: hand-wave 1.6s ease-in-out 2.1s 1; }
   75% { transform: rotate(10deg); }
 }
 
-/* Фотографии стоят на месте. При наведении чуть приближаются и плавно
-   покачиваются из стороны в сторону; при уходе курсора качание затихает само. */
-@property --sx { syntax: "<length>"; inherits: false; initial-value: 0px; }
-@property --sr { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
+/* Фотографии: следуют за курсором (см. home-motion.js), чуть приближаются.
+   Смещение и наклон задаёт скрипт через --mx / --my / --mr. */
 .hero__photo, .about__photo, .gallery img {
-  animation: photo-drift 3.4s ease-in-out infinite alternate;
-  transition: scale var(--dur-slow) var(--ease-out), --sx 600ms var(--ease-out), --sr 600ms var(--ease-out);
+  transform: translate(var(--mx, 0px), var(--my, 0px)) rotate(var(--mr, 0deg));
+  transition: scale 700ms var(--ease-out);
 }
-@keyframes photo-drift {
-  from { transform: translateX(calc(var(--sx) * -1)) rotate(calc(var(--sr) * -1)); }
-  to { transform: translateX(var(--sx)) rotate(var(--sr)); }
-}
-.hero__photo:hover, .about__photo:hover, .gallery img:hover {
-  scale: 1.06;
-  --sx: 8px;
-  --sr: .9deg;
-}
+.hero__photo:hover, .about__photo:hover, .gallery img:hover { scale: 1.05; }
 
 /* Волны кейсов: верхний и нижний край цветного блока плывут вбок.
-   Волна рисуется маской внутри полосы, поэтому за её рамки не выходит. */
+   Волна — одна длинная маска из четырёх периодов (без стыков), лежит внутри
+   своей полосы и за её рамки не выходит. */
 .wave-shape {
   --s: max(100vw / 1440, var(--band-min) / var(--band-h));
   --tw: calc(840 * var(--s));
+  --p0: calc(var(--xh) * var(--s) - 2 * var(--tw));
   position: absolute;
-  inset: 0;
+  inset: -1px 0;
   display: block;
   background: var(--c, #fff);
-  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='840' height='50' viewBox='0 0 840 50' preserveAspectRatio='none'%3E%3Cpath d='M0 0C210 0 210 50 420 50S630 0 840 0V51H0Z'/%3E%3C/svg%3E") calc(var(--xh) * var(--s)) 0 / var(--tw) 100% repeat-x;
-  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='840' height='50' viewBox='0 0 840 50' preserveAspectRatio='none'%3E%3Cpath d='M0 0C210 0 210 50 420 50S630 0 840 0V51H0Z'/%3E%3C/svg%3E") calc(var(--xh) * var(--s)) 0 / var(--tw) 100% repeat-x;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='3360' height='50' viewBox='0 0 3360 50' preserveAspectRatio='none'%3E%3Cpath d='M0 0C210 0 210 50 420 50C630 50 630 0 840 0C1050 0 1050 50 1260 50C1470 50 1470 0 1680 0C1890 0 1890 50 2100 50C2310 50 2310 0 2520 0C2730 0 2730 50 2940 50C3150 50 3150 0 3360 0V51H0Z'/%3E%3C/svg%3E") var(--p0) 0 / calc(4 * var(--tw)) 100% no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='3360' height='50' viewBox='0 0 3360 50' preserveAspectRatio='none'%3E%3Cpath d='M0 0C210 0 210 50 420 50C630 50 630 0 840 0C1050 0 1050 50 1260 50C1470 50 1470 0 1680 0C1890 0 1890 50 2100 50C2310 50 2310 0 2520 0C2730 0 2730 50 2940 50C3150 50 3150 0 3360 0V51H0Z'/%3E%3C/svg%3E") var(--p0) 0 / calc(4 * var(--tw)) 100% no-repeat;
   animation: wave-shape-run 40s linear infinite var(--dir, normal);
 }
 @keyframes wave-shape-run {
   to {
-    -webkit-mask-position: calc(var(--xh) * var(--s) + var(--tw)) 0;
-    mask-position: calc(var(--xh) * var(--s) + var(--tw)) 0;
+    -webkit-mask-position: calc(var(--p0) + var(--tw)) 0;
+    mask-position: calc(var(--p0) + var(--tw)) 0;
   }
 }
 /* фаза — где у исходной волны макета верхняя точка; цвет — заливка под волной */
@@ -998,10 +985,13 @@ html.intro-ready .hand { animation: hand-wave 1.6s ease-in-out 2.1s 1; }
 .band--home-peach-bottom .wave-shape { --xh: 720; }
 .band--home-lavender-top .wave-shape { --xh: 714; --c: var(--bg-lavender); --dir: reverse; }
 .band--home-lavender-bottom .wave-shape { --xh: 294; --dir: reverse; }
+/* над нижней волной — цвет блока (у Lu он уже есть: полоса лежит на видео) */
+.band--home-blue-bottom { background: var(--bg-blue); }
+.band--home-peach-bottom { background: var(--bg-peach); }
+.band--home-lavender-bottom { background: var(--bg-lavender); }
 
 @media (prefers-reduced-motion: reduce) {
-  .project__intro a.btn::after { animation: none; display: none; }
-  .hero__photo, .about__photo, .gallery img { animation: none; }
+  .project__intro .btn::after { animation: none; display: none; }
   .wave-shape { animation: none; }
   .intro-dots, .hand { display: none; animation: none; }
 }
