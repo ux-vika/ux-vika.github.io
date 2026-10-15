@@ -1,3 +1,24 @@
+/* Главная: заставка заголовка.
+   Сначала бегут три точки, как будто кто-то печатает, потом строки выезжают снизу.
+   Класс intro ставится в <head> и только когда движение не отключено. */
+(function () {
+  var root = document.documentElement;
+  var title = document.querySelector('.hero__title');
+  if (!root.classList.contains('intro') || !title) return;
+
+  var lines = title.innerHTML.split(/<br\s*\/?>/i);
+  title.innerHTML = lines.map(function (html) {
+    return '<span class="line"><span class="line__in">' + html.replace('👋', '<span class="hand">👋</span>') + '</span></span>';
+  }).join('');
+
+  var dots = document.createElement('span');
+  dots.className = 'intro-dots';
+  dots.setAttribute('aria-hidden', 'true');
+  dots.innerHTML = '<i></i><i></i><i></i>';
+  title.appendChild(dots);
+  root.classList.add('intro-ready');
+})();
+
 /* Главная: плывущие ленты.
    Текст на волнистых лентах (.band__text) бесконечно едет вдоль своей кривой,
    ленты по очереди идут в разные стороны, а при прокрутке разгоняются.
