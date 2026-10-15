@@ -879,171 +879,129 @@ img[data-zoom]:focus-visible { outline: 2px solid var(--ink); outline-offset: 4p
   .case-meta nav { padding: 24px; }
   .case-meta nav { border-left: 0; border-top: 1px solid #eaecf0; }
 }
-
 /* ---------- Главная: движение ---------- */
 
-/* Кнопки: стеклянный перелив. Блик пробегает по кнопке каждые несколько секунд,
-   при наведении кнопка приподнимается и блик ускоряется. */
-a.btn {
-  position: relative;
-  overflow: hidden;
-  isolation: isolate;
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, .55), rgba(255, 255, 255, 0) 55%),
-    var(--accent);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, .95),
-    inset 0 -6px 14px rgba(255, 255, 255, .28),
-    0 0 0 1px rgba(24, 24, 24, .06),
-    0 6px 16px rgba(24, 24, 24, .08);
-  transition: filter var(--dur-fast) var(--ease-out), transform var(--dur) var(--ease-out), box-shadow var(--dur) var(--ease-out);
-}
-a.btn::after {
+/* Кнопки на кейсах: матовые, как в макете. Каждые пару секунд от кнопки расходится
+   кольцо, при наведении кнопка приподнимается, а стрелка подъезжает вперёд. */
+.project__intro a.btn { position: relative; }
+.project__intro a.btn::after {
   content: "";
   position: absolute;
-  z-index: -1;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  width: 55%;
-  background: linear-gradient(105deg,
-    transparent 15%,
-    rgba(255, 255, 255, .85) 45%,
-    rgba(190, 235, 255, .55) 55%,
-    rgba(255, 220, 245, .45) 62%,
-    transparent 85%);
-  transform: translateX(-130%) skewX(-18deg);
-  animation: btn-shine 4.2s var(--ease-out) infinite;
+  inset: 0;
+  border-radius: inherit;
   pointer-events: none;
+  box-shadow: 0 0 0 0 rgba(246, 255, 127, .9);
+  animation: btn-ring 3.2s var(--ease-out) infinite;
 }
-@keyframes btn-shine {
-  0%, 55% { transform: translateX(-130%) skewX(-18deg); }
-  100% { transform: translateX(300%) skewX(-18deg); }
+@keyframes btn-ring {
+  0%, 45% { box-shadow: 0 0 0 0 rgba(246, 255, 127, .9); }
+  100% { box-shadow: 0 0 0 16px rgba(246, 255, 127, 0); }
 }
-a.btn:hover {
-  filter: none;
-  transform: translateY(-2px);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 1),
-    inset 0 -6px 14px rgba(255, 255, 255, .35),
-    0 0 0 1px rgba(24, 24, 24, .08),
-    0 12px 24px rgba(24, 24, 24, .14);
-}
-a.btn:hover::after { animation-duration: 1.4s; }
-a.btn:active { transform: scale(.97); }
-.btn--disabled { box-shadow: none; }
+.project__intro a.btn:hover { transform: translateY(-2px); }
+.project__intro a.btn:active { transform: scale(.97); }
+.btn__arrow { display: inline-block; margin-left: .3em; transition: transform var(--dur) var(--ease-out); }
+a.btn:hover .btn__arrow { transform: translateX(6px); }
 
-/* Первый экран: сначала «печатающиеся» точки, потом заголовок выезжает по строкам. */
+/* Заголовок: три точки, потом «Привет!» выезжает по буквам, рука машет,
+   затем выезжает вторая строка. */
 html.intro .hero__title { position: relative; }
 html.intro:not(.intro-ready) .hero__title { opacity: 0; animation: intro-failsafe .01s 2.5s forwards; }
 @keyframes intro-failsafe { to { opacity: 1; } }
-.hero__title .line { display: block; overflow: hidden; padding-block: .08em; margin-block: -.08em; }
+.hero__title .line { display: block; overflow: hidden; padding-block: .1em; margin-block: -.1em; }
 .hero__title .line__in { display: block; }
-html.intro-ready .hero__title .line__in {
-  transform: translateY(115%);
-  animation: line-in 1s var(--ease-out) 1.25s forwards;
+.hero__title .ch { display: inline-block; }
+html.intro-ready .hero__title .ch {
+  transform: translateY(120%);
+  animation: line-in .7s var(--ease-out) calc(1.3s + var(--i) * 70ms) forwards;
 }
-html.intro-ready .hero__title .line:nth-child(2) .line__in { animation-delay: 1.4s; }
+html.intro-ready .hero__title .line:nth-child(2) .line__in {
+  transform: translateY(120%);
+  animation: line-in .9s var(--ease-out) 3.3s forwards;
+}
 @keyframes line-in { to { transform: none; } }
 .intro-dots {
   position: absolute;
-  left: 4px;
-  top: 0;
-  height: 1.15em;
+  left: 2px;
+  top: .1em;
+  height: 1.1em;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 9px;
   animation: dots-out .3s var(--ease-in) 1.2s forwards;
   pointer-events: none;
 }
 .intro-dots i {
-  width: 12px;
-  height: 12px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
   background: var(--ink);
-  opacity: .2;
-  animation: dot-blink .9s ease-in-out infinite;
+  animation: dot-bounce .8s ease-in-out infinite;
 }
-.intro-dots i:nth-child(2) { animation-delay: .15s; }
-.intro-dots i:nth-child(3) { animation-delay: .3s; }
-@keyframes dot-blink { 0%, 60%, 100% { opacity: .2; transform: none; } 30% { opacity: 1; transform: translateY(-5px); } }
-@keyframes dots-out { to { opacity: 0; transform: translateY(-6px); } }
-/* рука машет после появления */
+.intro-dots i:nth-child(2) { animation-delay: .13s; }
+.intro-dots i:nth-child(3) { animation-delay: .26s; }
+@keyframes dot-bounce { 0%, 55%, 100% { transform: none; } 28% { transform: translateY(-7px); } }
+@keyframes dots-out { to { opacity: 0; transform: scale(.4); } }
 .hand { display: inline-block; transform-origin: 70% 80%; }
-html.intro-ready .hand { animation: hand-wave 1.4s ease-in-out 2.2s 2; }
+html.intro-ready .hand { animation: hand-wave 1.6s ease-in-out 2.1s 1; }
 @keyframes hand-wave {
   0%, 100% { transform: none; }
-  20% { transform: rotate(16deg); }
-  40% { transform: rotate(-10deg); }
-  60% { transform: rotate(14deg); }
-  80% { transform: rotate(-4deg); }
+  15% { transform: rotate(18deg); }
+  30% { transform: rotate(-12deg); }
+  45% { transform: rotate(16deg); }
+  60% { transform: rotate(-8deg); }
+  75% { transform: rotate(10deg); }
 }
 
-/* Фотографии: чуть покачиваются, при наведении приближаются. */
+/* Фотографии стоят на месте. При наведении чуть приближаются и плавно
+   покачиваются из стороны в сторону; при уходе курсора качание затихает само. */
+@property --sx { syntax: "<length>"; inherits: false; initial-value: 0px; }
+@property --sr { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
 .hero__photo, .about__photo, .gallery img {
-  animation: photo-sway 7s ease-in-out infinite alternate;
-  transition: scale var(--dur-slow) var(--ease-out), box-shadow var(--dur-slow) var(--ease-out);
-  will-change: transform;
+  animation: photo-drift 3.4s ease-in-out infinite alternate;
+  transition: scale var(--dur-slow) var(--ease-out), --sx 600ms var(--ease-out), --sr 600ms var(--ease-out);
 }
-.about__photo { animation-duration: 8s; animation-delay: -2s; }
-.gallery img:nth-child(1) { animation-duration: 6.5s; animation-delay: -1s; }
-.gallery img:nth-child(2) { animation-duration: 7.5s; animation-delay: -3s; animation-direction: alternate-reverse; }
-.gallery img:nth-child(3) { animation-duration: 8.5s; animation-delay: -5s; }
-.gallery img:nth-child(4) { animation-duration: 7s; animation-delay: -2s; animation-direction: alternate-reverse; }
-@keyframes photo-sway {
-  from { transform: translateY(0) rotate(-1.1deg); }
-  to { transform: translateY(-6px) rotate(1.1deg); }
+@keyframes photo-drift {
+  from { transform: translateX(calc(var(--sx) * -1)) rotate(calc(var(--sr) * -1)); }
+  to { transform: translateX(var(--sx)) rotate(var(--sr)); }
 }
 .hero__photo:hover, .about__photo:hover, .gallery img:hover {
-  scale: 1.07;
-  box-shadow: 0 18px 40px rgba(24, 24, 24, .18);
+  scale: 1.06;
+  --sx: 8px;
+  --sr: .9deg;
 }
 
-/* Волны на белом фоне: тонкие линии плывут в разные стороны.
-   Идея — «Aurora Waves» с 21st.dev, сделано на чистом CSS без WebGL. */
-.hero, .contacts { position: relative; }
-.hero > *, .contacts > * { position: relative; z-index: 1; }
-.hero > .waves, .contacts > .waves {
+/* Волны кейсов: верхний и нижний край цветного блока плывут вбок.
+   Волна рисуется маской внутри полосы, поэтому за её рамки не выходит. */
+.wave-shape {
+  --s: max(100vw / 1440, var(--band-min) / var(--band-h));
+  --tw: calc(840 * var(--s));
   position: absolute;
-  z-index: 0;
-  top: 0;
-  bottom: 0;
-  left: 50%;
-  width: 100vw;
-  margin-left: -50vw;
-  overflow: hidden;
-  pointer-events: none;
-  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 18%, #000 72%, transparent);
-  mask-image: linear-gradient(to bottom, transparent, #000 18%, #000 72%, transparent);
+  inset: 0;
+  display: block;
+  background: var(--c, #fff);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='840' height='50' viewBox='0 0 840 50' preserveAspectRatio='none'%3E%3Cpath d='M0 0C210 0 210 50 420 50S630 0 840 0V51H0Z'/%3E%3C/svg%3E") calc(var(--xh) * var(--s)) 0 / var(--tw) 100% repeat-x;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='840' height='50' viewBox='0 0 840 50' preserveAspectRatio='none'%3E%3Cpath d='M0 0C210 0 210 50 420 50S630 0 840 0V51H0Z'/%3E%3C/svg%3E") calc(var(--xh) * var(--s)) 0 / var(--tw) 100% repeat-x;
+  animation: wave-shape-run 40s linear infinite var(--dir, normal);
 }
-.waves i {
-  position: absolute;
-  left: -840px;
-  top: var(--y);
-  width: calc(100% + 1680px);
-  height: 120px;
-  opacity: var(--o, .16);
-  scale: 1 var(--amp, 1);
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='840' height='120'%3E%3Cpath d='M0 60C140 10 280 10 420 60S700 110 840 60' fill='none' stroke='%23181818' stroke-width='1.5'/%3E%3C/svg%3E") repeat-x 0 0 / 840px 120px;
-  animation: wave-run var(--t, 30s) linear infinite var(--dir, normal);
+@keyframes wave-shape-run {
+  to {
+    -webkit-mask-position: calc(var(--xh) * var(--s) + var(--tw)) 0;
+    mask-position: calc(var(--xh) * var(--s) + var(--tw)) 0;
+  }
 }
-.waves i:nth-child(even) {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='840' height='120'%3E%3Cpath d='M0 60C140 10 280 10 420 60S700 110 840 60' fill='none' stroke='%23181818' stroke-width='3'/%3E%3C/svg%3E");
-}
-.waves i:nth-child(1) { --y: 4%;  --t: 36s; --o: .12; --amp: 1.3; }
-.waves i:nth-child(2) { --y: 20%; --t: 28s; --o: .10; --dir: reverse; --amp: .8; }
-.waves i:nth-child(3) { --y: 36%; --t: 42s; --o: .14; --amp: 1.1; }
-.waves i:nth-child(4) { --y: 52%; --t: 32s; --o: .09; --dir: reverse; --amp: 1.5; }
-.waves i:nth-child(5) { --y: 68%; --t: 38s; --o: .13; --amp: .9; }
-.waves i:nth-child(6) { --y: 84%; --t: 26s; --o: .10; --dir: reverse; --amp: 1.2; }
-@keyframes wave-run { to { transform: translate3d(840px, 0, 0); } }
-@media (max-width: 900px) {
-  .waves i:nth-child(n+5) { display: none; }
-}
+/* фаза — где у исходной волны макета верхняя точка; цвет — заливка под волной */
+.band--home-blue-top .wave-shape { --xh: 300; --c: var(--bg-blue); }
+.band--home-blue-bottom .wave-shape { --xh: 720; }
+.band--home-pink-top .wave-shape { --xh: 714; --c: var(--bg-pink); --dir: reverse; }
+.band--home-pink-bottom .wave-shape { --xh: 294; --dir: reverse; }
+.band--home-peach-top .wave-shape { --xh: 300; --c: var(--bg-peach); }
+.band--home-peach-bottom .wave-shape { --xh: 720; }
+.band--home-lavender-top .wave-shape { --xh: 714; --c: var(--bg-lavender); --dir: reverse; }
+.band--home-lavender-bottom .wave-shape { --xh: 294; --dir: reverse; }
 
 @media (prefers-reduced-motion: reduce) {
-  a.btn::after { animation: none; display: none; }
+  .project__intro a.btn::after { animation: none; display: none; }
   .hero__photo, .about__photo, .gallery img { animation: none; }
-  .waves i { animation: none; }
+  .wave-shape { animation: none; }
   .intro-dots, .hand { display: none; animation: none; }
 }

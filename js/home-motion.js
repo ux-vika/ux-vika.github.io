@@ -1,15 +1,30 @@
 /* Главная: заставка заголовка.
-   Сначала бегут три точки, как будто кто-то печатает, потом строки выезжают снизу.
-   Класс intro ставится в <head> и только когда движение не отключено. */
+   Сначала три точки, потом «Привет!» выезжает по буквам, рука машет,
+   затем выезжает вторая строка. Класс intro ставится в <head> и только когда
+   движение не отключено. */
 (function () {
   var root = document.documentElement;
   var title = document.querySelector('.hero__title');
   if (!root.classList.contains('intro') || !title) return;
 
+  var plain = title.textContent.replace(/\s+/g, ' ').trim();
   var lines = title.innerHTML.split(/<br\s*\/?>/i);
-  title.innerHTML = lines.map(function (html) {
-    return '<span class="line"><span class="line__in">' + html.replace('👋', '<span class="hand">👋</span>') + '</span></span>';
+
+  // первая строка: буквы по одной, пробел остаётся пробелом, рука — последний «символ»
+  var first = lines[0].split('👋');
+  var n = 0;
+  var letters = Array.from(first[0]).map(function (c) {
+    return c === ' ' ? ' ' : '<span class="ch" style="--i:' + (n++) + '">' + c + '</span>';
   }).join('');
+  var hand = lines[0].indexOf('👋') >= 0
+    ? '<span class="ch" style="--i:' + (n++) + '"><span class="hand">👋</span></span>' : '';
+
+  var html = ['<span class="line"><span class="line__in">' + letters + hand + '</span></span>'];
+  lines.slice(1).forEach(function (l) {
+    html.push('<span class="line"><span class="line__in">' + l + '</span></span>');
+  });
+  title.setAttribute('aria-label', plain);
+  title.innerHTML = '<span aria-hidden="true">' + html.join('') + '</span>';
 
   var dots = document.createElement('span');
   dots.className = 'intro-dots';
