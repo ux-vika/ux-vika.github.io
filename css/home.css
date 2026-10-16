@@ -1,0 +1,251 @@
+/* Главная: тёмная раскладка с колонкой слева и сеткой кейсов справа.
+   Отдельный файл, общий style.css на главной не подключён. */
+
+:root {
+  --bg: #0f0f0f;
+  --bg-card: #1a1a1a;
+  --line: #262626;
+  --text: #f2f2f2;
+  --muted: #9b9b9b;
+
+  --cover-blue: #ebf9ff;
+  --cover-pink: #ffe6e8;
+  --cover-peach: #ffefdd;
+  --cover-lavender: #d6d3ff;
+
+  --font-main: "Onest", system-ui, sans-serif;
+  --font-display: "IBM Plex Sans", system-ui, sans-serif;
+
+  --side-w: 380px;
+  --gap: 28px;
+  --radius: 16px;
+
+  --ease-out: cubic-bezier(.22, 1, .36, 1);
+  --dur: 300ms;
+}
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-main);
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+h1, h2, p, ul { margin: 0; padding: 0; }
+ul { list-style: none; }
+
+.layout {
+  display: grid;
+  grid-template-columns: var(--side-w) minmax(0, 1fr);
+  min-height: 100vh;
+}
+
+/* ---------- Левая колонка ---------- */
+
+.side {
+  position: sticky;
+  top: 0;
+  align-self: start;
+  height: 100vh;
+  overflow-y: auto;
+  padding: 28px;
+  border-right: 1px solid var(--line);
+}
+
+.side__name {
+  font: 400 22px/1.2 var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: .02em;
+}
+.side__role { margin-top: 4px; color: var(--muted); }
+.side__lead { margin-top: 28px; font-size: 17px; line-height: 1.55; }
+
+.side__photo {
+  width: 100%;
+  max-width: 240px;
+  height: auto;
+  margin-top: 28px;
+}
+
+.side__nav {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+}
+.side__nav a { color: var(--muted); transition: color var(--dur) var(--ease-out); }
+.side__nav a:hover,
+.side__nav a:focus-visible { color: var(--text); }
+
+/* ---------- Сетка кейсов ---------- */
+
+.main { padding: var(--gap); }
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--gap);
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  padding: 16px 16px 24px;
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.card__cover {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border-radius: 12px;
+}
+.card__cover--blue { background: var(--cover-blue); }
+.card__cover--pink { background: var(--cover-pink); }
+.card__cover--peach { background: var(--cover-peach); }
+.card__cover--lavender { background: var(--cover-lavender); }
+
+.card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 500ms var(--ease-out);
+}
+.card__img--contain { object-fit: contain; padding: 14% 3% 3%; }
+.card__img--shot { padding: 15% 4% 4%; }
+
+.card__tags {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  right: 14px;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.card__tags li {
+  padding: 3px 12px;
+  border-radius: 999px;
+  background: rgba(24, 24, 24, .72);
+  color: #fff;
+  font-size: 14px;
+  line-height: 1.4;
+  backdrop-filter: blur(6px);
+}
+
+.card__phones {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5%;
+  height: 100%;
+  padding: 16% 8% 0;
+}
+.card__phones img {
+  width: auto;
+  min-width: 0;
+  max-width: 44%;
+  max-height: 100%;
+  align-self: flex-end;
+  transition: transform 500ms var(--ease-out);
+}
+
+.card__title {
+  margin-top: 18px;
+  font: 400 20px/1.3 var(--font-main);
+}
+.card__desc { margin-top: 6px; color: var(--muted); }
+
+a.card { transition: border-color var(--dur) var(--ease-out); }
+a.card:hover,
+a.card:focus-visible { border-color: #3d3d3d; }
+a.card:hover .card__img,
+a.card:focus-visible .card__img { transform: scale(1.03); }
+
+.card--soon { cursor: default; }
+.card--soon .card__cover { opacity: .85; }
+.card__soon {
+  display: inline-block;
+  margin-left: 4px;
+  padding: 0 10px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--text);
+  font-size: 14px;
+}
+
+/* ---------- Обо мне ---------- */
+
+.about {
+  margin-top: 96px;
+  padding-top: 40px;
+  border-top: 1px solid var(--line);
+}
+.about__title { font: 400 40px/1.2 var(--font-display); }
+
+.about__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--gap);
+  margin-top: 32px;
+}
+.about__body { font-size: 18px; line-height: 1.6; }
+.about__body p + p { margin-top: 16px; }
+.about__more-title { color: var(--muted); }
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 56px;
+}
+.gallery img {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+/* ---------- Адаптив ---------- */
+
+@media (max-width: 1100px) {
+  :root { --side-w: 300px; }
+  .about__grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 900px) {
+  .layout { grid-template-columns: 1fr; }
+  .side {
+    position: static;
+    height: auto;
+    padding: 24px 20px;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .side__photo { max-width: 200px; }
+  .side__nav { flex-direction: row; flex-wrap: wrap; gap: 8px 20px; }
+  .main { padding: 20px; }
+  .cards { grid-template-columns: 1fr; }
+  .gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card__img, .card__phones img { transition: none; }
+}

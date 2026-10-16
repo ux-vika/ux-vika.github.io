@@ -8,175 +8,96 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400&family=Onest:wght@400;500&display=swap" rel="stylesheet">
-  <script>if(!matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("intro")</script>
-  <link rel="stylesheet" href="css/style.css?v=7">
+  <link rel="stylesheet" href="css/home.css?v=1">
 </head>
-<body>
+<body class="home">
 
-<header class="container header">
-  <a class="header__name" href="index.html">Виктория Шаханина</a>
-  <nav class="header__nav" aria-label="Основное меню">
-    <a href="#cases">Кейсы</a>
-    <a href="#about">Обо мне</a>
-    <a href="#contacts">Контакты</a>
-  </nav>
-</header>
+<div class="layout">
+  <aside class="side">
+    <div class="side__top">
+      <a class="side__name" href="index.html">Виктория Шаханина</a>
+      <p class="side__role">Продуктовый дизайнер</p>
 
-<main>
-  <section class="container hero">
-    <div class="hero__top">
-      <div class="hero__text">
-        <h1 class="hero__title">Привет! 👋<br>Я&nbsp;Вика, продуктовый дизайнер</h1>
-        <p class="hero__lead">Запускала продукты, выстраивала Discovery и&nbsp;помогала командам принимать решения на&nbsp;основе исследований. Внедрила PBR, USM и&nbsp;процесс сбора пользовательской обратной связи, чтобы проверять идеи до&nbsp;начала разработки.</p>
-      </div>
-      <img class="hero__photo" src="assets/img/home/about-photo-2.png" width="275" height="397" alt="Виктория в парке">
+      <p class="side__lead">Запускала продукты, выстраивала Discovery и&nbsp;помогала командам принимать решения на&nbsp;основе исследований.</p>
+
+      <img class="side__photo" src="assets/img/home/about-photo-2.png" width="275" height="397" alt="Виктория в парке">
+
+      <nav class="side__nav" aria-label="Основное меню">
+        <a href="#cases">Кейсы</a>
+        <a href="#about">Обо мне</a>
+        <a href="https://telegram.me/ux_vika" target="_blank" rel="noopener">Telegram ↗</a>
+        <a href="mailto:9697161878@mail.ru">Почта ↗</a>
+        <a href="assets/cv/cv-shakhanina-viktoriya.pdf" target="_blank" rel="noopener">CV ↗</a>
+      </nav>
     </div>
-  </section>
+  </aside>
 
-  <div class="band band--home-skills" style="--band-h:112;--band-min:70px" role="img" aria-label="исследования, интервью, юзабилити-тесты, Discovery, CJM, прототипы, исследования, интервью, юзабилити-тесты, Discovery, CJM, прототипы, исследования"><svg viewBox="0 572 1440 112" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><path id="wave-home-skills-0" d="M -120 635 C 90 635 90 595 300 595 C 510 595 510 675 720 675 C 930 675 930 595 1140 595 C 1350 595 1350 675 1560 675 C 1770 675 1770 595 1980 595"/></defs><text class="band__text" fill="#181818"><textPath href="#wave-home-skills-0" startOffset="0.1%">исследования  ✦  интервью  ✦  юзабилити-тесты  ✦  Discovery  ✦  CJM  ✦  прототипы  ✦  исследования  ✦  интервью  ✦  юзабилити-тесты  ✦  Discovery  ✦  CJM  ✦  прототипы  ✦  исследования  ✦ </textPath></text></svg></div>
-
-  <section class="case-block" id="cases">
-    <div class="container project project--calendar">
-      <div class="project__intro">
-        <h2 class="project__title">Календарь для&nbsp;корпоративного мессенджера «Squadus»</h2>
-        <p class="project__desc">Календарь расширил Squadus до&nbsp;Squadus Pro, закрыл требования заказчиков и&nbsp;помог перевести их&nbsp;с&nbsp;Microsoft&nbsp;Teams на&nbsp;Squadus Pro.</p>
-        <a class="btn" href="kalendar.html">Смотреть кейс<span class="btn__arrow" aria-hidden="true">→</span></a>
-      </div>
-    </div>
-    <div class="stage stage--calendar">
-      <div class="band band--home-blue-top" style="--band-h:50;--band-min:24px" aria-hidden="true"><i class="wave-shape"></i></div>
-      <div class="stage__fill stage__fill--blue">
-        <div class="container">
-          <video class="project__media" src="assets/video/kalendar-novyj.mp4" poster="assets/video/kalendar-novyj-poster-blue.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Создание события в календаре на макбуке"></video>
+  <main class="main">
+    <section class="cards" id="cases" aria-label="Кейсы">
+      <a class="card" href="kalendar.html">
+        <div class="card__cover card__cover--blue">
+          <ul class="card__tags"><li>Календарь</li><li>Enterprise</li><li>Web</li></ul>
+          <img class="card__img card__img--contain" src="assets/video/kalendar-novyj-poster-blue.jpg" width="2432" height="1470" alt="Календарь в корпоративном мессенджере на макбуке">
         </div>
-      </div>
-      <div class="band band--home-blue-bottom" style="--band-h:50;--band-min:24px" aria-hidden="true"><i class="wave-shape"></i></div>
-    </div>
-  </section>
+        <h2 class="card__title">Календарь для&nbsp;корпоративного мессенджера «Squadus»</h2>
+        <p class="card__desc">Календарь расширил Squadus до&nbsp;Squadus Pro и&nbsp;помог перевести заказчиков с&nbsp;Microsoft&nbsp;Teams.</p>
+      </a>
 
-  <section class="case-block">
-    <div class="container project project--lu">
-      <div class="project__intro">
-        <h2 class="project__title">Концепт приложения для&nbsp;чтения книг «Lu»</h2>
-        <p class="project__desc">Три продукта в&nbsp;одном: каталог книг с&nbsp;ридером, ИИ-ассистент «Lu», который подбирает книгу под&nbsp;настроение, и&nbsp;трекер привычки чтения.</p>
-        <a class="btn" href="lu.html">Смотреть концепт<span class="btn__arrow" aria-hidden="true">→</span></a>
-      </div>
-    </div>
-    <div class="stage stage--lu">
-      <div class="band band--home-pink-top" style="--band-h:50;--band-min:24px" aria-hidden="true"><i class="wave-shape"></i></div>
-      <div class="stage__fill stage__fill--pink">
-        <div class="container">
-          <video class="project__media" src="assets/video/lu-ruki.mp4" poster="assets/video/lu-ruki-poster.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Приложение Lu на телефоне в руках"></video>
+      <a class="card" href="lu.html">
+        <div class="card__cover card__cover--pink">
+          <ul class="card__tags"><li>Мобильное приложение</li><li>Концепт</li><li>ИИ</li></ul>
+          <img class="card__img" src="assets/video/lu-ruki-poster.jpg" width="1920" height="1080" alt="Приложение Lu на телефоне в руках">
         </div>
-      </div>
-      <div class="band band--home-pink-bottom" style="--band-h:50;--band-min:24px" aria-hidden="true"><i class="wave-shape"></i></div>
-    </div>
-  </section>
+        <h2 class="card__title">Концепт приложения для&nbsp;чтения книг «Lu»</h2>
+        <p class="card__desc">Каталог с&nbsp;ридером, ИИ-ассистент, который подбирает книгу под&nbsp;настроение, и&nbsp;трекер привычки чтения.</p>
+      </a>
 
-  <section class="case-block">
-    <div class="container project project--antivirus">
-      <div class="project__intro">
-        <h2 class="project__title">Антивирусная защита вложений в&nbsp;«Squadus»</h2>
-        <p class="project__desc">Решение устранило риск распространения вредоносного ПО&nbsp;внутри корпоративного мессенджера и&nbsp;позволило выполнить требования крупного клиента по&nbsp;информационной безопасности и&nbsp;начать с&nbsp;ним работу.</p>
-        <a class="btn" href="antivirus.html">Смотреть кейс<span class="btn__arrow" aria-hidden="true">→</span></a>
-      </div>
-    </div>
-    <div class="stage stage--antivirus">
-      <div class="band band--home-peach-top" style="--band-h:50;--band-min:24px" aria-hidden="true"><i class="wave-shape"></i></div>
-      <div class="stage__fill stage__fill--peach">
-        <div class="container">
-          <div class="antivirus-media">
-            <img class="antivirus-media__files" src="assets/img/home/antivirus-attachments.png" width="455" height="972" loading="lazy" alt="Состояния вложений: ожидает проверки, файл заражён, недоступен для проверки, ошибка проверки">
-            <img class="antivirus-media__chat" src="assets/img/home/antivirus-chat-2.webp" width="2132" height="1750" loading="lazy" alt="Чат мессенджера с заражённым вложением">
+      <a class="card" href="antivirus.html">
+        <div class="card__cover card__cover--peach">
+          <ul class="card__tags"><li>Безопасность</li><li>Enterprise</li><li>Web</li></ul>
+          <img class="card__img card__img--contain card__img--shot" src="assets/img/home/antivirus-chat-2.webp" width="2132" height="1750" loading="lazy" alt="Чат мессенджера с заражённым вложением">
+        </div>
+        <h2 class="card__title">Антивирусная защита вложений в&nbsp;«Squadus»</h2>
+        <p class="card__desc">Устранили риск распространения вредоносного ПО в&nbsp;мессенджере и&nbsp;закрыли требования крупного клиента по&nbsp;безопасности.</p>
+      </a>
+
+      <div class="card card--soon" aria-disabled="true">
+        <div class="card__cover card__cover--lavender">
+          <ul class="card__tags"><li>Календарь</li><li>Мобильное приложение</li></ul>
+          <div class="card__phones">
+            <img src="assets/img/home/povtor-sobytie.webp" width="1052" height="1783" loading="lazy" alt="Событие «Тренировка» с повтором каждые 2 недели">
+            <img src="assets/img/home/povtor-mesyac.webp" width="1214" height="2087" loading="lazy" alt="Экран «Повтор»: каждые 2 месяца, 2 числа и в последний день">
           </div>
         </div>
+        <h2 class="card__title">Сложный повтор событий в&nbsp;календаре «Focus»</h2>
+        <p class="card__desc">Реализация сняла один из&nbsp;блокеров для&nbsp;заключения сделки с&nbsp;заказчиком. <span class="card__soon">Кейс оформляется</span></p>
       </div>
-      <div class="band band--home-peach-bottom" style="--band-h:50;--band-min:24px" aria-hidden="true"><i class="wave-shape"></i></div>
-    </div>
-  </section>
+    </section>
 
-  <section class="case-block">
-    <div class="container project project--repeat">
-      <div class="project__intro">
-        <h2 class="project__title">Сложный повтор событий в&nbsp;календаре «Focus»</h2>
-        <p class="project__desc">Реализация сняла один из&nbsp;блокеров для&nbsp;заключения сделки с&nbsp;заказчиком.</p>
-        <span class="btn btn--disabled" aria-disabled="true">Кейс оформляется</span>
-      </div>
-    </div>
-    <div class="stage stage--repeat">
-      <div class="band band--home-lavender-top" style="--band-h:50;--band-min:24px" aria-hidden="true"><i class="wave-shape"></i></div>
-      <div class="stage__fill stage__fill--lavender">
-        <div class="container">
-          <div class="repeat-screens">
-            <img class="repeat-screens__phone" src="assets/img/home/povtor-sobytie.webp" width="1052" height="1783" loading="lazy" alt="Событие «Тренировка» с повтором каждые 2 недели">
-            <img class="repeat-screens__phone" src="assets/img/home/povtor-mesyac.webp" width="1214" height="2087" loading="lazy" alt="Экран «Повтор»: каждые 2 месяца, 2 числа и в последний день">
-          </div>
-        </div>
-      </div>
-      <div class="band band--home-lavender-bottom" style="--band-h:50;--band-min:24px" aria-hidden="true"><i class="wave-shape"></i></div>
-    </div>
-  </section>
-
-  <div class="band band--home-exp" style="--band-h:152;--band-min:90px" role="img" aria-label="B2B, Enterprise, почта, календарь, мессенджер, ВКС, iOS, Android, Web, B2B, Enterprise, почта, календарь, мессенджер, ВКС, iOS, Android, Web, B2B, Enterprise"><svg viewBox="0 6100 1440 152" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><path id="wave-home-exp-0" d="M -330 6210 C -120 6210 -120 6250 90 6250 C 300 6250 300 6170 510 6170 C 720 6170 720 6250 930 6250 C 1140 6250 1140 6170 1350 6170 C 1560 6170 1560 6250 1770 6250"/></defs><text class="band__text" fill="#181818"><textPath href="#wave-home-exp-0" startOffset="50%" text-anchor="middle">B2B  ✦  Enterprise  ✦  почта  ✦  календарь  ✦  мессенджер  ✦  ВКС  ✦  iOS  ✦  Android  ✦  Web  ✦  B2B  ✦  Enterprise  ✦   почта  ✦  календарь  ✦  мессенджер  ✦  ВКС  ✦  iOS  ✦  Android  ✦  Web  ✦  B2B  ✦  Enterprise  ✦  </textPath></text></svg></div>
-
-  <section class="container about" id="about">
-    <div class="about__intro">
-      <div class="about__text">
-        <h2 class="about__title">Обо мне 👩</h2>
+    <section class="about" id="about">
+      <h2 class="about__title">Обо мне 👩</h2>
+      <div class="about__grid">
         <div class="about__body">
           <p>Продуктовый дизайнер, 6+ лет в&nbsp;B2B&nbsp;и&nbsp;Enterprise, последние 4,5&nbsp;года в&nbsp;МойОфис: почта, документы, календарь, мессенджер и&nbsp;ВКС на&nbsp;всех платформах.</p>
           <p>Сильная сторона&nbsp;— исследования. Сама провожу интервью и&nbsp;тесты, вместе с&nbsp;PM&nbsp;внедрила Discovery. За&nbsp;полгода совместно с&nbsp;командой разработали приложение «Фокус», благодаря которому компания закрыла сделку с&nbsp;крупным госзаказчиком. Полностью спроектировала приложение Wowworks для&nbsp;iOS, и&nbsp;это сняло блокер для&nbsp;новых исполнителей.</p>
           <p>Выступала на&nbsp;World Usability Day (ИТМО) и&nbsp;«Дизайн Выходных», менторила студентов DesignSpot School (EPAM).</p>
         </div>
+        <div class="about__body">
+          <p class="about__more-title">И&nbsp;ещё немного…</p>
+          <p>Если поставлю цель, то&nbsp;доведу до&nbsp;конца. Решила пожить в&nbsp;Европе и&nbsp;за&nbsp;полгода сама выучила немецкий до&nbsp;A1, прошла собеседование в&nbsp;консульстве и&nbsp;год прожила в&nbsp;Германии. Чтобы попасть в&nbsp;IT, на&nbsp;год переехала в&nbsp;Самару. Сейчас живу в&nbsp;Петербурге.</p>
+          <p>Рисую, хожу в&nbsp;спортзал и&nbsp;прохожу с&nbsp;друзьями по&nbsp;30 000 шагов ради чашки вкусного кофе.</p>
+        </div>
       </div>
-      <img class="about__photo" src="assets/img/home/hero-photo-2.png" width="213" height="276" loading="lazy" alt="Виктория Шаханина">
-    </div>
 
-    <div class="about__more">
-      <p>И&nbsp;ещё немного…</p>
-      <div class="about__more-text">
-        <p>Если поставлю цель, то&nbsp;доведу до&nbsp;конца. Решила пожить в&nbsp;Европе и&nbsp;за&nbsp;полгода сама выучила немецкий до&nbsp;A1, прошла собеседование в&nbsp;консульстве и&nbsp;год прожила в&nbsp;Германии. Чтобы попасть в&nbsp;IT, на&nbsp;год переехала в&nbsp;Самару. Сейчас живу в&nbsp;Петербурге.</p>
-        <p>Рисую, хожу в&nbsp;спортзал и&nbsp;прохожу с&nbsp;друзьями по&nbsp;30 000 шагов ради чашки вкусного кофе.</p>
+      <div class="gallery">
+        <img src="assets/img/home/life-1.jpg" loading="lazy" alt="На берегу моря">
+        <img src="assets/img/home/life-2.jpg" loading="lazy" alt="Зимой на скамейке">
+        <img src="assets/img/home/life-3.jpg" loading="lazy" alt="В спортзале">
+        <img src="assets/img/home/life-4.jpg" loading="lazy" alt="В горах">
       </div>
-    </div>
+    </section>
+  </main>
+</div>
 
-    <div class="gallery">
-      <img src="assets/img/home/life-1.jpg" loading="lazy" alt="На берегу моря">
-      <img src="assets/img/home/life-2.jpg" loading="lazy" alt="Зимой на скамейке">
-      <img src="assets/img/home/life-3.jpg" loading="lazy" alt="В спортзале">
-      <img src="assets/img/home/life-4.jpg" loading="lazy" alt="В горах">
-    </div>
-  </section>
-
-  <div class="band band--home-contact" style="--band-h:88;--band-min:56px" role="img" aria-label="напишите мне, напишите мне, напишите мне, напишите мне, напишите мне, напишите мне, напишите мне, напишите мне, напишите мне, напишите мне"><svg viewBox="0 7432 1440 88" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><path id="wave-home-contact-0" d="M -169 7484 C 21 7484 21 7454 211 7454 C 401 7454 401 7514 591 7514 C 781 7514 781 7454 971 7454 C 1161 7454 1161 7514 1351 7514 C 1541 7514 1541 7454 1731 7454"/></defs><text class="band__text" fill="#1D1D1B"><textPath href="#wave-home-contact-0" startOffset="0.1%">напишите мне  ♥️  напишите мне  ♥️  напишите мне  ♥️  напишите мне  ♥️  напишите мне  ♥️  напишите мне  ♥️  напишите мне  ♥️  напишите мне  ♥️  напишите мне  ♥️  напишите мне  ♥️  </textPath></text></svg></div>
-
-  <section class="container contacts" id="contacts">
-    <h2 class="contacts__title">Как связаться со&nbsp;мной</h2>
-    <ul class="contacts__list">
-      <li class="contacts__item">
-        <a class="contacts__label" href="mailto:9697161878@mail.ru">Почта ↗</a>
-        <span>9697161878@mail.ru</span>
-      </li>
-      <li class="contacts__item">
-        <a class="contacts__label" href="https://telegram.me/ux_vika" target="_blank" rel="noopener">Telegram ↗</a>
-        <span>@ux_vika</span>
-      </li>
-      <li class="contacts__item">
-        <a class="contacts__label" href="tel:+79516635482">Телефон ↗</a>
-        <span>+7&nbsp;951&nbsp;663-54-82</span>
-      </li>
-      <li class="contacts__item">
-        <a class="contacts__label" href="https://github.com/ux-vika" target="_blank" rel="noopener">GitHub ↗</a>
-        <span>ux-vika</span>
-      </li>
-      <li class="contacts__item">
-        <a class="contacts__label" href="assets/cv/cv-shakhanina-viktoriya.pdf" target="_blank" rel="noopener">CV ↗</a>
-        <span>PDF</span>
-      </li>
-    </ul>
-  </section>
-</main>
-
-<script src="js/home-motion.js" defer></script>
 </body>
 </html>
