@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400&family=Onest:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/home.css?v=1">
+  <link rel="stylesheet" href="css/home.css?v=2">
 </head>
 <body class="home">
 
@@ -33,11 +33,13 @@
   </aside>
 
   <main class="main">
+    <h1 class="main__title">Я&nbsp;— продуктовый дизайнер, 6+&nbsp;лет&nbsp;опыта в&nbsp;B2B</h1>
+
     <section class="cards" id="cases" aria-label="Кейсы">
       <a class="card" href="kalendar.html">
         <div class="card__cover card__cover--blue">
           <ul class="card__tags"><li>Календарь</li><li>Enterprise</li><li>Web</li></ul>
-          <img class="card__img card__img--contain" src="assets/video/kalendar-novyj-poster-blue.jpg" width="2432" height="1470" alt="Календарь в корпоративном мессенджере на макбуке">
+          <div class="card__shot card__shot--wide"><img src="assets/video/kalendar-novyj-poster-blue.jpg" width="2432" height="1470" alt="Календарь в корпоративном мессенджере на макбуке"></div>
         </div>
         <h2 class="card__title">Календарь для&nbsp;корпоративного мессенджера «Squadus»</h2>
         <p class="card__desc">Календарь расширил Squadus до&nbsp;Squadus Pro и&nbsp;помог перевести заказчиков с&nbsp;Microsoft&nbsp;Teams.</p>
@@ -45,8 +47,8 @@
 
       <a class="card" href="lu.html">
         <div class="card__cover card__cover--pink">
-          <ul class="card__tags"><li>Мобильное приложение</li><li>Концепт</li><li>ИИ</li></ul>
-          <img class="card__img" src="assets/video/lu-ruki-poster.jpg" width="1920" height="1080" alt="Приложение Lu на телефоне в руках">
+          <ul class="card__tags"><li>Mobile</li><li>Концепт</li><li>ИИ</li></ul>
+          <div class="card__shot card__shot--tall"><img src="assets/video/lu-ruki-poster.jpg" width="1920" height="1080" alt="Приложение Lu на телефоне в руках"></div>
         </div>
         <h2 class="card__title">Концепт приложения для&nbsp;чтения книг «Lu»</h2>
         <p class="card__desc">Каталог с&nbsp;ридером, ИИ-ассистент, который подбирает книгу под&nbsp;настроение, и&nbsp;трекер привычки чтения.</p>
@@ -55,7 +57,7 @@
       <a class="card" href="antivirus.html">
         <div class="card__cover card__cover--peach">
           <ul class="card__tags"><li>Безопасность</li><li>Enterprise</li><li>Web</li></ul>
-          <img class="card__img card__img--contain card__img--shot" src="assets/img/home/antivirus-chat-2.webp" width="2132" height="1750" loading="lazy" alt="Чат мессенджера с заражённым вложением">
+          <div class="card__shot card__shot--wide"><img src="assets/img/home/antivirus-chat-2.webp" width="2132" height="1750" loading="lazy" alt="Чат мессенджера с заражённым вложением"></div>
         </div>
         <h2 class="card__title">Антивирусная защита вложений в&nbsp;«Squadus»</h2>
         <p class="card__desc">Устранили риск распространения вредоносного ПО в&nbsp;мессенджере и&nbsp;закрыли требования крупного клиента по&nbsp;безопасности.</p>
@@ -63,8 +65,8 @@
 
       <div class="card card--soon" aria-disabled="true">
         <div class="card__cover card__cover--lavender">
-          <ul class="card__tags"><li>Календарь</li><li>Мобильное приложение</li></ul>
-          <div class="card__phones">
+          <ul class="card__tags"><li>Календарь</li><li>Mobile</li></ul>
+          <div class="card__shot card__shot--phones">
             <img src="assets/img/home/povtor-sobytie.webp" width="1052" height="1783" loading="lazy" alt="Событие «Тренировка» с повтором каждые 2 недели">
             <img src="assets/img/home/povtor-mesyac.webp" width="1214" height="2087" loading="lazy" alt="Экран «Повтор»: каждые 2 месяца, 2 числа и в последний день">
           </div>
