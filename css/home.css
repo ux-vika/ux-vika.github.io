@@ -8,12 +8,10 @@
   --text: #f2f2f2;
   --muted: #9b9b9b;
 
-  /* Градиент обложек: основа совпадает с фоном картинки,
-     два акцента плывут поверх. */
-  --g-blue: #ebf9ff;   --g-blue-a: #a9dcff;   --g-blue-b: #d3c6ff;
-  --g-pink: #ffe6e8;   --g-pink-a: #ffb3c1;   --g-pink-b: #ffd9a8;
-  --g-peach: #ffefdd;  --g-peach-a: #ffc48a;  --g-peach-b: #ffb0b0;
-  --g-lav: #d6d3ff;    --g-lav-a: #a99cff;    --g-lav-b: #9fd2ff;
+  --cover-blue: #ebf9ff;
+  --cover-pink: #ffe6e8;
+  --cover-peach: #ffefdd;
+  --cover-lavender: #d6d3ff;
 
   --font-main: "Onest", system-ui, sans-serif;
   --font-display: "IBM Plex Sans", system-ui, sans-serif;
@@ -48,18 +46,16 @@ a { color: inherit; text-decoration: none; }
 h1, h2, p, ul { margin: 0; padding: 0; }
 ul { list-style: none; }
 
-.layout {
-  display: grid;
-  grid-template-columns: var(--side-w) minmax(0, 1fr);
-  min-height: 100vh;
-}
+.layout { min-height: 100vh; }
 
 /* ---------- Левая колонка ---------- */
 
+/* Закреплена на месте (fixed): при прокрутке страницы не двигается. */
 .side {
-  position: sticky;
+  position: fixed;
   top: 0;
-  align-self: start;
+  left: 0;
+  width: var(--side-w);
   height: 100vh;
   overflow-y: auto;
   padding: 36px;
@@ -96,7 +92,7 @@ ul { list-style: none; }
 
 /* ---------- Заголовок и сетка кейсов ---------- */
 
-.main { padding: 36px var(--gap) var(--gap) 28px; }
+.main { margin-left: var(--side-w); padding: 36px var(--gap) var(--gap) 28px; }
 
 .main__title {
   max-width: 17em;
@@ -107,48 +103,43 @@ ul { list-style: none; }
 
 .cards {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: var(--gap);
 }
 
+/* Карточка: тёмный фон с переливающимся градиентом (canvas, js/home-gradient.js).
+   Весь контент лежит выше градиента. */
 .card {
+  position: relative;
+  isolation: isolate;
   display: flex;
   flex-direction: column;
-  padding: 12px 12px 20px;
+  padding: 16px 16px 24px;
+  overflow: hidden;
   background: var(--bg-card);
   border: 1px solid var(--line);
   border-radius: var(--radius);
 }
+.card__bg {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+}
 
-/* Обложка: переливающийся градиент + макет по центру.
+/* Обложка: простой цветной фон + макет по центру.
    Макеты не растягиваются: задана одна сторона, пропорции сохраняются. */
 .card__cover {
   position: relative;
   aspect-ratio: 1 / 1;
   overflow: hidden;
-  isolation: isolate;
   border-radius: 12px;
-  background: var(--c0);
 }
-.card__cover::before {
-  content: "";
-  position: absolute;
-  inset: -35%;
-  z-index: -1;
-  background:
-    radial-gradient(circle at 22% 28%, var(--ca) 0, transparent 42%),
-    radial-gradient(circle at 78% 22%, var(--cb) 0, transparent 38%),
-    radial-gradient(circle at 62% 82%, var(--ca) 0, transparent 40%),
-    radial-gradient(circle at 18% 78%, var(--cb) 0, transparent 34%);
-  filter: blur(28px);
-  animation: swirl var(--swirl, 16s) linear infinite;
-}
-@keyframes swirl { to { transform: rotate(360deg); } }
-
-.card__cover--blue { --c0: var(--g-blue); --ca: var(--g-blue-a); --cb: var(--g-blue-b); --swirl: 18s; }
-.card__cover--pink { --c0: var(--g-pink); --ca: var(--g-pink-a); --cb: var(--g-pink-b); --swirl: 14s; }
-.card__cover--peach { --c0: var(--g-peach); --ca: var(--g-peach-a); --cb: var(--g-peach-b); --swirl: 20s; }
-.card__cover--lavender { --c0: var(--g-lav); --ca: var(--g-lav-a); --cb: var(--g-lav-b); --swirl: 16s; }
+.card__cover--blue { background: var(--cover-blue); }
+.card__cover--pink { background: var(--cover-pink); }
+.card__cover--peach { background: var(--cover-peach); }
+.card__cover--lavender { background: var(--cover-lavender); }
 
 .card__shot {
   position: absolute;
@@ -157,8 +148,7 @@ ul { list-style: none; }
   align-items: center;
   justify-content: center;
   gap: 5%;
-  padding: 17% 6% 6%;
-  transition: transform 600ms var(--ease-out);
+  padding: 14% 6% 6%;
 }
 .card__shot img {
   flex: 0 0 auto;
@@ -169,7 +159,8 @@ ul { list-style: none; }
 /* ширина задана, высота по пропорции */
 .card__shot--wide img { width: 100%; }
 /* высота задана, ширина по пропорции; кадр Lu обрезается, не растягивается */
-.card__shot--tall img { height: 100%; width: auto; aspect-ratio: 4 / 5; object-fit: cover; }
+.card__shot--tall { padding: 0; }
+.card__shot--tall img { width: 100%; height: 100%; border-radius: 0; box-shadow: none; object-fit: cover; }
 .card__shot--phones img { height: 100%; width: auto; border-radius: 0; box-shadow: none; }
 
 .card__tags {
@@ -198,11 +189,10 @@ ul { list-style: none; }
 }
 .card__desc { margin-top: 6px; color: var(--muted); font-size: 14px; line-height: 1.45; }
 
-a.card { transition: border-color var(--dur) var(--ease-out); }
+/* Ховер: приближается вся карточка целиком */
+a.card { transition: transform 500ms var(--ease-out), border-color var(--dur) var(--ease-out); }
 a.card:hover,
-a.card:focus-visible { border-color: #3d3d3d; }
-a.card:hover .card__shot,
-a.card:focus-visible .card__shot { transform: scale(1.08); }
+a.card:focus-visible { z-index: 2; transform: scale(1.035); border-color: #3d3d3d; }
 
 .card--soon { cursor: default; }
 .card__soon {
@@ -259,9 +249,9 @@ a.card:focus-visible .card__shot { transform: scale(1.08); }
 }
 
 @media (max-width: 900px) {
-  .layout { grid-template-columns: 1fr; }
   .side {
     position: static;
+    width: auto;
     height: auto;
     padding: 24px 20px;
     border-right: 0;
@@ -269,12 +259,13 @@ a.card:focus-visible .card__shot { transform: scale(1.08); }
   }
   .side__photo { max-width: 200px; }
   .side__nav { flex-direction: row; flex-wrap: wrap; gap: 8px 20px; }
-  .main { padding: 24px 20px; }
+  .main { margin-left: 0; padding: 24px 20px; }
   .main__title { margin-bottom: 28px; }
   .gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .card__cover::before { animation: none; }
-  .card__shot { transition: none; }
+  a.card { transition: none; }
+  a.card:hover,
+  a.card:focus-visible { transform: none; }
 }
