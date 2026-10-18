@@ -312,6 +312,15 @@ a.card:focus-visible .card__img { transform: scale(1.05); }
 }
 .about__body { font-size: 16px; line-height: 23px; }
 .about__body p + p { margin-top: 16px; }
+.about__list { list-style: none; margin: 0; padding: 0; }
+.about__list li { position: relative; padding-left: 16px; }
+.about__list li::before { content: "·"; position: absolute; left: 0; }
+.about__list li + li { margin-top: 16px; }
+.about__list li.about__list-tight { margin-top: 0; }
+.about__list li.about__list-plain { padding-left: 0; }
+.about__list li.about__list-plain a { text-decoration: underline; text-underline-offset: 3px; }
+.about__list li.about__list-plain::before { content: none; }
+.about__list + p { margin-top: 16px; }
 .about__more-title { color: #9b9b9b; font-size: 18px; line-height: 28.8px; }
 .about__body:nth-child(2) { --d: 150; }
 
