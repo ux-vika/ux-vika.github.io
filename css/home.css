@@ -1,4 +1,5 @@
-/* Главная: тёмная раскладка с колонкой слева и сеткой кейсов справа.
+/* Главная — тёмная: узкая колонка слева, заголовок и сетка кейсов справа.
+   Сверстана по макету Figma «Главная — тёмная» (node 39:14238).
    Отдельный файл, общий style.css на главной не подключён. */
 
 :root {
@@ -6,17 +7,16 @@
   --bg-card: #1a1a1a;
   --line: #262626;
   --text: #f2f2f2;
-  --muted: #9b9b9b;
+  --muted: #8a93a6;
 
   --cover-blue: #ebf9ff;
   --cover-pink: #ffe6e8;
-  --cover-peach: #ffefdd;
+  --cover-dark: #f4f5f8;
   --cover-lavender: #d6d3ff;
 
   --font-main: "Onest", system-ui, sans-serif;
-  --font-display: "IBM Plex Sans", system-ui, sans-serif;
 
-  --side-w: 460px;
+  --side-w: 312px;
   --gap: 20px;
   --radius: 16px;
 
@@ -29,7 +29,6 @@
 *::after { box-sizing: border-box; }
 
 html { scroll-behavior: smooth; }
-@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 
 body {
   margin: 0;
@@ -44,13 +43,24 @@ body {
 img { display: block; max-width: 100%; }
 a { color: inherit; text-decoration: none; }
 h1, h2, p, ul { margin: 0; padding: 0; }
-ul { list-style: none; }
 
 .layout { min-height: 100vh; }
 
+/* ---------- Анимация появления ----------
+   Элементы с классом .r выезжают снизу, когда попадают в экран
+   (js/home-reveal.js ставит .is-in). Без JS всё видно сразу. */
+
+.js .r {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 800ms var(--ease-out), transform 900ms var(--ease-out);
+  transition-delay: calc(var(--d, 0) * 1ms);
+}
+.js .r.is-in { opacity: 1; transform: none; }
+
 /* ---------- Левая колонка ---------- */
 
-/* Закреплена на месте (fixed): при прокрутке страницы не двигается. */
+/* Закреплена на месте: при прокрутке страницы не двигается. */
 .side {
   position: fixed;
   top: 0;
@@ -58,67 +68,81 @@ ul { list-style: none; }
   width: var(--side-w);
   height: 100vh;
   overflow-y: auto;
-  padding: 36px;
-  border-right: 1px solid var(--line);
+  padding: 60px 36px 40px;
+}
+
+.side__photo {
+  width: 240px;
+  max-width: 100%;
+  height: 268px;
+  object-fit: cover;
+  object-position: 50% 30%;
+  border-radius: 12px;
 }
 
 .side__name {
-  font: 400 26px/1.2 var(--font-display);
-  text-transform: uppercase;
+  display: block;
+  margin-top: 16px;
+  font: 400 24px/31px var(--font-main);
   letter-spacing: .02em;
-}
-.side__role { margin-top: 4px; color: var(--muted); font-size: 18px; }
-.side__lead { margin-top: 32px; font-size: 19px; line-height: 1.55; }
-
-.side__photo {
-  width: 100%;
-  max-width: 300px;
-  height: auto;
-  margin-top: 32px;
 }
 
 .side__nav {
   display: flex;
   flex-direction: column;
   gap: 12px;
-  margin-top: 36px;
-  padding-top: 28px;
+  margin-top: 16px;
+  padding-top: 16px;
   border-top: 1px solid var(--line);
-  font-size: 18px;
+  color: #d7d7d7;
 }
-.side__nav a { color: var(--muted); transition: color var(--dur) var(--ease-out); }
+.side__nav a { transition: color var(--dur) var(--ease-out), transform var(--dur) var(--ease-out); }
 .side__nav a:hover,
-.side__nav a:focus-visible { color: var(--text); }
+.side__nav a:focus-visible { color: var(--text); transform: translateX(4px); }
 
-/* ---------- Заголовок и сетка кейсов ---------- */
+/* ---------- Заголовок ---------- */
 
-.main { margin-left: var(--side-w); padding: 36px var(--gap) var(--gap) 28px; }
+.main { margin-left: var(--side-w); max-width: 980px; padding: 60px 16px 60px; }
 
-.main__title {
-  max-width: 17em;
-  margin-bottom: 40px;
-  font: 400 clamp(34px, 3.9vw, 56px)/1.12 var(--font-display);
-  letter-spacing: -.01em;
+.intro__title {
+  display: flex;
+  flex-direction: column;
+  font: 600 40px/normal var(--font-main);
+  letter-spacing: -.4px;
 }
+.intro__text {
+  max-width: 693px;
+  margin-top: 16px;
+  color: #ffffff;
+  line-height: 24px;
+}
+
+/* ---------- Карточки кейсов ---------- */
 
 .cards {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: 468fr 456fr;
   gap: var(--gap);
+  margin-top: 40px;
 }
 
-/* Карточка: тёмный фон с переливающимся градиентом (canvas, js/home-gradient.js).
-   Весь контент лежит выше градиента. */
+/* Тёмная карточка с переливающимся градиентом (canvas, js/home-gradient.js).
+   Градиент остаётся и при наведении: там он только ярче. */
 .card {
   position: relative;
   isolation: isolate;
-  display: flex;
-  flex-direction: column;
-  padding: 16px 16px 24px;
+  /* Две строки карточки (текст и макет) общие для всего ряда (subgrid):
+     макеты соседних карточек начинаются на одной линии, даже если заголовки разной длины. */
+  display: grid;
+  grid-row: span 2;
+  grid-template-rows: subgrid;
+  row-gap: 24px;
+  padding: 16px;
   overflow: hidden;
   background: var(--bg-card);
   border: 1px solid var(--line);
   border-radius: var(--radius);
+  transition: transform 700ms var(--ease-out), border-color var(--dur) var(--ease-out), box-shadow 700ms var(--ease-out);
 }
 .card__bg {
   position: absolute;
@@ -126,93 +150,159 @@ ul { list-style: none; }
   z-index: -1;
   width: 100%;
   height: 100%;
+  transition: filter 700ms var(--ease-out);
 }
 
-/* Обложка: простой цветной фон + макет по центру.
-   Макеты не растягиваются: задана одна сторона, пропорции сохраняются. */
+.card__text { display: flex; flex-direction: column; gap: 8px; padding-top: 16px; }
+.card__kicker { color: var(--muted); font-size: 12px; line-height: 20px; }
+.card__title { font: 700 24px/normal var(--font-main); }
+.card__title--26 { line-height: 26px; }
+.card__desc { color: #fff; font-size: 12px; line-height: 20px; }
+.card__desc--cal { color: #ebedef; line-height: 18px; }
+
+/* Обложка: макет заполняет область, пропорции сохраняются (object-fit). */
+.card__body { display: flex; flex-direction: column; gap: 24px; }
 .card__cover {
   position: relative;
-  aspect-ratio: 1 / 1;
+  min-height: 350px;
   overflow: hidden;
   border-radius: 12px;
 }
-.card__cover--blue { background: var(--cover-blue); }
+.card__cover--blue { background: transparent; }
 .card__cover--pink { background: var(--cover-pink); }
-.card__cover--peach { background: var(--cover-peach); }
-.card__cover--lavender { background: var(--cover-lavender); }
-
-.card__shot {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 5%;
-  padding: 14% 6% 6%;
-}
-.card__shot img {
-  flex: 0 0 auto;
+/* Антивирус: картинка из макета целиком, 434×359, без подложки и обрезки. */
+.card__cover--dark {
+  align-self: start;
+  min-height: 0;
   height: auto;
-  border-radius: 10px;
-  box-shadow: 0 10px 30px rgba(24, 24, 24, .18);
+  aspect-ratio: 434 / 359;
+  background: transparent;
 }
-/* ширина задана, высота по пропорции */
-.card__shot--wide img { width: 100%; }
-/* высота задана, ширина по пропорции; кадр Lu обрезается, не растягивается */
-.card__shot--tall { padding: 0; }
-.card__shot--tall img { width: 100%; height: 100%; border-radius: 0; box-shadow: none; object-fit: cover; }
-.card__shot--phones img { height: 100%; width: auto; border-radius: 0; box-shadow: none; }
-
-.card__tags {
-  position: absolute;
-  top: 12px;
-  left: 12px;
-  right: 12px;
-  z-index: 1;
+/* Три экрана в ряд занимают всю ширину обложки (как в макете: 3 × 133px и зазор 11px),
+   высота получается из пропорций картинок, ничего не растягивается и не обрезается. */
+.card__cover--phones {
+  container-type: inline-size;
+  flex: 0 0 auto;
+  min-height: 0;
+  height: auto;
   display: flex;
-  flex-wrap: wrap;
-  gap: 5px;
+  align-items: flex-start;
+  justify-content: center;
+  overflow: visible;
+  background: transparent;
 }
-.card__tags li {
-  padding: 2px 10px;
+
+.card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 0;
+  border-radius: 12px;
+  transition: transform 900ms var(--ease-out);
+}
+.card__img--lu { object-position: 56% 50%; border-radius: 0; }
+
+.card__phone {
+  /* высота картинки: 3 экрана с зазором как в макете точно по ширине обложки */
+  --ph: 71.4cqw;
+  position: relative;
+  flex: 0 0 auto;
+  height: var(--ph);
+  width: auto;
+  /* у картинок по 12,5% пустого поля с каждой стороны: поджимаем, чтобы между
+     экранами остался зазор 11px при ширине экрана 133px, как в макете */
+  margin-inline: calc(var(--ph) * -.0554);
+  transition: transform 900ms var(--ease-out);
+}
+.card__phone > img { height: 100%; width: auto; max-width: none; }
+
+/* Третий экран: «Событие» из первого, затемнение и шторка «Повторять» (как в макете).
+   Тело телефона занимает 12,5–87,5% ширины и 4,5–95,5% высоты картинки. */
+.card__phone--r { font-size: calc(var(--ph) * .023); }
+.sheet__dim {
+  position: absolute;
+  inset: 4.43% 12.55% 3.87%;
+  border-radius: 1.7em;
+  background: rgba(40, 40, 60, .38);
+}
+.sheet {
+  position: absolute;
+  left: 12.55%;
+  right: 12.65%;
+  bottom: 3.87%;
+  display: flex;
+  flex-direction: column;
+  padding: .8em .8em 1.4em;
+  border-radius: 1.1em 1.1em 1.7em 1.7em;
+  background: #fff;
+  color: #1e2433;
+  line-height: 1;
+  box-shadow: 0 -.5em 1.5em rgba(30, 36, 51, .12);
+}
+.sheet__grip { align-self: center; width: 2.2em; height: .28em; margin-bottom: .9em; border-radius: 1em; background: #d8dbe3; }
+.sheet b { padding: .2em .4em .9em; font-weight: 600; font-size: 1.15em; }
+.sheet span:not(.sheet__grip) { display: flex; justify-content: space-between; align-items: center; padding: 1.05em .8em; border-radius: .7em; }
+.sheet .is-on { background: #ece9fb; }
+.sheet i { font-style: normal; color: #6f5ac4; }
+
+.card__soon {
+  align-self: flex-start;
+  padding: 8px 10px;
+  border: 1px solid #ebedef;
   border-radius: 999px;
-  background: rgba(24, 24, 24, .72);
-  color: #fff;
   font-size: 12px;
-  line-height: 1.5;
-  backdrop-filter: blur(6px);
+  line-height: 20px;
 }
 
-.card__title {
-  margin-top: 16px;
-  font: 400 17px/1.3 var(--font-main);
+/* Выезд содержимого карточки: текст — снизу по очереди, макет — снизу с приближением,
+   телефоны — с разных сторон. Запускается классом .is-in на карточке. */
+.js .card__text > *,
+.js .card__cover,
+.js .card__soon {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 800ms var(--ease-out), transform 1000ms var(--ease-out);
 }
-.card__desc { margin-top: 6px; color: var(--muted); font-size: 14px; line-height: 1.45; }
+.js .card__text > :nth-child(1) { transition-delay: 150ms; }
+.js .card__text > :nth-child(2) { transition-delay: 260ms; }
+.js .card__text > :nth-child(3) { transition-delay: 370ms; }
+.js .card__cover { transform: translateY(72px) scale(.94); transition-delay: 480ms; }
+.js .card__soon { transition-delay: 900ms; }
 
-/* Ховер: приближается вся карточка целиком */
-a.card { transition: transform 500ms var(--ease-out), border-color var(--dur) var(--ease-out); }
+.js .card__phone--l { transform: translateX(-70px) rotate(-4deg); }
+.js .card__phone--m { transform: translateY(60px); }
+.js .card__phone--r { transform: translateX(70px) rotate(4deg); }
+.js .card__phone { opacity: 0; transition: opacity 800ms var(--ease-out), transform 1100ms var(--ease-out); transition-delay: 450ms; }
+.js .card__phone--m { transition-delay: 520ms; }
+.js .card__phone--r { transition-delay: 590ms; }
+
+.js .card.is-in .card__text > *,
+.js .card.is-in .card__cover,
+.js .card.is-in .card__soon,
+.js .card.is-in .card__phone { opacity: 1; transform: none; }
+
+/* Ховер: приближается вся карточка, градиент ярче, макет чуть крупнее */
 a.card:hover,
-a.card:focus-visible { z-index: 2; transform: scale(1.035); border-color: #3d3d3d; }
+a.card:focus-visible,
+.card--soon:hover {
+  z-index: 2;
+  transform: scale(1.05);
+  border-color: #3d3d3d;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, .55);
+}
+a.card:hover .card__bg,
+a.card:focus-visible .card__bg,
+.card--soon:hover .card__bg { filter: brightness(1.35) saturate(1.25); }
+a.card:hover .card__img,
+a.card:focus-visible .card__img { transform: scale(1.05); }
+.card--soon:hover .card__phone { transform: translateY(-6px) scale(1.03); }
 
 .card--soon { cursor: default; }
-.card__soon {
-  display: inline-block;
-  margin-top: 8px;
-  padding: 0 10px;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  color: var(--text);
-  font-size: 13px;
-}
 
 /* ---------- Обо мне ---------- */
 
-.about {
-  margin-top: 96px;
-  padding-top: 40px;
-  border-top: 1px solid var(--line);
-}
-.about__title { font: 400 40px/1.2 var(--font-display); }
+.about { margin-top: 40px; }
+.about__title { font: 400 40px/48px var(--font-main); }
 
 .about__grid {
   display: grid;
@@ -220,29 +310,29 @@ a.card:focus-visible { z-index: 2; transform: scale(1.035); border-color: #3d3d3
   gap: 28px;
   margin-top: 32px;
 }
-.about__body { font-size: 18px; line-height: 1.6; }
+.about__body { font-size: 16px; line-height: 23px; }
 .about__body p + p { margin-top: 16px; }
-.about__more-title { color: var(--muted); }
+.about__more-title { color: #9b9b9b; font-size: 18px; line-height: 28.8px; }
+.about__body:nth-child(2) { --d: 150; }
 
+/* Как в макете: четыре одинаковые ячейки 224×295, фото заполняет ячейку (object-fit). */
 .gallery {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  display: flex;
   gap: 16px;
   margin-top: 56px;
 }
 .gallery img {
-  width: 100%;
-  aspect-ratio: 3 / 4;
+  flex: 1 1 0;
+  min-width: 0;
+  height: 295px;
   object-fit: cover;
   border-radius: 12px;
 }
+.gallery img:nth-child(2) { --d: 100; }
+.gallery img:nth-child(3) { --d: 200; }
+.gallery img:nth-child(4) { --d: 300; }
 
 /* ---------- Адаптив ---------- */
-
-@media (max-width: 1280px) {
-  :root { --side-w: 380px; }
-  .side { padding: 28px; }
-}
 
 @media (max-width: 1100px) {
   .about__grid { grid-template-columns: 1fr; }
@@ -253,19 +343,29 @@ a.card:focus-visible { z-index: 2; transform: scale(1.035); border-color: #3d3d3
     position: static;
     width: auto;
     height: auto;
-    padding: 24px 20px;
-    border-right: 0;
-    border-bottom: 1px solid var(--line);
+    padding: 24px 20px 0;
   }
-  .side__photo { max-width: 200px; }
+  .side__photo { width: 200px; height: 224px; }
   .side__nav { flex-direction: row; flex-wrap: wrap; gap: 8px 20px; }
-  .main { margin-left: 0; padding: 24px 20px; }
-  .main__title { margin-bottom: 28px; }
+  .main { margin-left: 0; padding: 24px 20px 48px; }
+  .intro__title { font-size: 30px; }
+  .cards { grid-template-columns: 1fr; }
+  .card__cover { min-height: 0; height: auto; aspect-ratio: 4 / 3; }
+  .card__cover--phones { aspect-ratio: auto; height: auto; }
   .gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  a.card { transition: none; }
+  html { scroll-behavior: auto; }
+  .js .r,
+  .js .card__text > *,
+  .js .card__cover,
+  .js .card__soon,
+  .js .card__phone { opacity: 1; transform: none; transition: none; }
+  .card,
+  .card__bg,
+  .card__img { transition: none; }
   a.card:hover,
-  a.card:focus-visible { transform: none; }
+  a.card:focus-visible,
+  .card--soon:hover { transform: none; }
 }

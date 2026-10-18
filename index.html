@@ -7,105 +7,125 @@
   <meta name="description" content="Портфолио продуктового дизайнера Виктории Шаханиной: B2B и Enterprise, исследования, Discovery.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400&family=Onest:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/home.css?v=5">
+  <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;600;700&display=swap" rel="stylesheet">
+  <script>document.documentElement.className += ' js';</script>
+  <link rel="stylesheet" href="css/home.css?v=16">
 </head>
 <body class="home">
 
 <div class="layout">
   <aside class="side">
-    <div class="side__top">
-      <a class="side__name" href="index.html">Виктория Шаханина</a>
-      <p class="side__role">Продуктовый дизайнер</p>
+    <img class="side__photo r" src="assets/img/home/fig/photo.png" width="240" height="268" alt="Виктория Шаханина">
+    <a class="side__name r" href="index.html">Виктория<br>Шаханина</a>
 
-      <p class="side__lead">Запускала продукты, выстраивала Discovery и&nbsp;помогала командам принимать решения на&nbsp;основе исследований.</p>
-
-      <img class="side__photo" src="assets/img/home/about-photo-2.png" width="275" height="397" alt="Виктория в парке">
-
-      <nav class="side__nav" aria-label="Основное меню">
-        <a href="#cases">Кейсы</a>
-        <a href="#about">Обо мне</a>
-        <a href="https://telegram.me/ux_vika" target="_blank" rel="noopener">Telegram ↗</a>
-        <a href="mailto:9697161878@mail.ru">Почта ↗</a>
-        <a href="assets/cv/cv-shakhanina-viktoriya.pdf" target="_blank" rel="noopener">CV ↗</a>
-      </nav>
-    </div>
+    <nav class="side__nav r" aria-label="Основное меню">
+      <a href="#about">Обо мне</a>
+      <a href="https://telegram.me/ux_vika" target="_blank" rel="noopener">Telegram ↗</a>
+      <a href="mailto:9697161878@mail.ru">Почта ↗</a>
+      <a href="assets/cv/cv-shakhanina-viktoriya.pdf" target="_blank" rel="noopener">CV ↗</a>
+    </nav>
   </aside>
 
   <main class="main">
-    <h1 class="main__title">Я&nbsp;— продуктовый дизайнер, 6+&nbsp;лет&nbsp;опыта в&nbsp;B2B</h1>
+    <header class="intro">
+      <h1 class="intro__title"><span class="r">Привет👋</span><span class="r">Я Вика, продуктовый дизайнер</span></h1>
+      <p class="intro__text r">6+ лет в B2B и Enterprise. Запускала продукты, выстраивала Discovery и помогала командам принимать решения на основе исследований. Внедрила PBR, USM и процесс сбора пользовательской обратной связи, чтобы проверять идеи до начала разработки.</p>
+    </header>
 
     <section class="cards" id="cases" aria-label="Кейсы">
       <a class="card" href="kalendar.html">
         <canvas class="card__bg" data-g="#3a6bff #8a5cff" aria-hidden="true"></canvas>
-        <div class="card__cover card__cover--blue">
-          <ul class="card__tags"><li>Календарь</li><li>Enterprise</li><li>Web</li></ul>
-          <div class="card__shot card__shot--wide"><img src="assets/video/kalendar-novyj-poster-blue.jpg" width="2432" height="1470" alt="Календарь в корпоративном мессенджере на макбуке"></div>
+        <div class="card__text">
+          <p class="card__kicker">Проектировала новый раздел</p>
+          <h2 class="card__title">Календарь для корпоративного мессенджера «Squadus»</h2>
+          <p class="card__desc card__desc--cal">Помог сделать из мессенджера Squadus Pro и стать заменой Microsoft Teams.</p>
         </div>
-        <h2 class="card__title">Календарь для&nbsp;корпоративного мессенджера «Squadus»</h2>
-        <p class="card__desc">Календарь расширил Squadus до&nbsp;Squadus Pro и&nbsp;помог перевести заказчиков с&nbsp;Microsoft&nbsp;Teams.</p>
+        <div class="card__cover card__cover--blue">
+          <img class="card__img" src="assets/img/home/fig/kalendar.png" width="2400" height="1964" alt="Календарь в корпоративном мессенджере: создание события">
+        </div>
       </a>
 
       <a class="card" href="lu.html">
         <canvas class="card__bg" data-g="#ff4f9a #ff9a5c" aria-hidden="true"></canvas>
-        <div class="card__cover card__cover--pink">
-          <ul class="card__tags"><li>Mobile</li><li>Концепт</li><li>ИИ</li></ul>
-          <div class="card__shot card__shot--tall"><img src="assets/video/lu-ruki-poster.jpg" width="1920" height="1080" alt="Приложение Lu на телефоне в руках"></div>
+        <div class="card__text">
+          <p class="card__kicker">Полностью разработала</p>
+          <h2 class="card__title">Концепт для чтения книг «Lu»</h2>
+          <p class="card__desc">Приложение для чтения, которое помогает сформировать привычку чтения, найти с помощью ИИ книги под настроение, а так же большое разнообразие книг.</p>
         </div>
-        <h2 class="card__title">Концепт приложения для&nbsp;чтения книг «Lu»</h2>
-        <p class="card__desc">Каталог с&nbsp;ридером, ИИ-ассистент, который подбирает книгу под&nbsp;настроение, и&nbsp;трекер привычки чтения.</p>
+        <div class="card__cover card__cover--pink">
+          <video class="card__img card__img--lu" src="assets/video/lu-knigi-home.mp4" poster="assets/video/lu-knigi-home-poster.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Приложение Lu: листание книги на телефоне в руках"></video>
+        </div>
       </a>
 
       <a class="card" href="antivirus.html">
         <canvas class="card__bg" data-g="#ff7a3d #ff3d5c" aria-hidden="true"></canvas>
-        <div class="card__cover card__cover--peach">
-          <ul class="card__tags"><li>Безопасность</li><li>Enterprise</li><li>Web</li></ul>
-          <div class="card__shot card__shot--wide"><img src="assets/img/home/antivirus-chat-2.webp" width="2132" height="1750" loading="lazy" alt="Чат мессенджера с заражённым вложением"></div>
+        <div class="card__text">
+          <p class="card__kicker">Проектировала новый функционал</p>
+          <h2 class="card__title card__title--26">Антивирусная защита вложений<br>в «Squadus»</h2>
+          <p class="card__desc">Функциональность закрыла требование по безопасности у заказчиков<br>и помогла развернуть Squadus у крупного B2B заказчика.</p>
         </div>
-        <h2 class="card__title">Антивирусная защита вложений в&nbsp;«Squadus»</h2>
-        <p class="card__desc">Устранили риск распространения вредоносного ПО в&nbsp;мессенджере и&nbsp;закрыли требования крупного клиента по&nbsp;безопасности.</p>
+        <div class="card__cover card__cover--dark">
+          <img class="card__img" src="assets/img/home/fig/antivirus-frame.png" width="1736" height="1436" loading="lazy" alt="Чат мессенджера с заражённым вложением">
+        </div>
       </a>
 
       <div class="card card--soon" aria-disabled="true">
         <canvas class="card__bg" data-g="#7a5cff #3dbfff" aria-hidden="true"></canvas>
-        <div class="card__cover card__cover--lavender">
-          <ul class="card__tags"><li>Календарь</li><li>Mobile</li></ul>
-          <div class="card__shot card__shot--phones">
-            <img src="assets/img/home/povtor-sobytie.webp" width="1052" height="1783" loading="lazy" alt="Событие «Тренировка» с повтором каждые 2 недели">
-            <img src="assets/img/home/povtor-mesyac.webp" width="1214" height="2087" loading="lazy" alt="Экран «Повтор»: каждые 2 месяца, 2 числа и в последний день">
+        <div class="card__text">
+          <p class="card__kicker">Полностью проектировала</p>
+          <h2 class="card__title card__title--26">Сложный повтор событий в календаре «Focus»</h2>
+          <p class="card__desc">Реализация сняла один из блокеров для заключения сделки с заказчиком.</p>
+        </div>
+        <div class="card__body">
+        <div class="card__cover card__cover--phones">
+          <img class="card__phone card__phone--l" src="assets/img/home/povtor-sobytie.webp" width="1052" height="1783" loading="lazy" alt="Событие «Тренировка» с повтором каждые 2 недели">
+          <img class="card__phone card__phone--m" src="assets/img/home/povtor-mesyac.webp" width="1214" height="2087" loading="lazy" alt="Экран «Повтор»: каждые 2 месяца, 2 числа и в последний день">
+          <div class="card__phone card__phone--r">
+            <img src="assets/img/home/povtor-sobytie.webp" width="1052" height="1783" loading="lazy" alt="">
+            <span class="sheet__dim"></span>
+            <div class="sheet" role="img" aria-label="Событие с открытой шторкой «Повторять»: каждый день, неделю, месяц, год, другое">
+              <span class="sheet__grip"></span>
+              <b>Повторять</b>
+              <span>Каждый день</span>
+              <span>Каждую неделю</span>
+              <span>Каждый месяц</span>
+              <span>Каждый год</span>
+              <span class="is-on">Другое<i>✓</i></span>
+            </div>
           </div>
         </div>
-        <h2 class="card__title">Сложный повтор событий в&nbsp;календаре «Focus»</h2>
-        <p class="card__desc">Реализация сняла один из&nbsp;блокеров для&nbsp;заключения сделки с&nbsp;заказчиком. <span class="card__soon">Кейс оформляется</span></p>
+        <span class="card__soon">Кейс оформляется</span>
+        </div>
       </div>
     </section>
 
     <section class="about" id="about">
-      <h2 class="about__title">Обо мне 👩</h2>
+      <h2 class="about__title r">Обо мне 👩</h2>
       <div class="about__grid">
-        <div class="about__body">
-          <p>Продуктовый дизайнер, 6+ лет в&nbsp;B2B&nbsp;и&nbsp;Enterprise, последние 4,5&nbsp;года в&nbsp;МойОфис: почта, документы, календарь, мессенджер и&nbsp;ВКС на&nbsp;всех платформах.</p>
-          <p>Сильная сторона&nbsp;— исследования. Сама провожу интервью и&nbsp;тесты, вместе с&nbsp;PM&nbsp;внедрила Discovery. За&nbsp;полгода совместно с&nbsp;командой разработали приложение «Фокус», благодаря которому компания закрыла сделку с&nbsp;крупным госзаказчиком. Полностью спроектировала приложение Wowworks для&nbsp;iOS, и&nbsp;это сняло блокер для&nbsp;новых исполнителей.</p>
-          <p>Выступала на&nbsp;World Usability Day (ИТМО) и&nbsp;«Дизайн Выходных», менторила студентов DesignSpot School (EPAM).</p>
+        <div class="about__body r">
+          <p>Продуктовый дизайнер, 6+ лет в B2B и Enterprise, последние 4,5 года в МойОфис: почта, документы, календарь, мессенджер и ВКС на всех платформах.</p>
+          <p>Сильная сторона — исследования. Сама провожу интервью и тесты, вместе с PM внедрила Discovery. За полгода совместно с командой разработали приложение «Фокус», благодаря которому компания закрыла сделку с крупным госзаказчиком. Полностью спроектировала приложение Wowworks для iOS, и это сняло блокер для новых исполнителей.</p>
+          <p>Выступала на World Usability Day (ИТМО) и «Дизайн Выходных», менторила студентов DesignSpot School (EPAM).</p>
         </div>
-        <div class="about__body">
-          <p class="about__more-title">И&nbsp;ещё немного…</p>
-          <p>Если поставлю цель, то&nbsp;доведу до&nbsp;конца. Решила пожить в&nbsp;Европе и&nbsp;за&nbsp;полгода сама выучила немецкий до&nbsp;A1, прошла собеседование в&nbsp;консульстве и&nbsp;год прожила в&nbsp;Германии. Чтобы попасть в&nbsp;IT, на&nbsp;год переехала в&nbsp;Самару. Сейчас живу в&nbsp;Петербурге.</p>
-          <p>Рисую, хожу в&nbsp;спортзал и&nbsp;прохожу с&nbsp;друзьями по&nbsp;30 000 шагов ради чашки вкусного кофе.</p>
+        <div class="about__body r">
+          <p class="about__more-title">И ещё немного…</p>
+          <p>Если поставлю цель, то доведу до конца. Решила пожить в Европе и за полгода сама выучила немецкий до A1, прошла собеседование в консульстве и год прожила в Германии. Чтобы попасть в IT, на год переехала в Самару. Сейчас живу в Петербурге.</p>
+          <p>Рисую, хожу в спортзал и прохожу с друзьями по 30 000 шагов ради чашки вкусного кофе.</p>
         </div>
       </div>
 
       <div class="gallery">
-        <img src="assets/img/home/life-1.jpg" loading="lazy" alt="На берегу моря">
-        <img src="assets/img/home/life-2.jpg" loading="lazy" alt="Зимой на скамейке">
-        <img src="assets/img/home/life-3.jpg" loading="lazy" alt="В спортзале">
-        <img src="assets/img/home/life-4.jpg" loading="lazy" alt="В горах">
+        <img class="r" src="assets/img/home/fig/life-1.png" width="562" height="1000" loading="lazy" alt="На берегу моря">
+        <img class="r" src="assets/img/home/fig/life-2.png" width="960" height="1280" loading="lazy" alt="Зимой на скамейке">
+        <img class="r" src="assets/img/home/fig/life-3.png" width="750" height="1000" loading="lazy" alt="В спортзале">
+        <img class="r" src="assets/img/home/fig/life-4.png" width="964" height="1280" loading="lazy" alt="В горах">
       </div>
     </section>
   </main>
 </div>
 
 <script src="js/home-gradient.js" defer></script>
+<script src="js/home-reveal.js" defer></script>
 
 </body>
 </html>

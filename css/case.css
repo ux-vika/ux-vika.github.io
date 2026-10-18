@@ -1,0 +1,423 @@
+/* Кейсы — тёмная тема. Сверстано по фреймам Figma «Кейс с календарем», «Кейс с LU»,
+   «Кейс с антивирусом» (файл Untitled).
+   Колонка контента стоит по центру экрана, текст выровнен по левому краю.
+   Все макеты увеличены в --k раз относительно фрейма.
+   Движение: характер Premium. Входы 600–800ms, кривая cubic-bezier(.22,1,.36,1), без перелёта;
+   выходы короче входов; фон живёт медленно (ambient). */
+
+:root {
+  --bg: #0f0f0f;
+  --card: #1a1a1a;
+  --line: #262626;
+  --accent: #b3c6ef;
+  --text: #ffffff;
+  --muted: #d7d7d7;
+  --panel: #2f3236;
+  --btn-line: #ebedef;
+  --pink: #ffe6e8;
+
+  --font-main: "Onest", system-ui, sans-serif;
+  --font-plex: "IBM Plex Sans", system-ui, sans-serif;
+
+  --k: 1.18;                          /* увеличение макетов относительно фрейма */
+  --col: calc(882px * var(--k));      /* колонка контента */
+  --page-pad: 64px;
+
+  --ease-out: cubic-bezier(.22, 1, .36, 1);
+  --ease-io: cubic-bezier(.4, 0, .2, 1);
+  --ease-in: cubic-bezier(.4, 0, 1, 1);
+
+  --g1: 58, 107, 255;                 /* цвета градиента страницы (RGB) */
+  --g2: 138, 92, 255;
+}
+
+.case-kal { --g1: 58, 107, 255; --g2: 138, 92, 255; }
+.case-lu  { --g1: 255, 79, 154; --g2: 255, 154, 92; }
+.case-av  { --g1: 255, 122, 61; --g2: 255, 61, 92; }
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  position: relative;
+  isolation: isolate;
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-main);
+  font-size: 16px;
+  line-height: normal;
+  -webkit-font-smoothing: antialiased;
+}
+
+img { display: block; max-width: 100%; height: auto; }
+a { color: inherit; text-decoration: none; }
+h1, h2, h3, p, ul { margin: 0; padding: 0; }
+ul { list-style: none; }
+
+/* ---------- Градиент: от верха страницы до названия кейса, дальше тёмный фон ----------
+   Тот же переливающийся шейдер, что на карточках главной (canvas, js/home-gradient.js).
+   Высоту (--glow-h) выставляет js/case.js по положению заголовка. Низ плавно уходит в фон. */
+
+.case-glow {
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--glow-h, 900px);
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(#000 65%, transparent 100%);
+  mask-image: linear-gradient(#000 65%, transparent 100%);
+  filter: brightness(1.25);
+  animation: glow-in 1600ms var(--ease-out) both;
+}
+@keyframes glow-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.container {
+  width: 100%;
+  max-width: calc(var(--col) + var(--page-pad) * 2);
+  margin: 0 auto;
+  padding: 0 var(--page-pad);
+}
+
+/* ---------- Шапка ---------- */
+
+.case-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 40px;
+}
+.case-header__name { font-size: 16px; color: #fff; }
+
+.btn-back,
+.btn-next {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--btn-line);
+  border-radius: 100px;
+  color: var(--muted);
+  transition: background-color 250ms var(--ease-io), color 250ms var(--ease-io), transform 250ms var(--ease-out), border-color 250ms var(--ease-io);
+}
+.btn-back { padding: 12px 16px; font: 400 16px/normal var(--font-plex); }
+.btn-next { padding: 12px 16px; font: 500 16px/24px var(--font-main); }
+.btn-back:hover,
+.btn-next:hover { background: rgba(255, 255, 255, .1); color: #fff; transform: translateY(-2px); }
+.btn-back:active,
+.btn-next:active { transform: scale(.97); transition-duration: 120ms; }
+
+/* ---------- Колонка: блоки идут друг за другом через 40px ---------- */
+
+.case {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  width: 100%;
+  margin-top: 40px;
+  padding-bottom: 80px;
+}
+.case > * { width: 100%; max-width: 100%; }
+
+/* Текстовая колонка 803px стоит по центру экрана, текст внутри выровнен по левому краю.
+   Картинки шире и занимают всю колонку. */
+.title,
+.w-803,
+.stack > :is(h2, h3, p, ul):not(.w-700),
+.solution > .solution__h,
+.lu-set > h2,
+.lu-col > h2 { width: 100%; max-width: 803px; margin-inline: auto; }
+
+/* ---------- Появление при прокрутке ---------- */
+
+.js .rv {
+  opacity: 0;
+  transform: translate3d(0, 32px, 0);
+  transition: opacity 700ms var(--ease-out) var(--d, 0ms), transform 800ms var(--ease-out) var(--d, 0ms);
+}
+.js .rv.is-in { opacity: 1; transform: none; }
+.js .pic.rv { transform: translate3d(0, 40px, 0) scale(.975); }
+.js .pic.rv.is-in { transform: none; }
+
+/* ---------- Главная картинка кейса ---------- */
+
+.hero {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+.js .hero .pic { animation: hero-in 1100ms var(--ease-out) 150ms both; }
+@keyframes hero-in {
+  from { opacity: 0; transform: translate3d(0, 48px, 0) scale(.94); }
+  to   { opacity: 1; transform: none; }
+}
+
+.hero--kal .pic { width: calc(568px * var(--k)); max-width: 100%; aspect-ratio: 568 / 464; border-radius: 12px; }
+.hero--kal .pic img { height: 100%; object-fit: cover; }
+
+.hero--av .pic { width: calc(679.16px * var(--k)); max-width: 100%; aspect-ratio: 679.16 / 463.2; border-radius: 12px; }
+.hero--av .pic img { height: 100%; object-fit: cover; }
+
+/* Lu: розовая обложка, фото смещено и увеличено как в макете */
+.hero--lu .pic {
+  position: relative;
+  width: calc(557.04px * var(--k));
+  max-width: 100%;
+  aspect-ratio: 557.04 / 462;
+  border-radius: 15.84px;
+  background: var(--pink);
+}
+.hero--lu .pic img {
+  position: absolute;
+  top: 1.76%;
+  left: -32.45%;
+  width: 158.4%;
+  max-width: none;
+  height: auto;
+}
+
+/* ---------- Заголовки и тексты ---------- */
+
+.title { font: 600 40px/normal var(--font-main); color: #fff; }
+.title--bold { font-weight: 700; }
+.title--wide { white-space: nowrap; }
+.title--pre { white-space: pre; }
+
+.h-sub { font: 700 24px/normal var(--font-main); color: var(--accent); white-space: pre-wrap; }
+
+.h2 { font: 600 40px/normal var(--font-main); color: var(--accent); }
+.h2--52 { line-height: 52px; }
+.h3 { font: 500 24px/24px var(--font-main); color: var(--accent); }
+.h3--32 { line-height: 32px; }
+.h3--auto { line-height: normal; }
+
+.text { font-size: 16px; line-height: 24px; color: #fff; }
+.text p + p { margin-top: 24px; }
+.text--pre { white-space: pre-line; }
+
+.stack { display: flex; flex-direction: column; }
+.stack--16 { gap: 16px; }
+.stack--24 { gap: 24px; }
+.stack--8 { gap: 8px; }
+
+.w-700 { max-width: 700px; }
+.w-803 { max-width: 803px; }
+.w-760,
+.w-882,
+.w-914 { max-width: var(--col); }
+.full { width: 100%; }
+
+.list { display: flex; flex-direction: column; gap: 16px; }
+.list--8 { gap: 8px; }
+.list--24 { gap: 24px; }
+.list li { font-size: 16px; line-height: 24px; color: #fff; }
+.mark { color: var(--accent); }
+
+/* ---------- Роль / Вклад / Команда ---------- */
+
+.meta { display: flex; flex-direction: column; gap: 24px; width: 100%; max-width: 803px; }
+.meta__row { display: flex; gap: 40px; padding: 16px 0; }
+.meta__row--lu { column-gap: 177px; padding: 0; }
+.meta__col { display: flex; flex-direction: column; gap: 16px; flex: none; }
+.meta__label { font-weight: 600; color: var(--accent); }
+.meta__value { color: #fff; }
+
+/* Проблема / Клиенты */
+.cols-2 { display: grid; grid-template-columns: 375px 394px; column-gap: 34px; width: 100%; max-width: 803px; }
+.cols-2 > div { display: flex; flex-direction: column; gap: 16px; }
+
+/* Серая плашка */
+.panel { background: var(--panel); border-radius: 12px; padding: 16px; width: 100%; max-width: 803px; }
+.panel .text { max-width: 700px; }
+
+/* ---------- Картинки: открываются на весь экран (js/case.js) ---------- */
+
+.pic {
+  position: relative;
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  cursor: zoom-in;
+  -webkit-tap-highlight-color: transparent;
+}
+.pic img {
+  width: 100%;
+  height: auto;
+}
+.pic:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+.pic.is-open { visibility: hidden; }
+.pic--r4 { border-radius: 4px; }
+.pic--r7 { border-radius: 7.05px; }
+.pic--r8 { border-radius: 8px; }
+.pic--r12 { border-radius: 12px; }
+.pic--r14 { border-radius: 14.11px; }
+.pic--r16 { border-radius: 16px; }
+.pic--line::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 1px solid #667085;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+/* ---------- Что я сделала: гипотезы ---------- */
+
+.hyp { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: auto auto; column-gap: calc(20px * var(--k)); row-gap: 28px; width: 100%; max-width: var(--col); }
+.hyp__col { display: grid; grid-row: span 2; grid-template-rows: subgrid; row-gap: 28px; min-width: 0; }
+.hyp__head { display: flex; flex-direction: column; gap: 16px; }
+.hyp__title { font: 500 24px/normal var(--font-main); color: var(--accent); }
+.hyp__sub { font: 500 16px/24px var(--font-main); color: #fff; }
+.hyp__list { display: flex; flex-direction: column; gap: 8px; font-weight: 400; color: #fff; }
+.hyp__list li { display: flex; gap: 8px; }
+.hyp__list li span { font-size: 16px; line-height: 24px; }
+.hyp__list b {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  margin-top: 2px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  font: 400 18px/1 var(--font-main);
+}
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* ---------- Исследование ---------- */
+
+.pair { display: flex; align-items: flex-start; gap: calc(7.3px * var(--k)); width: 100%; max-width: var(--col); }
+.pair .pic { min-width: 0; }
+.stats { display: flex; gap: 16px; width: 100%; max-width: var(--col); }
+.stat { flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; gap: 16px; padding: 16px; background: var(--panel); border-radius: 12px; }
+.stat__num { font: 600 40px/52px var(--font-main); color: var(--accent); }
+.stat__cap { font-size: 16px; line-height: 24px; color: #fff; }
+
+/* ---------- Решение ---------- */
+
+.solution { display: flex; flex-direction: column; gap: 40px; width: 100%; max-width: var(--col); }
+.solution__h { font: 500 40px/24px var(--font-main); color: var(--accent); white-space: nowrap; }
+.shots { display: flex; align-items: center; gap: calc(3.89px * var(--k)); width: 100%; max-width: var(--col); }
+.shots .pic { flex: 1 1 0; min-width: 0; }
+.shots .pic img { aspect-ratio: 291.41 / 194.27; object-fit: cover; object-position: 0 0; }
+.errors { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: calc(20.6px * var(--k)); width: 100%; max-width: var(--col); }
+
+/* ---------- Lu: экраны ---------- */
+
+.phones { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: start; gap: calc(29.04px * var(--k)); width: 100%; }
+.lu-col { display: flex; flex-direction: column; gap: calc(38.48px * var(--k)); width: 100%; max-width: var(--col); }
+.lu-set { display: flex; flex-direction: column; gap: 29.04px; }
+
+/* ---------- Следующий кейс ---------- */
+
+.next {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  width: 100%;
+  max-width: var(--col);
+  padding: 24px;
+  background: var(--panel);
+  border-radius: 24px;
+  text-align: center;
+}
+.next__title { font: 500 24px/normal var(--font-main); color: #fff; max-width: 866px; }
+
+/* ---------- Просмотр картинки на весь экран ---------- */
+
+.lb { position: fixed; inset: 0; z-index: 100; visibility: hidden; }
+.lb.is-on { visibility: visible; }
+.lb__bg {
+  position: absolute;
+  inset: 0;
+  background: rgba(8, 8, 10, .86);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  opacity: 0;
+  cursor: zoom-out;
+}
+.lb__img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  max-width: none;
+  transform-origin: 0 0;
+  cursor: zoom-out;
+  box-shadow: 0 40px 120px rgba(0, 0, 0, .55);
+  will-change: transform, clip-path;
+}
+.lb__close {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, .28);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .08);
+  color: #fff;
+  cursor: pointer;
+  opacity: 0;
+  transition: background-color 250ms var(--ease-io), transform 250ms var(--ease-out);
+}
+.lb__close:hover { background: rgba(255, 255, 255, .18); transform: rotate(90deg); }
+.lb__close:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.lb__close svg { width: 20px; height: 20px; }
+
+/* ---------- Адаптив ---------- */
+
+@media (max-width: 1200px) {
+  :root { --page-pad: 40px; }
+}
+
+@media (max-width: 960px) {
+  :root { --page-pad: 24px; --k: 1; }
+  .title { font-size: 32px; }
+  .title--wide { white-space: normal; }
+  .title--pre { white-space: pre-line; }
+  .meta__row { flex-wrap: wrap; gap: 24px 40px; }
+  .meta__row--lu { column-gap: 40px; }
+  .meta__col { width: auto !important; flex: 1 1 220px; min-width: 0; }
+  .cols-2 { grid-template-columns: 1fr; row-gap: 24px; }
+  .hyp { grid-template-columns: minmax(0, 1fr); row-gap: 28px; }
+  .hyp__col { min-width: 0; }
+  .pair { flex-direction: column; gap: 8px; }
+  .pair .pic { flex: none !important; width: 100%; }
+  .stats { flex-direction: column; }
+  .shots { flex-direction: column; gap: 8px; }
+  .errors { grid-template-columns: 1fr; }
+  .phones { gap: 16px; }
+  .solution__h { white-space: normal; line-height: 1.2; }
+  .lb__close { top: 12px; right: 12px; }
+}
+
+@media (max-width: 560px) {
+  .phones,
+  .phones--wide { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+/* Без анимации: всё на месте сразу, фон не дрейфует */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .case-glow { animation: none; }
+  .js .rv,
+  .js .pic.rv { opacity: 1; transform: none; transition: none; }
+  .js .hero .pic { animation: none; }
+  .pic img,
+  .btn-back,
+  .btn-next,
+  .lb__close { transition: none; }
+}

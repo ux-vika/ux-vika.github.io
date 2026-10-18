@@ -4,141 +4,112 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Интеграция антивирусной проверки в корпоративный мессенджер — кейс Виктории Шаханиной</title>
-  <meta name="description" content="Кейс: антивирусная проверка файлов в мессенджере Сквадус вместе с Kaspersky Security Engine. Контекст, user flow, решение.">
+  <meta name="description" content="Кейс: интеграция антивирусной проверки файлов в корпоративный мессенджер Squadus. Контекст, user flow, решение, результат.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400&family=Onest:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400&family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script>document.documentElement.className += ' js';</script>
+  <link rel="stylesheet" href="css/case.css?v=8">
 </head>
-<body class="page-av">
+<body class="case-page case-av">
+<canvas class="card__bg case-glow" data-g="#ff7a3d #ff3d5c" aria-hidden="true"></canvas>
 
-<header class="container header header--case">
-  <a class="header__name" href="index.html">Виктория Шаханина</a>
-  <a class="btn-back" href="index.html">← К&nbsp;портфолио</a>
-</header>
+<div class="container">
+  <header class="case-header">
+    <a class="case-header__name" href="index.html">Виктория Шаханина</a>
+    <a class="btn-back" href="index.html">← К портфолио</a>
+  </header>
 
-<main>
-  <article class="container case">
-    <p class="case__crumbs">Кейс · Kaspersky Security Engine · МойОфис</p>
-    <h1 class="case__title">Интеграция антивирусной проверки <br>в&nbsp;корпоративный мессенджер</h1>
-
-    <div class="case-meta case-meta--center">
-      <dl class="case-meta__info case-meta__info--tight">
-        <div class="case-meta__item case-meta__item--tight">
-          <dt class="case-meta__label">Роль</dt>
-          <dd class="case-meta__value" style="margin:0">Senior Product Designer</dd>
-        </div>
-        <div class="case-meta__item">
-          <dt class="case-meta__label">Мой вклад</dt>
-          <dd class="case-meta__value case-meta__value--narrow" style="margin:0">Сбор требований · User Story Mapping · UX/UI&nbsp;Desktop и&nbsp;Mobile</dd>
-        </div>
-        <div class="case-meta__item">
-          <dt class="case-meta__label">Команда</dt>
-          <dd class="case-meta__value" style="margin:0">Системный аналитик · Разработчики · Product Manager</dd>
-        </div>
-      </dl>
-      <nav aria-label="Оглавление">
-        <ul class="case-toc">
-          <li class="case-toc__title">Оглавление</li>
-          <li><a href="#project">Проект</a></li>
-          <li><a href="#context">Контекст</a></li>
-          <li><a href="#userflow">User flow</a></li>
-          <li><a href="#solution">Решение</a></li>
-        </ul>
-      </nav>
-    </div>
-
-    <section class="case-section" id="project">
-      <h2 class="case-h2">Проект</h2>
-      <div class="case-sub">
-        <div class="case-sub__item">
-          <h3 class="case-sub__title">Что сделала</h3>
-          <p class="case-sub__text">Спроектировала систему антивирусной проверки файлов для&nbsp;Сквадус совместно с&nbsp;Kaspersky Security Engine.</p>
-        </div>
-        <div class="case-sub__item">
-          <h3 class="case-sub__title">Результат</h3>
-          <p class="case-sub__text">Решение устранило риск распространения вредоносного ПО&nbsp;внутри корпоративного мессенджера и&nbsp;сняло один из&nbsp;блокеров для&nbsp;работы с&nbsp;крупными корпоративными клиентами.</p>
-        </div>
-      </div>
-      <div class="case-media">
-        <img data-zoom src="assets/img/home/antivirus-chat.jpg" width="2132" height="1760" loading="lazy" alt="Чат мессенджера с заражённым вложением">
-      </div>
+  <main class="case">
+    <section class="hero hero--av" aria-label="Чат корпоративного мессенджера">
+      <div class="pic"><img src="assets/img/case/antivirus/chat.webp?v=2" width="1764" height="1204" alt="Чат корпоративного мессенджера Squadus"></div>
     </section>
-  </article>
 
-  <div class="case-band case-band--av-context">
-    <div class="band band--av-context" style="--band-h:148;--band-min:90px" role="img" aria-label="Kaspersky Security Engine, информационная безопасность, B2B, Desktop, Mobile, Kaspersky Security Engine, информационная безопасность, B2B, Desktop, Mobile, Kaspersky Security Engine, информационная безопасность, B2B, Desktop, Mobile"><svg viewBox="0 1852 1440 148" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><path id="wave-av-context-0" d="M -120 1927.5 C 90 1927.5 90 1876 300 1876 C 510 1876 510 1979 720 1979 C 930 1979 930 1876 1140 1876 C 1350 1876 1350 1979 1560 1979 C 1770 1979 1770 1876 1980 1876"/></defs><path d="M -120 1948.83 C 90 1948.83 90 1899.19 300 1899.19 C 510 1899.19 510 1998.47 720 1998.47 C 930 1998.47 930 1899.19 1140 1899.19 C 1350 1899.19 1350 1998.47 1560 1998.47 C 1770 1998.47 1770 1899.19 1980 1899.19 L 1980 3835.19 C 1770 3835.19 1770 3735.91 1560 3735.91 C 1350 3735.91 1350 3835.19 1140 3835.19 C 930 3835.19 930 3735.91 720 3735.91 C 510 3735.91 510 3835.19 300 3835.19 C 90 3835.19 90 3785.55 -120 3785.55 Z" fill="#FFEFDD"/><text class="band__text" fill="#181818"><textPath href="#wave-av-context-0" startOffset="0.1%">Kaspersky Security Engine  ✦  информационная безопасность  ✦  B2B  ✦  Desktop  ✦  Mobile  ✦  Kaspersky Security Engine  ✦  информационная безопасность  ✦  B2B  ✦  Desktop  ✦  Mobile  ✦  Kaspersky Security Engine  ✦  информационная безопасность  ✦  B2B  ✦  Desktop  ✦  Mobile  ✦  </textPath></text></svg></div>
-  </div>
+    <h1 class="title title--wide title--pre">Интеграция антивирусной проверки
+в корпоративный мессенджер</h1>
 
-  <div class="section-peach">
-    <div class="container case">
-      <section class="case-section" id="context">
-        <h2 class="case-h2">Контекст</h2>
-        <div class="case-text">
-          <p>Пользователи регулярно обмениваются файлами через&nbsp;мессенджер: документами, изображениями, аудио- и&nbsp;видеосообщениями.</p>
-          <p>При этом в&nbsp;продукте отсутствовала антивирусная проверка. Любой заражённый файл мог быть загружен в&nbsp;систему и&nbsp;распространён среди участников рабочих чатов.</p>
-          <p>Для крупных корпоративных клиентов это&nbsp;являлось серьёзным риском информационной безопасности и&nbsp;ограничивало возможности внедрения продукта.</p>
-          <p>Файл мог попасть в&nbsp;систему несколькими способами:</p>
-          <ul class="case-list case-list--tight">
-            <li>через&nbsp;чат;</li>
-            <li>через&nbsp;аудио- и&nbsp;видеосообщения;</li>
-            <li>через&nbsp;редактор документов;</li>
-            <li>через&nbsp;видеоконференции;</li>
-            <li>через&nbsp;настройки профиля;</li>
-            <li>через&nbsp;административную панель.</li>
-          </ul>
-          <p>Важно было создать единую логику поведения независимо от&nbsp;точки входа.</p>
+    <section class="meta">
+      <p class="h-sub">Squadus</p>
+      <div class="meta__row">
+        <div class="meta__col" style="width:183px">
+          <p class="meta__label">Роль</p>
+          <p class="meta__value">Senior Product Designer</p>
         </div>
-      </section>
-
-      <section class="case-section" id="userflow">
-        <h2 class="case-h2">User flow</h2>
-        <div class="case-media case-media--flow">
-          <img data-zoom src="assets/img/antivirus/userflow.jpg" width="2000" height="1855" loading="lazy" alt="User flow загрузки файла с антивирусной проверкой">
+        <div class="meta__col" style="width:306px">
+          <p class="meta__label">Мой вклад</p>
+          <p class="meta__value">Сбор требований · User Story Mapping · UX/UI Desktop и Mobile</p>
         </div>
-      </section>
-    </div>
-  </div>
-
-  <div class="case-band case-band--av-solution">
-    <div class="band band--av-solution" style="--band-h:130;--band-min:80px" role="img" aria-label="проверка файлов, блокировка, карантин, уведомления, проверка файлов, блокировка, карантин, уведомления, проверка файлов, блокировка, карантин, уведомления, проверка файлов, блокировка, карантин, уведомления"><svg viewBox="0 3730 1440 130" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><path id="wave-av-solution-0" d="M -120 3811.19 C 90 3811.19 90 3771.19 300 3771.19 C 510 3771.19 510 3851.19 720 3851.19 C 930 3851.19 930 3771.19 1140 3771.19 C 1350 3771.19 1350 3851.19 1560 3851.19 C 1770 3851.19 1770 3771.19 1980 3771.19"/></defs><path d="M -120 1948.83 C 90 1948.83 90 1899.19 300 1899.19 C 510 1899.19 510 1998.47 720 1998.47 C 930 1998.47 930 1899.19 1140 1899.19 C 1350 1899.19 1350 1998.47 1560 1998.47 C 1770 1998.47 1770 1899.19 1980 1899.19 L 1980 3835.19 C 1770 3835.19 1770 3735.91 1560 3735.91 C 1350 3735.91 1350 3835.19 1140 3835.19 C 930 3835.19 930 3735.91 720 3735.91 C 510 3735.91 510 3835.19 300 3835.19 C 90 3835.19 90 3785.55 -120 3785.55 Z" fill="#FFEFDD"/><text class="band__text" fill="#181818"><textPath href="#wave-av-solution-0" startOffset="0.1%">проверка файлов  ✦  блокировка  ✦  карантин  ✦  уведомления  ✦  проверка файлов  ✦  блокировка  ✦  карантин  ✦  уведомления  ✦  проверка файлов  ✦  блокировка  ✦  карантин  ✦  уведомления  ✦  проверка файлов  ✦  блокировка  ✦  карантин  ✦  уведомления  ✦  </textPath></text></svg></div>
-  </div>
-
-  <div class="container case">
-    <section class="case-section case-section--after-band" id="solution">
-      <h2 class="case-h2">Решение</h2>
-      <div class="case-text case-text--black" style="max-width:733px">
-        <p>В&nbsp;продукт была интегрирована проверка файлов через&nbsp;Kaspersky Security Engine.</p>
-        <p>Любой загруженный файл автоматически проходит проверку перед тем, как&nbsp;станет доступен другим пользователям.</p>
-        <p>В&nbsp;случае угрозы система блокирует дальнейшие действия и&nbsp;сообщает пользователю причину ограничения.</p>
-      </div>
-      <div class="case-media case-media--solution">
-        <img data-zoom src="assets/img/antivirus/reshenie.jpg" width="2414" height="1854" loading="lazy" alt="Состояния вложений и уведомления об ошибках проверки">
+        <div class="meta__col" style="width:234px">
+          <p class="meta__label">Команда</p>
+          <p class="meta__value">Системный аналитик · Разработчики · Product Manager</p>
+        </div>
       </div>
     </section>
 
-    <section class="case-section" id="result">
-      <h2 class="case-h2">Результат</h2>
-      <ul class="case-list case-text case-list--result">
-        <li>Отсутствие антивирусной проверки было барьером для&nbsp;внедрения в&nbsp;компаниях с&nbsp;высокими требованиями к&nbsp;информационной безопасности&nbsp;— этот барьер сняли.</li>
-        <li>Обязательная проверка встроилась в&nbsp;сценарий работы с&nbsp;файлами, не&nbsp;сломав его: единая модель поведения для&nbsp;Desktop и&nbsp;Mobile, блокировка, карантин и&nbsp;уведомления.</li>
-        <li>Спроектирована интеграция с&nbsp;Kaspersky Security Engine, проработаны все основные точки загрузки файлов в&nbsp;системе.</li>
+    <section class="stack stack--24 w-803">
+      <h2 class="h2">Контекст</h2>
+      <p class="text text--pre">Пользователи регулярно обмениваются файлами через мессенджер, при этом в продукте отсутствовала антивирусная проверка.
+Любой заражённый файл мог быть загружен в систему и распространён среди участников рабочих чатов.
+
+Для крупных корпоративных клиентов это являлось серьёзным риском иб и ограничивало возможности внедрения продукта.</p>
+    </section>
+
+    <section class="stack stack--16 w-803">
+      <h3 class="h3 h3--auto">Файл мог попасть в систему несколькими способами:</h3>
+      <ul class="list list--8">
+        <li><span class="mark" aria-hidden="true">✦</span> через чат;</li>
+        <li><span class="mark" aria-hidden="true">✦</span> через аудио- и видеосообщения;</li>
+        <li><span class="mark" aria-hidden="true">✦</span> через редактор документов;</li>
+        <li><span class="mark" aria-hidden="true">✦</span> через видеоконференции;</li>
+        <li><span class="mark" aria-hidden="true">✦</span> через настройки профиля;</li>
+        <li><span class="mark" aria-hidden="true">✦</span> через административную панель.</li>
       </ul>
     </section>
-  </div>
 
-  <div class="case-band case-band--av-next">
-    <div class="band band--av-next" style="--band-h:88;--band-min:56px" role="img" aria-label="Календарь, Сквадус, МойОфис, Календарь, Сквадус, МойОфис, Календарь, Сквадус, МойОфис, Календарь, Сквадус, МойОфис, Календарь, Сквадус, МойОфис, Календарь, Сквадус, МойОфис, Календарь, Сквадус, МойОфис"><svg viewBox="0 5630 1440 88" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><path id="wave-av-next-0" d="M -162 5683 C 28 5683 28 5653 218 5653 C 408 5653 408 5713 598 5713 C 788 5713 788 5653 978 5653 C 1168 5653 1168 5713 1358 5713 C 1548 5713 1548 5653 1738 5653"/></defs><text class="band__text" fill="#181818"><textPath href="#wave-av-next-0" startOffset="0.1%">✦  Календарь  ✦  Сквадус  ✦  МойОфис  ✦  Календарь  ✦  Сквадус  ✦  МойОфис  ✦  Календарь  ✦  Сквадус  ✦  МойОфис  ✦  Календарь  ✦  Сквадус  ✦  МойОфис  ✦  Календарь  ✦  Сквадус  ✦  МойОфис  ✦  Календарь  ✦  Сквадус  ✦  МойОфис  ✦  Календарь  ✦  Сквадус  ✦  МойОфис  ✦  </textPath></text></svg></div>
-  </div>
+    <section class="stack stack--24 w-914">
+      <div class="stack stack--24 w-803">
+        <h2 class="h2">Что я сделала</h2>
+        <p class="text">Важно было создать единую логику поведения независимо от точки входа.</p>
+      </div>
 
-  <div class="next-case__wrap next-case__wrap--av">
-    <div class="next-case">
-      <p class="next-case__title next-case__title--wide">Календарь для&nbsp;корпоративного мессенджера</p>
-      <a class="btn" href="kalendar.html">Следующий кейс →</a>
-    </div>
-  </div>
-</main>
+      <div class="stack stack--40 w-882" style="gap:40px">
+        <div class="stack stack--24">
+          <h3 class="h3" style="line-height:52px">User flow</h3>
+          <div class="pic pic--r16"><img src="assets/img/case/antivirus/userflow.webp?v=2" width="2480" height="2300" alt="User flow: что происходит с файлом после загрузки" loading="lazy"></div>
+        </div>
 
-<script src="js/site.js" defer></script>
+        <div class="stack stack--24">
+          <h2 class="h2">Решение</h2>
+          <p class="text text--pre w-803">В продукт была интегрирована проверка файлов через Kaspersky Security Engine.
+
+Любой загруженный файл автоматически проходит проверку перед тем, как станет доступен другим пользователям.
+
+В случае угрозы система блокирует дальнейшие действия и сообщает пользователю причину ограничения.</p>
+          <div class="pic"><img src="assets/img/case/antivirus/oshibki.webp?v=2" width="1764" height="1372" alt="Состояния вложения и сообщения об ошибках проверки" loading="lazy"></div>
+        </div>
+
+        <div class="pic" style="border-radius:15.58px"><img src="assets/img/case/antivirus/chat.webp?v=2" width="1764" height="1204" alt="Чат с заражённым вложением: файл заблокирован" loading="lazy"></div>
+
+        <div class="stack stack--24 w-803">
+          <h2 class="h2">Результат</h2>
+          <ul class="list list--24">
+            <li><span class="mark" aria-hidden="true">✦</span> Отсутствие антивирусной проверки было барьером для внедрения в компаниях с высокими требованиями к информационной безопасности — этот барьер сняли.</li>
+            <li><span class="mark" aria-hidden="true">✦</span> Обязательная проверка встроилась в сценарий работы с файлами, не сломав его: единая модель поведения для Desktop и Mobile, блокировка, карантин и уведомления.</li>
+            <li><span class="mark" aria-hidden="true">✦</span> Спроектирована интеграция с Kaspersky Security Engine, проработаны все основные точки загрузки файлов в системе.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="next">
+      <p class="next__title">Календарь для корпоративного мессенджера</p>
+      <a class="btn-next" href="kalendar.html">Следующий кейс →</a>
+    </section>
+  </main>
+</div>
+
+<script src="js/home-gradient.js" defer></script>
+<script src="js/case.js" defer></script>
+
 </body>
 </html>
