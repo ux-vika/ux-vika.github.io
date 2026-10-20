@@ -281,7 +281,7 @@ h1, h2, p, ul { margin: 0; padding: 0; }
 .js .card.is-in .card__soon,
 .js .card.is-in .card__phone { opacity: 1; transform: none; }
 
-/* Ховер: приближается вся карточка, градиент ярче, макет чуть крупнее */
+/* Ховер: приближается вся карточка, градиент ярче */
 a.card:hover,
 a.card:focus-visible,
 .card--soon:hover {
@@ -293,9 +293,7 @@ a.card:focus-visible,
 a.card:hover .card__bg,
 a.card:focus-visible .card__bg,
 .card--soon:hover .card__bg { filter: brightness(1.35) saturate(1.25); }
-a.card:hover .card__img,
-a.card:focus-visible .card__img { transform: scale(1.05); }
-.card--soon:hover .card__phone { transform: translateY(-6px) scale(1.03); }
+.card--soon:hover .card__phone { transform: translateY(-6px); }
 
 .card--soon { cursor: default; }
 
