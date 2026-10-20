@@ -157,7 +157,7 @@ h1, h2, p, ul { margin: 0; padding: 0; }
 .card__kicker { color: var(--muted); font-size: 12px; line-height: 20px; }
 .card__title { font: 700 24px/normal var(--font-main); }
 .card__title--26 { line-height: 26px; }
-.card__desc { color: #fff; font-size: 12px; line-height: 20px; }
+.card__desc { color: #fff; font-size: 16px; line-height: 20px; }
 .card__desc--cal { color: #ebedef; line-height: 18px; }
 
 /* Обложка: макет заполняет область, пропорции сохраняются (object-fit). */
