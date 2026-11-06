@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400&family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
   <script>document.documentElement.className += ' js';</script>
-  <link rel="stylesheet" href="css/case.css?v=10">
+  <link rel="stylesheet" href="css/case.css?v=11">
 </head>
 <body class="case-page case-kal">
 <canvas class="card__bg case-glow" data-g="#3a6bff #8a5cff" aria-hidden="true"></canvas>
@@ -80,13 +80,13 @@
           </div>
           <div class="pic pic--r4 pic--side"><img src="assets/img/case/kalendar/gipoteza-1-v3.webp" width="696" height="1600" alt="Гипотеза 1: календарь отдельным разделом в навигации" loading="lazy"></div>
             <ul class="hyp__list">
-              <li><b aria-hidden="true">+</b><span><span class="sr">Плюс: </span>Одна сущность, без усложнения функционала</span></li>
-              <li><b aria-hidden="true">+</b><span><span class="sr">Плюс: </span>Легкая разработка, не надо будет переделывать конференции</span></li>
-              <li><b aria-hidden="true">+</b><span><span class="sr">Плюс: </span>Понятно, где искать прошедшие конференции</span></li>
-              <li><b aria-hidden="true">+</b><span><span class="sr">Плюс: </span>Возможность масштабировать под полноценный календарь, без привязки к старым функциям</span></li>
-              <li><b aria-hidden="true">&minus;</b><span><span class="sr">Минус: </span>Непонятно, где искать записанные встречи — в конференциях или прошедшем событии? (гипотеза)</span></li>
-              <li><b aria-hidden="true">&minus;</b><span><span class="sr">Минус: </span>Придется поддерживать раздел «конференции» и постоянно синхронизировать сценарии с календарём.</span></li>
-              <li><b aria-hidden="true">&minus;</b><span><span class="sr">Минус: </span>Дополнительная сущность в списке разделов. Неочевидна ценность разделения для пользователя.</span></li>
+              <li><b class="is-plus" aria-hidden="true">+</b><span><span class="sr">Плюс: </span>Одна сущность, без усложнения функционала</span></li>
+              <li><b class="is-plus" aria-hidden="true">+</b><span><span class="sr">Плюс: </span>Легкая разработка, не надо будет переделывать конференции</span></li>
+              <li><b class="is-plus" aria-hidden="true">+</b><span><span class="sr">Плюс: </span>Понятно, где искать прошедшие конференции</span></li>
+              <li><b class="is-plus" aria-hidden="true">+</b><span><span class="sr">Плюс: </span>Возможность масштабировать под полноценный календарь, без привязки к старым функциям</span></li>
+              <li><b class="is-minus" aria-hidden="true">&minus;</b><span><span class="sr">Минус: </span>Непонятно, где искать записанные встречи — в конференциях или прошедшем событии? (гипотеза)</span></li>
+              <li><b class="is-minus" aria-hidden="true">&minus;</b><span><span class="sr">Минус: </span>Придется поддерживать раздел «конференции» и постоянно синхронизировать сценарии с календарём.</span></li>
+              <li><b class="is-minus" aria-hidden="true">&minus;</b><span><span class="sr">Минус: </span>Дополнительная сущность в списке разделов. Неочевидна ценность разделения для пользователя.</span></li>
             </ul>
         </div>
         <div class="hyp__col hyp__col--2 hyp--2">
@@ -96,13 +96,13 @@
           </div>
           <div class="pic pic--r4 pic--side"><img src="assets/img/case/kalendar/gipoteza-2-v3.webp" width="696" height="1600" alt="Гипотеза 2: календарь с вкладками «События» и «Конференции»" loading="lazy"></div>
             <ul class="hyp__list">
-              <li><b aria-hidden="true">+</b><span><span class="sr">Плюс: </span>Сокращаем сценарии использования конференций и событий</span></li>
-              <li><b aria-hidden="true">+</b><span><span class="sr">Плюс: </span>Понятно, где искать записанные встречи</span></li>
-              <li><b aria-hidden="true">+</b><span><span class="sr">Плюс: </span>Все функции конференций и событий в одном месте</span></li>
-              <li><b aria-hidden="true">+</b><span><span class="sr">Плюс: </span>Не расширяем пространство правой навигации</span></li>
-              <li><b aria-hidden="true">+</b><span><span class="sr">Плюс: </span>Прячем малоиспользуемые функции</span></li>
-              <li><b aria-hidden="true">&minus;</b><span><span class="sr">Минус: </span>Соединяем сущности, которые имеют разное представление информации (отличается лайаут и дизайн)</span></li>
-              <li><b aria-hidden="true">&minus;</b><span><span class="sr">Минус: </span>В задачу войдёт переработка конференций, что может занять дополнительное время у разработки.</span></li>
+              <li><b class="is-plus" aria-hidden="true">+</b><span><span class="sr">Плюс: </span>Сокращаем сценарии использования конференций и событий</span></li>
+              <li><b class="is-plus" aria-hidden="true">+</b><span><span class="sr">Плюс: </span>Понятно, где искать записанные встречи</span></li>
+              <li><b class="is-plus" aria-hidden="true">+</b><span><span class="sr">Плюс: </span>Все функции конференций и событий в одном месте</span></li>
+              <li><b class="is-plus" aria-hidden="true">+</b><span><span class="sr">Плюс: </span>Не расширяем пространство правой навигации</span></li>
+              <li><b class="is-plus" aria-hidden="true">+</b><span><span class="sr">Плюс: </span>Прячем малоиспользуемые функции</span></li>
+              <li><b class="is-minus" aria-hidden="true">&minus;</b><span><span class="sr">Минус: </span>Соединяем сущности, которые имеют разное представление информации (отличается лайаут и дизайн)</span></li>
+              <li><b class="is-minus" aria-hidden="true">&minus;</b><span><span class="sr">Минус: </span>В задачу войдёт переработка конференций, что может занять дополнительное время у разработки.</span></li>
             </ul>
         </div>
       </div>
