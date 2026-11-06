@@ -300,6 +300,8 @@ ul { list-style: none; }
 .stat { flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; gap: 16px; padding: 16px; background: var(--panel); border-radius: 12px; }
 .stat__num { font: 600 40px/52px var(--font-main); color: var(--accent); }
 .stat__cap { font-size: 16px; line-height: 24px; color: #fff; }
+.info { display: flex; flex-direction: column; gap: 16px; width: 100%; max-width: var(--col); padding: 24px; background: var(--panel); border-radius: 12px; }
+.info__cols { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px 40px; }
 
 /* ---------- Решение ---------- */
 
@@ -309,6 +311,16 @@ ul { list-style: none; }
 .shots .pic { flex: 1 1 0; min-width: 0; }
 .shots .pic img { aspect-ratio: 291.41 / 194.27; object-fit: cover; object-position: 0 0; }
 .errors { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: calc(20.6px * var(--k)); width: 100%; max-width: var(--col); }
+.duo { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; gap: calc(8px * var(--k)); width: 100%; max-width: var(--col); }
+.screens { display: flex; flex-direction: column; gap: 24px; width: 100%; max-width: var(--col); }
+.hyp .pic--side { max-width: 348px; }
+
+/* Элементы интерфейса: тёмные плашки страницы вместо белых секций Figma */
+.ui { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; width: 100%; max-width: var(--col); }
+.ui__item { display: flex; flex-direction: column; gap: 16px; min-width: 0; padding: 24px; background: var(--panel); border-radius: 12px; }
+.ui__item--wide { grid-column: 1 / -1; }
+.ui__title { font: 500 16px/24px var(--font-main); color: #fff; }
+.ui__item .pic { width: min(100%, calc(var(--w) * var(--k))); }
 
 /* ---------- Lu: экраны ---------- */
 
@@ -399,6 +411,10 @@ ul { list-style: none; }
   .stats { flex-direction: column; }
   .shots { flex-direction: column; gap: 8px; }
   .errors { grid-template-columns: 1fr; }
+  .info__cols { grid-template-columns: 1fr; }
+  .duo { grid-template-columns: 1fr; gap: 8px; }
+  .ui { grid-template-columns: 1fr; }
+  .ui__item { padding: 16px; }
   .phones { gap: 16px; }
   .solution__h { white-space: normal; line-height: 1.2; }
   .lb__close { top: 12px; right: 12px; }

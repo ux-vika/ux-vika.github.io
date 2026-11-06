@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400&family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
   <script>document.documentElement.className += ' js';</script>
-  <link rel="stylesheet" href="css/case.css?v=8">
+  <link rel="stylesheet" href="css/case.css?v=9">
 </head>
 <body class="case-page case-kal">
 <canvas class="card__bg case-glow" data-g="#3a6bff #8a5cff" aria-hidden="true"></canvas>
@@ -22,7 +22,7 @@
 
   <main class="case">
     <section class="hero hero--kal" aria-label="Календарь в корпоративном мессенджере">
-      <div class="pic"><img src="assets/img/case/kalendar/hero.webp?v=2" width="2400" height="1964" alt="Календарь в корпоративном мессенджере: создание события"></div>
+      <div class="pic"><img src="assets/img/case/kalendar/hero-v3.webp" width="2400" height="1964" alt="Календарь в корпоративном мессенджере: создание события, выбор участников"></div>
     </section>
 
     <h1 class="title title--bold">Календарь для корпоративного мессенджера</h1>
@@ -62,7 +62,7 @@
       <div class="stack stack--16 w-803">
         <h3 class="h3 h3--32">Анализ рынка</h3>
         <p class="text text--pre w-700">Изучила решения Microsoft Teams, Slack, VK Teams и других корпоративных платформ.
-Сформировала Job Story чтобы понять контект.</p>
+Сформировала Job Story чтобы понять контекст.</p>
       </div>
 
       <div class="pic pic--r12"><img src="assets/img/case/kalendar/analiz-rynka.webp?v=2" width="1766" height="470" alt="Таблица: Job Story и примеры решений конкурентов" loading="lazy"></div>
@@ -78,23 +78,32 @@
             <h3 class="hyp__title"><span aria-hidden="true">✦</span> Гипотеза 1</h3>
             <p class="hyp__sub">Реализовать календарь отдельным разделом</p>
             <ul class="hyp__list">
-              <li><b aria-hidden="true">+</b><span><span class="sr">Плюс: </span>Не требовалась переработка существующего раздела конференций.</span></li>
-              <li><b aria-hidden="true">+</b><span><span class="sr">Плюс: </span>Понятная отдельная сущность и возможность масштабировать календарь дальше.</span></li>
-              <li><b aria-hidden="true">&minus;</b><span><span class="sr">Минус: </span>Появлялась дополнительная сущность в навигации, ценность которой нужно было подтвердить.</span></li>
+              <li><b aria-hidden="true">+</b><span><span class="sr">Плюс: </span>Одна сущность, без усложнения функционала</span></li>
+              <li><b aria-hidden="true">+</b><span><span class="sr">Плюс: </span>Легкая разработка, не надо будет переделывать конференции</span></li>
+              <li><b aria-hidden="true">+</b><span><span class="sr">Плюс: </span>Понятно, где искать прошедшие конференции</span></li>
+              <li><b aria-hidden="true">+</b><span><span class="sr">Плюс: </span>Возможность масштабировать под полноценный календарь, без привязки к старым функциям</span></li>
+              <li><b aria-hidden="true">&minus;</b><span><span class="sr">Минус: </span>Непонятно, где искать записанные встречи — в конференциях или прошедшем событии? (гипотеза)</span></li>
+              <li><b aria-hidden="true">&minus;</b><span><span class="sr">Минус: </span>Придется поддерживать раздел «конференции» и постоянно синхронизировать сценарии с календарём.</span></li>
+              <li><b aria-hidden="true">&minus;</b><span><span class="sr">Минус: </span>Дополнительная сущность в списке разделов. Неочевидна ценность разделения для пользователя.</span></li>
             </ul>
           </div>
-          <div class="pic pic--r4"><img src="assets/img/case/kalendar/gipoteza-1.webp?v=2" width="862" height="575" alt="Гипотеза 1: календарь отдельным разделом" loading="lazy"></div>
+          <div class="pic pic--r4 pic--side"><img src="assets/img/case/kalendar/gipoteza-1-v3.webp" width="696" height="1600" alt="Гипотеза 1: календарь отдельным разделом в навигации" loading="lazy"></div>
         </div>
         <div class="hyp__col hyp__col--2 hyp--2">
           <div class="hyp__head">
             <h3 class="hyp__title"><span aria-hidden="true">✦</span> Гипотеза 2</h3>
             <p class="hyp__sub">Календарь внутри существующего раздела «Конференции»</p>
             <ul class="hyp__list">
-              <li><b aria-hidden="true">+</b><span><span class="sr">Плюс: </span>Все сценарии встреч и конференций оказывались в одном месте.</span></li>
-              <li><b aria-hidden="true">&minus;</b><span><span class="sr">Минус: </span>Смешивались разные сущности и появлялся риск усложнить уже существующий раздел.</span></li>
+              <li><b aria-hidden="true">+</b><span><span class="sr">Плюс: </span>Сокращаем сценарии использования конференций и событий</span></li>
+              <li><b aria-hidden="true">+</b><span><span class="sr">Плюс: </span>Понятно, где искать записанные встречи</span></li>
+              <li><b aria-hidden="true">+</b><span><span class="sr">Плюс: </span>Все функции конференций и событий в одном месте</span></li>
+              <li><b aria-hidden="true">+</b><span><span class="sr">Плюс: </span>Не расширяем пространство правой навигации</span></li>
+              <li><b aria-hidden="true">+</b><span><span class="sr">Плюс: </span>Прячем малоиспользуемые функции</span></li>
+              <li><b aria-hidden="true">&minus;</b><span><span class="sr">Минус: </span>Соединяем сущности, которые имеют разное представление информации (отличается лайаут и дизайн)</span></li>
+              <li><b aria-hidden="true">&minus;</b><span><span class="sr">Минус: </span>В задачу войдёт переработка конференций, что может занять дополнительное время у разработки.</span></li>
             </ul>
           </div>
-          <div class="pic pic--r4"><img src="assets/img/case/kalendar/gipoteza-2.webp?v=2" width="862" height="575" alt="Гипотеза 2: календарь внутри раздела «Конференции»" loading="lazy"></div>
+          <div class="pic pic--r4 pic--side"><img src="assets/img/case/kalendar/gipoteza-2-v3.webp" width="696" height="1600" alt="Гипотеза 2: календарь с вкладками «События» и «Конференции»" loading="lazy"></div>
         </div>
       </div>
     </section>
@@ -106,10 +115,12 @@
         <h3 class="h3">Цель исследования:</h3>
         <ul class="list">
           <li><span class="mark" aria-hidden="true">✦</span> понять привычки работы с календарями;</li>
-          <li><span class="mark" aria-hidden="true">✦</span> ропределить ожидаемое место расположения календаря;</li>
+          <li><span class="mark" aria-hidden="true">✦</span> определить ожидаемое место расположения календаря;</li>
           <li><span class="mark" aria-hidden="true">✦</span> выявить ключевые пользовательские сценарии.</li>
         </ul>
       </div>
+
+      <h3 class="h3">Результаты исследования</h3>
 
       <div class="pair">
         <div class="pic pic--r12" style="flex:377.72 1 0"><img src="assets/img/case/kalendar/opros-1.webp?v=2" width="756" height="236" alt="Результаты опроса: как часто пользуются календарём" loading="lazy"></div>
@@ -120,12 +131,28 @@
 
       <div class="stats">
         <div class="stat">
-          <p class="stat__num">194 респонденты</p>
-          <p class="stat__cap">Респондента</p>
+          <p class="stat__num">194</p>
+          <p class="stat__cap">респондента</p>
         </div>
         <div class="stat">
           <p class="stat__num">35%</p>
           <p class="stat__cap">не используют вкладку «Конференции»</p>
+        </div>
+      </div>
+
+      <div class="info">
+        <h3 class="h3">Вводная информация</h3>
+        <div class="info__cols">
+          <ul class="list">
+            <li><span class="mark" aria-hidden="true">✦</span> Только 11% опрошенных используют вкладку конференций каждый день.</li>
+            <li><span class="mark" aria-hidden="true">✦</span> В основном используют для просмотра записанных встреч 93 респондента, поиска прошедших событий 50 респондентов, 37 респондентов просматривают историю сообщений. В другом респонденты указали, что чаще всего подключаются к текущим встречам.</li>
+            <li><span class="mark" aria-hidden="true">✦</span> Некоторые респонденты отметили, что не обращали внимание на существование кнопки до этого момента. И не понимают зачем нужна эта вкладка.</li>
+          </ul>
+          <ul class="list">
+            <li><span class="mark" aria-hidden="true">✦</span> Прошедшие события в календаре ищут нечасто. В среднем несколько раз в месяц и реже. События обычно разбросаны по месяцу. В целом, большинство респондентов имеют сложности с поиском нужного события в календаре.</li>
+            <li><span class="mark" aria-hidden="true">✦</span> Некоторые респонденты выразили желание увидеть вкладку с конференциями на текущий день или получать оповещения о предстоящих встречах. Также были высказаны пожелания добавить кнопку запроса доступа к записи и возможность запланировать конференцию прямо из списка и добавить в календарь.</li>
+            <li><span class="mark" aria-hidden="true">✦</span> В Microsoft Team нет вкладки конференции. Все действия с событиями проходит внутри календаря. Также, там отсутствует история конференций.</li>
+          </ul>
         </div>
       </div>
     </section>
@@ -142,25 +169,60 @@
       <h2 class="solution__h">Решение</h2>
 
       <div class="stack stack--24">
+        <p class="text w-803">Было принято решение сделать два варианта отображения событий: недельная сетка и сетка на день.</p>
+        <div class="duo">
+          <div class="pic pic--r4"><img src="assets/img/case/kalendar/setka-nedelya.webp" width="2400" height="1600" alt="Недельная сетка событий" loading="lazy"></div>
+          <div class="pic pic--r4"><img src="assets/img/case/kalendar/setka-den.webp" width="2400" height="1600" alt="Сетка событий на день" loading="lazy"></div>
+        </div>
+      </div>
+
+      <div class="stack stack--24">
         <h3 class="h3">Навигация</h3>
-        <div class="pic pic--r7 w-760"><img src="assets/img/case/kalendar/navigaciya.webp?v=2" width="2400" height="1602" alt="Навигация: расписание и список календарей" loading="lazy"></div>
+        <div class="duo">
+          <div class="pic pic--r4"><img src="assets/img/case/kalendar/navigaciya.webp?v=2" width="2400" height="1602" alt="Навигация: расписание и список календарей" loading="lazy"></div>
+          <div class="pic pic--r4"><img src="assets/img/case/kalendar/nedelya.webp" width="2400" height="1562" alt="Календарь — неделя" loading="lazy"></div>
+        </div>
       </div>
 
       <div class="stack stack--24">
         <h3 class="h3">Добавление календаря</h3>
-        <div class="shots">
-          <div class="pic pic--r4"><img src="assets/img/case/kalendar/dobavlenie-1.webp?v=2" width="2400" height="1604" alt="Пустой календарь с кнопкой «Добавить календарь»" loading="lazy"></div>
-          <div class="pic pic--r4"><img src="assets/img/case/kalendar/dobavlenie-2.webp?v=2" width="2400" height="1604" alt="Форма добавления учётной записи" loading="lazy"></div>
-          <div class="pic pic--r4"><img src="assets/img/case/kalendar/dobavlenie-3.webp?v=2" width="2400" height="1600" alt="Календарь с добавленной учётной записью" loading="lazy"></div>
+        <div class="duo">
+          <div class="pic pic--r4"><img src="assets/img/case/kalendar/dobavlenie-zapis.webp" width="2400" height="1562" alt="Форма добавления учётной записи" loading="lazy"></div>
+          <div class="pic pic--r4"><img src="assets/img/case/kalendar/dobavlenie-gotovo.webp" width="2400" height="1562" alt="Календарь добавлен" loading="lazy"></div>
         </div>
       </div>
 
       <div class="stack stack--24">
         <h3 class="h3" style="font-size:23.97px;line-height:23.97px">Создание события</h3>
-        <div class="shots">
-          <div class="pic pic--r4"><img src="assets/img/case/kalendar/sozdanie-1.webp?v=2" width="2400" height="1600" alt="Расписание дня перед созданием события" loading="lazy"></div>
-          <div class="pic pic--r4"><img src="assets/img/case/kalendar/hero.webp?v=2" width="2400" height="1964" alt="Форма «Новое событие»: выбор участников из списка" loading="lazy"></div>
-          <div class="pic pic--r4"><img src="assets/img/case/kalendar/sozdanie-2.webp?v=2" width="2400" height="1600" alt="Форма «Новое событие»: выбранные участники" loading="lazy"></div>
+        <div class="screens">
+          <div class="pic pic--r4"><img src="assets/img/case/kalendar/nedelya.webp" width="2400" height="1562" alt="Календарь — неделя с кнопкой «Создать событие»" loading="lazy"></div>
+          <div class="pic"><img src="assets/img/case/kalendar/hero-v3.webp" width="2400" height="1964" alt="Форма «Новое событие»: выбор участников из списка" loading="lazy"></div>
+        </div>
+      </div>
+
+      <div class="stack stack--24">
+        <h3 class="h3">Элементы интерфейса</h3>
+        <div class="ui">
+          <div class="ui__item ui__item--wide">
+            <p class="ui__title">Дата и время</p>
+            <div class="pic" style="--w:735.5px"><img src="assets/img/case/kalendar/ui-data-vremya.webp" width="1471" height="1733" alt="Поля даты и времени, выбор даты, меню времени и длительности" loading="lazy"></div>
+          </div>
+          <div class="ui__item ui__item--wide">
+            <p class="ui__title">Повторы</p>
+            <div class="pic" style="--w:730.5px"><img src="assets/img/case/kalendar/ui-povtory.webp" width="1461" height="1096" alt="Поле повтора, меню повтора и чекбокс «Весь день»" loading="lazy"></div>
+          </div>
+          <div class="ui__item ui__item--wide">
+            <p class="ui__title">Участники и ресурсы</p>
+            <div class="pic" style="--w:572px"><img src="assets/img/case/kalendar/ui-uchastniki.webp" width="1144" height="1051" alt="Поля «Участники» и «Ресурсы», меню выбора участников" loading="lazy"></div>
+          </div>
+          <div class="ui__item">
+            <p class="ui__title">Календарь</p>
+            <div class="pic" style="--w:290px"><img src="assets/img/case/kalendar/ui-kalendar.webp" width="580" height="766" alt="Выбор календаря и палитра цветов календарей" loading="lazy"></div>
+          </div>
+          <div class="ui__item">
+            <p class="ui__title">Статусы занятости</p>
+            <div class="pic" style="--w:198px"><img src="assets/img/case/kalendar/ui-statusy.webp" width="396" height="736" alt="Статусы занятости: свободен, под вопросом, нет информации, недоступен" loading="lazy"></div>
+          </div>
         </div>
       </div>
 
