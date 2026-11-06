@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400&family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
   <script>document.documentElement.className += ' js';</script>
-  <link rel="stylesheet" href="css/case.css?v=9">
+  <link rel="stylesheet" href="css/case.css?v=10">
 </head>
 <body class="case-page case-kal">
 <canvas class="card__bg case-glow" data-g="#3a6bff #8a5cff" aria-hidden="true"></canvas>
@@ -77,6 +77,8 @@
           <div class="hyp__head">
             <h3 class="hyp__title"><span aria-hidden="true">✦</span> Гипотеза 1</h3>
             <p class="hyp__sub">Реализовать календарь отдельным разделом</p>
+          </div>
+          <div class="pic pic--r4 pic--side"><img src="assets/img/case/kalendar/gipoteza-1-v3.webp" width="696" height="1600" alt="Гипотеза 1: календарь отдельным разделом в навигации" loading="lazy"></div>
             <ul class="hyp__list">
               <li><b aria-hidden="true">+</b><span><span class="sr">Плюс: </span>Одна сущность, без усложнения функционала</span></li>
               <li><b aria-hidden="true">+</b><span><span class="sr">Плюс: </span>Легкая разработка, не надо будет переделывать конференции</span></li>
@@ -86,13 +88,13 @@
               <li><b aria-hidden="true">&minus;</b><span><span class="sr">Минус: </span>Придется поддерживать раздел «конференции» и постоянно синхронизировать сценарии с календарём.</span></li>
               <li><b aria-hidden="true">&minus;</b><span><span class="sr">Минус: </span>Дополнительная сущность в списке разделов. Неочевидна ценность разделения для пользователя.</span></li>
             </ul>
-          </div>
-          <div class="pic pic--r4 pic--side"><img src="assets/img/case/kalendar/gipoteza-1-v3.webp" width="696" height="1600" alt="Гипотеза 1: календарь отдельным разделом в навигации" loading="lazy"></div>
         </div>
         <div class="hyp__col hyp__col--2 hyp--2">
           <div class="hyp__head">
             <h3 class="hyp__title"><span aria-hidden="true">✦</span> Гипотеза 2</h3>
             <p class="hyp__sub">Календарь внутри существующего раздела «Конференции»</p>
+          </div>
+          <div class="pic pic--r4 pic--side"><img src="assets/img/case/kalendar/gipoteza-2-v3.webp" width="696" height="1600" alt="Гипотеза 2: календарь с вкладками «События» и «Конференции»" loading="lazy"></div>
             <ul class="hyp__list">
               <li><b aria-hidden="true">+</b><span><span class="sr">Плюс: </span>Сокращаем сценарии использования конференций и событий</span></li>
               <li><b aria-hidden="true">+</b><span><span class="sr">Плюс: </span>Понятно, где искать записанные встречи</span></li>
@@ -102,8 +104,6 @@
               <li><b aria-hidden="true">&minus;</b><span><span class="sr">Минус: </span>Соединяем сущности, которые имеют разное представление информации (отличается лайаут и дизайн)</span></li>
               <li><b aria-hidden="true">&minus;</b><span><span class="sr">Минус: </span>В задачу войдёт переработка конференций, что может занять дополнительное время у разработки.</span></li>
             </ul>
-          </div>
-          <div class="pic pic--r4 pic--side"><img src="assets/img/case/kalendar/gipoteza-2-v3.webp" width="696" height="1600" alt="Гипотеза 2: календарь с вкладками «События» и «Конференции»" loading="lazy"></div>
         </div>
       </div>
     </section>
@@ -179,7 +179,7 @@
       <div class="stack stack--24">
         <h3 class="h3">Навигация</h3>
         <div class="duo">
-          <div class="pic pic--r4"><img src="assets/img/case/kalendar/navigaciya.webp?v=2" width="2400" height="1602" alt="Навигация: расписание и список календарей" loading="lazy"></div>
+          <div class="pic pic--r4"><img src="assets/img/case/kalendar/navigaciya-v3.webp" width="2400" height="1562" alt="Навигация: неделя и карточка события" loading="lazy"></div>
           <div class="pic pic--r4"><img src="assets/img/case/kalendar/nedelya.webp" width="2400" height="1562" alt="Календарь — неделя" loading="lazy"></div>
         </div>
       </div>
@@ -203,25 +203,29 @@
       <div class="stack stack--24">
         <h3 class="h3">Элементы интерфейса</h3>
         <div class="ui">
-          <div class="ui__item ui__item--wide">
+          <div class="ui__item">
             <p class="ui__title">Дата и время</p>
-            <div class="pic" style="--w:735.5px"><img src="assets/img/case/kalendar/ui-data-vremya.webp" width="1471" height="1733" alt="Поля даты и времени, выбор даты, меню времени и длительности" loading="lazy"></div>
+            <div class="pic" style="--w:888.5px"><img src="assets/img/case/kalendar/ui-data-vremya-2.webp" width="1777" height="1154" alt="Поля даты и времени, выбор даты, меню времени и длительности" loading="lazy"></div>
           </div>
-          <div class="ui__item ui__item--wide">
-            <p class="ui__title">Повторы</p>
-            <div class="pic" style="--w:730.5px"><img src="assets/img/case/kalendar/ui-povtory.webp" width="1461" height="1096" alt="Поле повтора, меню повтора и чекбокс «Весь день»" loading="lazy"></div>
+          <div class="ui__row">
+            <div class="ui__item">
+              <p class="ui__title">Повторы</p>
+              <div class="pic" style="--w:607px"><img src="assets/img/case/kalendar/ui-povtory-2.webp" width="1214" height="653" alt="Поле повтора, меню повтора и чекбокс «Весь день»" loading="lazy"></div>
+            </div>
+            <div class="ui__item">
+              <p class="ui__title">Статусы занятости</p>
+              <div class="pic" style="--w:198px"><img src="assets/img/case/kalendar/ui-statusy.webp" width="396" height="736" alt="Статусы занятости: свободен, под вопросом, нет информации, недоступен" loading="lazy"></div>
+            </div>
           </div>
-          <div class="ui__item ui__item--wide">
-            <p class="ui__title">Участники и ресурсы</p>
-            <div class="pic" style="--w:572px"><img src="assets/img/case/kalendar/ui-uchastniki.webp" width="1144" height="1051" alt="Поля «Участники» и «Ресурсы», меню выбора участников" loading="lazy"></div>
-          </div>
-          <div class="ui__item">
-            <p class="ui__title">Календарь</p>
-            <div class="pic" style="--w:290px"><img src="assets/img/case/kalendar/ui-kalendar.webp" width="580" height="766" alt="Выбор календаря и палитра цветов календарей" loading="lazy"></div>
-          </div>
-          <div class="ui__item">
-            <p class="ui__title">Статусы занятости</p>
-            <div class="pic" style="--w:198px"><img src="assets/img/case/kalendar/ui-statusy.webp" width="396" height="736" alt="Статусы занятости: свободен, под вопросом, нет информации, недоступен" loading="lazy"></div>
+          <div class="ui__row">
+            <div class="ui__item">
+              <p class="ui__title">Участники и ресурсы</p>
+              <div class="pic" style="--w:572px"><img src="assets/img/case/kalendar/ui-uchastniki-2.webp" width="1144" height="1055" alt="Поля «Участники» и «Ресурсы», меню выбора участников" loading="lazy"></div>
+            </div>
+            <div class="ui__item">
+              <p class="ui__title">Календарь</p>
+              <div class="pic" style="--w:290px"><img src="assets/img/case/kalendar/ui-kalendar-2.webp" width="580" height="726" alt="Выбор календаря и палитра цветов календарей" loading="lazy"></div>
+            </div>
           </div>
         </div>
       </div>

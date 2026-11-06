@@ -270,8 +270,8 @@ ul { list-style: none; }
 
 /* ---------- Что я сделала: гипотезы ---------- */
 
-.hyp { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: auto auto; column-gap: calc(20px * var(--k)); row-gap: 28px; width: 100%; max-width: var(--col); }
-.hyp__col { display: grid; grid-row: span 2; grid-template-rows: subgrid; row-gap: 28px; min-width: 0; }
+.hyp { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: auto auto auto; column-gap: calc(20px * var(--k)); row-gap: 28px; width: 100%; max-width: var(--col); }
+.hyp__col { display: grid; grid-row: span 3; grid-template-rows: subgrid; row-gap: 28px; min-width: 0; }
 .hyp__head { display: flex; flex-direction: column; gap: 16px; }
 .hyp__title { font: 500 24px/normal var(--font-main); color: var(--accent); }
 .hyp__sub { font: 500 16px/24px var(--font-main); color: #fff; }
@@ -286,7 +286,7 @@ ul { list-style: none; }
   height: 20px;
   margin-top: 2px;
   border-radius: 50%;
-  background: var(--accent);
+  background: rgb(var(--g2));
   color: #fff;
   font: 400 18px/1 var(--font-main);
 }
@@ -316,11 +316,11 @@ ul { list-style: none; }
 .hyp .pic--side { max-width: 348px; }
 
 /* Элементы интерфейса: тёмные плашки страницы вместо белых секций Figma */
-.ui { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; width: 100%; max-width: var(--col); }
+.ui { display: flex; flex-direction: column; gap: 16px; width: 100%; max-width: var(--col); }
+.ui__row { display: grid; grid-template-columns: minmax(0, max-content) minmax(0, 1fr); gap: 16px; }
 .ui__item { display: flex; flex-direction: column; gap: 16px; min-width: 0; padding: 24px; background: var(--panel); border-radius: 12px; }
-.ui__item--wide { grid-column: 1 / -1; }
 .ui__title { font: 500 16px/24px var(--font-main); color: #fff; }
-.ui__item .pic { width: min(100%, calc(var(--w) * var(--k))); }
+.ui__item .pic { width: var(--w); max-width: 100%; }
 
 /* ---------- Lu: экраны ---------- */
 
@@ -413,7 +413,7 @@ ul { list-style: none; }
   .errors { grid-template-columns: 1fr; }
   .info__cols { grid-template-columns: 1fr; }
   .duo { grid-template-columns: 1fr; gap: 8px; }
-  .ui { grid-template-columns: 1fr; }
+  .ui__row { grid-template-columns: minmax(0, 1fr); }
   .ui__item { padding: 16px; }
   .phones { gap: 16px; }
   .solution__h { white-space: normal; line-height: 1.2; }
