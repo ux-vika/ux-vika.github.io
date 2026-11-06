@@ -178,12 +178,12 @@ h1, h2, p, ul { margin: 0; padding: 0; }
   aspect-ratio: 434 / 359;
   background: transparent;
 }
-/* Календарь: ролик 1200×780 целиком, без обрезки и растяжения. */
+/* Календарь: ролик в мокапе макбука 1440×930 целиком, без обрезки и растяжения; фон ролика прозрачный. */
 .card__cover--cal {
   align-self: start;
   min-height: 0;
   height: auto;
-  aspect-ratio: 1200 / 780;
+  aspect-ratio: 1440 / 930;
   background: transparent;
 }
 /* Три экрана в ряд занимают всю ширину обложки (как в макете: 3 × 133px и зазор 11px),
@@ -209,6 +209,7 @@ h1, h2, p, ul { margin: 0; padding: 0; }
   transition: transform 900ms var(--ease-out);
 }
 .card__img--lu { object-position: 56% 50%; border-radius: 0; }
+.card__img--mac { object-fit: contain; border-radius: 0; }
 
 .card__phone {
   /* высота картинки: 3 экрана с зазором как в макете точно по ширине обложки */
@@ -370,7 +371,7 @@ a.card:focus-visible .card__bg,
   .cards { grid-template-columns: 1fr; }
   .card__cover { min-height: 0; height: auto; aspect-ratio: 4 / 3; }
   .card__cover--phones { aspect-ratio: auto; height: auto; }
-  .card__cover--cal { aspect-ratio: 1200 / 780; }
+  .card__cover--cal { aspect-ratio: 1440 / 930; }
   .gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
