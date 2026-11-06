@@ -178,6 +178,14 @@ h1, h2, p, ul { margin: 0; padding: 0; }
   aspect-ratio: 434 / 359;
   background: transparent;
 }
+/* Календарь: ролик 1200×780 целиком, без обрезки и растяжения. */
+.card__cover--cal {
+  align-self: start;
+  min-height: 0;
+  height: auto;
+  aspect-ratio: 1200 / 780;
+  background: transparent;
+}
 /* Три экрана в ряд занимают всю ширину обложки (как в макете: 3 × 133px и зазор 11px),
    высота получается из пропорций картинок, ничего не растягивается и не обрезается. */
 .card__cover--phones {
@@ -362,6 +370,7 @@ a.card:focus-visible .card__bg,
   .cards { grid-template-columns: 1fr; }
   .card__cover { min-height: 0; height: auto; aspect-ratio: 4 / 3; }
   .card__cover--phones { aspect-ratio: auto; height: auto; }
+  .card__cover--cal { aspect-ratio: 1200 / 780; }
   .gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 

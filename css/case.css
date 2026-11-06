@@ -162,6 +162,9 @@ ul { list-style: none; }
 .hero--kal .pic { width: calc(568px * var(--k)); max-width: 100%; aspect-ratio: 568 / 464; border-radius: 12px; }
 .hero--kal .pic img { height: 100%; object-fit: cover; }
 
+.hero__video { display: block; width: calc(714px * var(--k)); max-width: 100%; height: auto; aspect-ratio: 2000 / 1300; border-radius: 12px; }
+.js .hero .hero__video { animation: hero-in 1100ms var(--ease-out) 150ms both; }
+
 .hero--av .pic { width: calc(679.16px * var(--k)); max-width: 100%; aspect-ratio: 679.16 / 463.2; border-radius: 12px; }
 .hero--av .pic img { height: 100%; object-fit: cover; }
 
@@ -437,6 +440,7 @@ ul { list-style: none; }
   .js .rv,
   .js .pic.rv { opacity: 1; transform: none; transition: none; }
   .js .hero .pic { animation: none; }
+  .js .hero .hero__video { animation: none; }
   .pic img,
   .btn-back,
   .btn-next,
