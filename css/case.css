@@ -290,8 +290,8 @@ ul { list-style: none; }
   color: #fff;
   font: 400 18px/1 var(--font-main);
 }
-.hyp__list b.is-plus { background: #22c55e; color: #dcfce7; }
-.hyp__list b.is-minus { background: #ec4899; color: #ffe4f0; }
+.hyp__list b.is-plus { background: #14532d; color: #86efac; font-weight: 600; }
+.hyp__list b.is-minus { background: #831843; color: #fbcfe8; font-weight: 600; }
 .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
 /* ---------- Исследование ---------- */
