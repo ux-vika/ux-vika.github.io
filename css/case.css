@@ -314,6 +314,7 @@ ul { list-style: none; }
 .shots .pic img { aspect-ratio: 291.41 / 194.27; object-fit: cover; object-position: 0 0; }
 .errors { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: calc(20.6px * var(--k)); width: 100%; max-width: var(--col); }
 .duo { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; gap: calc(8px * var(--k)); width: 100%; max-width: var(--col); }
+.case-video { display: block; width: 100%; max-width: var(--col); height: auto; }
 .shot { display: flex; flex-direction: column; gap: 12px; min-width: 0; margin: 0; }
 .shot__cap { font-size: 16px; line-height: 24px; color: var(--muted); }
 .screens { display: flex; flex-direction: column; gap: 24px; width: 100%; max-width: var(--col); }
