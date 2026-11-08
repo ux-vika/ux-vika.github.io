@@ -63,6 +63,27 @@
     blocks.forEach((el) => io.observe(el));
   }
 
+  /* ---------- Ленивые видео: обложка и файл грузятся, когда до видео ~полтора экрана ----------
+     <video data-lazy data-poster="…"> — обложка ставится заранее, до появления в окне;
+     data-preload="auto" — начать качать файл; data-autoplay — запустить (замена autoplay). */
+
+  const lazyVids = Array.from(document.querySelectorAll('video[data-lazy]'));
+  if (lazyVids.length) {
+    const wake = (v) => {
+      if (v.dataset.poster) { v.poster = v.dataset.poster; v.removeAttribute('data-poster'); }
+      if (v.dataset.preload) v.preload = v.dataset.preload;
+      if (v.hasAttribute('data-autoplay')) { const p = v.play(); if (p && p.catch) p.catch(() => {}); }
+    };
+    if ('IntersectionObserver' in window) {
+      const lio = new IntersectionObserver((es) => {
+        es.forEach((e) => { if (e.isIntersecting) { lio.unobserve(e.target); wake(e.target); } });
+      }, { rootMargin: '150% 0px' });
+      lazyVids.forEach((v) => lio.observe(v));
+    } else {
+      lazyVids.forEach(wake);
+    }
+  }
+
   /* ---------- Сценарий Lu: видео шага играет, пока шаг в середине экрана ---------- */
 
   const sc = document.querySelector('.lu-sc');
