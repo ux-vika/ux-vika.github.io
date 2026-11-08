@@ -427,8 +427,7 @@ ul { list-style: none; }
 .case-lu .lu-sc,
 .case-lu .lu-sc__phone,
 .case-lu .lu-sc.is-m .lu-sc__mph,
-.case-lu .lu-sc__q li,
-.case-lu .next { border-radius: var(--r); }
+.case-lu .lu-sc__q li { border-radius: var(--r); }
 
 /* ---------- Следующий кейс ---------- */
 
