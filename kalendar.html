@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400&family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
   <script>document.documentElement.className += ' js';</script>
-  <link rel="stylesheet" href="css/case.css?v=17">
+  <link rel="stylesheet" href="css/case.css?v=18">
 </head>
 <body class="case-page case-kal">
 <canvas class="card__bg case-glow" data-g="#3a6bff #8a5cff" aria-hidden="true"></canvas>
@@ -111,55 +111,89 @@
     <section class="stack stack--24 w-914">
       <h2 class="h2">Исследование</h2>
 
+      <h3 class="h3 h3--auto">Опрос в Pathway: 15 вопросов, 188 респондентов</h3>
+
       <div class="stack stack--16 w-803">
-        <h3 class="h3">Цель исследования:</h3>
+        <p class="meta__label">Цель</p>
         <ul class="list">
           <li><span class="mark" aria-hidden="true">✦</span> понять, нужен ли пользователям календарь;</li>
-          <li><span class="mark" aria-hidden="true">✦</span> проверить, заметят ли календарь внутри вкладки «Конференции» (гипотеза 2);</li>
-          <li><span class="mark" aria-hidden="true">✦</span> узнать, где пользователи ожидают увидеть календарь (гипотеза 1);</li>
-          <li><span class="mark" aria-hidden="true">✦</span> выяснить, зачем заходят в «Конференции» и как ищут прошедшие события.</li>
+          <li><span class="mark" aria-hidden="true">✦</span> выбрать между гипотезами: отдельный раздел или вкладка «Конференции».</li>
         </ul>
-        <p class="text">Провела опрос в Pathway: 15 вопросов, 188 респондентов.</p>
       </div>
 
       <h3 class="h3">Результаты исследования</h3>
 
-      <div class="stack stack--16 w-803">
-        <p class="hyp__sub">Как часто вы используете вкладку «Конференции»?</p>
-        <div class="pic pic--r12" style="max-width:560px"><img src="assets/img/case/kalendar/opros-1.webp?v=2" width="756" height="236" alt="Как часто используют вкладку «Конференции»: ежедневно 11%, несколько раз в неделю 19%, реже раза в неделю 36%, не используют 35%" loading="lazy"></div>
-        <p class="text">70% заходят во вкладку реже раза в неделю или не заходят совсем, некоторые до опроса не замечали её кнопку. Календарь внутри «Конференций» мало кто увидит — это против гипотезы 2.</p>
+      <div class="q-card">
+        <p class="q-card__type">Выбор</p>
+        <div class="q-card__q">
+          <p class="q-card__label">Вопрос</p>
+          <p class="q-card__title">Как часто вы используете вкладку «Конференции»?</p>
+        </div>
+        <div class="pic pic--r12 q-card__chart"><img src="assets/img/case/kalendar/opros-1.webp?v=2" width="756" height="236" alt="Как часто используют вкладку «Конференции»: ежедневно 11%, несколько раз в неделю 19%, реже раза в неделю 36%, не используют 35%" loading="lazy"></div>
+        <div class="q-card__out">
+          <p class="q-card__label">Что это значит</p>
+          <p class="text">70% заходят во вкладку реже раза в неделю или не заходят совсем, некоторые до опроса не замечали её кнопку. Календарь внутри «Конференций» мало кто увидит — это против гипотезы 2.</p>
+        </div>
       </div>
 
-      <div class="stack stack--16 w-803">
-        <p class="hyp__sub">Для чего вы используете вкладку «Конференции»?</p>
-        <div class="pic pic--r12" style="max-width:560px"><img src="assets/img/case/kalendar/opros-2.webp?v=2" width="750" height="283" alt="Для чего используют вкладку «Конференции»: записанные встречи 76%, прошедшие события 41%, история сообщений 30%, список участников 14%, другое 15%" loading="lazy"></div>
-        <p class="text">Главное, зачем заходят во вкладку, — записи встреч (76% ответивших) и поиск прошедших событий (41%). Эти сценарии нельзя потерять, если календарь станет отдельным разделом.</p>
+      <div class="q-card">
+        <p class="q-card__type">Выбор</p>
+        <div class="q-card__q">
+          <p class="q-card__label">Вопрос</p>
+          <p class="q-card__title">Для чего вы используете вкладку «Конференции»?</p>
+        </div>
+        <div class="pic pic--r12 q-card__chart"><img src="assets/img/case/kalendar/opros-2.webp?v=2" width="750" height="283" alt="Для чего используют вкладку «Конференции»: записанные встречи 76%, прошедшие события 41%, история сообщений 30%, список участников 14%, другое 15%" loading="lazy"></div>
+        <div class="q-card__out">
+          <p class="q-card__label">Что это значит</p>
+          <p class="text">Главное, зачем заходят во вкладку, — записи встреч (76% ответивших) и поиск прошедших событий (41%). Эти сценарии нельзя потерять, если календарь станет отдельным разделом.</p>
+        </div>
       </div>
 
-      <div class="stack stack--16 w-803">
-        <p class="hyp__sub">Как вы относитесь к тому, что в Squadus появится календарь с событиями и конференциями?</p>
+      <div class="q-card">
+        <p class="q-card__type">Шкала 1–7</p>
+        <div class="q-card__q">
+          <p class="q-card__label">Вопрос</p>
+          <p class="q-card__title">Как вы относитесь к тому, что в Squadus появится календарь с событиями и конференциями?</p>
+        </div>
         <div class="stats">
-          <div class="stat">
+          <div class="stat q-card__stat">
             <p class="stat__num">6 из 7</p>
             <p class="stat__cap">медианная оценка</p>
           </div>
-          <div class="stat">
+          <div class="stat q-card__stat">
             <p class="stat__num">79%</p>
             <p class="stat__cap">оценили на 5–7 (148 из 188)</p>
           </div>
         </div>
-        <p class="text">Календарь нужен: оценки от 1 до 4 поставили только 5% опрошенных.</p>
+        <div class="q-card__out">
+          <p class="q-card__label">Что это значит</p>
+          <p class="text">Календарь нужен: оценки от 1 до 4 поставили только 5% опрошенных.</p>
+        </div>
       </div>
 
-      <p class="hyp__sub w-803">Где бы вы ожидали увидеть раздел календаря?</p>
-      <figure class="shot w-760">
+      <div class="q-card">
+        <p class="q-card__type">Тепловая карта</p>
+        <div class="q-card__q">
+          <p class="q-card__label">Вопрос</p>
+          <p class="q-card__title">Где бы вы ожидали увидеть раздел календаря?</p>
+        </div>
         <div class="pic pic--r14"><img src="assets/img/case/kalendar/teplovaya-karta.webp?v=2" width="1520" height="1037" alt="Тепловая карта кликов: большинство кликов в левой панели навигации" loading="lazy"></div>
-        <figcaption class="shot__cap">Большинство кликали в левую панель навигации — пользователи ждут календарь отдельным разделом. Это за гипотезу 1.</figcaption>
-      </figure>
+        <div class="q-card__out">
+          <p class="q-card__label">Что это значит</p>
+          <p class="text">Большинство кликали в левую панель навигации — пользователи ждут календарь отдельным разделом. Это за гипотезу 1.</p>
+        </div>
+      </div>
 
-      <div class="stack stack--16 w-803">
-        <p class="hyp__sub">Что вы делаете, когда не помните, когда было событие, которое нужно найти?</p>
-        <p class="text">Чаще всего листают календарь, пока не найдут нужное событие. Некоторые ищут встречу в почте или поиском по ключевым словам.</p>
+      <div class="q-card">
+        <p class="q-card__type">Открытый вопрос</p>
+        <div class="q-card__q">
+          <p class="q-card__label">Вопрос</p>
+          <p class="q-card__title">Что вы делаете, когда не помните, когда было событие, которое нужно найти?</p>
+        </div>
+        <div class="q-card__out">
+          <p class="q-card__label">Что ответили</p>
+          <p class="text">Чаще всего листают календарь, пока не найдут нужное событие. Некоторые ищут встречу в почте или поиском по ключевым словам.</p>
+        </div>
       </div>
 
       <h3 class="h3">Вывод</h3>

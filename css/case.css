@@ -551,3 +551,17 @@ ul { list-style: none; }
 /* Lu: job stories на подложке, как у блока сценария */
 .lu-jobs { padding: 32px; background: #303236; border-radius: var(--r); }
 @media (max-width: 560px) { .lu-jobs { padding: 20px; } }
+
+/* Календарь: карточки вопросов опроса */
+.q-card { display: flex; flex-direction: column; gap: 20px; width: 100%; max-width: var(--col); padding: 28px; background: var(--panel); border-radius: 16px; }
+.q-card__type { align-self: flex-start; padding: 4px 12px; border-radius: 100px; background: rgba(179, 198, 239, .14); color: var(--accent); font: 500 14px/20px var(--font-main); }
+.q-card__q { display: flex; flex-direction: column; gap: 6px; padding-bottom: 20px; border-bottom: 1px solid rgba(255, 255, 255, .1); }
+.q-card__label { font-size: 14px; line-height: 20px; color: rgba(255, 255, 255, .55); }
+.q-card__title { font: 600 22px/30px var(--font-main); color: #fff; }
+.q-card__chart { max-width: 560px; }
+.q-card__stat { background: rgba(255, 255, 255, .06); }
+.q-card__out { display: flex; flex-direction: column; gap: 6px; padding-left: 16px; border-left: 2px solid var(--accent); }
+@media (max-width: 560px) {
+  .q-card { padding: 20px; gap: 16px; }
+  .q-card__title { font-size: 18px; line-height: 26px; }
+}
