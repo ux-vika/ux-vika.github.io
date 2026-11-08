@@ -106,8 +106,8 @@ ul { list-style: none; }
   color: var(--muted);
   transition: background-color 250ms var(--ease-io), color 250ms var(--ease-io), transform 250ms var(--ease-out), border-color 250ms var(--ease-io);
 }
-.btn-back { padding: 12px 16px; font: 400 16px/normal var(--font-plex); }
-.btn-next { padding: 12px 16px; font: 500 16px/24px var(--font-main); }
+.btn-back { padding: 12px 16px; font: 400 16px/normal var(--font-plex); color: #fff; }
+.btn-next { padding: 12px 16px; font: 500 16px/24px var(--font-main); color: #fff; }
 .btn-back:hover,
 .btn-next:hover { background: rgba(255, 255, 255, .1); color: #fff; transform: translateY(-2px); }
 .btn-back:active,
