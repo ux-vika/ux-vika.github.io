@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400&family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
   <script>document.documentElement.className += ' js';</script>
-  <link rel="stylesheet" href="css/case.css?v=7">
+  <link rel="stylesheet" href="css/case.css?v=15">
 </head>
 <body class="case-page case-lu">
 <canvas class="card__bg case-glow" data-g="#ff4f9a #ff9a5c" aria-hidden="true"></canvas>
@@ -22,8 +22,8 @@
 
   <main class="case">
     <section class="hero hero--lu" aria-label="Приложение Lu">
-      <div class="pic">
-        <img src="assets/img/case/lu/hero.webp?v=2" width="1920" height="1080" alt="Приложение Lu: экран «Home» на телефоне в руках">
+      <div class="hero__media">
+        <video src="assets/video/lu-ruki.mp4" poster="assets/video/lu-ruki-poster.jpg" width="1920" height="1080" autoplay muted loop playsinline preload="auto" aria-label="Приложение Lu: экран «Home» на телефоне в руках"></video>
       </div>
     </section>
 
@@ -56,43 +56,98 @@
     </section>
 
     <section class="stack stack--24 w-914">
-      <h2 class="h2">Иллюстрации</h2>
-      <div class="pic pic--r8"><img src="assets/img/case/lu/illyustracii.webp?v=2" width="1664" height="928" alt="Иллюстрации Lumi: шесть рисунков в одном стиле" loading="lazy"></div>
+      <section class="lu-sc" aria-label="Основной сценарий">
+        <ol class="lu-sc__steps">
+          <li class="lu-sc__step is-on" data-i="0">
+            <span class="lu-sc__lbl">шаг&nbsp;1</span>
+            <h3 class="lu-sc__h">Вход и знакомство</h3>
+            <ul class="lu-sc__q"><li>Как войти?</li><li>Нет аккаунта?</li><li>Что я люблю читать?</li></ul>
+            <p class="lu-sc__p">Войти можно по логину и паролю или через Google, Apple и Facebook. Пока поля пустые, кнопка Continue серая. Дальше Lumi спрашивает имя и любимые жанры, и каждый выбранный жанр загорается зелёным.</p>
+          </li>
+          <li class="lu-sc__step" data-i="1">
+            <span class="lu-sc__lbl">шаг&nbsp;2</span>
+            <h3 class="lu-sc__h">Подобрать книгу</h3>
+            <ul class="lu-sc__q"><li>Что почитать под настроение?</li><li>Почему именно эта?</li><li>Можно начать сразу?</li></ul>
+            <p class="lu-sc__p">Запрос пишется своими словами, как подруге. Lu отвечает парой книг, и у каждой есть строка о том, почему она подходит. Кнопка Start открывает книгу тут же, в приложении.</p>
+          </li>
+          <li class="lu-sc__step" data-i="2">
+            <span class="lu-sc__lbl">шаг&nbsp;3</span>
+            <h3 class="lu-sc__h">Чтение</h3>
+            <ul class="lu-sc__q"><li>Как открыть книгу?</li><li>Как листать страницы?</li><li>Что останется на экране?</li></ul>
+            <p class="lu-sc__p">Книга раскрывается прямо из обложки, и первым идёт титул, как в бумажной книге. Когда начинается текст, кнопки пропадают совсем, остаются глава, текст и номер страницы. Шрифт Literata делали для электронных книг Google Play Books.</p>
+          </li>
+          <li class="lu-sc__step" data-i="3">
+            <span class="lu-sc__lbl">шаг&nbsp;4</span>
+            <h3 class="lu-sc__h">Цвет страницы</h3>
+            <ul class="lu-sc__q"><li>Как вернуть кнопки?</li><li>Где настройки?</li><li>Можно темнее?</li></ul>
+            <p class="lu-sc__p">Кнопки читалки возвращаются по тапу в любое место страницы. В меню шрифт, яркость и три темы, Dark, Light и Sepia. После нажатия на Dark страница темнеет сразу, прямо под открытыми настройками.</p>
+          </li>
+          <li class="lu-sc__step" data-i="4">
+            <span class="lu-sc__lbl">шаг&nbsp;5</span>
+            <h3 class="lu-sc__h">Профиль</h3>
+            <ul class="lu-sc__q"><li>Что я сейчас читаю?</li><li>Сколько осталось до цели?</li><li>Как я читаю по месяцам?</li></ul>
+            <p class="lu-sc__p">Сверху неделя и текущая книга с кнопкой Continue, чтобы вернуться к чтению. Ниже дуга дневной цели и график чтения за месяц, три, полгода или год.</p>
+          </li>
+        </ol>
+        <div class="lu-sc__stick">
+          <div class="lu-sc__phone">
+            <video class="is-on" data-i="0" src="assets/video/lu-shag-1.mp4" poster="assets/video/lu-shag-1-poster.jpg" width="780" height="1688" muted loop playsinline preload="auto" aria-label="Вход, выбор жанров и загрузка главной"></video>
+            <video data-i="1" src="assets/video/lu-shag-2.mp4" poster="assets/video/lu-shag-2-poster.jpg" width="780" height="1688" muted loop playsinline preload="metadata" aria-label="Запрос ассистенту и ответ с книгами"></video>
+            <video data-i="2" src="assets/video/lu-shag-3.mp4" poster="assets/video/lu-shag-3-poster.jpg" width="780" height="1688" muted loop playsinline preload="metadata" aria-label="Книга открывается из обложки, страницы листаются свайпом"></video>
+            <video data-i="3" src="assets/video/lu-shag-4.mp4" poster="assets/video/lu-shag-4-poster.jpg" width="780" height="1688" muted loop playsinline preload="metadata" aria-label="Переключение темы страницы на Dark"></video>
+            <video data-i="4" src="assets/video/lu-shag-5.mp4" poster="assets/video/lu-shag-5-poster.jpg" width="780" height="1688" muted loop playsinline preload="metadata" aria-label="Профиль: неделя, дневная цель, график чтения"></video>
+          </div>
+          <svg class="lu-sc__scale" viewBox="0 0 64 400" aria-hidden="true"></svg>
+        </div>
+      </section>
 
       <div class="lu-col">
         <div class="lu-set">
           <h2 class="h2">Логин</h2>
           <div class="phones">
-            <div class="pic"><img src="assets/img/case/lu/login-1.webp?v=2" width="780" height="1688" alt="Заставка Lu" loading="lazy"></div>
-            <div class="pic"><img src="assets/img/case/lu/login-2.webp?v=2" width="780" height="1688" alt="Экран входа Sign in" loading="lazy"></div>
-            <div class="pic"><img src="assets/img/case/lu/login-3.webp?v=2" width="780" height="1688" alt="Знакомство: имя и предпочтения" loading="lazy"></div>
+            <div class="pic"><img src="assets/img/case/lu/login-1.webp?v=4" width="780" height="1688" alt="Заставка Lu" loading="lazy"></div>
+            <div class="pic"><img src="assets/img/case/lu/login-2.webp?v=5" width="780" height="1688" alt="Экран входа Sign in" loading="lazy"></div>
+            <div class="pic"><img src="assets/img/case/lu/login-3.webp?v=4" width="780" height="1688" alt="Знакомство: имя и предпочтения" loading="lazy"></div>
           </div>
         </div>
 
         <div class="lu-set">
           <h2 class="h2">Чтение</h2>
           <div class="phones">
-            <div class="pic"><img src="assets/img/case/lu/chtenie-1.webp?v=2" width="780" height="1688" alt="Страница книги «Pride and Prejudice»" loading="lazy"></div>
-            <div class="pic"><img src="assets/img/case/lu/chtenie-2.webp?v=2" width="780" height="1688" alt="Обложка книги в ридере" loading="lazy"></div>
-            <div class="pic"><img src="assets/img/case/lu/chtenie-3.webp?v=2" width="780" height="1688" alt="Ридер с настройками отображения" loading="lazy"></div>
+            <div class="pic"><img src="assets/img/case/lu/chtenie-1.webp?v=4" width="780" height="1688" alt="Страница книги «Pride and Prejudice»" loading="lazy"></div>
+            <div class="pic"><img src="assets/img/case/lu/chtenie-2.webp?v=4" width="780" height="1688" alt="Обложка книги в ридере" loading="lazy"></div>
+            <div class="pic"><img src="assets/img/case/lu/chtenie-3.webp?v=4" width="780" height="1688" alt="Ридер с настройками отображения" loading="lazy"></div>
           </div>
         </div>
 
         <h2 class="h2" style="padding:7.26px">AI</h2>
         <div class="phones">
-          <div class="pic"><img src="assets/img/case/lu/ai-1.webp?v=2" width="780" height="1688" alt="Поиск книг с открытой клавиатурой" loading="lazy"></div>
-          <div class="pic"><img src="assets/img/case/lu/ai-2.webp?v=2" width="780" height="1688" alt="Ассистент Lu: «Какое у тебя сегодня настроение?»" loading="lazy"></div>
-          <div class="pic"><img src="assets/img/case/lu/ai-3.webp?v=3" width="780" height="1684" alt="Главный экран Home" loading="lazy"></div>
+          <div class="pic"><img src="assets/img/case/lu/ai-1.webp?v=5" width="780" height="1688" alt="Поиск книг с открытой клавиатурой" loading="lazy"></div>
+          <div class="pic"><img src="assets/img/case/lu/ai-2.webp?v=4" width="780" height="1688" alt="Ассистент Lu: «Какое у тебя сегодня настроение?»" loading="lazy"></div>
+          <div class="pic"><img src="assets/img/case/lu/ai-3.webp?v=5" width="780" height="1684" alt="Главный экран Home" loading="lazy"></div>
         </div>
 
         <div class="lu-set">
           <h2 class="h2">Профиль и библиотека</h2>
           <div class="phones phones--wide">
-            <div class="pic"><img src="assets/img/case/lu/profil-1.webp?v=2" width="780" height="1684" alt="Библиотека: читаю, хочу прочитать, прочитано" loading="lazy"></div>
-            <div class="pic"><img src="assets/img/case/lu/profil-2.webp?v=2" width="780" height="1688" alt="Профиль: календарь чтения и статистика" loading="lazy"></div>
+            <div class="pic"><img src="assets/img/case/lu/profil-1.webp?v=4" width="780" height="1684" alt="Библиотека: читаю, хочу прочитать, прочитано" loading="lazy"></div>
+            <div class="pic"><img src="assets/img/case/lu/profil-2.webp?v=5" width="780" height="1688" alt="Профиль: календарь чтения и статистика" loading="lazy"></div>
+            <div class="pic"><img src="assets/img/case/lu/profil-3.webp?v=1" width="780" height="1688" alt="Профиль: советы по чтению и график чтения по месяцам" loading="lazy"></div>
           </div>
         </div>
       </div>
+    </section>
+
+    <section class="stack stack--16 w-914">
+      <h2 class="h2">UI Kit</h2>
+      <p class="text">Цвета, радиусы и шрифт читалки я перевела в переменные. Радиусы собраны в одну шкалу для кнопок, карточек, листов и обложек, а у читалки три размера текста. Для интерфейса добавила стили шрифтов.</p>
+      <h3 class="h3">Компоненты</h3>
+      <div class="pic pic--r8"><img src="assets/img/case/lu/komponenty.webp?v=1" width="3476" height="1598" alt="Компоненты Lumi: статус-бар, шапка, таб-бар, кнопки, поле ввода, чипсы, день календаря, карточки книг, иконки" loading="lazy"></div>
+    </section>
+
+    <section class="stack stack--24 w-914">
+      <h2 class="h2">Иллюстрации</h2>
+      <div class="pic pic--r8"><img src="assets/img/case/lu/illyustracii.webp?v=3" width="1632" height="928" alt="Иллюстрации Lumi: шесть рисунков в одном стиле" loading="lazy"></div>
     </section>
 
     <section class="next">
@@ -104,7 +159,7 @@
 </div>
 
 <script src="js/home-gradient.js" defer></script>
-<script src="js/case.js" defer></script>
+<script src="js/case.js?v=4" defer></script>
 
 </body>
 </html>

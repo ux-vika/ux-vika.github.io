@@ -169,15 +169,20 @@ ul { list-style: none; }
 .hero--av .pic img { height: 100%; object-fit: cover; }
 
 /* Lu: розовая обложка, фото смещено и увеличено как в макете */
-.hero--lu .pic {
+.hero--lu .pic,
+.hero--lu .hero__media {
   position: relative;
+  overflow: hidden;
   width: calc(557.04px * var(--k));
   max-width: 100%;
   aspect-ratio: 557.04 / 462;
   border-radius: 15.84px;
   background: var(--pink);
 }
-.hero--lu .pic img {
+.js .hero .hero__media { animation: hero-in 1100ms var(--ease-out) 150ms both; }
+.hero--lu .pic img,
+.hero--lu .hero__media video {
+  display: block;
   position: absolute;
   top: 1.76%;
   left: -32.45%;
@@ -336,6 +341,94 @@ ul { list-style: none; }
 .lu-col { display: flex; flex-direction: column; gap: calc(38.48px * var(--k)); width: 100%; max-width: var(--col); }
 .lu-set { display: flex; flex-direction: column; gap: 29.04px; }
 
+/* ---------- Lu: сценарий — шаги слева, липкий телефон с видео справа ----------
+   Активный шаг тот, что в середине экрана (js/case.js): его видео играет с начала,
+   остальные на паузе, смена кроссфейдом. На узком экране видео стоит внутри шага. */
+
+.lu-sc {
+  --ph: min(690px, calc((100vh - 64px) * .8));   /* высота телефона */
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);   /* телефон слева, шаги справа */
+  gap: 64px;
+  width: 100%;
+  max-width: var(--col);
+  margin: 40px auto;
+  padding: 0 56px 12vh;   /* снизу такой же зазор, как сверху у телефона */
+  background: #303236;   /* подложка блока, скругление как у иллюстраций */
+  border-radius: 8px;
+}
+.lu-sc__steps { list-style: none; margin: 0; padding: 0; }
+.lu-sc__step {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 78vh;
+  max-width: 480px;
+  opacity: .28;
+  transition: opacity 400ms var(--ease-io);
+}
+.lu-sc__step.is-on { opacity: 1; }
+.lu-sc__lbl { font: 500 24px/normal var(--font-main); color: var(--accent); margin-bottom: 8px; }
+.lu-sc__h { font: 500 38px/1.1 var(--font-main); letter-spacing: -.02em; color: #fff; margin-bottom: 20px; }
+.lu-sc__q { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+.lu-sc__q li { padding: 8px 14px; border-radius: 999px; background: rgba(255, 255, 255, .08); color: #fff; font-size: 15px; line-height: 1.3; }
+.lu-sc__p { font-size: 16px; line-height: 24px; color: #fff; }
+
+.lu-sc__stick { order: -1; position: sticky; top: calc(50vh - var(--ph) / 2); align-self: start; display: flex; align-items: center; gap: 28px; margin-top: 12vh; }
+.lu-sc__phone,
+.lu-sc__mph {
+  position: relative;
+  aspect-ratio: 780 / 1688;
+  overflow: hidden;
+  background: #f7f3ee;
+}
+.lu-sc__phone { height: var(--ph); border-radius: calc(var(--ph) * .06); }
+.lu-sc__mph { border-radius: 30px; }
+.lu-sc__phone video,
+.lu-sc__mph video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.lu-sc__phone video { opacity: 0; transition: opacity 500ms var(--ease-io); }
+.lu-sc__phone video.is-on { opacity: 1; }
+/* шкала: бегунок едет за прокруткой, деления до него подсвечены (js/case.js) */
+.lu-sc__scale { flex: none; width: 48px; height: calc(var(--ph) * .62); overflow: visible; }
+.lu-sc__scale line { stroke: rgba(255, 255, 255, .2); stroke-width: 2; stroke-linecap: round; transition: stroke 250ms var(--ease-io); }
+.lu-sc__scale line.mj { stroke-width: 2.5; }
+.lu-sc__scale line.on { stroke: var(--accent); }
+.lu-sc__scale .knob { stroke: var(--accent); stroke-width: 7; transition: none; }
+
+.lu-sc__mph { display: none; }
+.lu-sc.is-m { display: block; padding: 8px 20px; }
+.lu-sc.is-m .lu-sc__stick { display: none; }
+.lu-sc.is-m .lu-sc__step { min-height: 0; max-width: none; padding: 24px 0; opacity: 1; }
+.lu-sc.is-m .lu-sc__mph { display: block; width: min(64vw, 260px); border-radius: 30px; margin: 4px auto 24px; }
+
+@media (max-width: 960px) {
+  .lu-sc__lbl { font-size: 18px; }
+  .lu-sc__h { font-size: 26px; margin-bottom: 14px; }
+  .lu-sc__q li { font-size: 14px; padding: 6px 12px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lu-sc__step,
+  .lu-sc__phone video,
+  .lu-sc__scale line { transition: none; }
+}
+
+/* Lu: одно скругление у макетов, плашек и секций */
+.case-lu { --r: 32px; }
+.case-lu .pic,
+.case-lu .hero__media,
+.case-lu .lu-sc,
+.case-lu .lu-sc__phone,
+.case-lu .lu-sc.is-m .lu-sc__mph,
+.case-lu .lu-sc__q li,
+.case-lu .next { border-radius: var(--r); }
+
 /* ---------- Следующий кейс ---------- */
 
 .next {
@@ -440,7 +533,8 @@ ul { list-style: none; }
   .js .rv,
   .js .pic.rv { opacity: 1; transform: none; transition: none; }
   .js .hero .pic { animation: none; }
-  .js .hero .hero__video { animation: none; }
+  .js .hero .hero__video,
+  .js .hero .hero__media { animation: none; }
   .pic img,
   .btn-back,
   .btn-next,

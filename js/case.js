@@ -63,6 +63,99 @@
     blocks.forEach((el) => io.observe(el));
   }
 
+  /* ---------- Сценарий Lu: видео шага играет, пока шаг в середине экрана ---------- */
+
+  const sc = document.querySelector('.lu-sc');
+  if (sc && 'IntersectionObserver' in window) {
+    const steps = Array.from(sc.querySelectorAll('.lu-sc__step'));
+    const vids = Array.from(sc.querySelectorAll('video[data-i]'));
+    const play = (v) => { if (reduce) return; try { v.currentTime = 0; } catch (e) {} const p = v.play(); if (p && p.catch) p.catch(() => {}); };
+
+    if (window.matchMedia('(max-width: 960px)').matches) {
+      // узкий экран: видео переезжает внутрь своего шага, перед абзацем
+      vids.forEach((v) => {
+        const step = steps[+v.dataset.i];
+        if (!step) return;
+        const box = document.createElement('div');
+        box.className = 'lu-sc__mph';
+        box.appendChild(v);
+        step.insertBefore(box, step.querySelector('.lu-sc__p'));
+      });
+      sc.classList.add('is-m');
+      const vio = new IntersectionObserver((es) => {
+        es.forEach((e) => { if (e.isIntersecting) play(e.target); else e.target.pause(); });
+      }, { threshold: 0.5 });
+      vids.forEach((v) => vio.observe(v));
+    } else {
+      let cur = -1;
+      const on = (n) => {
+        if (n === cur) return;
+        cur = n;
+        [steps, vids].forEach((list) => list.forEach((el, k) => el.classList.toggle('is-on', k === n)));
+        vids.forEach((v, k) => { if (k === n) play(v); else v.pause(); });
+      };
+      // шаг активен, когда пересекает горизонтальную полосу посередине экрана
+      const sio = new IntersectionObserver((es) => {
+        es.forEach((e) => { if (e.isIntersecting) on(+e.target.dataset.i); });
+      }, { rootMargin: '-48% 0px -48% 0px' });
+      steps.forEach((s) => sio.observe(s));
+
+      // шкала: по три деления на шаг, бегунок плавно едет за прокруткой
+      const svg = sc.querySelector('.lu-sc__scale');
+      if (svg) {
+        const NS = 'http://www.w3.org/2000/svg';
+        const S = steps.length;
+        const N = (S - 1) * 3 + 1;
+        const y = (p) => 14 + p * 372;
+        const ticks = [];
+        for (let k = 0; k < N; k++) {
+          const major = k % 3 === 0;
+          const l = document.createElementNS(NS, 'line');
+          const yy = y(k / (N - 1));
+          l.setAttribute('x1', 24); l.setAttribute('x2', 24 + (major ? 16 : 8));
+          l.setAttribute('y1', yy); l.setAttribute('y2', yy);
+          if (major) l.setAttribute('class', 'mj');
+          svg.appendChild(l);
+          ticks.push(l);
+        }
+        const knob = document.createElementNS(NS, 'line');
+        knob.setAttribute('class', 'knob');
+        knob.setAttribute('x1', 20); knob.setAttribute('x2', 44);
+        svg.appendChild(knob);
+
+        let raf = 0;
+        const draw = () => {
+          raf = 0;
+          // дробный номер шага: где середина экрана между началами соседних шагов
+          const c = window.innerHeight / 2;
+          let f = -0.5;
+          for (let i = 0; i < S; i++) {
+            const b = steps[i].getBoundingClientRect();
+            if (c < b.top) break;
+            const next = i < S - 1 ? steps[i + 1].getBoundingClientRect().top : b.bottom;
+            f = i + Math.min(1, (c - b.top) / Math.max(1, next - b.top)) - 0.5;
+          }
+          f = Math.max(0, Math.min(S - 1, f));
+          const m = f * 3;
+          ticks.forEach((t, k) => t.classList.toggle('on', k <= m + 0.001));
+          const ky = y(f / (S - 1));
+          knob.setAttribute('y1', ky); knob.setAttribute('y2', ky);
+        };
+        const ask = () => { if (!raf) raf = requestAnimationFrame(draw); };
+        window.addEventListener('scroll', ask, { passive: true });
+        window.addEventListener('resize', ask);
+        draw();
+      }
+      // пока блок не на экране, видео стоит
+      new IntersectionObserver((es) => {
+        es.forEach((e) => {
+          if (e.isIntersecting) { if (cur >= 0 && !reduce) { const p = vids[cur].play(); if (p && p.catch) p.catch(() => {}); } }
+          else vids.forEach((v) => v.pause());
+        });
+      }).observe(sc);
+    }
+  }
+
   /* ---------- 3. Картинки на весь экран ---------- */
 
   const pics = Array.from(document.querySelectorAll('.pic'));
