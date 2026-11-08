@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400&family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
   <script>document.documentElement.className += ' js';</script>
-  <link rel="stylesheet" href="css/case.css?v=19">
+  <link rel="stylesheet" href="css/case.css?v=18">
 </head>
 <body class="case-page case-kal">
 <canvas class="card__bg case-glow" data-g="#3a6bff #8a5cff" aria-hidden="true"></canvas>
@@ -111,7 +111,7 @@
     <section class="stack stack--24 w-914">
       <h2 class="h2">Исследование</h2>
 
-      <h3 class="h3 h3--auto">Опрос в Pathway: 15 вопросов, 188 респондентов</h3>
+      <h3 class="h3 h3--auto h3--white">Опрос в Pathway: 15 вопросов, 188 респондентов</h3>
 
       <div class="stack stack--16 w-803">
         <p class="meta__label">Цель</p>
@@ -123,155 +123,49 @@
 
       <h3 class="h3">Результаты исследования</h3>
 
-      <div class="sv" data-sv>
-        <div class="sv__side">
-          <div class="sv__tabs" aria-hidden="true">
-            <span class="sv__tab is-on">Сводный отчёт</span>
-            <span class="sv__tab">Ответы <b class="sv__count">188</b></span>
-          </div>
-          <div class="sv__list" role="tablist" aria-label="Вопросы опроса" aria-orientation="vertical">
-            <button class="sv__item" role="tab" id="sv-t1" aria-controls="sv-p1" aria-selected="true">
-              <span class="sv__item-head"><span class="sv__num">1.</span><span class="sv__ico sv__ico--choice" aria-hidden="true"></span>Выбор</span>
-              <span class="sv__item-q">Как часто вы используете вкладку «Конференции»?</span>
-            </button>
-            <button class="sv__item" role="tab" id="sv-t2" aria-controls="sv-p2" aria-selected="false" tabindex="-1">
-              <span class="sv__item-head"><span class="sv__num">2.</span><span class="sv__ico sv__ico--choice" aria-hidden="true"></span>Выбор</span>
-              <span class="sv__item-q">Для чего вы используете вкладку «Конференции»?</span>
-            </button>
-            <button class="sv__item" role="tab" id="sv-t3" aria-controls="sv-p3" aria-selected="false" tabindex="-1">
-              <span class="sv__item-head"><span class="sv__num">3.</span><span class="sv__ico sv__ico--scale" aria-hidden="true"></span>Шкала</span>
-              <span class="sv__item-q">Как вы относитесь к тому, что в Squadus появится календарь?</span>
-            </button>
-            <button class="sv__item" role="tab" id="sv-t4" aria-controls="sv-p4" aria-selected="false" tabindex="-1">
-              <span class="sv__item-head"><span class="sv__num">4.</span><span class="sv__ico sv__ico--map" aria-hidden="true"></span>Тепловая карта</span>
-              <span class="sv__item-q">Где бы вы ожидали увидеть раздел календаря?</span>
-            </button>
-            <button class="sv__item" role="tab" id="sv-t5" aria-controls="sv-p5" aria-selected="false" tabindex="-1">
-              <span class="sv__item-head"><span class="sv__num">8.</span><span class="sv__ico sv__ico--open" aria-hidden="true"></span>Открытый вопрос</span>
-              <span class="sv__item-q">Что вы делаете, когда не помните, когда было событие?</span>
-            </button>
-          </div>
+      <div class="q-card">
+        <p class="q-card__type">Выбор</p>
+        <div class="q-card__q">
+          <p class="q-card__label">Вопрос</p>
+          <p class="q-card__title">Как часто вы используете вкладку «Конференции»?</p>
         </div>
-
-        <div class="sv__main">
-          <div class="sv__panel" role="tabpanel" id="sv-p1" aria-labelledby="sv-t1">
-            <div class="sv__card">
-              <p class="sv__card-head"><span class="sv__num">1.</span><span class="sv__ico sv__ico--choice" aria-hidden="true"></span>Выбор</p>
-              <p class="sv__label">Вопрос</p>
-              <p class="sv__q">Как часто вы используете вкладку «Конференции»?</p>
-              <ul class="sv__bars">
-                <li style="--v:11%"><span>Ежедневно</span><span class="sv__val">11% <i>(21)</i></span></li>
-                <li style="--v:19%"><span>Несколько раз в неделю</span><span class="sv__val">19% <i>(35)</i></span></li>
-                <li style="--v:36%"><span>Реже чем раз в неделю</span><span class="sv__val">36% <i>(67)</i></span></li>
-                <li style="--v:35%"><span>Не использую</span><span class="sv__val">35% <i>(65)</i></span></li>
-              </ul>
-            </div>
-            <div class="sv__out">
-              <p class="sv__label">Что это значит</p>
-              <p class="sv__out-text">70% заходят во вкладку реже раза в неделю или не заходят совсем, некоторые до опроса не замечали её кнопку. Календарь внутри «Конференций» мало кто увидит — это против гипотезы 2.</p>
-            </div>
-          </div>
-
-          <div class="sv__panel" role="tabpanel" id="sv-p2" aria-labelledby="sv-t2">
-            <div class="sv__card">
-              <p class="sv__card-head"><span class="sv__num">2.</span><span class="sv__ico sv__ico--choice" aria-hidden="true"></span>Выбор</p>
-              <p class="sv__label">Вопрос</p>
-              <p class="sv__q">Для чего вы используете вкладку «Конференции»?</p>
-              <ul class="sv__bars">
-                <li style="--v:76%"><span>Просматриваю записанные встречи</span><span class="sv__val">76% <i>(93)</i></span></li>
-                <li style="--v:41%"><span>Ищу прошедшие события</span><span class="sv__val">41% <i>(50)</i></span></li>
-                <li style="--v:30%"><span>Просматриваю историю сообщений</span><span class="sv__val">30% <i>(37)</i></span></li>
-                <li style="--v:14%"><span>Просматриваю список участников в событии</span><span class="sv__val">14% <i>(17)</i></span></li>
-                <li style="--v:15%"><span>Другое</span><span class="sv__val">15% <i>(19)</i></span></li>
-              </ul>
-            </div>
-            <div class="sv__out">
-              <p class="sv__label">Что это значит</p>
-              <p class="sv__out-text">Главное, зачем заходят во вкладку, — записи встреч (76% ответивших) и поиск прошедших событий (41%). Эти сценарии нельзя потерять, если календарь станет отдельным разделом.</p>
-            </div>
-          </div>
-
-          <div class="sv__panel" role="tabpanel" id="sv-p3" aria-labelledby="sv-t3">
-            <div class="sv__card">
-              <p class="sv__card-head"><span class="sv__num">3.</span><span class="sv__ico sv__ico--scale" aria-hidden="true"></span>Шкала от 1 до 7</p>
-              <p class="sv__label">Вопрос</p>
-              <p class="sv__q">Как вы относитесь к тому, что в Squadus появится календарь с событиями и конференциями?</p>
-              <p class="sv__median">Медиана <b>6 из 7</b></p>
-              <ul class="sv__bars">
-                <li style="--v:79%"><span>Оценки 5–7</span><span class="sv__val">79% <i>(148)</i></span></li>
-                <li style="--v:5%"><span>Оценки 1–4</span><span class="sv__val">5% <i>(10)</i></span></li>
-              </ul>
-            </div>
-            <div class="sv__out">
-              <p class="sv__label">Что это значит</p>
-              <p class="sv__out-text">Календарь нужен: оценки от 1 до 4 поставили только 5% опрошенных.</p>
-            </div>
-          </div>
-
-          <div class="sv__panel" role="tabpanel" id="sv-p4" aria-labelledby="sv-t4">
-            <div class="sv__card">
-              <p class="sv__card-head"><span class="sv__num">4.</span><span class="sv__ico sv__ico--map" aria-hidden="true"></span>Тепловая карта</p>
-              <p class="sv__label">Вопрос</p>
-              <p class="sv__q">Где бы вы ожидали увидеть раздел календаря?</p>
-              <div class="pic pic--r12 sv__img"><img src="assets/img/case/kalendar/teplovaya-karta.webp?v=2" width="1520" height="1037" alt="Тепловая карта кликов: большинство кликов в левой панели навигации" loading="lazy"></div>
-            </div>
-            <div class="sv__out">
-              <p class="sv__label">Что это значит</p>
-              <p class="sv__out-text">Большинство кликали в левую панель навигации — пользователи ждут календарь отдельным разделом. Это за гипотезу 1.</p>
-            </div>
-          </div>
-
-          <div class="sv__panel" role="tabpanel" id="sv-p5" aria-labelledby="sv-t5">
-            <div class="sv__card">
-              <p class="sv__card-head"><span class="sv__num">8.</span><span class="sv__ico sv__ico--open" aria-hidden="true"></span>Открытый вопрос</p>
-              <p class="sv__label">Вопрос</p>
-              <p class="sv__q">Что вы делаете, когда не помните, когда было событие, которое вам нужно найти?</p>
-              <div class="sv__ai">
-                <p class="sv__label">Сводка AI</p>
-                <p>Большинство респондентов смотрят в календаре или листают его, чтобы найти нужное событие. Некоторые также ищут встречу в почте или используют поиск по ключевым словам.</p>
-              </div>
-            </div>
-          </div>
-
-          <p class="sv__hint" aria-hidden="true">Используйте <kbd>↑</kbd> <kbd>↓</kbd> для переключения между вопросами</p>
+        <div class="pic pic--r12 q-card__chart"><img src="assets/img/case/kalendar/opros-1.webp?v=2" width="756" height="236" alt="Как часто используют вкладку «Конференции»: ежедневно 11%, несколько раз в неделю 19%, реже раза в неделю 36%, не используют 35%" loading="lazy"></div>
+        <div class="q-card__out">
+          <p class="q-card__label">Что это значит</p>
+          <p class="text">70% заходят во вкладку реже раза в неделю или не заходят совсем, некоторые до опроса не замечали её кнопку. Календарь внутри «Конференций» мало кто увидит — это против гипотезы 2.</p>
         </div>
       </div>
 
-      <script>
-      (function () {
-        var root = document.querySelector('[data-sv]');
-        if (!root) return;
-        var tabs = Array.prototype.slice.call(root.querySelectorAll('[role="tab"]'));
-        var panels = tabs.map(function (t) { return document.getElementById(t.getAttribute('aria-controls')); });
-        root.classList.add('is-js');
-        function select(i, focus) {
-          tabs.forEach(function (t, k) {
-            var on = k === i;
-            t.setAttribute('aria-selected', on ? 'true' : 'false');
-            t.tabIndex = on ? 0 : -1;
-            panels[k].hidden = !on;
-          });
-          if (focus) tabs[i].focus();
-        }
-        tabs.forEach(function (t, i) {
-          t.addEventListener('click', function () { select(i, false); });
-          t.addEventListener('keydown', function (e) {
-            var n = null;
-            if (e.key === 'ArrowDown' || e.key === 'ArrowRight') n = (i + 1) % tabs.length;
-            if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') n = (i - 1 + tabs.length) % tabs.length;
-            if (e.key === 'Home') n = 0;
-            if (e.key === 'End') n = tabs.length - 1;
-            if (n !== null) { e.preventDefault(); select(n, true); }
-          });
-        });
-        select(0, false);
-      })();
-      </script>
+      <div class="q-card">
+        <p class="q-card__type">Выбор</p>
+        <div class="q-card__q">
+          <p class="q-card__label">Вопрос</p>
+          <p class="q-card__title">Для чего вы используете вкладку «Конференции»?</p>
+        </div>
+        <div class="pic pic--r12 q-card__chart"><img src="assets/img/case/kalendar/opros-2.webp?v=2" width="750" height="283" alt="Для чего используют вкладку «Конференции»: записанные встречи 76%, прошедшие события 41%, история сообщений 30%, список участников 14%, другое 15%" loading="lazy"></div>
+        <div class="q-card__out">
+          <p class="q-card__label">Что это значит</p>
+          <p class="text">Главное, зачем заходят во вкладку, — записи встреч (76% ответивших) и поиск прошедших событий (41%). Эти сценарии нельзя потерять, если календарь станет отдельным разделом.</p>
+        </div>
+      </div>
+
+      <div class="q-card">
+        <p class="q-card__type">Тепловая карта</p>
+        <div class="q-card__q">
+          <p class="q-card__label">Вопрос</p>
+          <p class="q-card__title">Где бы вы ожидали увидеть раздел календаря?</p>
+        </div>
+        <div class="pic pic--r14"><img src="assets/img/case/kalendar/teplovaya-karta.webp?v=2" width="1520" height="1037" alt="Тепловая карта кликов: большинство кликов в левой панели навигации" loading="lazy"></div>
+        <div class="q-card__out">
+          <p class="q-card__label">Что это значит</p>
+          <p class="text">Большинство кликали в левую панель навигации — пользователи ждут календарь отдельным разделом. Это за гипотезу 1.</p>
+        </div>
+      </div>
 
       <h3 class="h3">Вывод</h3>
       <figure class="shot">
-        <div class="pic pic--r4"><img src="assets/img/case/kalendar/nedelya.webp" width="2400" height="1562" alt="Календарь — неделя, отдельный раздел в левой панели" loading="lazy"></div>
         <figcaption class="shot__cap">Гипотеза 1 подтвердилась: календарь вынесли в отдельный раздел левой панели — там его и ищут. Вкладкой «Конференции» 70% почти не пользуются, внутри неё календарь бы не заметили. К тому же совмещение с конференциями потребовало бы их переделки, а это дорогая разработка.</figcaption>
+        <div class="pic pic--r4"><img src="assets/img/case/kalendar/nedelya.webp" width="2400" height="1562" alt="Календарь — неделя, отдельный раздел в левой панели" loading="lazy"></div>
       </figure>
     </section>
 
@@ -298,12 +192,12 @@
         <h3 class="h3">Навигация</h3>
         <div class="duo">
           <figure class="shot">
-            <div class="pic pic--r4"><img src="assets/img/case/kalendar/nedelya.webp" width="2400" height="1562" alt="Календарь — неделя" loading="lazy"></div>
             <figcaption class="shot__cap">Календарь — отдельный раздел в левой панели навигации.</figcaption>
+            <div class="pic pic--r4"><img src="assets/img/case/kalendar/nedelya.webp" width="2400" height="1562" alt="Календарь — неделя" loading="lazy"></div>
           </figure>
           <figure class="shot">
-            <div class="pic pic--r4"><img src="assets/img/case/kalendar/navigaciya-v3.webp" width="2400" height="1562" alt="Неделя и карточка события справа" loading="lazy"></div>
             <figcaption class="shot__cap">Подробности события открываются в панели справа.</figcaption>
+            <div class="pic pic--r4"><img src="assets/img/case/kalendar/navigaciya-v3.webp" width="2400" height="1562" alt="Неделя и карточка события справа" loading="lazy"></div>
           </figure>
         </div>
       </div>
