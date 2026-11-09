@@ -226,7 +226,9 @@ h1, h2, p, ul { margin: 0; padding: 0; }
   border-radius: 12px;
   transition: transform 900ms var(--ease-out);
 }
-.card__img--lu { object-position: 56% 50%; border-radius: 0; }
+/* Lu: ролик растянут на всю обложку абсолютно — в Safari height: 100% у видео
+   в растянутой ячейке грида не срабатывает, и ролик висел посередине. */
+.card__img--lu { position: absolute; inset: 0; object-position: 56% 50%; border-radius: 0; }
 .card__img--mac { object-fit: contain; border-radius: 0; }
 
 .card__phone {
