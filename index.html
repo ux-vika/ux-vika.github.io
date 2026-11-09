@@ -21,10 +21,7 @@
     <nav class="side__nav r" aria-label="Основное меню">
       <a href="#about">Обо мне</a>
       <a href="https://telegram.me/ux_vika" target="_blank" rel="noopener">Telegram ↗</a>
-      <span class="side__mail">
-        <a href="mailto:9697161878@mail.ru">Почта ↗</a>
-        <button class="side__copy" type="button" data-copy="9697161878@mail.ru">скопировать</button>
-      </span>
+      <a class="side__mail" href="mailto:9697161878@mail.ru" data-copy="9697161878@mail.ru">Почта ↗</a>
       <a href="assets/cv/cv-shakhanina-viktoriya.pdf" target="_blank" rel="noopener">CV ↗</a>
     </nav>
   </aside>
@@ -149,14 +146,15 @@
 <script src="js/home-gradient.js" defer></script>
 <script src="js/home-reveal.js" defer></script>
 <script>
-document.querySelectorAll('[data-copy]').forEach(function (btn) {
-  var label = btn.textContent, timer;
-  btn.addEventListener('click', function () {
-    var text = btn.dataset.copy;
+document.querySelectorAll('[data-copy]').forEach(function (link) {
+  var timer;
+  link.addEventListener('click', function (e) {
+    e.preventDefault();
+    var text = link.dataset.copy;
     var done = function () {
-      btn.textContent = 'скопировано';
+      link.classList.add('is-copied');
       clearTimeout(timer);
-      timer = setTimeout(function () { btn.textContent = label; }, 1500);
+      timer = setTimeout(function () { link.classList.remove('is-copied'); }, 1500);
     };
     if (navigator.clipboard && window.isSecureContext) {
       navigator.clipboard.writeText(text).then(done);
@@ -164,7 +162,7 @@ document.querySelectorAll('[data-copy]').forEach(function (btn) {
       var t = document.createElement('textarea');
       t.value = text; t.style.position = 'fixed'; t.style.opacity = '0';
       document.body.appendChild(t); t.select();
-      try { document.execCommand('copy'); done(); } catch (e) {}
+      try { document.execCommand('copy'); done(); } catch (err) {}
       t.remove();
     }
   });
