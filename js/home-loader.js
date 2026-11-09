@@ -1,4 +1,4 @@
-/* Главная: экран загрузки с процентами.
+/* Главная: экран загрузки с процентами, только при первом открытии сайта во вкладке.
    Пока страница грузится, полоса плавно ползёт к 90%; после события load
    добегает до 100%, экран растворяется, и запускается выезд блоков
    (событие loader:done ловит js/home-reveal.js). */
@@ -6,6 +6,14 @@
   var root = document.documentElement;
   var el = document.querySelector('.loader');
   if (!el) return;
+
+  // Только при первом открытии сайта в этой вкладке: при возврате из кейсов
+  // главная открывается сразу
+  var seen = false;
+  try { seen = sessionStorage.getItem('loaderSeen') === '1'; } catch (e) {}
+  if (seen) { el.remove(); return; }
+  try { sessionStorage.setItem('loaderSeen', '1'); } catch (e) {}
+
   root.classList.add('is-loading');
 
   var fill = el.querySelector('.loader__fill');
