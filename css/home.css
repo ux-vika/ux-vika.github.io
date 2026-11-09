@@ -99,6 +99,19 @@ h1, h2, p, ul { margin: 0; padding: 0; }
 .side__nav a { transition: color var(--dur) var(--ease-out), transform var(--dur) var(--ease-out); }
 .side__nav a:hover,
 .side__nav a:focus-visible { color: var(--text); transform: translateX(4px); }
+.side__mail { display: flex; align-items: baseline; gap: 12px; }
+.side__copy {
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  font-size: 14px;
+  color: var(--muted);
+  cursor: pointer;
+  transition: color var(--dur) var(--ease-out);
+}
+.side__copy:hover,
+.side__copy:focus-visible { color: var(--text); }
 
 /* ---------- Заголовок ---------- */
 
