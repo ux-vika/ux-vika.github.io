@@ -58,6 +58,47 @@ h1, h2, p, ul { margin: 0; padding: 0; }
 }
 .js .r.is-in { opacity: 1; transform: none; }
 
+/* ---------- Экран загрузки ----------
+   Полоса с процентами, пока грузится главная (js/home-loader.js).
+   Без JS не показывается. */
+.loader { display: none; }
+.js .loader {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg);
+  transition: opacity 500ms var(--ease-out), visibility 0s linear 500ms;
+}
+.js .loader.is-done { opacity: 0; visibility: hidden; }
+.is-loading body { overflow: hidden; }
+.loader__box { width: 500px; max-width: calc(100vw - 32px); }
+.loader__pct {
+  margin: 0 0 16px;
+  color: var(--text);
+  font-size: 16px;
+  font-weight: 600;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+.loader__track {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  padding: 0 5px;
+  border-radius: 100px;
+  background: rgba(255, 255, 255, .1);
+}
+.loader__fill {
+  width: 0;
+  height: 30px;
+  border-radius: 100px;
+  background: #fff;
+  box-shadow: 0 10px 40px -10px #fff;
+}
+
 /* ---------- Левая колонка ---------- */
 
 /* Закреплена на месте: при прокрутке страницы не двигается. */

@@ -29,5 +29,11 @@
     });
   }, { threshold: 0.18, rootMargin: '0px 0px -6% 0px' });
 
-  targets.forEach(function (el) { io.observe(el); });
+  function start() { targets.forEach(function (el) { io.observe(el); }); }
+  // Пока висит экран загрузки (js/home-loader.js), выезд не запускаем
+  if (document.documentElement.classList.contains('is-loading')) {
+    document.addEventListener('loader:done', start, { once: true });
+  } else {
+    start();
+  }
 })();
