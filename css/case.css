@@ -601,5 +601,12 @@ ul { list-style: none; }
   .kon-video { --ph: min(600px, 72vh); grid-template-columns: 1fr; justify-items: center; gap: 40px; padding: 56px 20px; }
   .kon-video__text { max-width: none; }
 }
+/* приложения на странице концептов — втрое дальше друг от друга, чем общий шаг .case (40px) */
+.case-kon .case > section + section { margin-top: 80px; }
+/* отступ между обложкой и раскрытыми мокапами, как у Drift (.kon-video) */
+.kon-shots--split { overflow: visible; border-radius: 0; background: none; }
+.kon-shots--split > .pic { overflow: hidden; border-radius: 16px; }
+.kon-shots--split .kon-more > div > .pic:first-child { margin-top: 32px; overflow: hidden; border-radius: 16px 16px 0 0; }
+@media (max-width: 760px) { .kon-shots--split .kon-more > div > .pic:first-child { margin-top: 16px; } }
 @media (max-width: 560px) { .kon-set { gap: 16px; } }
 @media (prefers-reduced-motion: reduce) { .kon-more { transition: none; } }
