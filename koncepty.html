@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400&family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
   <script>document.documentElement.className += ' js';</script>
-  <link rel="stylesheet" href="css/case.css?v=21">
+  <link rel="stylesheet" href="css/case.css?v=22">
 </head>
 <body class="case-page case-kon">
 <canvas class="card__bg case-glow" data-g="#2b4bff #6a5cff" aria-hidden="true"></canvas>
@@ -47,11 +47,15 @@
 <script src="js/home-gradient.js" defer></script>
 <script src="js/case.js" defer></script>
 <script>
-  // «Подробнее»: раскрывает остальные мокапы приложения, кнопка после этого скрывается.
+  // «Подробнее» раскрывает остальные мокапы приложения, «Свернуть» прячет их обратно.
   document.querySelectorAll('.kon-btn').forEach(function (btn) {
     btn.addEventListener('click', function () {
-      btn.setAttribute('aria-expanded', 'true');
-      btn.closest('.kon-set').classList.add('is-open');
+      var set = btn.closest('.kon-set');
+      var open = !set.classList.contains('is-open');
+      set.classList.toggle('is-open', open);
+      btn.setAttribute('aria-expanded', String(open));
+      btn.textContent = open ? 'Свернуть' : 'Подробнее';
+      if (!open) set.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
   });
 </script>
