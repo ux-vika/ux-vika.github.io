@@ -578,5 +578,10 @@ ul { list-style: none; }
 .kon-more > div { overflow: hidden; min-height: 0; }
 .kon-set.is-open .kon-more { grid-template-rows: 1fr; }
 .kon-btn { cursor: pointer; background: transparent; }
+/* анимация в раскрытом блоке: отдельный телефон с воздухом сверху и снизу, не прилипает к мокапам */
+.kon-video { --ph: min(720px, 76vh); display: flex; justify-content: center; padding: 12vh 16px; }
+.kon-phone { height: var(--ph); aspect-ratio: 786 / 1704; overflow: hidden; border-radius: calc(var(--ph) * .06); background: #000; }
+.kon-phone video { display: block; width: 100%; height: 100%; object-fit: cover; }
+@media (max-width: 560px) { .kon-video { --ph: min(560px, 68vh); padding: 56px 16px; } }
 @media (max-width: 560px) { .kon-set { gap: 16px; } }
 @media (prefers-reduced-motion: reduce) { .kon-more { transition: none; } }

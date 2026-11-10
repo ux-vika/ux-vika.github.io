@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400&family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
   <script>document.documentElement.className += ' js';</script>
-  <link rel="stylesheet" href="css/case.css?v=23">
+  <link rel="stylesheet" href="css/case.css?v=24">
 </head>
 <body class="case-page case-kon">
 <canvas class="card__bg case-glow" data-g="#2b4bff #6a5cff" aria-hidden="true"></canvas>
@@ -31,6 +31,7 @@
           <div class="pic"><img src="assets/img/koncepty/kripto/mokap-1.webp" srcset="assets/img/koncepty/kripto/mokap-1-800.webp 800w, assets/img/koncepty/kripto/mokap-1.webp 1600w" sizes="(max-width: 960px) 100vw, 914px" width="1600" height="1200" alt="Четыре экрана криптокошелька в изометрии: онбординг, график Solana, главная и рынки предсказаний"></div>
           <div class="kon-more" id="kripto-more">
             <div>
+              <div class="kon-video"><div class="kon-phone"><video src="assets/video/drift.mp4" poster="assets/video/drift-poster.jpg" width="786" height="1704" muted loop playsinline preload="none" aria-label="Анимация приложения Drift: онбординг, главная с мини-графиками, экран Solana с графиком свечей и рынки предсказаний"></video></div></div>
               <div class="pic"><img src="assets/img/koncepty/kripto/mokap-2.webp" srcset="assets/img/koncepty/kripto/mokap-2-800.webp 800w, assets/img/koncepty/kripto/mokap-2.webp 1600w" sizes="(max-width: 960px) 100vw, 914px" width="1600" height="1200" loading="lazy" alt="Экран Solana с графиком и вынесенной карточкой позиции"></div>
               <div class="pic"><img src="assets/img/koncepty/kripto/mokap-3.webp" srcset="assets/img/koncepty/kripto/mokap-3-800.webp 800w, assets/img/koncepty/kripto/mokap-3.webp 1600w" sizes="(max-width: 960px) 100vw, 914px" width="1600" height="1200" loading="lazy" alt="Онбординг и главный экран с балансом и списком токенов"></div>
               <div class="pic"><img src="assets/img/koncepty/kripto/mokap-4.webp" srcset="assets/img/koncepty/kripto/mokap-4-800.webp 800w, assets/img/koncepty/kripto/mokap-4.webp 1600w" sizes="(max-width: 960px) 100vw, 914px" width="1600" height="1200" loading="lazy" alt="Главный экран и экран рынков предсказаний"></div>
@@ -55,6 +56,10 @@
       set.classList.toggle('is-open', open);
       btn.setAttribute('aria-expanded', String(open));
       btn.textContent = open ? 'Свернуть' : 'Подробнее';
+      // видео в раскрытом блоке играет только пока блок открыт, каждый раз с начала
+      set.querySelectorAll('.kon-more video').forEach(function (v) {
+        if (open) { v.currentTime = 0; var p = v.play(); if (p) p.catch(function () {}); } else v.pause();
+      });
       if (!open) set.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
   });
