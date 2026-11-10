@@ -245,6 +245,14 @@ h1, h2, p, ul { margin: 0; padding: 0; }
   aspect-ratio: 1440 / 930;
   background: transparent;
 }
+/* Мои концепты: мокап 1600×1200 целиком, без обрезки. */
+.card__cover--koncepty {
+  align-self: start;
+  min-height: 0;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  background: transparent;
+}
 /* Три экрана в ряд занимают всю ширину обложки (как в макете: 3 × 133px и зазор 11px),
    высота получается из пропорций картинок, ничего не растягивается и не обрезается. */
 .card__cover--phones {
