@@ -578,10 +578,21 @@ ul { list-style: none; }
 .kon-more > div { overflow: hidden; min-height: 0; }
 .kon-set.is-open .kon-more { grid-template-rows: 1fr; }
 .kon-btn { cursor: pointer; background: transparent; }
-/* анимация в раскрытом блоке: отдельный телефон с воздухом сверху и снизу, не прилипает к мокапам */
-.kon-video { --ph: min(720px, 76vh); display: flex; justify-content: center; padding: 12vh 16px; }
-.kon-phone { height: var(--ph); aspect-ratio: 786 / 1704; overflow: hidden; border-radius: calc(var(--ph) * .06); background: #000; }
-.kon-phone video { display: block; width: 100%; height: 100%; object-fit: cover; }
-@media (max-width: 560px) { .kon-video { --ph: min(560px, 68vh); padding: 56px 16px; } }
+/* анимация в раскрытом блоке: текст слева, телефон справа, воздух сверху и снизу — не прилипает к мокапам */
+.kon-video { --ph: min(820px, 88vh); --u: calc(var(--ph) / 874); display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 64px; padding: 12vh 64px 12vh 56px; }
+.kon-video__text { max-width: 400px; color: #fff; }
+/* заголовок как в макете Drift (онбординг 63:4442): Onest Regular 40; описание как основной текст кейсов (.text, Onest Regular 16/24) */
+.kon-video__title { font: 400 40px/normal var(--font-main); color: #fff; margin-bottom: 16px; }
+.kon-video__text p { font: 400 16px/24px var(--font-main); }
+.kon-video__text p + p { margin-top: 16px; }
+/* корпус как у телефонов в мокапах (Figma 81:305): 415×874, кант 2.5, радиус 60, экран с отступом 8.5 и радиусом 50 */
+.kon-phone { box-sizing: border-box; height: var(--ph); aspect-ratio: 415 / 874; padding: calc(8.5 * var(--u));
+  background: #0d0e14; border: calc(2.5 * var(--u)) solid #d9def2; border-radius: calc(60 * var(--u));
+  box-shadow: 0 0 calc(60 * var(--u)) rgba(26, 51, 229, .18), calc(-40 * var(--u)) calc(60 * var(--u)) calc(80 * var(--u)) rgba(0, 0, 0, .7); }
+.kon-phone video { display: block; width: 100%; height: 100%; object-fit: cover; border-radius: calc(50 * var(--u)); }
+@media (max-width: 760px) {
+  .kon-video { --ph: min(600px, 72vh); grid-template-columns: 1fr; justify-items: center; gap: 40px; padding: 56px 20px; }
+  .kon-video__text { max-width: none; }
+}
 @media (max-width: 560px) { .kon-set { gap: 16px; } }
 @media (prefers-reduced-motion: reduce) { .kon-more { transition: none; } }
