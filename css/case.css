@@ -202,6 +202,7 @@ ul { list-style: none; }
 
 .h2 { font: 600 40px/normal var(--font-main); color: var(--accent); }
 .h2--52 { line-height: 52px; }
+.h2--sm { font-size: 24px; line-height: 32px; }
 .h3 { font: 500 24px/24px var(--font-main); color: var(--accent); }
 .h3--32 { line-height: 32px; }
 .h3--auto { line-height: normal; }
