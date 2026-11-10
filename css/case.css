@@ -565,3 +565,16 @@ ul { list-style: none; }
   .q-card { padding: 20px; gap: 16px; }
   .q-card__title { font-size: 18px; line-height: 26px; }
 }
+
+/* Мои концепты: главный мокап на подложке, остальные раскрываются кнопкой «Подробнее».
+   Мокапы стоят вплотную, без отступов, общие скругления у всей стопки. */
+.kon-set { display: flex; flex-direction: column; align-items: center; gap: 24px; width: 100%; max-width: var(--col); padding: 24px; background: var(--panel); border-radius: 16px; }
+.kon-shots { width: 100%; overflow: hidden; border-radius: 12px; background: #04050f; }
+.kon-shots .pic.rv { opacity: 1; transform: none; transition: none; }
+.kon-more { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 900ms var(--ease-out); }
+.kon-more > div { overflow: hidden; min-height: 0; }
+.kon-set.is-open .kon-more { grid-template-rows: 1fr; }
+.kon-set.is-open .kon-btn { display: none; }
+.kon-btn { cursor: pointer; background: transparent; }
+@media (max-width: 560px) { .kon-set { padding: 12px; gap: 16px; } }
+@media (prefers-reduced-motion: reduce) { .kon-more { transition: none; } }

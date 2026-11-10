@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400&family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
   <script>document.documentElement.className += ' js';</script>
-  <link rel="stylesheet" href="css/case.css?v=20">
+  <link rel="stylesheet" href="css/case.css?v=21">
 </head>
 <body class="case-page case-kon">
 <canvas class="card__bg case-glow" data-g="#2b4bff #6a5cff" aria-hidden="true"></canvas>
@@ -26,17 +26,35 @@
     <!-- Одно приложение = одна секция. Новые приложения добавлять такими же секциями ниже. -->
     <section class="stack stack--24 w-914" id="kriptokoshelek">
       <h2 class="h2">Криптокошелёк</h2>
-      <div class="pic pic--r16"><img src="assets/img/koncepty/kripto/mokap-1.webp" srcset="assets/img/koncepty/kripto/mokap-1-800.webp 800w, assets/img/koncepty/kripto/mokap-1.webp 1600w" sizes="(max-width: 960px) 100vw, 914px" width="1600" height="1200" alt="Четыре экрана криптокошелька в изометрии: онбординг, график Solana, главная и рынки предсказаний"></div>
-      <div class="pic pic--r16"><img src="assets/img/koncepty/kripto/mokap-2.webp" srcset="assets/img/koncepty/kripto/mokap-2-800.webp 800w, assets/img/koncepty/kripto/mokap-2.webp 1600w" sizes="(max-width: 960px) 100vw, 914px" width="1600" height="1200" loading="lazy" alt="Экран Solana с графиком и вынесенной карточкой позиции"></div>
-      <div class="pic pic--r16"><img src="assets/img/koncepty/kripto/mokap-3.webp" srcset="assets/img/koncepty/kripto/mokap-3-800.webp 800w, assets/img/koncepty/kripto/mokap-3.webp 1600w" sizes="(max-width: 960px) 100vw, 914px" width="1600" height="1200" loading="lazy" alt="Онбординг и главный экран с балансом и списком токенов"></div>
-      <div class="pic pic--r16"><img src="assets/img/koncepty/kripto/mokap-4.webp" srcset="assets/img/koncepty/kripto/mokap-4-800.webp 800w, assets/img/koncepty/kripto/mokap-4.webp 1600w" sizes="(max-width: 960px) 100vw, 914px" width="1600" height="1200" loading="lazy" alt="Главный экран и экран рынков предсказаний"></div>
-      <div class="pic pic--r16"><img src="assets/img/koncepty/kripto/mokap-5.webp" srcset="assets/img/koncepty/kripto/mokap-5-800.webp 800w, assets/img/koncepty/kripto/mokap-5.webp 1600w" sizes="(max-width: 960px) 100vw, 914px" width="1600" height="1200" loading="lazy" alt="Онбординг крупным планом и карточка рынка предсказаний"></div>
+      <div class="kon-set">
+        <div class="kon-shots">
+          <div class="pic"><img src="assets/img/koncepty/kripto/mokap-1.webp" srcset="assets/img/koncepty/kripto/mokap-1-800.webp 800w, assets/img/koncepty/kripto/mokap-1.webp 1600w" sizes="(max-width: 960px) 100vw, 914px" width="1600" height="1200" alt="Четыре экрана криптокошелька в изометрии: онбординг, график Solana, главная и рынки предсказаний"></div>
+          <div class="kon-more" id="kripto-more">
+            <div>
+              <div class="pic"><img src="assets/img/koncepty/kripto/mokap-2.webp" srcset="assets/img/koncepty/kripto/mokap-2-800.webp 800w, assets/img/koncepty/kripto/mokap-2.webp 1600w" sizes="(max-width: 960px) 100vw, 914px" width="1600" height="1200" loading="lazy" alt="Экран Solana с графиком и вынесенной карточкой позиции"></div>
+              <div class="pic"><img src="assets/img/koncepty/kripto/mokap-3.webp" srcset="assets/img/koncepty/kripto/mokap-3-800.webp 800w, assets/img/koncepty/kripto/mokap-3.webp 1600w" sizes="(max-width: 960px) 100vw, 914px" width="1600" height="1200" loading="lazy" alt="Онбординг и главный экран с балансом и списком токенов"></div>
+              <div class="pic"><img src="assets/img/koncepty/kripto/mokap-4.webp" srcset="assets/img/koncepty/kripto/mokap-4-800.webp 800w, assets/img/koncepty/kripto/mokap-4.webp 1600w" sizes="(max-width: 960px) 100vw, 914px" width="1600" height="1200" loading="lazy" alt="Главный экран и экран рынков предсказаний"></div>
+              <div class="pic"><img src="assets/img/koncepty/kripto/mokap-5.webp" srcset="assets/img/koncepty/kripto/mokap-5-800.webp 800w, assets/img/koncepty/kripto/mokap-5.webp 1600w" sizes="(max-width: 960px) 100vw, 914px" width="1600" height="1200" loading="lazy" alt="Онбординг крупным планом и карточка рынка предсказаний"></div>
+            </div>
+          </div>
+        </div>
+        <button class="btn-next kon-btn" type="button" aria-expanded="false" aria-controls="kripto-more">Подробнее</button>
+      </div>
     </section>
   </main>
 </div>
 
 <script src="js/home-gradient.js" defer></script>
 <script src="js/case.js" defer></script>
+<script>
+  // «Подробнее»: раскрывает остальные мокапы приложения, кнопка после этого скрывается.
+  document.querySelectorAll('.kon-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      btn.setAttribute('aria-expanded', 'true');
+      btn.closest('.kon-set').classList.add('is-open');
+    });
+  });
+</script>
 
 </body>
 </html>
