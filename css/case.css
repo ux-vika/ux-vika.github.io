@@ -579,6 +579,12 @@ ul { list-style: none; }
 .kon-set.is-open .kon-more { grid-template-rows: 1fr; }
 .kon-btn { cursor: pointer; background: transparent; }
 /* анимация в раскрытом блоке: текст слева, телефон справа, воздух сверху и снизу — не прилипает к мокапам */
+/* блок с анимацией отделён от обложки: между ними виден фон страницы; мокапы ниже примыкают к нему вплотную */
+.kon-shots:has(.kon-video) { overflow: visible; border-radius: 0; background: none; }
+.kon-shots:has(.kon-video) > .pic { overflow: hidden; border-radius: 16px; background: #04050f; }
+.kon-video { margin-top: 32px; border-radius: 16px 16px 0 0; background: #04050f; }
+.kon-more .pic { background: #04050f; }
+.kon-more .pic:last-child { overflow: hidden; border-radius: 0 0 16px 16px; }
 .kon-video { --ph: min(820px, 88vh); --u: calc(var(--ph) / 874); display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 64px; padding: 12vh 64px 12vh 56px; }
 .kon-video__text { max-width: 400px; color: #fff; }
 /* заголовок как в макете Drift (онбординг 63:4442): Onest Regular 40; описание как основной текст кейсов (.text, Onest Regular 16/24) */
@@ -591,6 +597,7 @@ ul { list-style: none; }
   box-shadow: 0 0 calc(60 * var(--u)) rgba(26, 51, 229, .18), calc(-40 * var(--u)) calc(60 * var(--u)) calc(80 * var(--u)) rgba(0, 0, 0, .7); }
 .kon-phone video { display: block; width: 100%; height: 100%; object-fit: cover; border-radius: calc(50 * var(--u)); }
 @media (max-width: 760px) {
+  .kon-video { margin-top: 16px; }
   .kon-video { --ph: min(600px, 72vh); grid-template-columns: 1fr; justify-items: center; gap: 40px; padding: 56px 20px; }
   .kon-video__text { max-width: none; }
 }
