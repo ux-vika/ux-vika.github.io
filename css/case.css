@@ -608,5 +608,11 @@ ul { list-style: none; }
 .kon-shots--split > .pic { overflow: hidden; border-radius: 16px; }
 .kon-shots--split .kon-more > div > .pic:first-child { margin-top: 32px; overflow: hidden; border-radius: 16px 16px 0 0; }
 @media (max-width: 760px) { .kon-shots--split .kon-more > div > .pic:first-child { margin-top: 16px; } }
+/* «Сообщества»: тот же блок с анимацией, но в палитре мокапов — сиренево-розовый фон, тёмный текст, светлый корпус телефона */
+.kon-video--light { background: linear-gradient(120deg, #d9c4f2 0%, #ecc6e6 50%, #f9c9d4 100%); }
+.kon-video--light .kon-video__text, .kon-video--light .kon-video__title { color: #0d0b09; }
+.kon-video--light .kon-phone { background: #f3eff6; border-color: #fff;
+  box-shadow: 0 0 calc(60 * var(--u)) rgba(176, 96, 176, .18), calc(-40 * var(--u)) calc(60 * var(--u)) calc(80 * var(--u)) rgba(92, 40, 92, .28); }
+.kon-shots:has(.kon-video--light) .kon-more .pic { background: none; }
 @media (max-width: 560px) { .kon-set { gap: 16px; } }
 @media (prefers-reduced-motion: reduce) { .kon-more { transition: none; } }
