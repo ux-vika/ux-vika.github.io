@@ -622,5 +622,12 @@ ul { list-style: none; }
 .kon-video--light .kon-phone { background: #f3eff6; border-color: #fff;
   box-shadow: 0 0 calc(60 * var(--u)) rgba(176, 96, 176, .18), calc(-40 * var(--u)) calc(60 * var(--u)) calc(80 * var(--u)) rgba(92, 40, 92, .28); }
 .kon-shots:has(.kon-video--light) .kon-more .pic { background: none; }
+/* бьюти «зя»: тот же блок с анимацией, но без текста — телефон по центру, фон в тёплой гамме мокапов */
+.kon-video--zya { background: linear-gradient(120deg, #fff7f1 0%, #fddfc7 45%, #ffaec2 100%);
+  grid-template-columns: auto; justify-content: center; padding: 12vh 56px; }
+@media (max-width: 760px) { .kon-video--zya { padding: 56px 20px; } }
+.kon-video--zya .kon-phone { background: #fbf3ee; border-color: #fff;
+  box-shadow: 0 0 calc(60 * var(--u)) rgba(240, 122, 62, .18), calc(-40 * var(--u)) calc(60 * var(--u)) calc(80 * var(--u)) rgba(120, 50, 30, .25); }
+.kon-shots:has(.kon-video--zya) .kon-more .pic { background: none; }
 @media (max-width: 560px) { .kon-set { gap: 16px; } }
 @media (prefers-reduced-motion: reduce) { .kon-more { transition: none; } }
