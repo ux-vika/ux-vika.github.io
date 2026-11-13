@@ -175,6 +175,11 @@ h1, h2, p, ul { margin: 0; padding: 0; }
   color: #ffffff;
   line-height: 24px;
 }
+/* Вступление списком: пункты с кружочками */
+.intro__list { list-style: none; }
+.intro__list li { position: relative; padding-left: 18px; }
+.intro__list li::before { content: ""; position: absolute; left: 2px; top: 9px; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+.intro__list li + li { margin-top: 8px; }
 
 /* ---------- Карточки кейсов ---------- */
 
