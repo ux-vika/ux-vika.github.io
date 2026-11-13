@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;600;700&display=swap" rel="stylesheet">
   <script>document.documentElement.className += ' js';</script>
-  <link rel="stylesheet" href="css/home.css?v=22">
+  <link rel="stylesheet" href="css/home.css?v=27">
 </head>
 <body class="home">
 <div class="loader" aria-hidden="true">
@@ -119,6 +119,11 @@
 
     </section>
 
+    <section class="proof" id="proof" aria-labelledby="proof-title">
+      <h2 class="about__title proof__title r" id="proof-title">Как я работаю</h2>
+      <div class="proof__grid"></div>
+    </section>
+
     <section class="about" id="ai">
       <h2 class="about__title r">Работа с AI</h2>
       <div class="about__grid">
@@ -163,7 +168,25 @@
   </main>
 </div>
 
+<dialog class="proof-modal" aria-labelledby="proof-modal-title">
+  <div class="proof-modal__box">
+    <button class="proof-modal__close" type="button" data-close aria-label="Закрыть">✕</button>
+    <p class="proof-modal__label"></p>
+    <h3 class="proof-modal__title" id="proof-modal-title"></h3>
+    <ul class="about__list proof-modal__list"></ul>
+    <p class="proof-modal__link" hidden></p>
+    <div class="proof-modal__media"></div>
+  </div>
+</dialog>
+
+<dialog class="proof-zoom" aria-label="Скрин на весь экран">
+  <button class="proof-modal__close proof-zoom__close" type="button" data-close aria-label="Закрыть">✕</button>
+  <img class="proof-zoom__img" alt="">
+</dialog>
+
 <script src="js/home-gradient.js" defer></script>
+<script src="js/proof-data.js" defer></script>
+<script src="js/proof.js" defer></script>
 <script src="js/home-reveal.js" defer></script>
 <script>
 document.querySelectorAll('[data-copy]').forEach(function (link) {

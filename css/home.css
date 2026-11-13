@@ -161,7 +161,7 @@ h1, h2, p, ul { margin: 0; padding: 0; }
 
 /* ---------- Заголовок ---------- */
 
-.main { margin-left: var(--side-w); max-width: 980px; padding: 60px 16px 60px; }
+.main { margin-left: var(--side-w); max-width: 1400px; padding: 60px 36px 60px 16px; }
 
 .intro__title {
   display: flex;
@@ -182,7 +182,7 @@ h1, h2, p, ul { margin: 0; padding: 0; }
   display: grid;
   grid-template-columns: 468fr 456fr;
   gap: var(--gap);
-  margin-top: 40px;
+  margin-top: 120px;
 }
 
 /* Тёмная карточка с переливающимся градиентом (canvas, js/home-gradient.js).
@@ -380,7 +380,7 @@ a.card:focus-visible .card__bg,
 
 /* ---------- Обо мне ---------- */
 
-.about { margin-top: 40px; }
+.about { margin-top: 120px; }
 .about__title { font: 400 40px/48px var(--font-main); }
 
 .about__grid {
@@ -441,11 +441,12 @@ a.card:focus-visible .card__bg,
   .side__mail.is-copied::after { transform: translateY(0); }
   .main { margin-left: 0; padding: 24px 20px 48px; }
   .intro__title { font-size: 30px; }
-  .cards { grid-template-columns: 1fr; }
+  .cards { grid-template-columns: 1fr; margin-top: 72px; }
   .card__cover { min-height: 0; height: auto; aspect-ratio: 4 / 3; }
   .card__cover--phones { aspect-ratio: auto; height: auto; }
   .card__cover--cal { aspect-ratio: 1440 / 930; }
   .gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .about { margin-top: 72px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -461,4 +462,183 @@ a.card:focus-visible .card__bg,
   a.card:hover,
   a.card:focus-visible,
   .card--soon:hover { transform: none; }
+}
+
+/* ---------- Что я умею, с доказательствами ----------
+   Карточки компетенций собирает js/proof.js из js/proof-data.js.
+   По клику открывается модалка (<dialog>), скрин в ней — на весь экран. */
+
+.proof { margin-top: 120px; }
+
+.proof__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--gap);
+  margin-top: 32px;
+}
+
+.proof-card {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  color: var(--text);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+/* Выезд при появлении (.r) и ховер на одном transform: задержку появления не ставим,
+   иначе она срабатывала бы и на ховере */
+.proof-card,
+.js .proof-card.r {
+  transition: opacity 800ms var(--ease-out), transform 700ms var(--ease-out),
+              border-color var(--dur) var(--ease-out), box-shadow 700ms var(--ease-out);
+  transition-delay: 0s;
+}
+.proof-card__text { display: flex; flex-direction: column; gap: 8px; padding-top: 16px; }
+.proof-card__label { color: var(--muted); font-size: 12px; line-height: 20px; }
+.proof-card__title { font: 700 20px/26px var(--font-main); }
+
+/* Стрелка прижата к низу справа: в одном ряду стрелки на одной линии */
+.proof-card__arrow {
+  align-self: flex-end;
+  margin-top: auto;
+  color: var(--muted);
+  font-size: 20px;
+  line-height: 20px;
+  transition: color var(--dur) var(--ease-out), transform var(--dur) var(--ease-out);
+}
+.proof-card:hover .proof-card__arrow { color: var(--text); transform: translate(2px, -2px); }
+
+.js .proof-card.r.is-in:hover,
+.proof-card:hover {
+  transform: translateY(-4px);
+  border-color: #3d3d3d;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, .55);
+}
+
+.proof-card:focus-visible,
+.proof-modal__close:focus-visible,
+.proof-modal__zoom:focus-visible,
+.proof-modal__link a:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 3px;
+}
+.proof-card:focus-visible { border-color: #3d3d3d; }
+
+/* Плейсхолдер, пока файла картинки нет в assets/proof/ */
+.proof-ph {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: 16px;
+  background: #2b2b2b;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 18px;
+  text-align: center;
+  word-break: break-all;
+}
+
+/* Модалка: окно в стиле карточек сайта. Сам <dialog> без отступов,
+   чтобы клик мимо окна (по затемнению) было легко отличить от клика по окну. */
+html.has-dialog { overflow: hidden; }
+
+.proof-modal {
+  width: min(760px, calc(100% - 32px));
+  max-width: none;
+  max-height: calc(100% - 32px);
+  padding: 0;
+  overflow: auto;
+  overscroll-behavior: contain;
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  color: var(--text);
+}
+.proof-modal::backdrop,
+.proof-zoom::backdrop { background: rgba(0, 0, 0, .7); backdrop-filter: blur(4px); }
+.proof-modal[open] { animation: proof-in 400ms var(--ease-out); }
+@keyframes proof-in { from { opacity: 0; transform: translateY(24px) scale(.98); } }
+
+.proof-modal__box { position: relative; padding: 32px; }
+.proof-modal__close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: var(--bg-card);
+  color: var(--text);
+  font: 400 16px/1 var(--font-main);
+  cursor: pointer;
+  transition: border-color var(--dur) var(--ease-out);
+}
+.proof-modal__close:hover { border-color: #5a5a5a; }
+
+.proof-modal__label { color: var(--muted); font-size: 12px; line-height: 20px; padding-right: 56px; }
+.proof-modal__title { margin: 8px 0 0; padding-right: 56px; font: 700 28px/34px var(--font-main); }
+.proof-modal__list { margin-top: 24px; font-size: 16px; line-height: 23px; }
+.proof-modal__link { margin-top: 16px; }
+.proof-modal__link a { text-decoration: underline; text-underline-offset: 3px; }
+.proof-modal__media { margin-top: 28px; }
+.proof-modal__zoom {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  border-radius: 12px;
+  background: #262626;
+  cursor: zoom-in;
+}
+.proof-modal__img { width: 100%; height: auto; border-radius: 12px; }
+.proof-modal__media .proof-ph { aspect-ratio: 16 / 10; border-radius: 12px; }
+
+/* Скрин на весь экран */
+.proof-zoom {
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding: 56px 16px 16px;
+  border: 0;
+  background: transparent;
+}
+.proof-zoom[open] { display: flex; align-items: center; justify-content: center; }
+.proof-zoom::backdrop { background: rgba(0, 0, 0, .92); }
+.proof-zoom__img { max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 8px; cursor: zoom-out; }
+
+@media (max-width: 1100px) {
+  .proof__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 900px) {
+  .proof { margin-top: 72px; }
+}
+@media (max-width: 600px) {
+  .proof__grid { grid-template-columns: 1fr; }
+  .proof__title { font-size: 32px; line-height: 40px; }
+  .proof-modal__box { padding: 20px; }
+  .proof-modal__close { top: 12px; right: 12px; }
+  .proof-modal__title { font-size: 22px; line-height: 28px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .proof-card,
+  .js .proof-card.r,
+  .proof-card__arrow { transition: none; }
+  .proof-card:hover,
+  .js .proof-card.r.is-in:hover { transform: none; }
+  .proof-card:hover .proof-card__arrow { transform: none; }
+  .proof-modal[open] { animation: none; }
 }
